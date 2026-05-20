@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCB 糸リフト LP スクリプト（フリップカード型 × たるみ悩み）</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #f0883e;
+    --accent2: #da3633;
+    --pink: #f78166;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --teal: #39d2c0;
+    --gold: #e3b341;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0 0 80px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.5em; margin-bottom: 12px; }
+  .header .meta {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  }
+  .header .meta span {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.8em;
+    color: var(--text-muted);
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 16px; }
+
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.75em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .nav a:hover { color: var(--text); background: var(--surface); }
+
+  .section {
+    margin-top: 40px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .badge {
+    font-size: 0.7em;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .badge-orange { background: rgba(240,136,62,0.2); color: var(--accent); }
+  .badge-green  { background: rgba(63,185,80,0.2);  color: var(--green); }
+  .badge-blue   { background: rgba(88,166,255,0.2); color: var(--blue); }
+  .badge-purple { background: rgba(188,140,255,0.2);color: var(--purple); }
+  .badge-pink   { background: rgba(247,129,102,0.2);color: var(--pink); }
+  .badge-red    { background: rgba(218,54,51,0.2);  color: var(--accent2); }
+  .badge-teal   { background: rgba(57,210,192,0.2); color: var(--teal); }
+  .badge-gold   { background: rgba(227,179,65,0.2); color: var(--gold); }
+
+  .section-body { padding: 20px; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    background: var(--surface);
+  }
+  .card-front { border-left: 3px solid var(--text-muted); }
+  .card-back  { border-left: 3px solid var(--pink); background: rgba(247,129,102,0.05); }
+  .card .label {
+    font-size: 0.65em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .card .text { font-size: 0.95em; font-weight: 600; }
+
+  .psych-note {
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85em;
+    color: var(--blue);
+  }
+  .psych-note::before { content: "🧠 心理的役割: "; font-weight: 700; }
+
+  .ad-insight {
+    background: rgba(227,179,65,0.08);
+    border: 1px solid rgba(227,179,65,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85em;
+    color: var(--gold);
+  }
+  .ad-insight::before { content: "📺 広告知見: "; font-weight: 700; }
+
+  .copy-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+    white-space: pre-wrap;
+  }
+  .copy-block .copy-label {
+    font-size: 0.7em;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .img-note {
+    background: rgba(188,140,255,0.08);
+    border: 1px solid rgba(188,140,255,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.8em;
+    color: var(--purple);
+  }
+  .img-note::before { content: "📸 "; }
+
+  .evidence {
+    background: rgba(63,185,80,0.08);
+    border: 1px solid rgba(63,185,80,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.8em;
+    color: var(--green);
+  }
+  .evidence::before { content: "📊 根拠: "; font-weight: 700; }
+
+  .survey-note {
+    background: rgba(57,210,192,0.08);
+    border: 1px solid rgba(57,210,192,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.8em;
+    color: var(--teal);
+  }
+  .survey-note::before { content: "🗣 アンケート根拠: "; font-weight: 700; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.85em;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th { background: var(--surface); color: var(--text-muted); font-size: 0.8em; }
+
+  .flow-step {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-step .num {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85em;
+    flex-shrink: 0;
+  }
+
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  .faq-q {
+    background: var(--surface);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .faq-q::before { content: "Q: "; color: var(--accent); }
+  .faq-a {
+    padding: 12px 16px;
+    font-size: 0.85em;
+    color: var(--text-muted);
+  }
+  .faq-a::before { content: "A: "; color: var(--green); font-weight: 700; }
+
+  .cta-block {
+    background: linear-gradient(135deg, rgba(218,54,51,0.15), rgba(240,136,62,0.15));
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .cta-block h4 { color: var(--accent2); margin-bottom: 8px; }
+
+  .step-bar {
+    display: flex;
+    gap: 4px;
+    margin: 12px 0;
+  }
+  .step-bar .step {
+    flex: 1;
+    height: 8px;
+    background: var(--surface);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .step-bar .step.active { background: var(--accent); border-color: var(--accent); }
+
+  .quiz-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .quiz-flow-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.85em;
+  }
+  .quiz-flow-item .q-num {
+    background: var(--purple);
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.75em;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .arrow {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8em;
+  }
+
+  .highlight-box {
+    background: rgba(240,136,62,0.1);
+    border: 1px solid rgba(240,136,62,0.3);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💉 TCB 糸リフト LP スクリプト<br>フリップカード型 × たるみ悩み 45〜65歳女性</h1>
+  <div class="meta">
+    <span>展開元: 二重整形フリップカードLP</span>
+    <span>ターゲット: F2〜F3（45〜65歳）</span>
+    <span>USP: 2本0円〜 / ダウンタイムほぼゼロ</span>
+    <span>クーポン: 25,000円OFF</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#strategy">戦略概要</a>
+  <a href="#fv">FV</a>
+  <a href="#q1">Q1 悩み</a>
+  <a href="#q2">Q2 挫折</a>
+  <a href="#q3">Q3 不安</a>
+  <a href="#q4">Q4 理想</a>
+  <a href="#result">結果/クーポン</a>
+  <a href="#shared1">❶ 共感再燃</a>
+  <a href="#shared2">❷ 解決策提示</a>
+  <a href="#shared3">❸ BA魅力</a>
+  <a href="#shared4">❹ 選ばれる理由</a>
+  <a href="#shared5">❺ 社会的証明</a>
+  <a href="#shared6">❻ 申し込み手順</a>
+  <a href="#faq">❼ FAQ</a>
+  <a href="#flow">❽ 当日の流れ</a>
+  <a href="#climax">❾ クライマックス</a>
+  <a href="#urgency">❿ 緊急性</a>
+  <a href="#images">画像発注</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== 戦略概要 ==================== -->
+<div class="section" id="strategy">
+  <div class="section-header">
+    <span class="badge badge-gold">STRATEGY</span>
+    <h3>展開戦略・設計思想</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">展開元（二重LP）の核心は「問診型コミットメントの積み上げ」と「BA画像を使った間接的な施術効果訴求」。この仕掛けをそのまま糸リフトに移植する</div>
+
+    <h4 style="margin:16px 0 8px;">展開元との差分・調整ポイント</h4>
+    <table>
+      <tr><th>要素</th><th>二重LP（元）</th><th>糸リフトLP（展開先）</th></tr>
+      <tr><td>ターゲット</td><td>20〜50代幅広め</td><td>45〜65歳 F2・F3に絞る</td></tr>
+      <tr><td>ペイン核心</td><td>まぶたのたるみ・左右差</td><td>「年齢が出ている」「老けて見られる」</td></tr>
+      <tr><td>最大の壁</td><td>整形への抵抗感</td><td>「自分みたいな年齢でやるのは恥ずかしい」＋「何本必要か/費用不明」</td></tr>
+      <tr><td>挫折歴</td><td>アイプチ・メイクごまかし</td><td>マッサージ・美顔器・フェイスローラー・ハイフで根本解決できなかった</td></tr>
+      <tr><td>希望</td><td>パッチリ二重・若見え</td><td>「昔の自分」「自然な若々しさ」（無理な若作りはNG）</td></tr>
+      <tr><td>主要USP</td><td>¥25,000OFF</td><td>2本0円〜 ＋ ダウンタイムほぼゼロ＋コラーゲン増加</td></tr>
+    </table>
+
+    <div class="ad-insight">
+      上位広告の共通訴求パターン（1位/3位）：「65歳以上でも恥ずかしくない」という逆説的フックで引っ張り、クリニック受付ロールプレイで「本当に最大無料」の信憑性を高める。
+      4位/5位：「40代以上で増加中」という社会証明＋「髪の毛くらい細い糸」という具体性でダウンタイム不安を先解消する設計。
+    </div>
+
+    <div class="highlight-box">
+      <strong>設計上の重要方針</strong><br>
+      アンケートより「需要はある。踏み出せていないだけ」。最大の壁は①年齢への羞恥心 ②費用/本数の不透明感 ③「どれくらい持つか」への不安。クイズのQ3でこれら3つを全部言語化させ、後続コンテンツで全消しする構造にする。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FV ==================== -->
+<div class="section" id="fv">
+  <div class="section-header">
+    <span class="badge badge-orange">FV</span>
+    <h3>ファーストビュー ＋ 年代選択（クイズ起動）</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">FVは「私のことだ」と感じさせる精度が命。40代〜60代女性が見た瞬間に「これは自分向け」と判断できるビジュアルとコピー。年代選択がFVに埋め込まれていることで、すぐコミットメントの第一歩が踏める</div>
+
+    <div class="copy-block">
+      <div class="copy-label">FVキャッチコピー（案A — 羞恥心解除型）</div>
+      65歳でも糸リフトは恥ずかしくない。
+むしろ、今が一番「変われる」タイミングです。
+
+顔のたるみ・ほうれい線でお悩みの女性へ
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">FVキャッチコピー（案B — 期間限定クーポン型）</div>
+      フェイスラインのたるみが気になる女性へ
+
+今だけ！糸リフト 最大 2本0円〜
+ダウンタイムほぼゼロで、切らずにリフトアップ
+    </div>
+
+    <div class="img-note">FVビジュアル：45〜55歳の女性が鏡を見ながら頬のたるみを気にしているシーン（Before感） or 施術後に頬に手を当てて笑顔のシーン（After感）。広告動画の世界観を踏襲し、クリニック受付に入ってくる感じのリアル写真でも可</div>
+
+    <h4 style="margin: 16px 0 8px;">年代選択（クイズトリガー）</h4>
+    <div class="copy-block">
+      <div class="copy-label">設問文</div>
+      まず、あなたの年代を教えてください
+    </div>
+    <table>
+      <tr><th>選択肢</th><th>設計意図</th></tr>
+      <tr><td>40代</td><td>たるみが気になり始めた早期層。予防意識を引き出す</td></tr>
+      <tr><td>50代</td><td>メインターゲット。写真・鏡の「不意打ちの現実」に最もダメージを受けている層</td></tr>
+      <tr><td>60代以上</td><td>「自分みたいな年齢でいいの？」という羞恥心が最も強い層。後続で正面から解消</td></tr>
+    </table>
+    <div class="survey-note">「年齢が高い自分が糸リフトを受けるのは恥ずかしい」がアンケートで最も多い心理的ブロック。60代以上を選択肢に入れて「60代でも来ていい」という無言のメッセージを送る</div>
+
+    <div class="step-bar">
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+    <p style="font-size:0.75em;color:var(--text-muted);text-align:center;">ステップバー（4段階）＋ギフトボックスアイコン。展開元と同じUI</p>
+  </div>
+</div>
+
+<!-- ==================== Q1 ==================== -->
+<div class="section" id="q1">
+  <div class="section-header">
+    <span class="badge badge-orange">Q1</span>
+    <h3>お顔の悩み選択 — 問題意識の可視化</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">BA画像の選択肢を見せることで「選ぶ前」から施術後の顔を見せる。選ぶ行為が「私はこれが悩みだ」という自己宣言になり、問題意識を強化。どの選択肢もたるみの種類なので、全員が「自分の悩み」を見つけられる</div>
+
+    <div class="copy-block">
+      <div class="copy-label">設問文</div>
+      お顔で一番気になるお悩みはどれですか？
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-front">
+        <div class="label">表（選択肢 1-1）</div>
+        <div class="text">ほうれい線が深くなった</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（BA画像エリア）</div>
+        <div class="text">ほうれい線が薄まり、顔全体が明るく見えるBA写真</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 1-2）</div>
+        <div class="text">フェイスラインがもたつく・輪郭が崩れてきた</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（BA画像エリア）</div>
+        <div class="text">フェイスラインが引き締まり、顔が小さく見えるBA写真</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 1-3）</div>
+        <div class="text">頬のたるみ・マリオネットラインが気になる</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（BA画像エリア）</div>
+        <div class="text">頬が持ち上がり、マリオネットラインが改善されたBA写真</div>
+      </div>
+    </div>
+
+    <div class="survey-note">アンケートの「最も多い悩み」TOP3：フェイスラインのもたつき、ほうれい線、頬のたるみ。この順で選択肢を並べると選択完了率が上がる可能性あり</div>
+    <div class="img-note">各選択肢のBA画像は同年代（45〜60歳）の症例写真を優先。「同年代の症例が欲しい」というアンケートニーズを直接充足</div>
+  </div>
+</div>
+
+<!-- ==================== Q2 ==================== -->
+<div class="section" id="q2">
+  <div class="section-header">
+    <span class="badge badge-orange">Q2</span>
+    <h3>挫折歴の選択 — 「根本解決できていない」ことを認識させる</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">展開元Q2（「目元の悩みにどう対処していますか？」）の心理設計を踏襲。どの選択肢も「根本解決できていない対処法」にする。何を選んでも「今のやり方の限界」を感じさせ、新たな解決策への受容度を高める</div>
+
+    <div class="copy-block">
+      <div class="copy-label">設問文</div>
+      たるみ対策にこれまでどんなケアをしてきましたか？
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-front">
+        <div class="label">表（選択肢 2-1）</div>
+        <div class="text">フェイスローラー・美顔器を使っている／使ったことがある</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（イラスト＋コピー）</div>
+        <div class="text">頑張ってきたのにたるみは根本から変わらない——
+それはケアの問題じゃなく、原因が筋膜・SMAS層にあるから</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 2-2）</div>
+        <div class="text">ハイフ（HIFU）を受けたことがある</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（イラスト＋コピー）</div>
+        <div class="text">ハイフで効果を感じたのは最初だけ——
+糸リフトは効果が持続しやすく、コラーゲン生成で肌質も改善</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 2-3）</div>
+        <div class="text">マッサージ・高級クリーム・美容液でセルフケアしている</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（イラスト＋コピー）</div>
+        <div class="text">コツコツ続けてきたその努力は本物。
+でも「縮んだ皮膚を引き上げる」のはセルフケアでは難しい</div>
+      </div>
+    </div>
+
+    <div class="survey-note">アンケートより「過去の挫折」上位：美顔器（手間・続かない）、フェイスローラー（習慣化困難）、美容液（塗布系は元に戻る）、ハイフ（効果が一時的）。これら全員の「努力を肯定しながら限界を示す」コピーが刺さる</div>
+
+    <div class="ad-insight">2位広告：「ハイフ効いてなくない？何回もやるのしんどい」という表現でハイフ経験者を強く引き付けている。選択肢2-2の裏面コピーに活かす</div>
+  </div>
+</div>
+
+<!-- ==================== Q3 ==================== -->
+<div class="section" id="q3">
+  <div class="section-header">
+    <span class="badge badge-orange">Q3</span>
+    <h3>不安選択 — 3大ブロックの言語化</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">糸リフト固有の3大ブロックを自分で選ばせる。「そうそう、これが心配だった」という共感で信頼を作り、後続FAQでピンポイントに解消する。選んだ不安が後で解消されるので、購買への心理的距離が縮まる</div>
+
+    <div class="copy-block">
+      <div class="copy-label">設問文</div>
+      糸リフトで一番気になるポイントはどれですか？
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-front">
+        <div class="label">表（選択肢 3-1）</div>
+        <div class="text">何本必要か・費用の総額が分からない</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（ドクターイラスト）</div>
+        <div class="text">まずは無料カウンセリングで本数と費用を確認してOK。
+初回は2本0円〜のプランもご用意しています</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 3-2）</div>
+        <div class="text">痛みやダウンタイム、周りにバレるのが心配</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（ドクターイラスト）</div>
+        <div class="text">髪の毛くらいの極細い糸を使用するので
+痛みとダウンタイムはほぼゼロ。翌日から普通の生活OK</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 3-3）</div>
+        <div class="text">どれくらい効果が持続するか・悪化しないか不安</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（ドクターイラスト）</div>
+        <div class="text">糸が溶けた後もコラーゲンが残り、肌質まで改善。
+1〜2年の持続が期待できます（個人差あり）</div>
+      </div>
+    </div>
+
+    <div class="survey-note">アンケートより「強い需要」TOP3：①数年後どうなるか（持続性不安）②1本○円と書かれているが何本必要か不明 ③同年代の症例・体験談が欲しい。選択肢3-1と3-3でこれらを正面から取り上げる</div>
+    <div class="ad-insight">1位・4位・5位広告に「髪の毛くらいの細い糸」という表現が繰り返し登場。ダウンタイム不安の解消に最も効くフレーズとして確認済み。裏面コピーに直接採用</div>
+  </div>
+</div>
+
+<!-- ==================== Q4 ==================== -->
+<div class="section" id="q4">
+  <div class="section-header">
+    <span class="badge badge-orange">Q4</span>
+    <h3>理想像選択 — 未来の自分イメージの具体化</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">「どうなりたいか」を選ばせることで、施術後の自分を能動的に想像させる（メンタルシミュレーション）。BA画像が「Before=今の自分、After=理想の自分」として機能する。ここで宣言した理想が、後半クライマックスコピーで回収される</div>
+
+    <div class="copy-block">
+      <div class="copy-label">設問文</div>
+      施術後、どうなりたいですか？
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-front">
+        <div class="label">表（選択肢 4-1）</div>
+        <div class="text">昔の自分に近づきたい・顔がすっきりしたい</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（After BA画像）</div>
+        <div class="text">たるみが取れてフェイスラインが引き締まった After写真。
+「若作り」ではなく「本来の自分」に戻った自然な表情</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 4-2）</div>
+        <div class="text">写真や鏡を見るたびに自信を持ちたい</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（After BA画像）</div>
+        <div class="text">施術後に自撮りや集合写真で自然に笑えている女性の After写真</div>
+      </div>
+      <div class="card card-front">
+        <div class="label">表（選択肢 4-3）</div>
+        <div class="text">実年齢より若々しく・疲れて見られなくなりたい</div>
+      </div>
+      <div class="card card-back">
+        <div class="label">裏（After BA画像）</div>
+        <div class="text">健康的で明るい印象に変わったAfter写真。
+「自然な若々しさ」を体現したビジュアル</div>
+      </div>
+    </div>
+
+    <div class="survey-note">アンケートより「希望」TOP：「必ずしも若返りたいわけではなく昔の自分に近づきたい」「健康的で明るい自然な若々しさ（無理な若作りはしたくない）」——4-1・4-3の選択肢コピーはこの言葉から直接取得</div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q4完了ボタン</div>
+      回答を完了する　→
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 結果・クーポン ==================== -->
+<div class="section" id="result">
+  <div class="section-header">
+    <span class="badge badge-green">RESULT</span>
+    <h3>結果表示・クーポン提示</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">回答という「労力」の報酬としてクーポンを提示。努力の正当化心理でクーポン価値を高める。「初回来院限定」で損失回避を発動。展開元と同じ構造</div>
+
+    <div class="copy-block">
+      <div class="copy-label">メインコピー</div>
+      アンケートのご回答ありがとうございました！
+
+特別クーポンをお受け取りください 🎁
+
+糸リフト 通常 ¥25,000 → 今だけ 2本0円〜
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">サブコピー（注釈）</div>
+      ※初回来院限定クーポン適用価格
+※1円以上の契約で割引適用
+※個人差があります
+    </div>
+
+    <div class="img-note">クーポンビジュアル画像（展開元と同じデザインテイスト）。金額を大きく、初回限定の文言を明示</div>
+
+    <div class="cta-block">
+      <h4>CTA① — 最初のCTA（クーポン直下）</h4>
+      <p>ボタン文言:「空き枠を確認してクーポンを使う」</p>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">「続きを見る」ボタン</div>
+      TCBの糸リフトについてもっと知る ↓
+    </div>
+    <p style="font-size:0.8em;color:var(--text-muted);">※このボタンで以下の追加コンテンツが展開される（展開元と同じUI）</p>
+  </div>
+</div>
+
+<!-- ==================== ❶ 共感の再燃 ==================== -->
+<div class="section" id="shared1">
+  <div class="section-header">
+    <span class="badge badge-pink">❶</span>
+    <h3>共感の再燃 — ペインシーン</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">クーポン提示後に一度「あるある場面」でペインを再点火。感情のコントラストを高めることで、次のTCB訴求の刺さりが増す。展開元でも同じ設計</div>
+
+    <div class="copy-block">
+      <div class="copy-label">見出しコピー</div>
+      こんな瞬間、心が沈んでいませんか？
+    </div>
+
+    <table>
+      <tr><th>シーン</th><th>コピー</th></tr>
+      <tr><td>洗顔後のすっぴん</td><td>「すっぴんで鏡を見るたびに、見なければよかった…と思う」</td></tr>
+      <tr><td>写真・証明写真</td><td>「集合写真や免許証更新で、自分の顔に愕然とする」</td></tr>
+      <tr><td>マスクを外す瞬間</td><td>「マスクで隠せていたのに、外した瞬間が怖い」</td></tr>
+    </table>
+
+    <div class="img-note">各シーンのペインイラスト × 3枚。洗面台の前で見つめる女性 / 証明写真ブースで途方に暮れる女性 / マスクを手に持って鏡を見る女性</div>
+
+    <div class="survey-note">アンケートの「気になるシーン」TOP：洗顔後のすっぴん、鏡の前でメイクをする時、ファンデを塗るために肌をまじまじ見る時、鏡や写真に映った不意打ちの現実、証明写真更新、集合写真</div>
+  </div>
+</div>
+
+<!-- ==================== ❷ 解決策提示 ==================== -->
+<div class="section" id="shared2">
+  <div class="section-header">
+    <span class="badge badge-pink">❷</span>
+    <h3>解決策提示 — TCB糸リフトの紹介</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">共感でペインを再燃させた直後に解決策を出す。ここでブランド名とメニューを初出し</div>
+
+    <div class="copy-block">
+      <div class="copy-label">コピー</div>
+      そんなあなたにおすすめなのが
+TCBの「糸リフト」
+
+切らずに、たるみを引き上げる。
+コラーゲンを増やして、肌質まで変える。
+
+今まで頑張ってきたセルフケアと違うのは、
+「原因の根本」から変えられること。
+    </div>
+
+    <div class="img-note">TCBロゴ ＋ 糸リフトの施術イメージ画像（針・糸のわかりやすい図解。怖くない・細い印象を伝える）</div>
+  </div>
+</div>
+
+<!-- ==================== ❸ BA画像 ==================== -->
+<div class="section" id="shared3">
+  <div class="section-header">
+    <span class="badge badge-pink">❸</span>
+    <h3>施術の魅力 ＋ 悩み別BA</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">Q1の悩み選択肢に対応したBAをピンポイントで見せる。「あなたの悩み→こうなる」の個別対応感。同年代（45〜60代）の症例写真であることが最重要</div>
+
+    <div class="copy-block">
+      <div class="copy-label">見出しコピー</div>
+      あなたのたるみ悩みに合った施術で
+「昔の自分」を取り戻せます
+    </div>
+
+    <table>
+      <tr><th>Q1対応</th><th>BAの内容</th></tr>
+      <tr><td>ほうれい線が深くなった</td><td>ほうれい線が目立たなくなり、肌のトーンが明るくなったBA（50代女性）</td></tr>
+      <tr><td>フェイスラインのもたつき</td><td>輪郭が引き締まり、フェイスラインが細くなったBA（45〜55代女性）</td></tr>
+      <tr><td>頬のたるみ・マリオネットライン</td><td>頬が持ち上がりマリオネットラインが改善されたBA（55〜60代女性）</td></tr>
+    </table>
+
+    <div class="img-note">BA素材3枚。Q1の選択肢に1対1対応。量で押さない。同年代症例であることをキャプションで明示（例：「50代女性 / 施術後1ヶ月」）</div>
+    <div class="survey-note">アンケート「同年代の症例や体験談が欲しい」という強いニーズ。症例写真のキャプションに必ず年代を入れる</div>
+  </div>
+</div>
+
+<!-- ==================== ❹ 選ばれる理由 ==================== -->
+<div class="section" id="shared4">
+  <div class="section-header">
+    <span class="badge badge-pink">❹</span>
+    <h3>選ばれる理由 × 4</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">Q3のカードフリップで与えた「感情的な安心」を「論理的な安心」に昇格させる。各理由をQ3の選択肢と対応させることで、自分の不安が解消されている実感を与える</div>
+
+    <div class="flow-step">
+      <div class="num">1</div>
+      <div>
+        <strong>2本0円〜で始められる</strong>（Q3-1対応: 費用・本数不安）<br>
+        通常25,000円のところ、クーポン適用で2本0円〜。必要本数はカウンセリングで相談してOK。追加料金は一切なし
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">2</div>
+      <div>
+        <strong>ダウンタイムほぼゼロ・バレない</strong>（Q3-2対応: 痛み・DT不安）<br>
+        髪の毛くらいの極細い糸を使用。腫れはほとんどなく、翌日から普通の生活が可能。パソコン作業・友人との食事もOK
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">3</div>
+      <div>
+        <strong>効果が持続 ＋ 肌質まで改善</strong>（Q3-3対応: 持続性不安）<br>
+        糸が溶けた後もコラーゲンが定着。1〜2年の効果持続に加え、シワ改善・乾燥肌改善・美肌効果も（個人差あり）
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="num">4</div>
+      <div>
+        <strong>全国100院以上、切らない施術</strong>（保証系）<br>
+        職場や自宅の近くで予約可能。Webで24時間予約。切開不要で傷跡の心配なし
+      </div>
+    </div>
+
+    <div class="ad-insight">4位・5位広告の口コミ「顔のたるみが1日で解消された」「何か変わった？と言われた」という声を社会的証明として活用できる</div>
+  </div>
+</div>
+
+<!-- ==================== ❺ 社会的証明 ==================== -->
+<div class="section" id="shared5">
+  <div class="section-header">
+    <span class="badge badge-pink">❺</span>
+    <h3>社会的証明</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">「同じ年代の人たちが動いている」という事実で個人の決断を後押しする。特に「自分みたいな年齢でやるのは恥ずかしい」という層に響く</div>
+
+    <div class="copy-block">
+      <div class="copy-label">見出しコピー</div>
+      実は今、40代・50代・60代の女性に
+糸リフトを選ぶ方が増えています
+    </div>
+
+    <table>
+      <tr><th>数字</th><th>意味</th></tr>
+      <tr><td>40代以上が◯割以上</td><td>「自分みたいな年齢でいいの？」という不安を払拭</td></tr>
+      <tr><td>施術満足度 ○○%</td><td>受けてよかった、という安心感</td></tr>
+      <tr><td>全国100院以上</td><td>通いやすさの実証</td></tr>
+    </table>
+
+    <div class="evidence">広告文字起こしより「40代以上の女性でもイトリフトをする方が増えている」（4位・5位共通）。これをLP内でも数字として出す</div>
+
+    <div class="img-note">口コミ動画カルーセル（Swiper）× 3本。45〜60代の体験談動画が最も効果的。展開元と同じUIを踏襲</div>
+  </div>
+</div>
+
+<!-- ==================== ❻ 申し込み手順 ==================== -->
+<div class="section" id="shared6">
+  <div class="section-header">
+    <span class="badge badge-pink">❻</span>
+    <h3>申し込み手順</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">「やりたい」→「でもどうするの？」で止まるのを防ぐ。3ステップで行動をゼロハードルに見せる</div>
+
+    <div class="copy-block">
+      <div class="copy-label">見出し</div>
+      カンタン60秒でWeb予約完了
+    </div>
+
+    <div class="flow-step">
+      <div class="num">1</div>
+      <div><strong>ボタンからWeb予約</strong><br>24時間いつでもスマホから。予約料は無料</div>
+    </div>
+    <div class="flow-step">
+      <div class="num">2</div>
+      <div><strong>来院して無料カウンセリング</strong><br>たるみの状態を確認し、必要な本数・費用プランをご提案。相談だけでもOK</div>
+    </div>
+    <div class="flow-step">
+      <div class="num">3</div>
+      <div><strong>施術スタート（最短30分〜）</strong><br>施術後は腫れほぼなし。当日からメイクOK・日常生活に影響なし</div>
+    </div>
+
+    <div class="cta-block">
+      <h4>CTA② — 納得層を拾う</h4>
+      <p>ボタン文言:「空き枠を確認する」</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ❼ FAQ ==================== -->
+<div class="section" id="faq">
+  <div class="section-header">
+    <span class="badge badge-purple">❼</span>
+    <h3>FAQ × 3</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">知識を与えるためではなく「でも…」と足を止める理由を消すだけに存在する。糸リフト固有の不安（Q3）と完全対応させる</div>
+
+    <div class="faq-item">
+      <div class="faq-q">結局、何本必要でいくらかかりますか？</div>
+      <div class="faq-a">たるみの状態や目標によって異なりますが、無料カウンセリングで医師が最適な本数と費用を明示します。今回のクーポン適用で、まず2本0円〜お試しいただけます。合意のない追加料金は一切ありません。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ダウンタイムはどのくらいですか？周りにバレますか？</div>
+      <div class="faq-a">TCBの糸リフトは髪の毛ほどの極細い糸を使用するため、腫れや内出血はほぼゼロ。翌日から普通の生活が可能で、バレにくい仕上がりを目指せます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">効果はどのくらい続きますか？また元に戻りますか？</div>
+      <div class="faq-a">個人差はありますが、1〜2年の効果持続が期待できます。また、糸が溶けた後もコラーゲンが定着するため、肌質改善の効果が継続する場合があります。悪化することはありませんのでご安心ください。</div>
+    </div>
+
+    <div class="survey-note">アンケート残存不安TOP3：「数年後どうなるか（持続性）」「1本○円とあるが何本必要か不明」「同年代が受けているか不安」——3問でこれらをすべて解消する構成</div>
+  </div>
+</div>
+
+<!-- ==================== ❽ 当日の流れ ==================== -->
+<div class="section" id="flow">
+  <div class="section-header">
+    <span class="badge badge-purple">❽</span>
+    <h3>当日の流れ</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">「予約した後に何が起きるか」を見せて未来を先取り体験させる。美容クリニック未経験・久々の人の「入ったことがない場所への不安」を先払いする</div>
+
+    <div class="flow-step">
+      <div class="num">1</div>
+      <div><strong>受付・問診票記入（5分）</strong><br>ご予約の時間に来院。スタッフが丁寧にご案内します</div>
+    </div>
+    <div class="flow-step">
+      <div class="num">2</div>
+      <div><strong>無料カウンセリング（15〜20分）</strong><br>医師がたるみの状態を確認。必要な本数と費用プランをご提案。聞きたいことは何でも聞いてOK</div>
+    </div>
+    <div class="flow-step">
+      <div class="num">3</div>
+      <div><strong>施術（最短30分〜）</strong><br>麻酔クリームで痛みを最小化。極細い糸で丁寧にリフトアップ</div>
+    </div>
+    <div class="flow-step">
+      <div class="num">4</div>
+      <div><strong>帰宅 — そのまま日常生活OK</strong><br>腫れはほぼなし。メイクしてそのままお出かけも可能</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ❾ 感情のクライマックス ==================== -->
+<div class="section" id="climax">
+  <div class="section-header">
+    <span class="badge badge-red">❾</span>
+    <h3>感情のクライマックス</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">LP全体の感情的ゴール。Q4で宣言した理想が実現した状態を描写。FVのネガティブの完全な反転。「昔の自分に近づきたい」「無理な若作りはしたくない」というアンケートの言葉をそのまま使う</div>
+
+    <div class="copy-block" style="text-align:center;font-size:1.1em;">
+      <div class="copy-label">クライマックスコピー</div>
+      もう、マスクで隠さなくていい。
+ハイネックで首を隠さなくていい。
+
+鏡を見るたびに「あ、いいじゃない」と思える顔へ。
+写真に映っても、自然に笑えている自分へ。
+
+若作りじゃない。
+昔の、あなた自身に戻るために。
+
+——その一歩を、今日ここから。
+    </div>
+
+    <div class="cta-block">
+      <h4>CTA③ — 確信層を拾う（最終CTA）</h4>
+      <p>ボタン文言:「空き枠を確認する」</p>
+      <p style="font-size:0.8em;color:var(--text-muted);">¥25,000 OFFクーポンを使う / 2本0円〜</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ❿ 緊急性 ==================== -->
+<div class="section" id="urgency">
+  <div class="section-header">
+    <span class="badge badge-red">❿</span>
+    <h3>緊急性</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="psych-note">「あとで考えよう」で離脱する人を止める。損失回避バイアス活用。展開元と同じ構造</div>
+
+    <div class="copy-block" style="text-align:center;">
+      <div class="copy-label">緊急性コピー</div>
+      ⚠ このページを閉じると
+2本0円〜のクーポンは
+二度と表示されない場合があります
+
+たるみは「気になり始めた今」が
+一番少ない施術で改善できるタイミングです
+
+予約枠が埋まり次第、この動画は配信終了します
+    </div>
+
+    <div class="ad-insight">1位・3位広告のクロージング：「予約枠が生まれ次第この動画は配信終了いたします」という表現を踏襲。希少性＋緊急性の組み合わせ</div>
+  </div>
+</div>
+
+<!-- ==================== 画像発注リスト ==================== -->
+<div class="section" id="images">
+  <div class="section-header">
+    <span class="badge badge-teal">IMAGES</span>
+    <h3>画像発注リスト</h3>
+  </div>
+  <div class="section-body">
+
+    <h4 style="margin-bottom:12px;">フリップカードイラスト（表12枚 + 裏12枚 = 24枚）</h4>
+    <p style="font-size:0.85em;color:var(--text-muted);margin-bottom:16px;">※keana・kuma-cardsと同じ水彩×アニメハイブリッドスタイル。45〜60代女性を主役に。角丸ボーダーの外側は#FFFFFF。</p>
+
+    <table>
+      <tr><th>ID</th><th>面</th><th>テキスト</th><th>シーン</th></tr>
+      <tr><td>1-1</td><td>表</td><td>ほうれい線が深くなった</td><td>50代女性、洗面台の鏡でほうれい線を指でなぞる。困り顔</td></tr>
+      <tr><td>1-1</td><td>裏</td><td>ほうれい線が薄まり表情が明るく</td><td>頬に手を当てて微笑む女性。ツヤ感・明るさUp</td></tr>
+      <tr><td>1-2</td><td>表</td><td>フェイスラインがもたつく・輪郭が崩れてきた</td><td>顎ラインを両手で触る女性。首を傾けて確認する様子</td></tr>
+      <tr><td>1-2</td><td>裏</td><td>フェイスラインが引き締まった</td><td>フェイスラインをスッと指でなぞる女性。満足げ</td></tr>
+      <tr><td>1-3</td><td>表</td><td>頬のたるみ・マリオネットラインが気になる</td><td>スマホで自撮りして顔をじっと見ている女性。曇り顔</td></tr>
+      <tr><td>1-3</td><td>裏</td><td>頬が持ち上がり若々しい印象に</td><td>スマホを持って自然に笑う女性。Before→After変化の表情</td></tr>
+
+      <tr><td>2-1</td><td>表</td><td>フェイスローラー・美顔器を使っている</td><td>美顔器を頬に当てながらため息をつく女性</td></tr>
+      <tr><td>2-1</td><td>裏</td><td>頑張ってきたのに…根本から変えませんか</td><td>腕を組んで「そうかも」と気づく表情の女性</td></tr>
+      <tr><td>2-2</td><td>表</td><td>ハイフ（HIFU）を受けたことがある</td><td>施術ベッドに横たわりながら「また来た…」という顔の女性</td></tr>
+      <tr><td>2-2</td><td>裏</td><td>ハイフとの違い：効果が持続しコラーゲンも増える</td><td>ドクター（白衣）、違いを説明するジェスチャー・笑顔</td></tr>
+      <tr><td>2-3</td><td>表</td><td>マッサージ・美容液でセルフケアしている</td><td>洗面台で美容液をていねいに塗る女性。コツコツ感</td></tr>
+      <tr><td>2-3</td><td>裏</td><td>その努力は本物。次のステップに進む時かも</td><td>両手でOKサインの女性。背筋が伸びた前向きな表情</td></tr>
+
+      <tr><td>3-1</td><td>表</td><td>何本必要か・費用の総額が分からない</td><td>財布を持ちながら悩む女性。困り顔＋はてなマーク</td></tr>
+      <tr><td>3-1</td><td>裏</td><td>まず無料カウンセリングで確認OK＋2本0円〜</td><td>ドクター、笑顔でOKポーズ。「相談だけでもOK」感</td></tr>
+      <tr><td>3-2</td><td>表</td><td>痛みやダウンタイム・周りにバレるのが心配</td><td>両手を胸の前で組み不安そうな女性</td></tr>
+      <tr><td>3-2</td><td>裏</td><td>髪の毛くらいの極細い糸。腫れほぼゼロ</td><td>翌日普通に出かけられる女性のイメージ。明るい服装</td></tr>
+      <tr><td>3-3</td><td>表</td><td>どれくらい効果が続くか・悪化しないか不安</td><td>カレンダーを見ながら首をかしげる女性</td></tr>
+      <tr><td>3-3</td><td>裏</td><td>1〜2年持続＋コラーゲンで肌質まで改善</td><td>ドクター、データを示すジェスチャー＋安心の笑顔</td></tr>
+
+      <tr><td>4-1</td><td>表</td><td>昔の自分に近づきたい・顔がすっきりしたい</td><td>古いアルバムを見て「この頃に戻りたい」という表情の女性</td></tr>
+      <tr><td>4-1</td><td>裏</td><td>昔の自分に近い顔へ、自然に ✨</td><td>ドクター、サムズアップ＋優しい笑顔</td></tr>
+      <tr><td>4-2</td><td>表</td><td>写真や鏡を見るたびに自信を持ちたい</td><td>スマホを手に持ちながら自信なさそうな女性</td></tr>
+      <tr><td>4-2</td><td>裏</td><td>鏡を見るたびに「いいじゃない」と思える自分へ ✨</td><td>ドクター、サムズアップ＋キラキラ</td></tr>
+      <tr><td>4-3</td><td>表</td><td>実年齢より若々しく・疲れて見られなくなりたい</td><td>「また疲れてる？と言われた」顔の女性。うつむき気味</td></tr>
+      <tr><td>4-3</td><td>裏</td><td>健康的な明るさで「若々しい」と言われる自分へ ✨</td><td>ドクター、サムズアップ＋笑顔</td></tr>
+    </table>
+
+    <h4 style="margin-top:24px;margin-bottom:12px;">その他画像</h4>
+    <table>
+      <tr><th>用途</th><th>内容</th><th>枚数</th></tr>
+      <tr><td>FVビジュアル</td><td>45〜55歳女性 / 鏡でたるみを確認するシーン（Before感）</td><td>1枚</td></tr>
+      <tr><td>❶ 共感の再燃</td><td>ペインシーン（洗顔後・証明写真・マスクを外す）</td><td>3枚</td></tr>
+      <tr><td>❸ 悩み別BA</td><td>同年代症例（45〜60代女性）の糸リフトBA写真</td><td>3枚（Q1対応）</td></tr>
+      <tr><td>クーポンビジュアル</td><td>「2本0円〜」「¥25,000OFF」クーポン画像</td><td>1枚</td></tr>
+      <tr><td>❽ 当日の流れ</td><td>4ステップのイラスト or 写真（来院〜帰宅）</td><td>4枚</td></tr>
+      <tr><td>社会的証明</td><td>45〜60代女性の口コミ動画カルーセル</td><td>3本（Swiper）</td></tr>
+      <tr><td>CTA画像（ボタン）</td><td>アニメーション付きCTAボタン（展開元と同デザイン）</td><td>1種</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <strong>クリエイティブ上の最重要指示</strong><br>
+      全カードイラストの女性キャラは45〜60歳の女性を想定したビジュアルにすること。展開元（二重LP）は20〜30代向けだったため、同じイラストスタイルでも「年齢感」は明確に上げる必要がある。<br><br>
+      BA写真も同様。症例写真に「50代女性 / 施術後1ヶ月」などのキャプションを必ず入れる。
+    </div>
+  </div>
+</div>
+
+<!-- ==================== クイズフロー全体図 ==================== -->
+<div class="section" id="quiz-full">
+  <div class="section-header">
+    <span class="badge badge-blue">FLOW</span>
+    <h3>クイズフロー全体図</h3>
+  </div>
+  <div class="section-body">
+
+    <div class="quiz-flow">
+      <div class="quiz-flow-item">
+        <span class="q-num">FV</span>
+        <span>年代選択（40代 / 50代 / 60代以上）— 低摩擦コミットメント第一歩</span>
+      </div>
+      <div class="arrow">↓ ステップバー1/4</div>
+      <div class="quiz-flow-item">
+        <span class="q-num">Q1</span>
+        <span>悩み選択（ほうれい線 / フェイスライン / 頬たるみ）— 問題意識可視化</span>
+      </div>
+      <div class="arrow">↓ ステップバー2/4</div>
+      <div class="quiz-flow-item">
+        <span class="q-num">Q2</span>
+        <span>挫折歴選択（美顔器 / ハイフ / セルフケア）— 現状ケアの限界確認</span>
+      </div>
+      <div class="arrow">↓ ステップバー3/4</div>
+      <div class="quiz-flow-item">
+        <span class="q-num">Q3</span>
+        <span>不安選択（費用・本数 / DT・バレ / 持続性）— 3大ブロックの言語化</span>
+      </div>
+      <div class="arrow">↓ ステップバー4/4</div>
+      <div class="quiz-flow-item">
+        <span class="q-num">Q4</span>
+        <span>理想像選択（昔の自分 / 写真・鏡の自信 / 若々しさ）— 未来イメージの具体化</span>
+      </div>
+      <div class="arrow">↓ 「回答を完了する」ボタン</div>
+      <div class="quiz-flow-item" style="border-color: rgba(240,136,62,0.5);">
+        <span class="q-num" style="background:var(--accent);">RESULT</span>
+        <span>クーポン提示（2本0円〜 / ¥25,000OFF）＋ CTA①</span>
+      </div>
+      <div class="arrow">↓ 「続きを見る」ボタン</div>
+      <div class="quiz-flow-item" style="border-color: rgba(63,185,80,0.3);">
+        <span class="q-num" style="background:var(--green);">MORE</span>
+        <span>❶共感再燃 → ❷解決策提示 → ❸BA → ❹選ばれる理由 → ❺社会的証明 → ❻申し込み手順 → CTA② → ❼FAQ → ❽当日の流れ → ❾クライマックス → CTA③ → ❿緊急性</span>
+      </div>
+    </div>
+
+    <div class="evidence">展開元（二重LP）との差分まとめ：①年代選択肢を40/50/60代に絞りターゲット精度UP ②Q2の選択肢を「挫折歴」に変更（セルフケア限界の認識促進）③Q3を「糸リフト固有の3大不安」に特化 ④FAQで「本数・費用・持続性」を正面回答 ⑤クライマックスコピーを「昔の自分に戻る」「自然な若々しさ」に書き換え</div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
