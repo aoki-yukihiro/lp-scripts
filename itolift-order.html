@@ -143,7 +143,10 @@
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .text-box .text-content {
     font-size: 1em;
@@ -153,11 +156,37 @@
   .front .text-box .text-content { color: #c5b9a8; }
   .back  .text-box .text-content { color: #f7a186; }
 
+  /* 編集可能スタイル */
+  [contenteditable] {
+    outline: none;
+    border-radius: 4px;
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  [contenteditable]:hover {
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+  }
+  [contenteditable]:focus {
+    background: rgba(88,166,255,0.08);
+    box-shadow: 0 0 0 2px rgba(88,166,255,0.4);
+  }
+  .edit-hint {
+    font-size: 0.68em;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .desc {
     font-size: 0.82em;
     color: var(--text-muted);
     line-height: 1.7;
     white-space: pre-wrap;
+    padding: 4px;
+    min-height: 2em;
   }
   .note {
     font-size: 0.75em;
@@ -826,5 +855,27 @@
 </div>
 
 </div><!-- /container -->
+
+<script>
+  // テキスト編集機能
+  document.querySelectorAll('.text-content, .desc').forEach(el => {
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+  });
+
+  // 編集ヒントラベルを追加
+  document.querySelectorAll('.text-box .text-label').forEach(el => {
+    const hint = document.createElement('span');
+    hint.textContent = '✏ クリックで編集';
+    hint.style.cssText = 'font-size:0.85em;opacity:0.5;font-weight:400;letter-spacing:0;text-transform:none;';
+    el.appendChild(hint);
+  });
+  document.querySelectorAll('.card-side-label').forEach(el => {
+    const hint = document.createElement('span');
+    hint.textContent = '✏ シーン説明も編集可';
+    hint.style.cssText = 'font-size:0.8em;opacity:0.4;font-weight:400;margin-left:auto;';
+    el.appendChild(hint);
+  });
+</script>
 </body>
 </html>
