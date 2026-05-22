@@ -872,9 +872,46 @@
   });
   document.querySelectorAll('.card-side-label').forEach(el => {
     const hint = document.createElement('span');
-    hint.textContent = '✏ シーン説明も編集可';
+    hint.textContent = '✏ 編集可';
     hint.style.cssText = 'font-size:0.8em;opacity:0.4;font-weight:400;margin-left:auto;';
     el.appendChild(hint);
+  });
+
+  // 保存ボタン
+  const saveBar = document.createElement('div');
+  saveBar.style.cssText = `
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: rgba(13,17,23,0.97); border-top: 1px solid #30363d;
+    padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+    backdrop-filter: blur(10px);
+  `;
+  saveBar.innerHTML = `
+    <span style="font-size:0.8em;color:#8b949e;flex:1;">編集後は「保存してコピー」を押してください。Claude Codeに貼り付けると反映されます。</span>
+    <button id="saveBtn" style="
+      background: #f0883e; color: #fff; border: none; border-radius: 8px;
+      padding: 8px 20px; font-size: 0.85em; font-weight: 700; cursor: pointer;
+      font-family: inherit;
+    ">💾 保存してコピー</button>
+  `;
+  document.body.appendChild(saveBar);
+
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    const data = [];
+    document.querySelectorAll('.card-pair').forEach(pair => {
+      const id = pair.querySelector('.card-pair-header span')?.textContent.trim();
+      const frontText = pair.querySelector('.front .text-content')?.innerText.trim();
+      const backText  = pair.querySelector('.back .text-content')?.innerText.trim();
+      const frontDesc = pair.querySelector('.front .desc')?.innerText.trim();
+      const backDesc  = pair.querySelector('.back .desc')?.innerText.trim();
+      data.push(`## ${id}\n表テキスト: ${frontText}\n裏テキスト: ${backText}\n表シーン: ${frontDesc}\n裏シーン: ${backDesc}`);
+    });
+    const text = data.join('\n\n---\n\n');
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('saveBtn');
+      btn.textContent = '✅ コピーしました！';
+      btn.style.background = '#3fb950';
+      setTimeout(() => { btn.textContent = '💾 保存してコピー'; btn.style.background = '#f0883e'; }, 2500);
+    });
   });
 </script>
 </body>
