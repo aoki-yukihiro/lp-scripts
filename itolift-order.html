@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>糸リフトLP カードイラスト発注指示書</title>
+<title>糸リフトLP カードイラスト 画像生成AI 発注指示書</title>
 <style>
   :root {
     --bg: #0d1117;
     --surface: #161b22;
     --border: #30363d;
     --text: #e6edf3;
-    --text-muted: #8b949e;
+    --muted: #8b949e;
     --accent: #f0883e;
     --pink: #f78166;
     --green: #3fb950;
@@ -25,7 +25,7 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.8;
-    padding: 0 0 80px;
+    padding-bottom: 60px;
   }
   .header {
     background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
@@ -33,245 +33,150 @@
     padding: 40px 20px;
     text-align: center;
   }
-  .header h1 { font-size: 1.4em; margin-bottom: 12px; line-height: 1.5; }
-  .header .meta { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
-  .header .meta span {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.78em;
-    color: var(--text-muted);
+  .header h1 { font-size: 1.4em; line-height: 1.5; margin-bottom: 12px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+  .meta span {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 14px; font-size: 0.78em; color: var(--muted);
   }
   .nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(13,17,23,0.96);
-    backdrop-filter: blur(10px);
+    background: rgba(13,17,23,0.96); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    padding: 10px 16px;
-    overflow-x: auto;
-    white-space: nowrap;
+    padding: 10px 16px; overflow-x: auto; white-space: nowrap;
   }
   .nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.75em;
-    padding: 4px 10px;
-    border-radius: 12px;
-    transition: all 0.2s;
-    display: inline-block;
+    color: var(--muted); text-decoration: none; font-size: 0.75em;
+    padding: 4px 10px; border-radius: 12px; display: inline-block; transition: all 0.2s;
   }
   .nav a:hover { color: var(--text); background: var(--surface); }
-  .container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
-
-  /* セクション */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
   .section {
-    margin-top: 40px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
+    margin-top: 40px; border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
   }
   .section-header {
-    padding: 14px 20px;
+    padding: 14px 20px; background: var(--surface);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 10px;
-    background: var(--surface);
   }
   .section-header h2 { font-size: 1em; }
-  .section-header h3 { font-size: 0.95em; }
-  .badge {
-    font-size: 0.68em; padding: 3px 10px; border-radius: 10px; font-weight: 700; flex-shrink: 0;
-  }
-  .badge-orange { background: rgba(240,136,62,0.2); color: var(--accent); }
-  .badge-pink   { background: rgba(247,129,102,0.2); color: var(--pink); }
-  .badge-blue   { background: rgba(88,166,255,0.2); color: var(--blue); }
-  .badge-purple { background: rgba(188,140,255,0.2); color: var(--purple); }
-  .badge-teal   { background: rgba(57,210,192,0.2); color: var(--teal); }
-  .badge-gold   { background: rgba(227,179,65,0.2); color: var(--gold); }
   .section-body { padding: 20px; }
+  .badge {
+    font-size: 0.68em; padding: 3px 10px;
+    border-radius: 10px; font-weight: 700; flex-shrink: 0;
+  }
+  .badge-gold   { background: rgba(227,179,65,0.2);  color: var(--gold); }
+  .badge-orange { background: rgba(240,136,62,0.2);  color: var(--accent); }
+  .badge-blue   { background: rgba(88,166,255,0.2);  color: var(--blue); }
+  .badge-pink   { background: rgba(247,129,102,0.2); color: var(--pink); }
+  .badge-purple { background: rgba(188,140,255,0.2); color: var(--purple); }
+  .badge-teal   { background: rgba(57,210,192,0.2);  color: var(--teal); }
+  .badge-front  { background: rgba(197,185,168,0.15); color: #c5b9a8; }
+  .badge-back   { background: rgba(247,161,134,0.15); color: #f7a186; }
+  .badge-doctor { background: rgba(88,166,255,0.12); color: var(--blue); border: 1px solid rgba(88,166,255,0.25); }
 
-  /* カードペア */
-  .card-pair {
-    margin: 20px 0;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .card-pair-header {
-    padding: 10px 16px;
-    background: rgba(255,255,255,0.03);
+  /* --- base prompt blocks --- */
+  .base-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .base-block { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .base-block-label {
+    padding: 8px 12px; background: var(--surface);
     border-bottom: 1px solid var(--border);
-    font-size: 0.82em;
-    font-weight: 700;
-    color: var(--text-muted);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card-pair-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
-  .card-side {
-    padding: 16px;
-  }
-  .card-side.front {
-    border-right: 1px solid var(--border);
-    background: rgba(197,185,168,0.05);
-  }
-  .card-side.back {
-    background: rgba(247,129,102,0.05);
-  }
-  .card-side-label {
-    font-size: 0.65em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    font-size: 0.7em; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px;
     display: flex; align-items: center; gap: 6px;
   }
-  .front .card-side-label { color: var(--text-muted); }
-  .back .card-side-label  { color: var(--pink); }
+  .base-text {
+    font-size: 0.76em; color: var(--muted); line-height: 1.8;
+    padding: 10px 12px; white-space: pre-wrap;
+  }
+  .base-copy-btn {
+    display: block; width: 100%; padding: 8px;
+    background: rgba(255,255,255,0.03); border: none;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.76em; font-family: inherit;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .base-copy-btn:hover { background: rgba(88,166,255,0.08); color: var(--blue); }
 
-  .text-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
+  /* --- prompt pairs --- */
+  .pair-sep {
+    font-size: 0.75em; font-weight: 700; color: var(--muted);
+    padding: 14px 0 8px;
+    border-bottom: 1px solid var(--border);
     margin-bottom: 12px;
   }
-  .text-box .text-label {
-    font-size: 0.62em;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .prompt-pair {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 20px;
   }
-  .text-box .text-content {
-    font-size: 1em;
-    font-weight: 700;
-    line-height: 1.5;
+  .pcard {
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
   }
-  .front .text-box .text-content { color: #c5b9a8; }
-  .back  .text-box .text-content { color: #f7a186; }
+  .pcard.front { border-top: 3px solid #c5b9a8; }
+  .pcard.back  { border-top: 3px solid #f7a186; }
+  .pcard.doctor { border-top: 3px solid var(--blue); }
+  .pcard-head {
+    padding: 8px 12px; background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .pcard-id { font-size: 0.7em; color: var(--muted); font-family: 'SF Mono','Fira Code',monospace; }
+  .pcard-cardtext {
+    padding: 10px 12px; border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .pcard-cardtext-label {
+    font-size: 0.58em; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px;
+  }
+  .pcard-cardtext-val { font-size: 1em; font-weight: 700; line-height: 1.5; }
+  .front .pcard-cardtext-val { color: #c5b9a8; }
+  .back  .pcard-cardtext-val { color: #f7a186; }
+  .doctor .pcard-cardtext-val { color: var(--blue); }
+  .pcard-scene {
+    padding: 10px 12px;
+    font-size: 0.77em; color: var(--muted);
+    line-height: 1.8; white-space: pre-wrap;
+    border-bottom: 1px solid var(--border);
+    min-height: 80px;
+  }
+  .copy-btn {
+    display: block; width: 100%; padding: 9px;
+    background: transparent; border: none;
+    color: var(--muted); font-size: 0.78em; font-family: inherit;
+    cursor: pointer; transition: all 0.18s;
+  }
+  .copy-btn:hover { background: rgba(88,166,255,0.08); color: var(--blue); }
+  .copy-btn.ok { background: rgba(63,185,80,0.1); color: var(--green); }
 
-  /* 編集可能スタイル */
-  [contenteditable] {
-    outline: none;
-    border-radius: 4px;
-    transition: background 0.15s, box-shadow 0.15s;
-  }
-  [contenteditable]:hover {
-    background: rgba(255,255,255,0.04);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
-  }
-  [contenteditable]:focus {
-    background: rgba(88,166,255,0.08);
-    box-shadow: 0 0 0 2px rgba(88,166,255,0.4);
-  }
-  .edit-hint {
-    font-size: 0.68em;
-    color: var(--text-muted);
-    opacity: 0.6;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .desc {
-    font-size: 0.82em;
-    color: var(--text-muted);
-    line-height: 1.7;
-    white-space: pre-wrap;
-    padding: 4px;
-    min-height: 2em;
-  }
-  .note {
-    font-size: 0.75em;
-    color: var(--purple);
+  .reuse-note {
     background: rgba(188,140,255,0.08);
     border: 1px solid rgba(188,140,255,0.2);
-    border-radius: 6px;
-    padding: 8px 12px;
-    margin-top: 10px;
-  }
-
-  /* 共通仕様 */
-  .spec-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 12px 0;
-  }
-  .spec-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px;
-  }
-  .spec-block h4 {
-    font-size: 0.75em;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-  .spec-block p, .spec-block li {
-    font-size: 0.82em;
-    color: var(--text-muted);
-    line-height: 1.8;
-  }
-  .spec-block ul { padding-left: 1em; }
-
-  .full-spec {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 0.82em;
-    color: var(--text-muted);
-    line-height: 1.9;
-    white-space: pre-wrap;
+    border-radius: 6px; padding: 7px 12px;
+    font-size: 0.74em; color: var(--purple); margin: 8px 12px 4px;
   }
 
   .alert {
-    background: rgba(227,179,65,0.1);
-    border: 1px solid rgba(227,179,65,0.3);
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 0.85em;
-    color: var(--gold);
-    line-height: 1.8;
+    background: rgba(227,179,65,0.1); border: 1px solid rgba(227,179,65,0.3);
+    border-radius: 8px; padding: 12px 16px;
+    font-size: 0.82em; color: var(--gold); line-height: 1.8; margin-bottom: 16px;
   }
-  .alert::before { content: "⚠ "; font-weight: 700; }
 
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0;
-    font-size: 0.82em;
+    width: 100%; border-collapse: collapse; font-size: 0.8em; margin: 10px 0;
   }
-  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; vertical-align: top; }
-  th { background: var(--surface); color: var(--text-muted); font-size: 0.8em; white-space: nowrap; }
-
+  th, td { border: 1px solid var(--border); padding: 7px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--surface); color: var(--muted); }
   code {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-size: 0.88em;
-    color: var(--teal);
+    font-family: 'SF Mono','Fira Code',monospace;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1px 6px; font-size: 0.88em; color: var(--teal);
   }
 
   @media (max-width: 600px) {
-    .card-pair-body { grid-template-columns: 1fr; }
-    .card-side.front { border-right: none; border-bottom: 1px solid var(--border); }
-    .spec-grid { grid-template-columns: 1fr; }
+    .prompt-pair { grid-template-columns: 1fr; }
+    .base-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -288,68 +193,55 @@
 </div>
 
 <nav class="nav">
-  <a href="#spec">共通仕様</a>
-  <a href="#q1">Q1 悩みの自覚</a>
-  <a href="#q2">Q2 対処法の限界</a>
-  <a href="#q3">Q3 不安の解消</a>
-  <a href="#q4">Q4 理想の宣言</a>
-  <a href="#notes">制作上の注意</a>
-  <a href="#files">ファイル命名</a>
+  <a href="#base">共通プロンプト</a>
+  <a href="#q1">Q1</a>
+  <a href="#q2">Q2</a>
+  <a href="#q3">Q3</a>
+  <a href="#q4">Q4</a>
+  <a href="#files">ファイル一覧</a>
 </nav>
 
 <div class="container">
 
-<!-- ==================== 共通仕様 ==================== -->
-<div class="section" id="spec">
+<!-- ==================== 共通プロンプト ==================== -->
+<div class="section" id="base">
   <div class="section-header">
-    <span class="badge badge-gold">共通仕様</span>
-    <h2>全24枚に適用される共通ルール</h2>
+    <span class="badge badge-gold">共通</span>
+    <h2>共通プロンプトベース</h2>
   </div>
   <div class="section-body">
-    <div class="spec-grid">
-      <div class="spec-block">
-        <h4>画風</h4>
-        <p>やわらかい水彩風×アニメ調のハイブリッドスタイル。繊細で軽いタッチの線画に、パステル系の淡い着彩。セミリアリスティックなアニメ顔（デフォルメしすぎない、リアルすぎない中間）。女性誌の挿絵やコスメLPに使われるような上品で清潔感のあるタッチ。</p>
+    <div class="alert">各カードの「📋 プロンプトをコピー」を押すと、下記の共通ベース＋シーン指示が結合された完全なプロンプトがコピーされます。</div>
+
+    <div class="base-grid">
+      <div class="base-block">
+        <div class="base-block-label"><span class="badge badge-front">表</span> 表カード 共通ベース</div>
+        <div class="base-text" id="bFront">【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔（デフォルメしすぎない・リアルすぎない中間）。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【人物】日本人女性、35〜45歳見え（ターゲットは45〜65歳なのでやや若め。「明らかに20代」はNG）。目元・口元・フェイスラインに自然なエイジングを感じさせる。ダークブラウン〜アッシュブラウンのセミロング〜ロングヘア。
+【背景】白〜ライトグレー（#f0ede8〜#e8e4df）。
+【トーン】やや彩度を落とした落ち着いたトーン。悩み・不安・困り顔。</div>
+        <button class="base-copy-btn" onclick="copyBase('bFront')">📋 コピー</button>
       </div>
-      <div class="spec-block">
-        <h4>サイズ・レイアウト</h4>
-        <ul>
-          <li>アスペクト比: <strong>3:4（縦長）</strong></li>
-          <li>上部 <strong>15〜20%</strong> はテキスト配置用余白（人物の頭が切れない程度に下寄せ）</li>
-          <li>人物は <strong>胸上〜バストアップ</strong>。中央配置</li>
-          <li>背景はシンプル（グラデーション or 単色）</li>
-        </ul>
-      </div>
-      <div class="spec-block" style="border-left: 3px solid var(--text-muted);">
-        <h4>👤 人物共通</h4>
-        <ul>
-          <li>日本人女性、<strong>35〜45歳に見える</strong>（ターゲットは45〜65歳だがやや若め寄せ。ただし「明らかに20代」はNG）</li>
-          <li>目元・口元に<strong>自然なエイジング</strong>を感じさせる</li>
-          <li>髪色: ダークブラウン〜アッシュブラウン。セミロング〜ロング。ゆるいまとめ髪やハーフアップもOK</li>
-          <li>目: 自然なまつげ。過度に大きくしない</li>
-          <li>肌: 自然なツヤ感。過度にピチピチしすぎない</li>
-        </ul>
-      </div>
-      <div class="spec-block">
-        <h4>表カード共通</h4>
-        <ul>
-          <li>背景色: 白〜ライトグレー（#f0ede8〜#e8e4df）</li>
-          <li>枠線: グレーベージュ（#c5b9a8）の角丸ボーダー</li>
-          <li>トーン: やや彩度を落とした落ち着いたトーン</li>
-          <li>表情: 悩み顔・不安顔・困り顔（ネガティブ寄り）</li>
-        </ul>
-        <br>
-        <h4>裏カード共通</h4>
-        <ul>
-          <li>背景色: ピンクグラデーション（淡いサーモンピンク〜ホワイト）</li>
-          <li>枠線: なし or 薄ピンク</li>
-          <li>トーン: 明るく暖かみのある彩度高めのトーン</li>
-          <li>表情: 笑顔・安堵・自信のある表情（ポジティブ）</li>
-        </ul>
+      <div class="base-block">
+        <div class="base-block-label"><span class="badge badge-back">裏</span> 裏カード 共通ベース（一般）</div>
+        <div class="base-text" id="bBack">【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔（デフォルメしすぎない・リアルすぎない中間）。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【人物】表カードと同じ人物（髪型・髪色・顔立ちを維持）。日本人女性、35〜45歳見え。ダークブラウン〜アッシュブラウンのセミロング〜ロングヘア。
+【背景】淡いサーモンピンク〜ホワイトのグラデーション。
+【トーン】明るく暖かみのある彩度高めのトーン。笑顔・安堵・自信のある表情。</div>
+        <button class="base-copy-btn" onclick="copyBase('bBack')">📋 コピー</button>
       </div>
     </div>
 
-    <div class="alert">年齢表現の最重要ルール：本LPのターゲットは45〜65歳女性。クマ取りLPの"20代後半"より明確に年齢感を上げること。目元・口元・フェイスラインにさりげなくエイジングを表現する。「若作りしすぎ」も「明らかに20代」もNG。</div>
+    <div class="base-block">
+      <div class="base-block-label"><span class="badge badge-doctor">Dr</span> ドクターキャラ 共通ベース（Q3-1裏 / Q3-3裏 / Q4-1〜3裏 計5枚）</div>
+      <div class="base-text" id="bDoctor">【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【キャラクター】白衣（ロングコート型）を着た女性ドクター風キャラクター。インナー: Vネック紺 or ブルー。髪型: 明るめブラウンのまとめ髪（お団子 or ポニーテール）。年齢感35〜40歳見え。自信のある優しい笑顔。
+【背景】淡いサーモンピンク〜ホワイトのグラデーション。
+【重要】このキャラクターをQ3-1裏・Q3-3裏・Q4-1裏・Q4-2裏・Q4-3裏の全5枚で同一デザイン使用。一貫した外見・服装を維持すること。</div>
+      <button class="base-copy-btn" onclick="copyBase('bDoctor')">📋 コピー</button>
+    </div>
   </div>
 </div>
 
@@ -357,105 +249,129 @@
 <div class="section" id="q1">
   <div class="section-header">
     <span class="badge badge-orange">Q1</span>
-    <h2>悩みの自覚（表3枚 + 裏3枚 = 6枚）</h2>
+    <h2>悩みの自覚（表3枚 + 裏3枚）</h2>
   </div>
   <div class="section-body">
 
-    <!-- Q1-1 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q1-1</span> ほうれい線ペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">ほうれい線が<br>気になる</div>
-          </div>
-          <div class="desc">正面〜やや斜めのバストアップ。
+    <div class="pair-sep">Q1-1 ほうれい線ペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q1_1_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">ほうれい線が<br>気になる</div>
+        </div>
+        <div class="pcard-scene">正面〜やや斜めのバストアップ。
 口元のほうれい線が自然に見える（誇張しすぎない）。
-表情: 手鏡をのぞき込み、口元のあたりをそっと触れている「気になるな…」という軽い困り顔。
-服装: Vネックのシンプルなニット（ベージュ or グレー系）。
-背景: 白〜ライトグレー。</div>
+手鏡をのぞき込み、口元のあたりをそっと触れている「気になるな…」という軽い困り顔。
+服装: Vネックのシンプルなニット（ベージュ or グレー系）。</div>
+        <button class="copy-btn" data-type="front" data-scene="正面〜やや斜めのバストアップ。
+口元のほうれい線が自然に見える（誇張しすぎない）。
+手鏡をのぞき込み、口元のあたりをそっと触れている「気になるな…」という軽い困り顔。
+服装: Vネックのシンプルなニット（ベージュ or グレー系）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q1_1_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">明るくハリのある<br>-10歳の印象へ</div>
-          </div>
-          <div class="desc">Q1-1表と同じ人物（髪型・髪色・顔立ちを一致）。
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">明るくハリのある<br>-10歳の印象へ</div>
+        </div>
+        <div class="pcard-scene">Q1-1表と同じ人物（髪型・髪色・顔立ちを一致）。
 ほうれい線が目立たなくなり、肌全体に透明感とハリが出た様子。
-表情: 「こんなに変わるんだ！」という嬉しい驚きと自信が同居した明るい笑顔。
-正面バストアップ。片手を頬に添えて「肌が違う」というしぐさ。
-背景: ピンクグラデーション。</div>
-        </div>
+「こんなに変わるんだ！」という嬉しい驚きと自信が同居した明るい笑顔。
+正面バストアップ。片手を頬に添えて「肌が違う」というしぐさ。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q1-1表と同じ人物（髪型・髪色・顔立ちを一致）。
+ほうれい線が目立たなくなり、肌全体に透明感とハリが出た様子。
+「こんなに変わるんだ！」という嬉しい驚きと自信が同居した明るい笑顔。
+正面バストアップ。片手を頬に添えて「肌が違う」というしぐさ。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q1-2 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q1-2</span> フェイスラインペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">顔がたるんできた</div>
-          </div>
-          <div class="desc">正面よりやや斜めのバストアップ。
+    <div class="pair-sep">Q1-2 フェイスラインペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q1_2_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">顔がたるんできた</div>
+        </div>
+        <div class="pcard-scene">正面よりやや斜めのバストアップ。
 顔全体のたるみが感じられ、フェイスラインがぼんやりしている。
-表情: 鏡を見て「あれ、こんなに変わったかな…」というじわじわとした落ち込み顔。両手で頬を軽く持ち上げてみようとしているしぐさ。
-服装: 丸首のカットソー（くすみピンク or モーヴ系）。
-背景: 白〜ライトグレー。</div>
+鏡を見て「あれ、こんなに変わったかな…」というじわじわとした落ち込み顔。
+両手で頬を軽く持ち上げてみようとしているしぐさ。
+服装: 丸首のカットソー（くすみピンク or モーヴ系）。</div>
+        <button class="copy-btn" data-type="front" data-scene="正面よりやや斜めのバストアップ。
+顔全体のたるみが感じられ、フェイスラインがぼんやりしている。
+鏡を見て「あれ、こんなに変わったかな…」というじわじわとした落ち込み顔。
+両手で頬を軽く持ち上げてみようとしているしぐさ。
+服装: 丸首のカットソー（くすみピンク or モーヴ系）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q1_2_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">キュッと自然な<br>引き締め小顔へ</div>
-          </div>
-          <div class="desc">Q1-2表と同じ人物。
-顔全体が自然に引き締まり、輪郭がすっきりと小さく見える。「頑張ったわけじゃないのにこんなに変わった」という自然な変化感。
-表情: 鏡を見て「これが私？」という嬉しい驚きの笑顔。
-背景: ピンクグラデーション。</div>
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">キュッと自然な<br>引き締め小顔へ</div>
         </div>
+        <div class="pcard-scene">Q1-2表と同じ人物。
+顔全体が自然に引き締まり、輪郭がすっきりと小さく見える。
+「頑張ったわけじゃないのにこんなに変わった」という自然な変化感。
+鏡を見て「これが私？」という嬉しい驚きの笑顔。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q1-2表と同じ人物。
+顔全体が自然に引き締まり、輪郭がすっきりと小さく見える。
+「頑張ったわけじゃないのにこんなに変わった」という自然な変化感。
+鏡を見て「これが私？」という嬉しい驚きの笑顔。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q1-3 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q1-3</span> シワペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">シワが濃くなった</div>
-          </div>
-          <div class="desc">正面バストアップ。
+    <div class="pair-sep">Q1-3 シワペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q1_3_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">シワが濃くなった</div>
+        </div>
+        <div class="pcard-scene">正面バストアップ。
 目元や口元のシワが自然に見える（誇張しすぎない）。
-表情: 明るい照明の前でまじまじと顔を確認しているような顔。「あ、シワが…」と気づいて少し固まった困り顔。
-服装: カーディガン（ラベンダー or ライトグレー）。
-背景: 白〜ライトグレー。</div>
+明るい照明の前でまじまじと顔を確認しているような顔。
+「あ、シワが…」と気づいて少し固まった困り顔。
+服装: カーディガン（ラベンダー or ライトグレー）。</div>
+        <button class="copy-btn" data-type="front" data-scene="正面バストアップ。
+目元や口元のシワが自然に見える（誇張しすぎない）。
+明るい照明の前でまじまじと顔を確認しているような顔。
+「あ、シワが…」と気づいて少し固まった困り顔。
+服装: カーディガン（ラベンダー or ライトグレー）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q1_3_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">コラーゲン生成で<br>ハリツヤ美肌へ</div>
-          </div>
-          <div class="desc">Q1-3表と同じ人物。
-シワが目立たなくなり、肌全体にツヤとハリが出た様子。「肌質まで変わった」という実感がある表情。
-両手で頬を軽くはさんで「ぷるぷる！」という美肌チェックのしぐさ。
-正面バストアップ。
-背景: ピンクグラデーション。</div>
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">コラーゲン生成で<br>ハリツヤ美肌へ</div>
         </div>
+        <div class="pcard-scene">Q1-3表と同じ人物。
+シワが目立たなくなり、肌全体にツヤとハリが出た様子。「肌質まで変わった」という実感のある表情。
+両手で頬を軽くはさんで「ぷるぷる！」という美肌チェックのしぐさ。正面バストアップ。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q1-3表と同じ人物。
+シワが目立たなくなり、肌全体にツヤとハリが出た様子。「肌質まで変わった」という実感のある表情。
+両手で頬を軽くはさんで「ぷるぷる！」という美肌チェックのしぐさ。正面バストアップ。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
@@ -466,103 +382,121 @@
 <div class="section" id="q2">
   <div class="section-header">
     <span class="badge badge-orange">Q2</span>
-    <h2>対処法の限界（表3枚 + 裏3枚 = 6枚）</h2>
+    <h2>対処法の限界（表3枚 + 裏3枚）</h2>
   </div>
   <div class="section-body">
 
-    <!-- Q2-1 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q2-1</span> マッサージペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">毎日マッサージ</div>
-          </div>
-          <div class="desc">洗面台の前で顔のマッサージをしている女性。
+    <div class="pair-sep">Q2-1 マッサージペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q2_1_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">毎日マッサージ</div>
+        </div>
+        <div class="pcard-scene">洗面台の前で顔のマッサージをしている女性。
 両手で頬からフェイスラインにかけて丁寧にマッサージ中。
-表情: 毎日の習慣になっているが「これで本当に効果が出てるのかな…」という少し疲れた半信半疑の顔。コツコツ頑張っている感。
-服装: バスローブ or ルームウェア（朝のスキンケアルーティン中のイメージ）。
-背景: 白〜ライトグレー。</div>
+毎日の習慣になっているが「これで本当に効果が出てるのかな…」という少し疲れた半信半疑の顔。コツコツ頑張っている感。
+服装: バスローブ or ルームウェア（朝のスキンケアルーティン中のイメージ）。</div>
+        <button class="copy-btn" data-type="front" data-scene="洗面台の前で顔のマッサージをしている女性。
+両手で頬からフェイスラインにかけて丁寧にマッサージ中。
+毎日の習慣になっているが「これで本当に効果が出てるのかな…」という少し疲れた半信半疑の顔。コツコツ頑張っている感。
+服装: バスローブ or ルームウェア（朝のスキンケアルーティン中のイメージ）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q2_1_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">その努力が<br>報われるかも</div>
-          </div>
-          <div class="desc">Q2-1表と同じ人物。マッサージしていない。
-表情: 「え、本当に報われるの？」という期待と驚きが混ざった前向きな顔。「私のこれまでの努力、無駄じゃなかったかも」という気づきの笑顔。
-片手を軽く胸に当てている。
-背景: ピンクグラデーション。</div>
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">その努力が<br>報われるかも</div>
         </div>
+        <div class="pcard-scene">Q2-1表と同じ人物。マッサージしていない。
+「え、本当に報われるの？」という期待と驚きが混ざった前向きな顔。「私のこれまでの努力、無駄じゃなかったかも」という気づきの笑顔。
+片手を軽く胸に当てている。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q2-1表と同じ人物。マッサージしていない。
+「え、本当に報われるの？」という期待と驚きが混ざった前向きな顔。「私のこれまでの努力、無駄じゃなかったかも」という気づきの笑顔。
+片手を軽く胸に当てている。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q2-2 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q2-2</span> エイジングケアペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">エイジングケア</div>
-          </div>
-          <div class="desc">エイジングケア商品（美容液・フェイスクリーム・化粧水など）を棚やドレッサーに並べて眺めている女性。
-表情: 「これだけ揃えてるのに…お金もかかるし」というため息交じりの困り顔。
+    <div class="pair-sep">Q2-2 エイジングケアペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q2_2_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">エイジングケア</div>
+        </div>
+        <div class="pcard-scene">エイジングケア商品（美容液・フェイスクリーム・化粧水など）を棚やドレッサーに並べて眺めている女性。
+「これだけ揃えてるのに…お金もかかるし」というため息交じりの困り顔。
 片手にフェイスクリームのボトルを持ち、もう片手で顎を触っている。
-服装: シンプルなブラウス（ベージュ or ライトグレー）。
-背景: 白〜ライトグレー。</div>
+服装: シンプルなブラウス（ベージュ or ライトグレー）。</div>
+        <button class="copy-btn" data-type="front" data-scene="エイジングケア商品（美容液・フェイスクリーム・化粧水など）を棚やドレッサーに並べて眺めている女性。
+「これだけ揃えてるのに…お金もかかるし」というため息交じりの困り顔。
+片手にフェイスクリームのボトルを持ち、もう片手で顎を触っている。
+服装: シンプルなブラウス（ベージュ or ライトグレー）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q2_2_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">エイジングケア代<br>浮かせるかも</div>
-          </div>
-          <div class="desc">Q2-2表と同じ人物。エイジングケア商品を手に持っていない。
-表情: 「あの費用、もしかして別のことに使えるの？」という目を丸くした驚きと期待が混ざった顔。
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">エイジングケア代<br>浮かせるかも</div>
+        </div>
+        <div class="pcard-scene">Q2-2表と同じ人物。エイジングケア商品を手に持っていない。
+「あの費用、もしかして別のことに使えるの？」という目を丸くした驚きと期待が混ざった顔。
 両手を合わせて「あ！」という気づきのポーズ。
-服装: Q2-2表と同じか、明るめのトップス（ブラウス系）に変化。
-背景: ピンクグラデーション。</div>
-        </div>
+服装: Q2-2表と同じか、明るめのトップス（ブラウス系）に変化。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q2-2表と同じ人物。エイジングケア商品を手に持っていない。
+「あの費用、もしかして別のことに使えるの？」という目を丸くした驚きと期待が混ざった顔。
+両手を合わせて「あ！」という気づきのポーズ。
+服装: Q2-2表と同じか、明るめのトップス（ブラウス系）に変化。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q2-3 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q2-3</span> ケアしていないペア
+    <div class="pair-sep">Q2-3 ケアしていないペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q2_3_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">特に何もできていない</div>
+        </div>
+        <div class="pcard-scene">ソファに座ってスマホを眺めているだけの女性。
+「ケアしなきゃとは思ってるんだけど…」というため息交じりの後ろめたさ。スキンケア用品は手元にない。
+服装: ルームウェア（ゆったりしたカーディガン系）。</div>
+        <button class="copy-btn" data-type="front" data-scene="ソファに座ってスマホを眺めているだけの女性。
+「ケアしなきゃとは思ってるんだけど…」というため息交じりの後ろめたさ。スキンケア用品は手元にない。
+服装: ルームウェア（ゆったりしたカーディガン系）。">📋 プロンプトをコピー</button>
       </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">特に何もできていない</div>
-          </div>
-          <div class="desc">ソファに座ってスマホを眺めているだけの女性。
-表情: 「ケアしなきゃとは思ってるんだけど…」というため息交じりの後ろめたさ。スキンケア用品は手元にない。
-服装: ルームウェア（ゆったりしたカーディガン系）。
-背景: 白〜ライトグレー。</div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q2_3_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">今が一番<br>たるみ解消のチャンスかも</div>
-          </div>
-          <div class="desc">Q2-3表と同じ人物。前のめりに姿勢が変わり、表情が明るくなっている。
-表情: 「今から始めたら間に合うんだ！」という気づきと前向きな驚き。
-両手を軽く握ってガッツポーズ気味。
-背景: ピンクグラデーション。</div>
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">今が一番<br>たるみ解消のチャンスかも</div>
         </div>
+        <div class="pcard-scene">Q2-3表と同じ人物。前のめりに姿勢が変わり、表情が明るくなっている。
+「今から始めたら間に合うんだ！」という気づきと前向きな驚き。
+両手を軽く握ってガッツポーズ気味。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q2-3表と同じ人物。前のめりに姿勢が変わり、表情が明るくなっている。
+「今から始めたら間に合うんだ！」という気づきと前向きな驚き。
+両手を軽く握ってガッツポーズ気味。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
@@ -573,105 +507,122 @@
 <div class="section" id="q3">
   <div class="section-header">
     <span class="badge badge-blue">Q3</span>
-    <h2>不安の解消（表3枚 + 裏3枚 = 6枚）</h2>
+    <h2>不安の解消（表3枚 + 裏3枚）</h2>
   </div>
   <div class="section-body">
 
-    <!-- Q3-1 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q3-1</span> 年齢層不安ペア
+    <div class="pair-sep">Q3-1 年齢層不安ペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q3_1_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">クリニックには<br>若い子しか居なそう</div>
+        </div>
+        <div class="pcard-scene">クリニックの前 or 受付付近で、キョロキョロと周囲を見渡している50代女性。
+「若い子ばかりで浮いてしまうかも…」という不安と気まずさが混ざった顔。
+服装: キレイめなブラウス（ベージュ系）。</div>
+        <button class="copy-btn" data-type="front" data-scene="クリニックの前 or 受付付近で、キョロキョロと周囲を見渡している50代女性。
+「若い子ばかりで浮いてしまうかも…」という不安と気まずさが混ざった顔。
+服装: キレイめなブラウス（ベージュ系）。">📋 プロンプトをコピー</button>
       </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">クリニックには<br>若い子しか居なそう</div>
-          </div>
-          <div class="desc">クリニックの前 or 受付付近で、キョロキョロと周囲を見渡している50代女性。
-表情: 「若い子ばかりで浮いてしまうかも…」という不安と気まずさが混ざった顔。
-服装: キレイめなブラウス（ベージュ系）。
-背景: 白〜ライトグレー。</div>
+      <div class="pcard doctor">
+        <div class="pcard-head">
+          <span class="badge badge-doctor">Dr★初出</span>
+          <span class="pcard-id">Q3_1_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back） ★ドクターキャラ初出</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">50代以上の女性客が<br>増えているから安心</div>
-          </div>
-          <div class="desc">白衣を着た女性ドクター風キャラクター。
-片手でOKサインを出している。もう片手は腰に。
-表情: 「50代・60代のお客様がとても多いですよ」という安心感のある笑顔。
-髪型: まとめ髪（アップスタイル）。白衣の下はVネックの紺 or ブルーのインナー。
-背景: ピンクグラデーション。</div>
-          <div class="note">★ このドクターキャラはQ3-3裏・Q4裏すべてで同一デザインを使用。ここで決めたキャラを全5枚で統一する。</div>
+        <div class="pcard-cardtext doctor">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">50代以上の女性客が<br>増えているから安心</div>
         </div>
+        <div class="pcard-scene">女性ドクター風キャラクター（白衣ロングコート型・Vネック紺インナー・明るめブラウンまとめ髪・35〜40歳見え）。
+片手でOKサイン（人差し指と親指で輪）。もう片手は腰に。
+「50代・60代のお客様がとても多いですよ」という安心感のある笑顔。
+★ このキャラクターをQ3-3裏・Q4-1〜3裏でも使用。ここでデザインを確定させること。</div>
+        <button class="copy-btn" data-type="doctor" data-scene="女性ドクター風キャラクター（白衣ロングコート型・Vネック紺インナー・明るめブラウンまとめ髪・35〜40歳見え）。
+片手でOKサイン（人差し指と親指で輪）。もう片手は腰に。
+「50代・60代のお客様がとても多いですよ」という安心感のある笑顔。
+★ このキャラクターをQ3-3裏・Q4-1〜3裏でも使用。ここでデザインを確定させること。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q3-2 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q3-2</span> 痛み・ダウンタイムペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">痛みや腫れが<br>周りにバレないか</div>
-          </div>
-          <div class="desc">マスクをしながら不安げな女性。
-表情: マスクの上から目だけが見えており、心配そうに視線を落としている。「腫れたらどうしよう、仕事もあるし…」という不安感。
+    <div class="pair-sep">Q3-2 痛み・ダウンタイムペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q3_2_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">痛みや腫れが<br>周りにバレないか</div>
+        </div>
+        <div class="pcard-scene">マスクをしながら不安げな女性。
+マスクの上から目だけが見えており、心配そうに視線を落としている。「腫れたらどうしよう、仕事もあるし…」という不安感。
 片手でマスクの端を軽く押さえている。
-服装: カジュアルなブラウス（ミントグリーン or ライトブルー系）。
-背景: 白〜ライトグレー。</div>
+服装: カジュアルなブラウス（ミントグリーン or ライトブルー系）。</div>
+        <button class="copy-btn" data-type="front" data-scene="マスクをしながら不安げな女性。
+マスクの上から目だけが見えており、心配そうに視線を落としている。「腫れたらどうしよう、仕事もあるし…」という不安感。
+片手でマスクの端を軽く押さえている。
+服装: カジュアルなブラウス（ミントグリーン or ライトブルー系）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard back">
+        <div class="pcard-head">
+          <span class="badge badge-back">裏</span>
+          <span class="pcard-id">Q3_2_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">極細の糸で<br>腫れほぼゼロ</div>
-          </div>
-          <div class="desc">Q3-2表と同じ人物。マスクを外している。
-表情: 翌日普通に出かけられた様子の軽やかな笑顔。「バレなかった、腫れもなかった」という安堵と自信。
+        <div class="pcard-cardtext back">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">極細の糸で<br>腫れほぼゼロ</div>
+        </div>
+        <div class="pcard-scene">Q3-2表と同じ人物。マスクを外している。
+翌日普通に出かけられた様子の軽やかな笑顔。「バレなかった、腫れもなかった」という安堵と自信。
 片手にメイクポーチ or メイクブラシを持っている（翌日すぐメイクOKの暗示）。
-服装: 明るめのブラウス or ジャケット（外出着）。
-背景: ピンクグラデーション。</div>
-        </div>
+服装: 明るめのブラウス or ジャケット（外出着）。</div>
+        <button class="copy-btn" data-type="back" data-scene="Q3-2表と同じ人物。マスクを外している。
+翌日普通に出かけられた様子の軽やかな笑顔。「バレなかった、腫れもなかった」という安堵と自信。
+片手にメイクポーチ or メイクブラシを持っている（翌日すぐメイクOKの暗示）。
+服装: 明るめのブラウス or ジャケット（外出着）。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q3-3 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q3-3</span> 効果不安ペア
+    <div class="pair-sep">Q3-3 効果不安ペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q3_3_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">本当に効果が<br>あるのか不安</div>
+        </div>
+        <div class="pcard-scene">腕を組んで考え込んでいる女性。
+「本当に変わるの？また期待外れだったら嫌だな…」という半信半疑の不安顔。
+服装: シンプルな白 or オフホワイトのトップス。</div>
+        <button class="copy-btn" data-type="front" data-scene="腕を組んで考え込んでいる女性。
+「本当に変わるの？また期待外れだったら嫌だな…」という半信半疑の不安顔。
+服装: シンプルな白 or オフホワイトのトップス。">📋 プロンプトをコピー</button>
       </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">本当に効果が<br>あるのか不安</div>
-          </div>
-          <div class="desc">腕を組んで考え込んでいる女性。
-表情: 「本当に変わるの？また期待外れだったら嫌だな…」という半信半疑の不安顔。
-服装: シンプルな白 or オフホワイトのトップス。
-背景: 白〜ライトグレー。</div>
+      <div class="pcard doctor">
+        <div class="pcard-head">
+          <span class="badge badge-doctor">Dr（Q3-1裏と同一）</span>
+          <span class="pcard-id">Q3_3_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back） ★ドクターキャラ（Q3-1裏と同一）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">肌を引き上げて<br>小顔×美肌目指せる</div>
-          </div>
-          <div class="desc">Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
-片手でOKサインを出している（Q3-1裏と同じポーズ）。
-表情: 「糸が肌を引き上げてコラーゲンも増えますよ」という穏やかで自信のある笑顔。
-背景: ピンクグラデーション。</div>
-          <div class="note">Q3-1裏と同一キャラクター・同一ポーズ。テキストのみが変わる。画像を使い回してもOK。</div>
+        <div class="pcard-cardtext doctor">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">肌を引き上げて<br>小顔×美肌目指せる</div>
         </div>
+        <div class="pcard-scene">Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
+片手でOKサイン（Q3-1裏と同一ポーズ）。
+「糸が肌を引き上げてコラーゲンも増えますよ」という穏やかで自信のある笑顔。</div>
+        <div class="reuse-note">🔁 Q3-1裏と同一キャラクター・同一ポーズ。テキストのみが変わる。画像使い回し可。</div>
+        <button class="copy-btn" data-type="doctor" data-scene="Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
+片手でOKサイン（Q3-1裏と同一ポーズ）。
+「糸が肌を引き上げてコラーゲンも増えますよ」という穏やかで自信のある笑顔。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
@@ -682,234 +633,199 @@
 <div class="section" id="q4">
   <div class="section-header">
     <span class="badge badge-pink">Q4</span>
-    <h2>理想の宣言（表3枚 + 裏3枚 = 6枚）</h2>
+    <h2>理想の宣言（表3枚 + 裏3枚）</h2>
   </div>
   <div class="section-body">
 
-    <!-- Q4-1 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q4-1</span> 人目気にならないペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">人の目を気にせず<br>過ごしたい</div>
-          </div>
-          <div class="desc">外出先 or 人混みの中で、周囲の視線を気にしてやや縮こまっている女性。
-表情: 「見られてるかな…」という緊張と自信のなさ。肩が少し内側に入っている。
-服装: 首元が少し隠れるブラウス or スカーフ使い（たるみを隠したい暗示）。
-背景: 白〜ライトグレー。</div>
+    <div class="pair-sep">Q4-1 人目気にならないペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q4_1_front.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back） ★ドクターキャラ（サムズアップ）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">たるみのない<br>自然な小顔へ</div>
-          </div>
-          <div class="desc">Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">人の目を気にせず<br>過ごしたい</div>
+        </div>
+        <div class="pcard-scene">外出先 or 人混みの中で、周囲の視線を気にしてやや縮こまっている女性。
+「見られてるかな…」という緊張と自信のなさ。肩が少し内側に入っている。
+服装: 首元が少し隠れるブラウス or スカーフ使い（たるみを隠したい暗示）。</div>
+        <button class="copy-btn" data-type="front" data-scene="外出先 or 人混みの中で、周囲の視線を気にしてやや縮こまっている女性。
+「見られてるかな…」という緊張と自信のなさ。肩が少し内側に入っている。
+服装: 首元が少し隠れるブラウス or スカーフ使い（たるみを隠したい暗示）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard doctor">
+        <div class="pcard-head">
+          <span class="badge badge-doctor">Dr★サムズアップ初出</span>
+          <span class="pcard-id">Q4_1_back.png</span>
+        </div>
+        <div class="pcard-cardtext doctor">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">たるみのない<br>自然な小顔へ</div>
+        </div>
+        <div class="pcard-scene">Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
 サムズアップ（親指を立てるポーズ）。
-表情: にこやかな自信のある笑顔。「自然な仕上がりで自信を取り戻せますよ」感。
-✨エフェクトをキャラの周囲に2〜3個散らす。
-背景: ピンクグラデーション。</div>
-          <div class="note">★ Q4裏3枚すべてで同じキャラクター・同じポーズ。テキストのみが変わる。</div>
-        </div>
+にこやかな自信のある笑顔。「自然な仕上がりで自信を取り戻せますよ」感。
+✨スパークルエフェクトをキャラの周囲に2〜3個散らす。
+★ Q4-2裏・Q4-3裏も同一キャラクター・同一ポーズ。テキストのみ変える。</div>
+        <button class="copy-btn" data-type="doctor" data-scene="Q3-1裏と同じドクター風女性キャラクター（白衣+まとめ髪）。
+サムズアップ（親指を立てるポーズ）。
+にこやかな自信のある笑顔。「自然な仕上がりで自信を取り戻せますよ」感。
+✨スパークルエフェクトをキャラの周囲に2〜3個散らす。
+★ Q4-2裏・Q4-3裏も同一キャラクター・同一ポーズ。テキストのみ変える。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q4-2 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q4-2</span> 写真ペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">写真をもっと<br>楽しみたい</div>
-          </div>
-          <div class="desc">友人や家族と撮る集合写真で、カメラを向けられてやや顔を引いている女性。
-表情: 「写真、撮られるの苦手になったな…」という苦笑い気味の複雑な顔。
+    <div class="pair-sep">Q4-2 写真ペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q4_2_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">写真をもっと<br>楽しみたい</div>
+        </div>
+        <div class="pcard-scene">友人や家族と撮る集合写真で、カメラを向けられてやや顔を引いている女性。
+「写真、撮られるの苦手になったな…」という苦笑い気味の複雑な顔。
 片手を軽く頬に添えている（顔を隠したいしぐさ）。
-服装: Vネックニット（アイボリー or ベージュ）。
-背景: 白〜ライトグレー。</div>
+服装: Vネックニット（アイボリー or ベージュ）。</div>
+        <button class="copy-btn" data-type="front" data-scene="友人や家族と撮る集合写真で、カメラを向けられてやや顔を引いている女性。
+「写真、撮られるの苦手になったな…」という苦笑い気味の複雑な顔。
+片手を軽く頬に添えている（顔を隠したいしぐさ）。
+服装: Vネックニット（アイボリー or ベージュ）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard doctor">
+        <div class="pcard-head">
+          <span class="badge badge-doctor">Dr（Q4-1裏と同一）</span>
+          <span class="pcard-id">Q4_2_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back） ★Q4-1裏と同一</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">明るく笑顔の<br>自分に戻れる ✨</div>
-          </div>
-          <div class="desc">Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。
-✨エフェクトの位置を微妙に変える程度の差分でOK。
-背景: ピンクグラデーション。</div>
-          <div class="note">テキストが変わるだけ。Q4-1裏の画像を使い回してOK。</div>
+        <div class="pcard-cardtext doctor">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">明るく笑顔の<br>自分に戻れる ✨</div>
         </div>
+        <div class="pcard-scene">Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。
+✨エフェクトの位置を微妙に変える程度の差分でOK。</div>
+        <div class="reuse-note">🔁 Q4-1裏の画像を使い回してOK。テキストのみ変える。</div>
+        <button class="copy-btn" data-type="doctor" data-scene="Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。
+✨エフェクトの位置を微妙に変える程度の差分でOK。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
-    <!-- Q4-3 -->
-    <div class="card-pair">
-      <div class="card-pair-header">
-        <span>Q4-3</span> 若々しさペア
-      </div>
-      <div class="card-pair-body">
-        <div class="card-side front">
-          <div class="card-side-label">▣ 表（front）</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">老けて見られてないか<br>気になる</div>
-          </div>
-          <div class="desc">鏡や店のガラスで偶然自分の顔を見てしまった女性。
-表情: 「あ、老けて見えるかな…」という気づきと不安のリアクション。「また疲れてる？と言われた」ショックが残っている表情。
+    <div class="pair-sep">Q4-3 若々しさペア</div>
+    <div class="prompt-pair">
+      <div class="pcard front">
+        <div class="pcard-head">
+          <span class="badge badge-front">表</span>
+          <span class="pcard-id">Q4_3_front.png</span>
+        </div>
+        <div class="pcard-cardtext front">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">老けて見られてないか<br>気になる</div>
+        </div>
+        <div class="pcard-scene">鏡や店のガラスで偶然自分の顔を見てしまった女性。
+「あ、老けて見えるかな…」という気づきと不安のリアクション。「また疲れてる？と言われた」ショックが残っている表情。
 片手を軽く口元に添えている（「あっ…」というリアクション）。
-服装: ハイネック or 首元がゆったりしたトップス（首を隠している暗示）。
-背景: 白〜ライトグレー。</div>
+服装: ハイネック or 首元がゆったりしたトップス（首を隠している暗示）。</div>
+        <button class="copy-btn" data-type="front" data-scene="鏡や店のガラスで偶然自分の顔を見てしまった女性。
+「あ、老けて見えるかな…」という気づきと不安のリアクション。「また疲れてる？と言われた」ショックが残っている表情。
+片手を軽く口元に添えている（「あっ…」というリアクション）。
+服装: ハイネック or 首元がゆったりしたトップス（首を隠している暗示）。">📋 プロンプトをコピー</button>
+      </div>
+      <div class="pcard doctor">
+        <div class="pcard-head">
+          <span class="badge badge-doctor">Dr（Q4-1裏と同一）</span>
+          <span class="pcard-id">Q4_3_back.png</span>
         </div>
-        <div class="card-side back">
-          <div class="card-side-label">◈ 裏（back） ★Q4-1裏と同一</div>
-          <div class="text-box">
-            <div class="text-label">カードテキスト</div>
-            <div class="text-content">若々しく<br>明るい印象に</div>
-          </div>
-          <div class="desc">Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。
-背景: ピンクグラデーション。</div>
-          <div class="note">Q4裏は3枚とも同じ画像を使い回してテキスト差し替えでOK。</div>
+        <div class="pcard-cardtext doctor">
+          <div class="pcard-cardtext-label">カードテキスト</div>
+          <div class="pcard-cardtext-val">若々しく<br>明るい印象に</div>
         </div>
+        <div class="pcard-scene">Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。</div>
+        <div class="reuse-note">🔁 Q4-1裏の画像を使い回してOK。テキストのみ変える。</div>
+        <button class="copy-btn" data-type="doctor" data-scene="Q4-1裏と完全に同じドクターキャラ+サムズアップポーズ。">📋 プロンプトをコピー</button>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ==================== 制作上の注意 ==================== -->
-<div class="section" id="notes">
-  <div class="section-header">
-    <span class="badge badge-teal">注意事項</span>
-    <h2>制作上の注意・ドクターキャラ仕様</h2>
-  </div>
-  <div class="section-body">
-
-    <h3 style="font-size:0.9em;margin-bottom:10px;color:var(--text-muted);">表裏のペア統一ルール</h3>
-    <table>
-      <tr><th>設問</th><th>表カード</th><th>裏カード</th></tr>
-      <tr><td>Q1</td><td>3人とも別人物</td><td>表と<strong>同一人物</strong>。たるみのあり/なしと表情のみ変化</td></tr>
-      <tr><td>Q2</td><td>3人とも別人物</td><td>表と<strong>同一人物</strong>。服装変更OK（ケア中→気づいた後）</td></tr>
-      <tr><td>Q3</td><td>3人とも別人物</td><td>Q3-1・Q3-2は表と同一人物。<strong>Q3-3裏はドクターキャラ</strong></td></tr>
-      <tr><td>Q4</td><td>3人とも別人物</td><td>全3枚とも<strong>同一ドクターキャラ</strong>（Q3-1裏・Q3-3裏と同じ）</td></tr>
-    </table>
-
-    <h3 style="font-size:0.9em;margin:20px 0 10px;color:var(--text-muted);">ドクターキャラ統一仕様（5枚共通）</h3>
-    <div class="full-spec">・白衣（ロングコート型）
-・インナー: Vネック紺 or ブルー
-・髪型: 明るめブラウンのまとめ髪（お団子 or ポニーテール）
-・年齢感: 35〜40歳見え（ターゲットに親しみを持たれるよう）
-・表情: 自信のある優しい笑顔
-
-【ポーズの使い分け】
-　Q3-1裏・Q3-3裏 → OKサイン（人差し指と親指で輪）
-　Q4-1裏・Q4-2裏・Q4-3裏 → サムズアップ＋✨エフェクト × 2〜3個
-
-全5枚で同一キャラクターであることが一目でわかるように統一すること。</div>
-
-    <h3 style="font-size:0.9em;margin:20px 0 10px;color:var(--text-muted);">テキスト配置ルール</h3>
-    <div class="full-spec">・テキストはイラスト上に後から載せる（画像生成時はテキストを入れない）
-・表カード: 上部にテキストラベル（白背景＋角丸＋太字ゴシック）
-・裏カード: 上部にテキスト直置き（太字ゴシック、白 or ダークグレー）
-・イラスト上部15〜20%はテキスト配置用余白として確保すること
-・テキスト制約: 1行あたり最大8文字、2行が上限</div>
-
-  </div>
-</div>
-
-<!-- ==================== ファイル命名 ==================== -->
+<!-- ==================== ファイル一覧 ==================== -->
 <div class="section" id="files">
   <div class="section-header">
-    <span class="badge badge-purple">ファイル命名</span>
+    <span class="badge badge-purple">一覧</span>
     <h2>納品ファイル一覧（計24枚）</h2>
   </div>
   <div class="section-body">
     <table>
-      <tr><th>表（front）</th><th>裏（back）</th><th>人物</th></tr>
-      <tr><td><code>Q1_1_front.png</code></td><td><code>Q1_1_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q1_2_front.png</code></td><td><code>Q1_2_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q1_3_front.png</code></td><td><code>Q1_3_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q2_1_front.png</code></td><td><code>Q2_1_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q2_2_front.png</code></td><td><code>Q2_2_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q2_3_front.png</code></td><td><code>Q2_3_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q3_1_front.png</code></td><td><code>Q3_1_back.png</code></td><td>表：別人 / 裏：ドクター★</td></tr>
-      <tr><td><code>Q3_2_front.png</code></td><td><code>Q3_2_back.png</code></td><td>同一人物</td></tr>
-      <tr><td><code>Q3_3_front.png</code></td><td><code>Q3_3_back.png</code></td><td>表：別人 / 裏：ドクター★</td></tr>
-      <tr><td><code>Q4_1_front.png</code></td><td><code>Q4_1_back.png</code></td><td>表：別人 / 裏：ドクター★</td></tr>
-      <tr><td><code>Q4_2_front.png</code></td><td><code>Q4_2_back.png</code></td><td>表：別人 / 裏：ドクター★</td></tr>
-      <tr><td><code>Q4_3_front.png</code></td><td><code>Q4_3_back.png</code></td><td>表：別人 / 裏：ドクター★</td></tr>
+      <tr><th>No.</th><th>表ファイル名</th><th>裏ファイル名</th><th>裏の人物</th></tr>
+      <tr><td>Q1-1</td><td><code>Q1_1_front.png</code></td><td><code>Q1_1_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q1-2</td><td><code>Q1_2_front.png</code></td><td><code>Q1_2_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q1-3</td><td><code>Q1_3_front.png</code></td><td><code>Q1_3_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q2-1</td><td><code>Q2_1_front.png</code></td><td><code>Q2_1_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q2-2</td><td><code>Q2_2_front.png</code></td><td><code>Q2_2_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q2-3</td><td><code>Q2_3_front.png</code></td><td><code>Q2_3_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q3-1</td><td><code>Q3_1_front.png</code></td><td><code>Q3_1_back.png</code></td><td>🩺 ドクターキャラ★初出</td></tr>
+      <tr><td>Q3-2</td><td><code>Q3_2_front.png</code></td><td><code>Q3_2_back.png</code></td><td>表と同一人物</td></tr>
+      <tr><td>Q3-3</td><td><code>Q3_3_front.png</code></td><td><code>Q3_3_back.png</code></td><td>🩺 ドクターキャラ（Q3-1裏と同一）</td></tr>
+      <tr><td>Q4-1</td><td><code>Q4_1_front.png</code></td><td><code>Q4_1_back.png</code></td><td>🩺 ドクターキャラ★サムズアップ初出</td></tr>
+      <tr><td>Q4-2</td><td><code>Q4_2_front.png</code></td><td><code>Q4_2_back.png</code></td><td>🩺 ドクターキャラ（Q4-1裏と同一）</td></tr>
+      <tr><td>Q4-3</td><td><code>Q4_3_front.png</code></td><td><code>Q4_3_back.png</code></td><td>🩺 ドクターキャラ（Q4-1裏と同一）</td></tr>
     </table>
-    <p style="font-size:0.8em;color:var(--text-muted);margin-top:8px;">★ドクターキャラ登場枚数: Q3-1裏・Q3-3裏・Q4-1裏・Q4-2裏・Q4-3裏 の計5枚</p>
+    <p style="font-size:0.78em;color:var(--muted);margin-top:8px;">🩺 ドクターキャラ登場: Q3-1裏・Q3-3裏・Q4-1裏・Q4-2裏・Q4-3裏 の計5枚（全て同一キャラクター）</p>
   </div>
 </div>
 
 </div><!-- /container -->
 
 <script>
-  // テキスト編集機能
-  document.querySelectorAll('.text-content, .desc').forEach(el => {
-    el.contentEditable = 'true';
-    el.spellcheck = false;
-  });
+const BASE = {
+  front: `【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔（デフォルメしすぎない・リアルすぎない中間）。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【人物】日本人女性、35〜45歳見え（ターゲットは45〜65歳なのでやや若め。「明らかに20代」はNG）。目元・口元・フェイスラインに自然なエイジングを感じさせる。ダークブラウン〜アッシュブラウンのセミロング〜ロングヘア。
+【背景】白〜ライトグレー（#f0ede8〜#e8e4df）。
+【トーン】やや彩度を落とした落ち着いたトーン。悩み・不安・困り顔。`,
 
-  // 編集ヒントラベルを追加
-  document.querySelectorAll('.text-box .text-label').forEach(el => {
-    const hint = document.createElement('span');
-    hint.textContent = '✏ クリックで編集';
-    hint.style.cssText = 'font-size:0.85em;opacity:0.5;font-weight:400;letter-spacing:0;text-transform:none;';
-    el.appendChild(hint);
-  });
-  document.querySelectorAll('.card-side-label').forEach(el => {
-    const hint = document.createElement('span');
-    hint.textContent = '✏ 編集可';
-    hint.style.cssText = 'font-size:0.8em;opacity:0.4;font-weight:400;margin-left:auto;';
-    el.appendChild(hint);
-  });
+  back: `【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔（デフォルメしすぎない・リアルすぎない中間）。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【人物】表カードと同じ人物（髪型・髪色・顔立ちを維持）。日本人女性、35〜45歳見え。ダークブラウン〜アッシュブラウンのセミロング〜ロングヘア。
+【背景】淡いサーモンピンク〜ホワイトのグラデーション。
+【トーン】明るく暖かみのある彩度高めのトーン。笑顔・安堵・自信のある表情。`,
 
-  // 保存ボタン
-  const saveBar = document.createElement('div');
-  saveBar.style.cssText = `
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-    background: rgba(13,17,23,0.97); border-top: 1px solid #30363d;
-    padding: 12px 20px; display: flex; align-items: center; gap: 12px;
-    backdrop-filter: blur(10px);
-  `;
-  saveBar.innerHTML = `
-    <span style="font-size:0.8em;color:#8b949e;flex:1;">編集後は「保存してコピー」を押してください。Claude Codeに貼り付けると反映されます。</span>
-    <button id="saveBtn" style="
-      background: #f0883e; color: #fff; border: none; border-radius: 8px;
-      padding: 8px 20px; font-size: 0.85em; font-weight: 700; cursor: pointer;
-      font-family: inherit;
-    ">💾 保存してコピー</button>
-  `;
-  document.body.appendChild(saveBar);
+  doctor: `【画風】やわらかい水彩風×アニメ調ハイブリッドイラスト。繊細な線画にパステル系の淡い着彩。セミリアリスティックなアニメ顔。女性誌の挿絵・コスメLPのような上品で清潔感のあるタッチ。
+【構図】縦長3:4。バストアップ中央配置。上部15〜20%はテキスト配置用余白として必ず空けること。
+【キャラクター】白衣（ロングコート型）を着た女性ドクター風キャラクター。インナー: Vネック紺 or ブルー。髪型: 明るめブラウンのまとめ髪（お団子 or ポニーテール）。年齢感35〜40歳見え。自信のある優しい笑顔。
+【背景】淡いサーモンピンク〜ホワイトのグラデーション。
+【重要】このキャラクターをQ3-1裏・Q3-3裏・Q4-1裏・Q4-2裏・Q4-3裏の全5枚で同一デザイン使用。一貫した外見・服装を維持すること。`
+};
 
-  document.getElementById('saveBtn').addEventListener('click', () => {
-    const data = [];
-    document.querySelectorAll('.card-pair').forEach(pair => {
-      const id = pair.querySelector('.card-pair-header span')?.textContent.trim();
-      const frontText = pair.querySelector('.front .text-content')?.innerText.trim();
-      const backText  = pair.querySelector('.back .text-content')?.innerText.trim();
-      const frontDesc = pair.querySelector('.front .desc')?.innerText.trim();
-      const backDesc  = pair.querySelector('.back .desc')?.innerText.trim();
-      data.push(`## ${id}\n表テキスト: ${frontText}\n裏テキスト: ${backText}\n表シーン: ${frontDesc}\n裏シーン: ${backDesc}`);
-    });
-    const text = data.join('\n\n---\n\n');
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = document.getElementById('saveBtn');
-      btn.textContent = '✅ コピーしました！';
-      btn.style.background = '#3fb950';
-      setTimeout(() => { btn.textContent = '💾 保存してコピー'; btn.style.background = '#f0883e'; }, 2500);
-    });
+function copyBase(id) {
+  const text = document.getElementById(id).textContent;
+  copyText(text, event.target);
+}
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const type = this.dataset.type;
+    const scene = this.dataset.scene;
+    const full = BASE[type] + '\n\n【シーン】\n' + scene;
+    copyText(full, this);
   });
+});
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅ コピーしました';
+    btn.classList.add('ok');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('ok');
+    }, 2000);
+  });
+}
 </script>
 </body>
 </html>
