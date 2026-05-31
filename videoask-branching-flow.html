@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VideoASK型LPの分岐構造</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #64748b;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --line: #cbd5e1;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --orange-soft: #ffedd5;
+      --orange: #c2410c;
+      --purple-soft: #ede9fe;
+      --purple: #6d28d9;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .doc-header {
+      background: #1e293b;
+      color: white;
+      padding: 28px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .doc-header h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .doc-meta {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+
+    .badge-blue {
+      background: var(--accent-soft);
+      color: #1d4ed8;
+    }
+
+    .badge-green {
+      background: var(--green-soft);
+      color: #15803d;
+    }
+
+    .badge-gray {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .diagram-card {
+      padding: 18px 18px 20px;
+    }
+
+    .diagram-note {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .diagram-scroll {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    svg {
+      display: block;
+      min-width: 1040px;
+      width: 100%;
+      height: auto;
+    }
+
+    .node rect {
+      rx: 8;
+      ry: 8;
+      stroke-width: 1.5;
+    }
+
+    .node-title {
+      font-size: 14px;
+      font-weight: 700;
+      fill: var(--text);
+    }
+
+    .node-body {
+      font-size: 12px;
+      fill: #475569;
+    }
+
+    .lane-label {
+      font-size: 13px;
+      font-weight: 700;
+      fill: #334155;
+    }
+
+    .arrow {
+      fill: none;
+      stroke: #94a3b8;
+      stroke-width: 2.2;
+      marker-end: url(#arrowhead);
+    }
+
+    .arrow-strong {
+      stroke: var(--accent);
+      stroke-width: 2.6;
+    }
+
+    .stage {
+      font-size: 12px;
+      font-weight: 700;
+      fill: #64748b;
+    }
+
+    .cta-text {
+      font-size: 14px;
+      font-weight: 700;
+      fill: #ffffff;
+    }
+
+    .cta-subtext {
+      font-size: 12px;
+      fill: #ffffff;
+    }
+
+    .points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .point {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .point h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .point p {
+      margin: 0;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 8px 14px;
+      font-size: 14px;
+    }
+
+    .example-grid dt {
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .example-grid dd {
+      margin: 0;
+      color: #475569;
+    }
+
+    .action-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 12px;
+    }
+
+    .action-box h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: #1d4ed8;
+      letter-spacing: 0;
+    }
+
+    .action-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 16px 12px 28px;
+      }
+
+      .doc-header {
+        padding: 22px;
+      }
+
+      .doc-header h1 {
+        font-size: 22px;
+      }
+
+      .summary,
+      .points {
+        grid-template-columns: 1fr;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>VideoASK型LPの分岐構造</h1>
+      <div class="doc-meta">部内共有用：選択肢に合わせて内容を変え、最終的に同じCTAへ着地させる構造</div>
+    </header>
+
+    <section class="summary">
+      <div class="card">
+        <h2>結論</h2>
+        <p><span class="badge badge-blue">本質</span>読者の回答に合わせて途中の説明・事例だけを変え、最後は同じ申込導線へ戻す。</p>
+        <p><span class="badge badge-green">効果</span>「これは自分向けの話だ」と感じさせ、CTA前の理解度と温度感を上げる。</p>
+      </div>
+
+      <div class="card">
+        <h2>使いどころ</h2>
+        <p>高単価・説明が必要・不安が強い商材に向く。美容LPでは「悩み」「状態」「不安」で分岐させると応用しやすい。</p>
+      </div>
+    </section>
+
+    <section class="card diagram-card">
+      <h2>右に広がる分岐図</h2>
+      <p class="diagram-note">左から右へ進む。途中は読者別に分岐し、最後は共通CTAへ収束する。</p>
+
+      <div class="diagram-scroll" aria-label="VideoASK型LPの水平分岐図">
+        <svg viewBox="0 0 1080 520" role="img" aria-labelledby="diagramTitle diagramDesc">
+          <title id="diagramTitle">VideoASK型LPの水平分岐図</title>
+          <desc id="diagramDesc">入口、質問、タイプ別説明、タイプ別事例、共通セールスメッセージ、共通CTAへ進む構造。</desc>
+
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"></path>
+            </marker>
+            <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.12"></feDropShadow>
+            </filter>
+          </defs>
+
+          <text x="70" y="36" class="stage">入口</text>
+          <text x="240" y="36" class="stage">質問</text>
+          <text x="420" y="36" class="stage">分岐した説明</text>
+          <text x="620" y="36" class="stage">近い事例</text>
+          <text x="810" y="36" class="stage">収束</text>
+          <text x="960" y="36" class="stage">CTA</text>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="34" y="210" width="130" height="88" fill="#ffffff" stroke="#cbd5e1"></rect>
+            <text x="99" y="242" text-anchor="middle" class="node-title">記事LP</text>
+            <text x="99" y="266" text-anchor="middle" class="node-body">広告・SNS</text>
+            <text x="99" y="284" text-anchor="middle" class="node-body">検索から流入</text>
+          </g>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="215" y="200" width="150" height="108" fill="#dbeafe" stroke="#60a5fa"></rect>
+            <text x="290" y="233" text-anchor="middle" class="node-title">質問1</text>
+            <text x="290" y="258" text-anchor="middle" class="node-body">一番近い悩みは？</text>
+            <text x="290" y="278" text-anchor="middle" class="node-body">選ばせる</text>
+          </g>
+
+          <path class="arrow arrow-strong" d="M164 254 C184 254, 194 254, 215 254"></path>
+
+          <text x="385" y="91" class="lane-label">選択肢A</text>
+          <text x="385" y="253" class="lane-label">選択肢B</text>
+          <text x="385" y="415" class="lane-label">選択肢C</text>
+
+          <path class="arrow" d="M365 238 C395 160, 410 104, 445 104"></path>
+          <path class="arrow" d="M365 254 C395 254, 410 254, 445 254"></path>
+          <path class="arrow" d="M365 270 C395 348, 410 404, 445 404"></path>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="445" y="66" width="150" height="92" fill="#ffedd5" stroke="#fdba74"></rect>
+            <text x="520" y="98" text-anchor="middle" class="node-title">A向け共感</text>
+            <text x="520" y="122" text-anchor="middle" class="node-body">その悩みなら</text>
+            <text x="520" y="140" text-anchor="middle" class="node-body">ここが壁になる</text>
+          </g>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="445" y="208" width="150" height="92" fill="#ffedd5" stroke="#fdba74"></rect>
+            <text x="520" y="240" text-anchor="middle" class="node-title">B向け共感</text>
+            <text x="520" y="264" text-anchor="middle" class="node-body">その状態なら</text>
+            <text x="520" y="282" text-anchor="middle" class="node-body">この不安が多い</text>
+          </g>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="445" y="350" width="150" height="92" fill="#ffedd5" stroke="#fdba74"></rect>
+            <text x="520" y="382" text-anchor="middle" class="node-title">C向け共感</text>
+            <text x="520" y="406" text-anchor="middle" class="node-body">その希望なら</text>
+            <text x="520" y="424" text-anchor="middle" class="node-body">ここを確認する</text>
+          </g>
+
+          <path class="arrow" d="M595 112 C615 112, 625 112, 645 112"></path>
+          <path class="arrow" d="M595 254 C615 254, 625 254, 645 254"></path>
+          <path class="arrow" d="M595 396 C615 396, 625 396, 645 396"></path>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="645" y="66" width="150" height="92" fill="#ede9fe" stroke="#a78bfa"></rect>
+            <text x="720" y="98" text-anchor="middle" class="node-title">Aに近い事例</text>
+            <text x="720" y="122" text-anchor="middle" class="node-body">同じ悩みの人の</text>
+            <text x="720" y="140" text-anchor="middle" class="node-body">変化・説明</text>
+          </g>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="645" y="208" width="150" height="92" fill="#ede9fe" stroke="#a78bfa"></rect>
+            <text x="720" y="240" text-anchor="middle" class="node-title">Bに近い事例</text>
+            <text x="720" y="264" text-anchor="middle" class="node-body">近い不安を持つ</text>
+            <text x="720" y="282" text-anchor="middle" class="node-body">人の解決例</text>
+          </g>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="645" y="350" width="150" height="92" fill="#ede9fe" stroke="#a78bfa"></rect>
+            <text x="720" y="382" text-anchor="middle" class="node-title">Cに近い事例</text>
+            <text x="720" y="406" text-anchor="middle" class="node-body">理想に近い</text>
+            <text x="720" y="424" text-anchor="middle" class="node-body">見せ方・結果</text>
+          </g>
+
+          <path class="arrow" d="M795 112 C830 112, 830 212, 860 236"></path>
+          <path class="arrow" d="M795 254 C825 254, 835 254, 860 254"></path>
+          <path class="arrow" d="M795 396 C830 396, 830 296, 860 272"></path>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="860" y="200" width="140" height="108" fill="#dcfce7" stroke="#86efac"></rect>
+            <text x="930" y="232" text-anchor="middle" class="node-title">共通メッセージ</text>
+            <text x="930" y="256" text-anchor="middle" class="node-body">なぜ今確認すべきか</text>
+            <text x="930" y="276" text-anchor="middle" class="node-body">施術・医院の説明</text>
+          </g>
+
+          <path class="arrow arrow-strong" d="M1000 254 C1015 254, 1022 254, 1038 254"></path>
+
+          <g class="node" filter="url(#shadow)">
+            <rect x="1038" y="200" width="38" height="108" fill="#2563eb" stroke="#1d4ed8"></rect>
+            <text x="1057" y="238" text-anchor="middle" class="cta-text" transform="rotate(90 1057 238)">CTA</text>
+            <text x="1057" y="253" text-anchor="middle" class="cta-subtext" transform="rotate(90 1057 253)">予約</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>美容記事LPに置き換える場合</h2>
+      <dl class="example-grid">
+        <dt>質問1</dt>
+        <dd>一番気になる悩みは？ 例：たるみ / シワ / クマ</dd>
+        <dt>質問2</dt>
+        <dd>今の状態は？ 例：最近気になる / 悪化してきた / セルフケアで限界</dd>
+        <dt>質問3</dt>
+        <dd>一番不安なことは？ 例：痛み / ダウンタイム / 費用 / 不自然さ</dd>
+        <dt>分岐後の内容</dt>
+        <dd>回答に合わせて、原因説明・近い事例・よくある失敗・適した確認ポイントを出す</dd>
+        <dt>最後のCTA</dt>
+        <dd>無料カウンセリング、肌診断、予約、クーポンなどに統一して着地させる</dd>
+      </dl>
+    </section>
+
+    <section class="points">
+      <div class="point">
+        <h3>1. 分岐は増やしすぎない</h3>
+        <p>最初は2から3問で十分。分岐ごとに見せる内容が変わらないなら、質問を増やす意味は薄い。</p>
+      </div>
+      <div class="point">
+        <h3>2. 事例を先に見せる</h3>
+        <p>理屈より先に「自分に近い人の話」を出す。納得より先に関心を作る。</p>
+      </div>
+      <div class="point">
+        <h3>3. CTAは共通に戻す</h3>
+        <p>途中は個別化しても、最後は予約・相談など同じ行動に収束させる。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>部内共有用の一言</h2>
+      <div class="action-box">
+        <h3>VideoASK型LPとは</h3>
+        <p>読者に質問で自分の状態を選ばせ、その回答に合う説明と事例を見せたうえで、最後は同じCTAへ着地させる診断型セールス導線。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
