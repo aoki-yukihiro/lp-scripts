@@ -269,6 +269,39 @@
       font-size: 16px;
     }
 
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0 16px;
+    }
+
+    .shot-grid.single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .shot {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #f1f5f9;
+    }
+
+    .shot figcaption {
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      background: white;
+    }
+
     .quad {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -342,6 +375,7 @@
 
       .summary-grid,
       .toc,
+      .shot-grid,
       .quad {
         grid-template-columns: 1fr;
       }
@@ -568,6 +602,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">FV</span>ファーストビュー</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/01-fv-screenshot.jpg" alt="記事013のファーストビュー。全身モデル、脂肪溶解注射、カリカリ美脚、0円オファーを表示。">
+            <figcaption>FV: BAではなく全身モデルの理想像を先に見せ、足痩せ後の「こうなりたい」を直感で作る。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -594,6 +634,16 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">導入</span>導入/アンケート/診断</div>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/02-survey-q1.jpg" alt="アンケート1。あなたの悩みに近いのは？という質問。">
+            <figcaption>Q1: 足太り・セルライト・むくみから悩みを選ばせ、問題を再認識させる。</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/03-survey-q2.jpg" alt="アンケート2。足痩せしたいと思うのはどんな時？という質問。">
+            <figcaption>Q2: 着たい服、ダイエットしても変わらない、綺麗な人、彼氏など具体シーンを想起させる。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -619,6 +669,16 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-green">CTA</span>最初のCTA</div>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/08-cta-button.png" alt="無料カウンセリング実施中、今すぐ予約枠をチェックするCTAボタン。">
+            <figcaption>最初のCTA: ピンク基調の記事内で緑ボタンを浮かせ、予約確定ではなく「予約枠チェック」で押しやすくする。</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/09-more-details-button.jpg" alt="TCBの脂肪溶解注射についてもっと詳しく見るボタン。">
+            <figcaption>CTA後導線: 前半で動かなかった人に、追加教育へ進む選択肢を用意する。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -644,6 +704,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">共感</span>共感</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/04-education-ba-cause.jpg" alt="ずっと気にしていたコンプレックス、TCBならカリカリ美脚を目指せる、Before/After症例。">
+            <figcaption>共感から効果実証まで: 努力しても変わらない悩みに寄り添い、BAで期待感を補強する。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -666,6 +732,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">解決策</span>解決策紹介</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/05-q3-usp-social-coupon.jpg" alt="脂肪細胞の数が痩せない原因だったという説明と、脂肪溶解注射への不安質問。">
+            <figcaption>解決策紹介: 痩せない理由を努力不足ではなく脂肪細胞の数に置き、脂肪溶解注射へ接続する。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -691,6 +763,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">証明</span>効果実証</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/04-education-ba-cause.jpg" alt="脚のBefore/Afterを正面、横、後ろの複数ケースで見せる効果実証。">
+            <figcaption>効果実証: 正面・横・後ろの複数角度で、脚の太さやセルライト感の変化を見せる。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -713,6 +791,20 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-red">不安</span>不安払拭</div>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/05-q3-usp-social-coupon.jpg" alt="脂肪溶解注射に対して不安なことは？というアンケート3。">
+            <figcaption>Q3: 効果・リバウンド・痛み/傷跡・費用という踏み切れない理由を先に言語化する。</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/06-normal-fat-dissolve-comparison.jpg" alt="そんなあなたにおすすめ、TCBの脂肪溶解注射という見出し。">
+            <figcaption>不安回収入口: 「そんなあなたにおすすめ」として、直後にTCBの特徴で不安を回収する。</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/10-extra-education-comparison-offer.jpg" alt="普通の脂肪溶解注射との比較とTCBならという追加教育。">
+            <figcaption>CTA後教育: 普通の脂肪溶解注射への不安を再提示し、TCBの短期間・高濃度・短時間・0円で比較優位を出す。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -735,6 +827,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-yellow">信頼</span>社会的証明</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/07-tcb-comparison-offer.jpg" alt="TCBは多くの方に選ばれご評価いただいています。年間来院者数、満足度、リピート希望率、全国院数。">
+            <figcaption>社会的証明: 96万人、91%、96%、100院以上という大きな数字で、直感的な安心感を作る。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -757,6 +855,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-green">手順</span>予約/申込手順</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/12-reservation-steps.jpg" alt="ご予約まで簡単2ステップ。下のボタンからページにアクセスし、必要な情報を入力。">
+            <figcaption>予約手順: 遷移先と入力画面を先に見せ、CTA後に何が起きるかわからない不安を下げる。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -779,6 +883,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-red">FAQ</span>FAQ</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/11-faq.jpg" alt="Q&A よくあるご質問。本当に0円で受けられるか、いきなり受ける抵抗、痛みへの不安。">
+            <figcaption>FAQ: 費用・いきなり施術・痛みの不安を、よくある質問として正常化しながら再回収する。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -801,6 +911,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-green">遷移後</span>遷移後の行動イメージ</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/12-reservation-steps.jpg" alt="予約フォームのスマホ画面と入力手順。">
+            <figcaption>遷移後イメージ: 実際のフォーム画面を見せ、広告経由で進む不安や怪しさを下げる。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -823,6 +939,16 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-blue">ベネフィット</span>最終ベネフィット</div>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/04-education-ba-cause.jpg" alt="カリカリ美脚を目指せる、Before/After症例。">
+            <figcaption>ベネフィット前半: カリカリ美脚を目指せるという期待を、症例風の見せ方で補強する。</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/05-q3-usp-social-coupon.jpg" alt="一気にミニも余裕の盛れるスタイルに近づく。">
+            <figcaption>ベネフィット後半: 単に細くなるではなく、ミニや体型が出る服を着られる未来へ接続する。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
@@ -845,6 +971,12 @@
 
       <div class="part">
         <div class="part-title"><span class="badge badge-red">限定性</span>限定性/損失回避</div>
+        <div class="shot-grid single">
+          <figure class="shot">
+            <img src="assets/article013-fat-dissolve/13-warning.jpg" alt="このページは閉じると二度と表示されません。">
+            <figcaption>限定性/損失回避: 閉じると戻れないという警告で、現状維持を崩す最後の一押しを作る。</figcaption>
+          </figure>
+        </div>
         <div class="quad">
           <div class="quad-box">
             <h4>そのパートで見せている内容</h4>
