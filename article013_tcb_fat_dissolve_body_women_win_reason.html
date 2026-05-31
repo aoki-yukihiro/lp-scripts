@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事013 勝ち理由言語化ワーク</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.75;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .doc-header {
+      background: #1e293b;
+      color: white;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .doc-header h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .doc-header p {
+      margin: 12px 0 0;
+      color: #cbd5e1;
+    }
+
+    .doc-meta {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .metric {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .metric span {
+      display: block;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 22px;
+      line-height: 1.3;
+      color: #1e293b;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #2563eb;
+      letter-spacing: 0;
+    }
+
+    .card h3 {
+      margin: 22px 0 8px;
+      font-size: 16px;
+      color: #1e293b;
+      letter-spacing: 0;
+    }
+
+    .card h3:first-child {
+      margin-top: 0;
+    }
+
+    .card h4 {
+      margin: 14px 0 6px;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul,
+    ol {
+      padding-left: 22px;
+      margin: 8px 0 14px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    .lead {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f172a;
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin: 0 0 16px;
+    }
+
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #334155;
+      margin: 12px 0;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      color: #7c2d12;
+      margin: 12px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .badge-blue {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .badge-green {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .badge-red {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .badge-gray {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .badge-yellow {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin: 12px 0 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    code {
+      font-family: Menlo, Monaco, Consolas, monospace;
+      font-size: 0.92em;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+
+    .toc div {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 9px 10px;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .part {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 14px 0;
+      background: #ffffff;
+    }
+
+    .part-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 16px;
+    }
+
+    .quad {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .quad-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .quad-box h4 {
+      margin: 0 0 8px;
+      color: #1d4ed8;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checkbox {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #94a3b8;
+      border-radius: 4px;
+      margin-top: 4px;
+      background: white;
+    }
+
+    .small {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 13px;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .doc-header {
+        padding: 24px;
+      }
+
+      .doc-header h1 {
+        font-size: 23px;
+      }
+
+      .summary-grid,
+      .toc,
+      .quad {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .metric strong {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>記事LP 勝ち理由言語化ワーク<br>★013 TCB脂肪溶解からだ女性</h1>
+      <p>売れている記事の制作判断を、次の記事制作者が再現できる思考フレームに抽象化した資料。</p>
+      <div class="doc-meta">
+        対象記事: ★013_TCB-脂肪溶解からだ女性_0円_青木_ステップアンケ_通常オファー_20260423<br>
+        対象URL: <code>https://great-chance.org/ab/xXqbiNOMeLrxAStUoHw</code><br>
+        参照元記事: ★040_TCB-ピコレーザー女性_0円_中川_ステップアンケ_通常オファー_20260421 / <code>https://beauty-recommend.org/ab/sVYRFhRRBbEnRdGQg</code>
+      </div>
+    </header>
+
+    <section class="summary-grid" aria-label="主要実績">
+      <div class="metric">
+        <span>AXAD利益</span>
+        <strong>9,763,317円</strong>
+      </div>
+      <div class="metric">
+        <span>AXAD CV</span>
+        <strong>2,415</strong>
+      </div>
+      <div class="metric">
+        <span>主戦場</span>
+        <strong>META</strong>
+      </div>
+      <div class="metric">
+        <span>Beyond FVER</span>
+        <strong>49.9%</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>この資料の結論</h2>
+      <p class="lead">この記事の勝ち筋は、自社CRで既に需要が確認できていた「足痩せ・セルライト・大根足」訴求に対して、市況に不足していた足痩せ特化のステップアンケ記事を素早く当てたこと。</p>
+      <p>制作判断の中心は3C分析。自社CRでは足痩せ訴求が取れていたが、それに対応する記事がなかった。競合や市況はお腹痩せ、部位別痩せ、通常記事が中心で、足痩せ特化かつステップアンケ型の導線は薄かった。そこで、自社で勝っていたピコ女性ステップアンケの構造をほぼそのまま残し、中身だけを脂肪溶解注射・足痩せ・セルライト悩みに置き換えた。</p>
+      <p>結果として、AXAD上では2026-04-20から2026-05-31の期間で利益9,763,317円。作成前の想定は100万から200万円規模だったため、想定以上のヒットになった。</p>
+      <div class="toc">
+        <div>1. 制作判断</div>
+        <div>2. 中の構造の大枠</div>
+        <div>3. パートごとの詳細解説</div>
+        <div>4. 抽象化</div>
+        <div>5. チェックリスト化</div>
+        <div>補足. 実績・参照情報</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. 制作判断</h2>
+
+      <h3>なぜこの商材・市場・ターゲット・型を選んだのか</h3>
+      <p>一番大きかった判断根拠は3C分析。自社CRでは足痩せ訴求が強く取れていた一方で、自社側に足痩せ訴求に対応した記事がなかった。つまり、広告側で需要は見えているのに、その受け皿となる記事が不足していた。</p>
+      <p>市場を見ると、競合はお腹痩せ、部位ごとに痩せられる、全身痩せのような訴求が中心だった。足痩せに特化している記事やクリエイティブキャンペーンは見当たりにくく、特にステップアンケ型の導線は薄かった。そこで、需要があることはCRで確認済み、かつ競合が狙っていない穴として「足痩せ特化」を選んだ。</p>
+      <p>ターゲットは、太ってはいないが足の太さにコンプレックスがあり、できるなら足痩せしたい20代女性。幅広い年代で取れていたが、配信状況と現状利益を見たときに、若めが取れている1課と3課に合わせるのが最もインパクトが出るという判断だった。</p>
+      <p>型はステップアンケート型。依頼としてステップアンケの横展開があったことに加え、市場で通常記事ばかり見ているユーザーに対して、新しい見せ方として提示できる。新鮮さで読み進めるきっかけを作り、その先に需要のある足痩せ訴求を置くことで、欲しいと思ってもらいやすい構造になると判断した。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>3C</th>
+              <th>見たこと</th>
+              <th>制作判断への変換</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Customer</td>
+              <td>自社CRで集まっているのは、太っていないが足の太さにコンプレックスがあり、足痩せしたい若年女性。直近1週間で81個のCPがあり、全TCB中5番目に利益が出ていて質も担保されていた。</td>
+              <td>ターゲットを20代女性、悩みを足太り・セルライト・むくみ・大根足に寄せる。</td>
+            </tr>
+            <tr>
+              <td>Competitor</td>
+              <td>市況は部分痩せ訴求が多いが、お腹や部位別全般が中心。足特化は薄い。ナハトの記事は見たが、細部比較というより初期の方向性確認として参照。</td>
+              <td>市況に薄い「足痩せ特化」で差別化する。通常記事ではなくステップアンケ型で新鮮さを出す。</td>
+            </tr>
+            <tr>
+              <td>Company</td>
+              <td>自社動画CRで、足痩せ、セルライト、大根足、カリカリ、どろっと系が既に一定取れていた。自社にはピコ女性ステップアンケという勝ち構造もあった。</td>
+              <td>CRで取れている訴求を記事に移植し、ピコ女性ステップアンケの構造を脂肪溶解からだ女性向けに置き換える。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>参照した市場・競合・過去勝ち記事・広告・CR</h3>
+      <ul>
+        <li>自社で既に取れていた足痩せ・セルライト系の動画CR 4本。個別に「このCRからこの要素」と厳密に切り分けたというより、売れているCR群全体から、足痩せ、セルライト、大根足、カリカリ、全身理想像、0円オファーの要素を抽出した。</li>
+        <li>元ネタ記事は、★040_TCB-ピコレーザー女性_0円_中川_ステップアンケ_通常オファー_20260421。大枠構造はほぼそのまま残し、具体的な悩み・解決策・訴求を置き換えた。</li>
+        <li>競合としてナハトの記事を参照。URLは <code>https://sb-draft-preview.squadbeyond.com/articles/WexC-lBTNHXEfPPbQ/draft?token=a3ed597de6779a4484836ef6fd96fecd</code>。ただしミクロなパーツ比較ではなく、ナハトもいるが自社CRの足痩せ需要とステップアンケの強みで差別化できる、という初期判断に使った。</li>
+        <li>デザイン参考としてPinterest、雑誌、Instagram、TikTok的な若年女性向けの可愛いトンマナを参照した。</li>
+        <li>FVの全身モデルの考え方では、雑誌の見せ方や颯太さんの意見も参考にした。足単体ではなく、全身バランスで「あ、いいな」と思わせる発想。</li>
+      </ul>
+
+      <h3>元ネタと今回の記事でCV地点や商材特性がどう違うか</h3>
+      <p>CV地点自体に大きな変更はない認識。どちらも、記事内で教育し、無料カウンセリングや予約枠確認へ進ませる構造。ただし商材特性は、ピコレーザー女性から脂肪溶解注射・からだ女性に変わっているため、読者の悩み、理想像、不安の種類は置き換える必要があった。</p>
+      <p>ピコレーザー側は肌悩みを起点にできるが、今回の脂肪溶解からだ女性では、足の太さ、セルライト、むくみ、ダイエットしても変わらない、費用が高そう、痛みや傷跡が怖い、といった悩みに置き換えた。</p>
+
+      <h3>その違いに対して何を足した・削った・変えたか</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>分類</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>足した</td>
+              <td>足痩せ特化、セルライト、大根足、むくみ、太もも、カリカリ美脚、この夏までに、全身モデルFV、若年女性向けピンク・リボン系デザイン、脂肪細胞の数という原因説明、脂肪溶解注射の不安質問。</td>
+            </tr>
+            <tr>
+              <td>削った</td>
+              <td>お腹痩せ中心、全身痩せ一般論、高級感・清潔感に寄せた白金デザイン、足単体FV、BAファーストビュー。BAファーストビューは検討すらしていなかった。</td>
+            </tr>
+            <tr>
+              <td>変えた</td>
+              <td>元ネタのステップアンケ構造は残し、質問・選択肢・コピー・症例・FAQ・USPを脂肪溶解注射と足痩せ悩みに置き換えた。</td>
+            </tr>
+            <tr>
+              <td>残した</td>
+              <td>ステップアンケの大枠構造。悩み認識、情景想起、解決策への不安、商材紹介、CTA、追加教育という流れはそのまま。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>実績から見た制作判断の妥当性</h3>
+      <p>AXAD上では、2026-04-20から2026-05-31の期間で、記事013は広告費24,650,433円、CV2,415、売上34,413,750円、利益9,763,317円、CPA10,207円、ROAS139.6%。制作前は100万から200万円規模の利益を想定していたため、実績は想定を大きく上回った。</p>
+      <p>主戦場はMETA。METAだけで利益9,792,943円、CV2,318、CPA10,025円。課別ではTM1-3が利益5,854,125円、CV1,430、TM1-1が利益2,955,821円、CV717。制作時の「若めが取れている1課・3課に合わせるとインパクトが大きい」という判断は、実績上も支持される。</p>
+      <p>上位キャンペーン名にも、<code>kei足特化喋り</code>、<code>足痩せオファー本編</code>、<code>太ももどろっと</code>、<code>足太い</code>、<code>太もも特化雑学</code>、<code>可愛い足太</code>、<code>彼氏より足太い</code> などが並んでおり、記事側の足痩せ特化・太もも悩み・若年女性の見た目コンプレックスとの相性が良かったと整理できる。</p>
+    </section>
+
+    <section class="card">
+      <h2>2. 中の構造の大枠</h2>
+
+      <h3>型：どんな記事構造か。読者にどんな心理効果を起こす型か</h3>
+      <p>型はステップアンケート型。構造は、FVで理想像とオファーを提示し、その下にいきなり質問を置く。質問は、読者の悩みを再認識させ、その悩みを解決したい生活シーンを想像させ、最後に脂肪溶解注射に対する不安を言語化させる。その後、あなたにおすすめなのがこれ、と自社商材を紹介し、USP、信頼要素、社会的証明、オファー、CTAへ進む。</p>
+      <p>CTAまでで一度、前半の情報だけで欲しくなった人を刈り取る。その後に、まだ教育が進んでいない人、まだ懸念が残っている人に対して、普通の脂肪溶解注射との比較、TCBの優位性、FAQ、予約手順、限定性を追加で見せる。</p>
+      <p>心理効果としては、潜在層というより顕在層に強い。脂肪溶解注射や部分痩せという解決策をある程度知っており、足の悩みも認識しているが、何らかの理由で踏み切れていない層に向けて、踏み切れない理由を言語化し、すぐに回収していく構造。</p>
+      <p>制作者の言葉で言えば、マニア層、解決認識がある層、オファーが強ければ買う層、他の脂肪溶解注射との違いがわかれば買う層に刺さる構造。問題認識、情景想起、感情喚起、原因説明、解決策提示、不安払拭、社会的証明、オファーという順番で、感情で欲しくさせた後に論理で納得させる。</p>
+
+      <h3>デザイン：市場上位と比べて何を揃え、何を差別化したか</h3>
+      <p>市場上位と意識的に揃えたわけではない。今回は市場上位を模倣するより、自社ピコ女性ステップアンケの勝ち構造と、自社CRで取れている足痩せ訴求を優先した。</p>
+      <p>市場や競合は白背景、金色、清潔感、高級感寄りの見せ方が多い印象だった。そこに対して、今回のターゲットは10代後半から20代の若い女性なので、ピンク、リボン、雑誌的、TikTokやInstagram的な可愛いトンマナにした。目的は「私向けに書かれている」と感じさせること。普段見ている可愛いものに近い記事が出てくることで、魅力的に感じたり、自分ごと化しやすくした。</p>
+      <p>ステップアンケ自体も差別化要素。市況には通常記事が多く、ナハトも制作していたが足元CRで停滞している情報があった。通常記事ばかり見ているユーザーに対して、アンケート型の新しい導線を出すことで、見慣れないものとして目に止まり、読み進めるきっかけになる。</p>
+
+      <h3>コピー：過去勝ち訴求を残したのか、新規訴求を作ったのか。その理由</h3>
+      <p>記事としての訴求は、過去勝ち記事の単純流用ではなく、足痩せ特化の新規訴求。ただし、CRで既に取れていた表現は記事内に移植している。具体的には、カリカリ、セルライト、大根足、太もも、足痩せ、0円、夏までに、といった要素。</p>
+      <p>理由は明確で、元々売れているCR訴求に合った記事がなかったから。市場にも足痩せ特化の記事が薄かったため、需要があるのに受け皿がない状態だった。そのため、記事側で足痩せ特化を作れば、市場にない記事かつ需要がある記事として独占しやすいと判断した。</p>
+
+      <h3>大枠構造の流れ</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>順番</th>
+              <th>役割</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>理想像と期待</td>
+              <td>FVで全身モデル、カリカリ美脚、脂肪溶解注射、0円オファーを見せる。</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>問題認識</td>
+              <td>Q1で足が太く見える、セルライト、むくみを選ばせる。</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>情景想起・共感</td>
+              <td>Q2で着たい服、ダイエットしても変わらない、綺麗な人、彼氏と会う時を想起させる。</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>感情から論理へ</td>
+              <td>コンプレックス、BA、脂肪細胞の数という原因説明へ進む。</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>不安の言語化</td>
+              <td>Q3で効果、リバウンド、痛み・傷跡、費用不安を聞く。</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>解決策と信頼</td>
+              <td>TCBの脂肪溶解注射のUSP、社会的証明、0円オファーを見せる。</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>一度刈り取り</td>
+              <td>最初のCTAで予約枠チェックへ誘導する。</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>追加教育</td>
+              <td>CTA後に普通の脂肪溶解注射との比較、FAQ、予約手順、限定性を見せる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. パートごとの詳細解説</h2>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">FV</span>ファーストビュー</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>中央に若い女性の全身モデル素材を置き、頭から足先まで見えるようにしている。左に大きく「脂肪溶解注射」、右に「この夏までに目指せる カリカリ美脚」、左上に「セルライトも 大根足も」。下部に特別クーポンとして、TCB脂肪溶解注射、通常19,800円から0円を大きく見せる。上部には「このページは検索しても出てきません」と希少性を出している。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>FVの役割は不安払拭ではなく、まず「いいな」「こうなりたい」「希望がある」と思わせること。足だけ細いではなく、全身で見たときにスタイルがいい女性を見せることで、顔が小さい、足が綺麗、可愛い、スタイルがいいという総合理想を作る。脂肪溶解注射を知っているが避けていた人に、この方法でこんな理想を目指せるのか、という期待を作る。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>最も強く見せたかったのはAI女性モデル素材。CRで既に使われ、売れていた素材の理想像を記事に移植しているため、一定の反応は確認済みだった。足痩せは下半身だけではなく全身バランスで理想になる。雑誌でも足だけを大きく見せるより、全身モデルでスタイルの良さを見せることが多い。全身FVは、ターゲットの感情を先に動かす。</p>
+            <p>BAをFVに出さなかったのは、現実の変化証明よりも理想像を先に出したかったから。BAは「こういう状態からこう変わった」を示すものだが、今回の足痩せでは下半身だけを見ても「こんな女性になりたい」という感情に直結しにくい。FVでは理想、後半で証明という役割分担にした。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、FVでいきなり証明に入るのではなく、商材ごとの理想状態を最も感情的に伝える素材を選ぶこと。過去記事や市況記事のFVに縛られず、CRや雑誌、SNSなど、ターゲットが魅力を感じる見せ方から探す。変えるべき点は、商材とターゲットごとの理想像。若年女性の足痩せなら全身モデルが良いが、別商材ならBA、顔のアップ、生活シーン、男性向けベネフィットなどに変える。</p>
+          </div>
+        </div>
+        <div class="note">
+          <strong>補足:</strong> AIっぽさは大きく気にしていない。AIだから買わないというより、まず「こんな足ならいいな」「こうなれたらいいな」と思わせることが重要。AIっぽい、現実的ではないと考えるのはその後であり、FVでは感情喚起を優先する。
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">導入</span>導入/アンケート/診断</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「アンケート回答で 特別キャンペーンにご招待。」と提示し、3ステップの進捗バーを置く。Q1は「あなたの悩みに近いのは？」で、足が太く見える、セルライトを無くしたい、むくみがひどい、その他。Q2は「足痩せしたいと思うのはどんな時？」で、着たい服が着れないとき、ダイエットしても変わらないとき、スラっと綺麗な人を見たとき、彼氏と会うとき。Q3は「脂肪溶解注射に対して不安なことは？」で、効果、リバウンド、痛み・傷跡、費用を選ばせる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>表面上はアンケートに答えてキャンペーンに進む導線。裏面の役割は、悩み、欲求、不安を順番に再認識してもらうこと。Q1で問題認識、Q2で共感と情景想起、Q3で解決策に対する不安の言語化を行う。新しく悩みを作るというより、既にある悩みを改めて自分の中で言語化させる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>PASONAに近い流れになっている。人は問題を認識しないと買いたいと思わない。Q1で問題を認識させ、Q2で日常の嫌な状態や理想への欲求を具体化し、Q3で踏み切れない理由を出させる。選択肢は、CRで強かった足太い、セルライトと、検索や市場で見えるむくみを入れ、その他も置くことで、該当しない人も先に進める。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、質問の順番。悩み、悩みが出るシーン、解決策への不安の順で聞く。変えるべきは選択肢。商材ごとに、CRで取れている悩み、市場でよく出る悩み、ターゲットが経験していそうな場面、解決策に対する不安を入れ替える。解決策を知らないターゲットなら、Q3を「脂肪溶解注射への不安」にするのではなく、どんな解決策があると思うか、など解決策認知を作る質問に変える必要がある。</p>
+          </div>
+        </div>
+        <div class="note">
+          進捗バーは、3問だけで終わりそうに見せて回答完了まで進ませるUX。選択済みボタンの色変化も、回答している感を作る。
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-green">CTA</span>最初のCTA</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「無料カウンセリング実施中」「今すぐ予約枠をチェックする」というCTA。記事全体がピンク基調の中で、ボタンは緑にして目立たせる。スクショでは伝わりにくいが、小さくなったり大きくなったりする動きがあり、静的な記事の中で急に動くことで押す場所だと認識させる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>CTAの役割は行動喚起なので、デザインの統一性よりも違和感と視認性を優先する。緑色、動き、文言で「あ、ここを押すんだ」と無意識にわかるようにする。「無料カウンセリング」はいきなり施術ではなく相談なのでハードルが低い。「予約枠をチェックする」は予約確定ではなく確認行動に見えるため押しやすい。「今すぐ」は即時行動を促すマイクロコピー。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>CTAまでで、悩み認識、情景想起、解決策提示、不安回収、社会的証明、0円オファーまで見せている。前半だけで納得した顕在層をここで一度刈り取る構造になっている。押すハードルを「予約」ではなく「予約枠チェック」に下げている点も、クリックしやすさにつながる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、記事全体の色とCTA色をあえてズラすこと、動きで押しどころを作ること、文言を低ハードル化すること。変えるべきは、商材ごとのCV地点に合わせた文言。予約、相談、診断、資料請求、枠確認など、押した瞬間に何が起きるかを怖く見せない表現にする。</p>
+          </div>
+        </div>
+        <div class="warning">
+          CTA時点で残りやすい不安の優先順位は、1位が費用不安、2位がフォーム遷移不安、3位が施術への怖さ。費用は10代後半から20代女性にとって大きく、0円が本当なのか、追加料金があるのではないかが気になる。フォーム遷移は広告経由なので、この先に進んで大丈夫か、怪しくないかが残る。施術への怖さはさらに先の話なので3番目。
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">共感</span>共感</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「ずっと気にしてたコンプレックス」という見出しと、運動している女性、サラダを食べている女性のイラスト。努力してきたが変わらなかったことを視覚的に示している。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>読者に「これ自分のことだ」と一瞬で思わせる。足痩せに悩む10代後半から20代女性は、運動や食事制限を試したことがある可能性が高い。努力しても変わらなかった経験を先に拾うことで、読者を責めずに寄り添う。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>いきなり施術紹介に入らず、まず感情に寄り添うため、売り込み感が弱まる。人は感情で欲しいと思い、その後で論理で納得する。ここは感情を動かす入口として機能している。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、読者が過去に試したがダメだった対策を見せること。変えるべきは、その商材の読者が実際にやっていそうな努力。美容医療ならセルフケア、運動、食事制限、スキンケアなど、商材ごとの失敗体験に合わせる。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">解決策</span>解決策紹介</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「TCBの脂肪溶解注射なら カリカリ美脚 目指せる！」と提示し、さらに「実は痩せない原因は脂肪細胞の数だった！」と説明する。生まれつき脂肪細胞が多い人は太りやすく、少ない人は痩せやすいという対比を見せ、脂肪溶解注射なら脂肪に直接アプローチして脂肪細胞の減少を目指せるとつなげる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>痩せない原因を本人の努力不足ではなく、脂肪細胞の数というメカニズムに置く。あなたが悪いのではなく、生まれつきの体の仕組みだから仕方ない、という逃げ道を作り、その上で脂肪溶解注射なら直接アプローチできると納得させる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>感情で「良さそう」と思わせた後に、論理で「だから痩せなかったのか」「だからこの施術が合うのか」と納得させている。原因説明と解決策がつながることで、施術が単なる宣伝ではなく合理的な選択に見える。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、読者を責めずに原因を構造化し、その原因に対して商材がどうアプローチするかを説明すること。変えるべきは原因の中身。商材ごとに、肌、髪、体型、痛み、料金、習慣など、読者が納得しやすい原因を選ぶ。</p>
+          </div>
+        </div>
+        <div class="note">
+          次に改善するなら、この「脂肪細胞の数だった」の教育を少し厚くする。もともと脂肪細胞が多い人は何をやっても太りやすい、という説明を加えると、努力不足ではなく構造的に痩せにくいという納得が強くなる。
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">証明</span>効果実証</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>Before/Afterを3ケース提示。CASE01は正面からの足、CASE02は横から見た足、CASE03は後ろから見た足。足の太さ、スラっと感、セルライトっぽい段差や見え方を複数角度から示している。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>「本当に変わるのか」という効果不安に対して、視覚的な期待感を出す。足痩せは正面だけでなく、横、後ろ、セルライト感も気になるため、複数角度で示すことで自分の悩みに当てはめやすくなる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>FVでは理想像を見せ、ここでは変化の証明を見せるという役割分担になっている。FVにBAを置くと理想像の感情喚起が弱くなるが、教育パートにBAを置くことで、欲しい気持ちが高まった後に「実際に変わりそう」と補強できる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、読者が気にしている角度や部位を複数見せること。変えるべきは見せる証拠の種類。商材によってはBA、症例、数値、医師説明、口コミ、比較表などが適切になる。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-red">不安</span>不安払拭</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>Q3で「脂肪溶解注射に対して不安なことは？」と聞き、本当に効果があるのか不安、痩せてもリバウンドしそう、痛み・キズ跡が残りそうで怖い、費用が高そう、を選択肢にする。その後「そんなあなたにおすすめ TCBの脂肪溶解注射」として、リバウンドほぼなし、1回の注射から実感しやすい、痛み・キズ跡ほぼなしを提示する。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>顕在層は脂肪溶解注射を知っているのに、何かが理由でやっていない。その理由をこちらから言語化してあげる。読者は「そう、それが不安だった」と思い、その直後に回答を見るため、納得しやすい。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>不安を出すだけでなく、理由つきで回収している。リバウンドには脂肪細胞自体へアプローチする施術だから痩せ体質を目指せる、と説明。効果不安には、1回の注射から実感しやすい、最短10分、最短2から3日で効果を期待、と説明。痛み・傷跡には、髪の毛くらいの極細針だからほとんどない、と説明。単に大丈夫と言わず、理由を添えることで説得力が出る。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、顕在層が踏み切れていない理由を質問で出し、その直後に回収すること。変えるべきは不安の種類と優先順位。今回のCTA時点では費用、フォーム遷移、施術への怖さの順だったが、商材によって効果不安、料金不安、感情不安、行動不安の重さは変わる。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-yellow">信頼</span>社会的証明</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「TCBは多くの方に選ばれご評価いただいています」とし、年間来院者数96万人以上、仕上がり満足度91%、リピート希望率96%、全国100院以上を大きく表示する。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>詳しく読まなくても、数字の大きさで「なんかすごそう」「安心できそう」と感じさせる。96、91、96、100といった大きい数字や桁の印象で、直感的な信頼を作る。全国100院以上は、通いやすさだけでなく、大手で安心という印象にもつながる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>ダニエル・カーネマンのシステム1/システム2で言えば、システム1にアプローチしている。読解や計算を必要とするシステム2ではなく、パッと見たときの直感に「すごそう」「安心できる」と入れることで、行動前の抵抗を下げる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、詳細読解しなくても安心できる数値や実績を出すこと。変えるべきは証明の種類。来院者数、満足度、リピート率、店舗数、医師数、症例数、口コミ数など、商材で最も信頼に効くものを選ぶ。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-green">手順</span>予約/申込手順</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「ご予約まで簡単2ステップ」。STEP01は下のボタンからページにアクセス、STEP02は必要な情報を入力。スマホ画面で遷移先ページと入力フォームを見せる。記事内で見せた予約手順と実際の遷移先フォームは完全に一致させている。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>CTAを押した後に何が起きるかわからない不安を消す。広告経由で来ている読者は、この先に進んで大丈夫か、本当に言っていることは本当か、怪しいページに飛ばないかを不安に思う。事前に実画面を見せることで、安心して進みやすくする。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>費用不安の次に残りやすいフォーム遷移不安を潰している。簡単2ステップで手軽さを出し、スマホ画面で具体的な行動イメージを作る。行動前の不確実性を減らすことで、ボタンを押すハードルを下げる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、遷移後に何が起きるかを実画面で見せること。変えるべきは、商材ごとのフォーム画面、入力項目、遷移先FV。記事内の説明と実際の遷移先がズレると不安払拭にならないため、必ず一致させる。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-red">FAQ</span>FAQ</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>Q&A形式で、1つ目は「本当に0円〜で受けられますか？」。初回患者に限り、クーポン金額以内であればメニューを問わず0円〜、追加料金なしと答える。2つ目は「いきなり受けるのは抵抗があるのですが…」。まず無料カウンセリング、相談後に納得した上で施術と答える。3つ目は「痛みに弱いのですが、大丈夫でしょうか？」。少しチクっとする程度、痛みをほとんど感じない患者が多い、リラックスして受けられると答える。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>FAQは懸念払拭であり、同時に社会的証明でもある。「よくある質問」と書くことで、同じ不安を持つ人が他にもいる、自分だけではない、と感じさせる。その上で大丈夫だと回答するため、不安を正常化しながら下げられる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>0円に対しては、ただ0円と言うだけだと怪しい。初回患者限定、クーポン金額内という条件があることで、逆に納得感が出る。いきなり施術される不安には無料カウンセリングを先に出し、痛み不安にはチクっとする程度、受けている患者が多いという説明で安心させる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、記事前半で触れた不安をFAQで再度「本当に大丈夫？」レベルまで回収すること。変えるべきはFAQの中身。商材ごとに、最後まで残りやすい費用、痛み、効果、手間、契約、個人情報、来店、周囲バレなどを選ぶ。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-green">遷移後</span>遷移後の行動イメージ</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>予約ページにアクセスして、必要情報を入力する流れをスマホ画面で見せる。画面内には予約、診断、WEB予約・相談などが見える。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>ボタンを押した後の未知を既知に変える。怪しいサイトに飛ぶのではない、こういうページに行ってこう入力するだけ、という具体的な想像ができる。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>CTA時点で2番目に大きいフォーム遷移不安を直接潰している。広告経由の読者は、この先大丈夫かという警戒があるため、遷移先と入力内容のデモンストレーションが効く。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、実際の遷移先と一致した画面を見せること。変えるべきはフォーム内容。CV地点がLINE追加、電話、資料請求、診断、予約などで変わるなら、その後に起きることを具体的に見せる。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-blue">ベネフィット</span>最終ベネフィット</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>「ミニも余裕の盛れるスタイルに近づく」という表現。ミニスカート、タイトな服、体型が出る服を着られるようなイメージを置いている。Q2でも、着たい服が着れない、スラっと綺麗な人、彼氏と会う時を出している。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>単に足が細くなるではなく、細くなった後の生活シーンや自己イメージへ接続する。若年女性にとっては、服、SNS、彼氏、街中で見る綺麗な人への憧れが購買欲求に近い。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>機能ベネフィットだけで終わらず、情緒ベネフィットに変換している。脂肪細胞にアプローチ、最短2から3日、最短10分という機能説明の先に、盛れるスタイル、着たい服、彼氏と会う自信がある。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、商材の機能を生活の変化に翻訳すること。変えるべきは生活シーン。男性ならモテる、仕事で見られ方が変わる、高齢層なら若々しく見える、痛みが減って生活しやすいなど、ターゲットの欲しい未来に変換する。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <div class="part-title"><span class="badge badge-red">限定性</span>限定性/損失回避</div>
+        <div class="quad">
+          <div class="quad-box">
+            <h4>そのパートで見せている内容</h4>
+            <p>黄色と黒の警告デザイン、三角のびっくりマーク、「このページは閉じると二度と表示されません ご注意ください。」という文言。FV上部にも「このページは検索しても出てきません」がある。</p>
+          </div>
+          <div class="quad-box">
+            <h4>読者心理に対する役割</h4>
+            <p>人間は現状維持を好むため、ポチる、フォームに進むという行動には抵抗がある。そこで、今閉じると戻れない、今しかない、という損失回避を出し、背中を押す。文言上は押してとは言っていないが、暗に「今進まないと損する」と伝えている。</p>
+          </div>
+          <div class="quad-box">
+            <h4>売れている理由</h4>
+            <p>手順で「簡単」「安心」を見せた後に、最後に「今動かないと失う」を置くことで、行動しない理由を減らしている。警告デザインは無意識に注意を引くため、最後までスクロールした読者の目に止まりやすい。</p>
+          </div>
+          <div class="quad-box">
+            <h4>横展開時に真似るべき点/変えるべき点</h4>
+            <p>真似るべきは、最後に損失回避で現状維持を崩すこと。変えるべきは限定性の根拠。ページ再表示不可、クーポン期限、初回限定、人数限定、当日枠など、事実として成立するものに合わせる。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. 抽象化：今後の記事制作者が制作時に考えるべき10個</h2>
+      <ol>
+        <li><strong>CRで取れている需要に対応する記事があるかを確認する。</strong><br>広告で足痩せが取れているのに、記事が足痩せに対応していないなら、そこが最優先の制作機会になる。</li>
+        <li><strong>市況が拾っていない悩みの切り口を探す。</strong><br>市場が部分痩せを扱っていても、お腹中心なのか、足特化が薄いのかまで見る。穴は大カテゴリではなく、悩みの切り口にある。</li>
+        <li><strong>勝ち構造は流用し、訴求と心理導線は商材に合わせて置き換える。</strong><br>今回はピコ女性ステップアンケの構造をほぼそのまま使い、中身を足痩せ・セルライト・脂肪溶解注射に変えた。</li>
+        <li><strong>顕在層には「知らない情報」より「踏み切れない理由の回収」を優先する。</strong><br>脂肪溶解注射を知っている人には、効果、リバウンド、痛み、費用、フォーム遷移などの不安を言語化して回収する。</li>
+        <li><strong>FVは部位単体ではなく、読者が欲しい理想状態を見せる。</strong><br>足痩せだから足だけ見せるのではなく、全身で見た時のスタイル、可愛さ、服が似合う未来を見せる。</li>
+        <li><strong>質問は、悩み、情景、解決策への不安の順で置く。</strong><br>Q1で問題認識、Q2で共感とシーン想起、Q3で踏み切れない理由を言語化する。</li>
+        <li><strong>感情で欲しくさせた後に、原因説明やUSPで論理的に納得させる。</strong><br>コンプレックスや理想像で感情を動かし、脂肪細胞の数、直接アプローチ、高濃度成分、短時間施術で論理を入れる。</li>
+        <li><strong>不安は出すだけでなく、直後に理由つきで回収する。</strong><br>リバウンドほぼなし、実感しやすい、痛み・キズ跡ほぼなし、0円などは、必ず理由や条件を添える。</li>
+        <li><strong>CTAはデザイン統一より、目立つ・押せる・怖くないを優先する。</strong><br>色をズラす、動かす、無料カウンセリング、予約枠チェックなどで、押す場所と押しても大丈夫な感じを作る。</li>
+        <li><strong>最後は手順の可視化と損失回避で、行動しない理由を減らす。</strong><br>フォーム遷移後の画面を見せ、簡単2ステップで手軽さを出し、閉じると二度と表示されないなどで最後の背中を押す。</li>
+      </ol>
+
+      <h3>横展開時の考え方</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>観点</th>
+              <th>残すべき要素</th>
+              <th>変えるべき要素</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>構造</td>
+              <td>悩み認識、情景想起、不安言語化、解決策、USP、CTA、追加教育。</td>
+              <td>解決策を知らないターゲットなら、解決策認知の教育を追加する。</td>
+            </tr>
+            <tr>
+              <td>FV</td>
+              <td>読者が欲しい理想状態を一番強く見せる。</td>
+              <td>商材ごとの理想像。足痩せなら全身モデル、別商材なら顔、肌、生活シーン、BAなど。</td>
+            </tr>
+            <tr>
+              <td>質問</td>
+              <td>問題、情景、不安の順番。</td>
+              <td>選択肢はCR、市場、ターゲットの実体験に合わせる。</td>
+            </tr>
+            <tr>
+              <td>デザイン</td>
+              <td>ターゲットに「自分向け」と感じさせる。</td>
+              <td>若年女性ならピンク・可愛い。中高年女性なら肌色系・明朝体・丁寧。男性なら黒・青など男性向けに見える色。EC系なら赤・青・黄色など原色で強く見せる選択もある。</td>
+            </tr>
+            <tr>
+              <td>教育量</td>
+              <td>顕在層には踏み切れない理由の回収を優先。</td>
+              <td>潜在寄りなら、解決策の存在や他の解決策の問題点を先に教える必要がある。</td>
+            </tr>
+            <tr>
+              <td>CTA後</td>
+              <td>前半で動かなかった人向けに、追加の懸念払拭を置く。</td>
+              <td>商材ごとに、費用、フォーム、痛み、契約、個人情報など残る不安を変える。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5. チェックリスト化</h2>
+      <p>次回制作時に、はい/いいえで確認できる粒度のチェックリスト。</p>
+      <ul class="checklist">
+        <li><span class="checkbox"></span><span>自社CRで取れている訴求を確認したか？</span></li>
+        <li><span class="checkbox"></span><span>そのCR訴求に対応する記事が既にあるか確認したか？</span></li>
+        <li><span class="checkbox"></span><span>市況や競合が拾えていない悩みの穴を特定したか？</span></li>
+        <li><span class="checkbox"></span><span>ターゲットの年齢、悩み、配信状況、利益状況がつながっているか？</span></li>
+        <li><span class="checkbox"></span><span>勝ち記事の構造を使う場合、どの構造を残すか明確にしたか？</span></li>
+        <li><span class="checkbox"></span><span>商材に合わせて、質問、選択肢、USP、FAQを置き換えたか？</span></li>
+        <li><span class="checkbox"></span><span>FVで読者の理想像を一番強く見せているか？</span></li>
+        <li><span class="checkbox"></span><span>FVでBAを出すべきか、理想像を出すべきかを判断したか？</span></li>
+        <li><span class="checkbox"></span><span>モデルや素材は、ターゲットが「こうなりたい」と思えるものか？</span></li>
+        <li><span class="checkbox"></span><span>CRで取れているコピーを記事内に移植しているか？</span></li>
+        <li><span class="checkbox"></span><span>Q1で読者の悩みを再認識させているか？</span></li>
+        <li><span class="checkbox"></span><span>Q2で悩みが発生する生活シーンを想起させているか？</span></li>
+        <li><span class="checkbox"></span><span>Q3で解決策に対する不安を言語化させているか？</span></li>
+        <li><span class="checkbox"></span><span>質問の表面上の役割と裏面の心理設計を分けて設計したか？</span></li>
+        <li><span class="checkbox"></span><span>進捗バーや選択状態で、アンケートを最後まで進めやすくしているか？</span></li>
+        <li><span class="checkbox"></span><span>共感パートで、読者が過去に試したが変わらなかった努力を拾っているか？</span></li>
+        <li><span class="checkbox"></span><span>読者を責めず、悩みの原因を構造やメカニズムで説明しているか？</span></li>
+        <li><span class="checkbox"></span><span>解決策が、その原因にどうアプローチするか説明しているか？</span></li>
+        <li><span class="checkbox"></span><span>BAや症例は、読者が気にする角度や部位を見せているか？</span></li>
+        <li><span class="checkbox"></span><span>効果不安、リバウンド不安、痛み不安、費用不安を出しているか？</span></li>
+        <li><span class="checkbox"></span><span>不安を出した直後に、理由つきで回収しているか？</span></li>
+        <li><span class="checkbox"></span><span>料金不安に対して、価格、条件、追加料金の有無を説明しているか？</span></li>
+        <li><span class="checkbox"></span><span>0円など強いオファーに、なぜ成立するかの条件を添えているか？</span></li>
+        <li><span class="checkbox"></span><span>社会的証明は、パッと見で「すごそう」と感じられる見せ方になっているか？</span></li>
+        <li><span class="checkbox"></span><span>CTAは記事全体から目立つ色・動きになっているか？</span></li>
+        <li><span class="checkbox"></span><span>CTA文言は、予約確定ではなく低ハードルな行動に見えているか？</span></li>
+        <li><span class="checkbox"></span><span>CTAまでで納得した人を一度刈り取る構造になっているか？</span></li>
+        <li><span class="checkbox"></span><span>CTA後に、まだ残っている不安を追加教育で回収しているか？</span></li>
+        <li><span class="checkbox"></span><span>フォーム遷移後に何が起きるか、実画面で見せているか？</span></li>
+        <li><span class="checkbox"></span><span>記事内の予約手順と実際の遷移先フォームが一致しているか？</span></li>
+        <li><span class="checkbox"></span><span>FAQで「本当に大丈夫？」という最後の不安を回収しているか？</span></li>
+        <li><span class="checkbox"></span><span>最後に、行動しない理由を減らす限定性や損失回避を置いているか？</span></li>
+        <li><span class="checkbox"></span><span>機能ベネフィットだけでなく、生活シーンや感情ベネフィットに接続しているか？</span></li>
+        <li><span class="checkbox"></span><span>ターゲットが顕在層か潜在層かによって、教育量を調整しているか？</span></li>
+        <li><span class="checkbox"></span><span>表面的なUIではなく、そのUIが起こす心理効果まで説明できるか？</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>補足：実績・参照情報</h2>
+
+      <h3>AXAD実績</h3>
+      <p>条件: 2026-04-20から2026-05-31、案件 <code>TCB-脂肪溶解からだ女性</code>、記事番号 <code>013</code>。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>指標</th>
+              <th>数値</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>広告費</td><td>24,650,433円</td></tr>
+            <tr><td>クリック</td><td>62,840</td></tr>
+            <tr><td>CV</td><td>2,415</td></tr>
+            <tr><td>売上</td><td>34,413,750円</td></tr>
+            <tr><td>利益</td><td>9,763,317円</td></tr>
+            <tr><td>CVR</td><td>3.84%</td></tr>
+            <tr><td>CPA</td><td>10,207円</td></tr>
+            <tr><td>ROAS</td><td>139.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>配信面別</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>配信面</th>
+              <th>広告費</th>
+              <th>CV</th>
+              <th>利益</th>
+              <th>CPA</th>
+              <th>ROAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>META</td><td>23,238,557円</td><td>2,318</td><td>9,792,943円</td><td>10,025円</td><td>142.1%</td></tr>
+            <tr><td>YouTube</td><td>1,077,841円</td><td>92</td><td>233,159円</td><td>11,716円</td><td>121.6%</td></tr>
+            <tr><td>TikTok</td><td>334,035円</td><td>5</td><td>-262,785円</td><td>66,807円</td><td>21.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>課別</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>課</th>
+              <th>広告費</th>
+              <th>CV</th>
+              <th>利益</th>
+              <th>CPA</th>
+              <th>ROAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>TM1-3</td><td>14,523,375円</td><td>1,430</td><td>5,854,125円</td><td>10,156円</td><td>140.3%</td></tr>
+            <tr><td>TM1-1</td><td>7,261,429円</td><td>717</td><td>2,955,821円</td><td>10,128円</td><td>140.7%</td></tr>
+            <tr><td>TM1-2</td><td>1,102,174円</td><td>120</td><td>607,826円</td><td>9,185円</td><td>155.1%</td></tr>
+            <tr><td>新規グロース部</td><td>1,077,841円</td><td>92</td><td>233,159円</td><td>11,716円</td><td>121.6%</td></tr>
+            <tr><td>TM2-1</td><td>685,614円</td><td>56</td><td>112,386円</td><td>12,243円</td><td>116.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>担当者別上位</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>担当者</th>
+              <th>課</th>
+              <th>広告費</th>
+              <th>CV</th>
+              <th>利益</th>
+              <th>CPA</th>
+              <th>ROAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ゆうのすけ</td><td>TM1-3</td><td>9,838,848円</td><td>1,037</td><td>4,938,402円</td><td>9,488円</td><td>150.2%</td></tr>
+            <tr><td>りゅうちゃん</td><td>TM1-1</td><td>5,250,377円</td><td>557</td><td>2,686,873円</td><td>9,426円</td><td>151.2%</td></tr>
+            <tr><td>陽人</td><td>TM1-3</td><td>3,615,189円</td><td>339</td><td>1,215,561円</td><td>10,664円</td><td>133.6%</td></tr>
+            <tr><td>加藤</td><td>TM1-2</td><td>654,044円</td><td>81</td><td>500,206円</td><td>8,075円</td><td>176.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>利益上位キャンペーンの傾向</h3>
+      <ul>
+        <li><code>TM1-3_ゆうのすけ_..._記事013_kei足特化喋り_年齢_太ももどろっと_詰め合わせ_1865+</code> が利益1,767,459円、CV266、CPA7,605円。</li>
+        <li><code>kei足特化喋り</code>、<code>足痩せオファー本編</code>、<code>太ももどろっと</code>、<code>足太い</code>、<code>太もも特化雑学</code>、<code>可愛い足太</code>、<code>彼氏より足太い</code> などが上位に並ぶ。</li>
+        <li>この傾向から、記事側の足痩せ特化、太もも悩み、セルライト/どろっと系、若年女性の見た目コンプレックスとの相性が良かったと解釈できる。</li>
+      </ul>
+
+      <h3>Beyondデータの扱い</h3>
+      <p>添付されたBeyondデータでは、2026-04-01から2026-05-31で、PV103,190、CLICK22,462、CTR21.77%、CV2,252、CVR10.03%、CTVR2.18%、FVER49.9%、SVER46.33%、FSVER96.23%、OAR68.7%。ただし、ステップアンケート記事の構造上、Beyondの中間離脱系指標はそのまま解釈しない。現時点で確実に見るのはFVER49.9%。FV離脱は約半分という扱いにする。</p>
+
+      <h3>想定外だった点・迷い・次回改善</h3>
+      <ul>
+        <li>想定外だった点は、売れるとは思っていたが、ここまで売れるとは思っていなかったこと。作成前の想定は利益100万から200万円程度だったが、5月末時点で900万円以上の利益になった。</li>
+        <li>失敗・迷い・捨てた案は特にない。3C分析の時点で、お腹痩せや全身痩せではなく足痩せ特化に決めていた。高級感デザインも検討していない。BAファーストビューも考えていなかった。</li>
+        <li>次に改善するなら、「実は痩せない原因は脂肪細胞の数だった」の教育を厚くする。もともと脂肪細胞が多い人は何をやっても太りやすい、という説明を追加すると、納得感がさらに強くなる。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
