@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事015 TCB二重女性 F3向け 勝ち理由言語化</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+    .hero {
+      background: #1e293b;
+      color: #fff;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .hero p {
+      color: #cbd5e1;
+      margin: 10px 0 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 12px;
+      background: rgba(245,247,251,.96);
+      border-bottom: 1px solid #dbe3ef;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      white-space: nowrap;
+      color: #1d4ed8;
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 6px;
+      padding: 5px 9px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid #2563eb;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 17px;
+      color: #0f172a;
+      letter-spacing: 0;
+    }
+    h4 {
+      margin: 16px 0 6px;
+      font-size: 14px;
+      color: #334155;
+    }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 22px; margin: 8px 0 14px; }
+    li { margin: 5px 0; }
+    .lead {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 13px 15px;
+      color: #334155;
+      margin: 12px 0;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #7c2d12;
+      margin: 12px 0;
+    }
+    .ok {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #14532d;
+      margin: 12px 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    .blue { background: #dbeafe; color: #1d4ed8; }
+    .green { background: #dcfce7; color: #15803d; }
+    .red { background: #fee2e2; color: #b91c1c; }
+    .gray { background: #f1f5f9; color: #475569; }
+    .yellow { background: #fef3c7; color: #92400e; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { border-bottom: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f8fafc; color: #334155; }
+    tr:last-child td { border-bottom: none; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 800; }
+    .metric strong { display: block; margin-top: 5px; font-size: 21px; color: #0f172a; }
+    .part {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .shot-stack {
+      display: grid;
+      gap: 12px;
+    }
+    figure {
+      margin: 0;
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    figcaption {
+      padding: 8px 10px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+    }
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mini-gallery figure { max-height: 360px; overflow: hidden; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .box-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #94a3b8;
+      border-radius: 4px;
+      color: #94a3b8;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    a { color: #1d4ed8; }
+    @media (max-width: 860px) {
+      .part { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .mini-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { padding: 22px; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <h1>記事015 TCB二重女性 F3向け 勝ち理由言語化</h1>
+    <p>個別記事の説明で終わらせず、今後の記事制作者が再現できる制作判断・読者心理・CV地点・市場差分・不安払拭のフレームに抽象化する。</p>
+    <div class="meta">
+      <span class="pill">対象: ★015_TCB-二重女性_4,800円_青木_F3向け_PU_景表_20251229</span>
+      <span class="pill">商材: TCB二重術</span>
+      <span class="pill">ターゲット: 40代以上、主に50-60代女性</span>
+      <span class="pill">型: 通常記事 + ステップアンケート + PASONA教育</span>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#premise">前提</a>
+    <a href="#decision">1. 制作判断</a>
+    <a href="#structure">2. 構造</a>
+    <a href="#parts">3. パート別</a>
+    <a href="#abstract">4. 抽象化</a>
+    <a href="#checklist">5. チェックリスト</a>
+    <a href="#screenshots">スクショ一覧</a>
+  </nav>
+
+  <section id="premise" class="card">
+    <h2>前提と根拠の扱い</h2>
+    <p class="lead">この記事が売れた主因は、市況が若年層の「かわいくなれる」訴求に寄っていた中で、F3女性の「まぶたのたるみ・視界の狭さ・年齢不安」に対して、二重整形を「若返り/安全/快適さを取り戻す手段」として提示したことにある。</p>
+    <div class="grid">
+      <div class="metric"><span>AXAD確認値: ★015単体</span><strong>利益 25,662,809円</strong></div>
+      <div class="metric"><span>AXAD確認値: ★015単体</span><strong>CV 3,108件</strong></div>
+      <div class="metric"><span>AXAD確認値: ★015単体</span><strong>ROAS 146.04%</strong></div>
+    </div>
+    <div class="warn">
+      <strong>実績の注意:</strong> ユーザー発話では「景表前後込みで約3,500万円」、Driveのレビュー会資料では近接する成功事例として「★010_TCB-二重女性_4,800円_青木_F2層向け_20251121」が「景表前後合わせて4,400万円」と記載されている。AXADで確認できた★015単体の利益は25,662,809円。最終判断では、★015単体実績と、F2/F3高年齢向け二重女性クラスターの実績を混同しない。
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>根拠</th><th>確認できたこと</th><th>使い方</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>AXAD</td>
+            <td>★015相当の期間実績として、消化55,714,772円、売上81,365,600円、利益25,662,809円、CV3,108、CPA17,926円、ROAS146.04%を確認。</td>
+            <td>「売れた」と判断する定量根拠。ただし景表前後込みの発話値とは定義差がある。</td>
+          </tr>
+          <tr>
+            <td>クラウドワークスアンケート</td>
+            <td>メイク、自然、年齢、写真、費用、腫れ、痛み、ダウンタイム、アイプチ/テープ、視界/視野の悩みが目立つ。</td>
+            <td>ターゲットのBDFと、不安払拭の項目を裏付ける一次リサーチとして採用できる。</td>
+          </tr>
+          <tr>
+            <td>SquadBeyond/ヒートマップ</td>
+            <td>★015の景表対応・修正版記事URL・BeyondドラフトIDの記録は確認。後続の年齢不安外し改修で「ヒートマップ分析してボディ改修した」という記述も確認。ただし★015そのもののヒートマップ画像/離脱率は未取得。</td>
+            <td>最終分析では「関連資料に言及あり、ただし★015実数未確認」と明記し、主根拠にはしない。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>参照URL: <a href="https://beauty-recommend.org/ab/PtlajzrRuciRL_Fe_VIGA">対象LP</a> / <a href="https://beauty-recommend.org/ab/_PAwAO_EKJlnrRVlPKw">若年層向け横展開元</a> / <a href="https://docs.google.com/spreadsheets/d/1DEe7C8uQ54asckq0yNgT1V3cRqqxXa-aytM7C17DrVI/edit?gid=516674474#gid=516674474">CWアンケート</a> / <a href="https://docs.google.com/document/d/1JrfVAqp9acJK9ldgfqjiUcLqbugGlLFHdT1fUtzi_fk">レビュー会資料</a></p>
+  </section>
+
+  <section id="decision" class="card">
+    <h2>1. 制作判断</h2>
+    <h3>なぜこの商材・市場・ターゲット・型を選んだのか</h3>
+    <p>商材はTCBの二重術。従来の二重整形記事は、20代-30代女性に向けた「かわいくなる」「もっと綺麗になる」という美容欲求を中心に作られていた。一方、当時のクリエイティブや既存記事で獲得できている年代層は上に寄っており、若年層向け導線であるにもかかわらず、F3寄りのユーザーが反応している兆候があった。</p>
+    <p>ここから「市況では誰も狙っていないが、二重整形の需要がある高年齢層」が存在するのではないかと仮説を立てた。特に、F3女性は単に「かわいくなりたい」だけではなく、加齢によるまぶたのたるみ、視界の狭さ、老け見え、メイクのしづらさ、写真に写る自分への落ち込み、運転や日常生活の不安を抱えていた。</p>
+    <p>型は新しく作り替えすぎず、当時TCBで幅広く使われていた通常記事の流れを踏襲した。制作者自身も記事制作初期だったため、市場や自社で機能している美容整形記事の基本構成を残し、変えるべき箇所を「誰に」「何を」の部分に絞った。つまり、構成は保守的に、ターゲットと訴求は大胆に変えた。</p>
+
+    <h3>3C分析からの仮説</h3>
+    <div class="note">
+      <strong>結論:</strong> 市況では誰もターゲットにしていないが、二重整形の需要がある層に対して、根源的欲求である「パッと視界が開ける」「安全に快適に過ごせる」「老け見えから解放される」にアプローチした。これにより、セールスライティングにおける「誰に何を」の部分を市況で最初に強く提示する形になり、爆発的に売れたと考えられる。
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>3C</th><th>観察</th><th>制作判断</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Customer</td>
+            <td>本部CRで集まっていたユーザーは40代以上女性。ただし当初は欲求が不明だった。CWリサーチでは、視界が広くなって安全に過ごしたい、恐怖/痛み/危険のない状態でいたい、快適に暮らしたい、たるみを改善して老け見えや劣等感を減らしたい、という欲求が見えた。</td>
+            <td>「かわいくなる」ではなく、「たるみすっきり」「視界がひらける」「朝の鏡で笑顔を取り戻す」という生活・安全・自己肯定感に近い訴求へ寄せる。</td>
+          </tr>
+          <tr>
+            <td>Competitor</td>
+            <td>市況の二重整形記事は20-30代向けで、通常記事型、若年層に「かわいくなれる」という解決策を同じように提示していた。</td>
+            <td>高年齢向けに「たるみ改善、視界が開ける、自然な二重」を前面に出す。ここは市況上ガラ空きだった。</td>
+          </tr>
+          <tr>
+            <td>Company</td>
+            <td>自社には既存のTCB通常記事の型、オファー、来院実績、TCBブランド、CRで取れている高年齢寄りの反応があった。またDIVE川口さんから、高年齢向け記事LPではコテコテの原色デザインがテストで強いと聞いていた。</td>
+            <td>構成は既存の勝ち型を使い、デザインは綺麗すぎるトーンではなく、ピンク/水色/赤/黄の強い配色で視認性と反応を優先する。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>BDFで見たターゲット理解</h3>
+    <p>BDFは、Belief（思い込み/信念）、Desire（欲求）、Feeling（感情）でターゲットを捉えるフレーム。今回の記事はこの3つすべてにアプローチしている。</p>
+    <ul>
+      <li><strong>Belief:</strong> 二重整形は若い人がするもの。自分の年齢では対象外。美容整形は大げさで怖い。</li>
+      <li><strong>Desire:</strong> まぶたのたるみを改善したい。視界を広くしたい。安全に過ごしたい。自然で若々しい目元になりたい。メイクや写真を楽しみたい。</li>
+      <li><strong>Feeling:</strong> もう無理かもしれない。老化には逆らえない。クリニックに行くのが恥ずかしい。痛みや腫れが怖い。周囲にバレたくない。</li>
+    </ul>
+    <p>FVやSVの「60代になってからまぶたが垂れたと感じる方」「朝の鏡で笑顔を取り戻したい方へ」は、BeliefとFeelingを同時に動かす。読者に「これは若い人向けではなく、自分向けかもしれない」と思わせる入口になっている。</p>
+
+    <h3>参照した市場/競合/過去勝ち記事/広告/CR</h3>
+    <ul>
+      <li>若年層向けの二重女性記事。構成の横展開元として使った。</li>
+      <li>当時の二重整形市況。主流は20-30代向けの「かわいくなれる」訴求。</li>
+      <li>本部CR/自社CRで反応していた高年齢寄りの年代層。</li>
+      <li>クラウドワークスのF3女性向けアンケート。まぶたのたるみ、視界、写真、メイク、年齢不安、痛み/腫れ/費用などの生の悩みを確認。</li>
+      <li>DIVE川口さんの高年齢向けLPデザイン知見。原色の強いデザインが反応しやすいという示唆。</li>
+      <li>レビュー会資料に残っていた二重女性高年齢向けの成功事例メモ。</li>
+    </ul>
+
+    <h3>元ネタと今回の記事でCV地点や商材特性がどう違うか</h3>
+    <p>CV地点自体は、無料カウンセリングの空き状況確認に進ませる導線で、既存の美容整形記事と大きく変わらない。ただし、読者がCVする理由が変わった。若年層向けでは「かわいくなれる」「理想の目元になれる」が主な動機だったが、今回の記事では「視界がひらける」「たるみがすっきりする」「自然な二重になれる」「朝の鏡や写真で落ち込まない」「安全・快適に生活できる」が前面に出ている。</p>
+    <p>商材としては同じ二重術でも、若年層には美容施術として見せ、高年齢層には生活不便や老け見えを解消する手段として見せた。この意味で、商材の機能は同じでも、読者に売っているベネフィットが変わっている。</p>
+
+    <h3>その違いに対して何を足した/削った/変えたか</h3>
+    <ul>
+      <li><strong>足した:</strong> まぶたのたるみ、視界の狭さ、放置リスク、運転/新聞/孫の顔など生活シーン、年齢不安、体への負担、自然さ、無料カウンセリングだけでもよいという行動ハードル低下。</li>
+      <li><strong>削った/弱めた:</strong> 若年層向けの可愛さ訴求、派手な美容変身感、若いモデル中心の理想像。</li>
+      <li><strong>変えた:</strong> FVのモデルを現実的な理想像の60代女性へ。BAをたるみから自然な二重へ。コピーを「かわいい」から「たるみすっきり」「視界がひらける」「朝の鏡で笑顔を取り戻す」へ。デザインを高年齢向けに原色で強く。</li>
+    </ul>
+  </section>
+
+  <section id="structure" class="card">
+    <h2>2. 中の構造の大枠</h2>
+    <h3>型: 顕在層を先にCVさせ、準顕在層をPASONAで教育する二段構造</h3>
+    <p>記事全体は、FVから最初のCTAまでで顕在層をCVさせる構造になっている。FV、SV、アンケート、オファー、来院実績、価格、痛み/腫れ/ダウンタイムの不安払拭を短い距離で提示し、「もう十分に欲しい」と思った人を最初のOARでカウンセリング確認へ送る。</p>
+    <p>そこでCVしない読者は、教育が必要な準顕在層として扱う。以降はPASONAに近い流れで、問題提起、煽り、解決策、オファーを再提示する。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>段階</th><th>記事内の役割</th><th>読者心理</th></tr></thead>
+        <tbody>
+          <tr><td>FV-SV-アンケート-最初のCTA</td><td>顕在層向け。自分向け感、オファー、安心材料を一気に出してCVさせる。</td><td>「これ私向けかも」「安いなら見たい」「アンケートだけなら進める」</td></tr>
+          <tr><td>問題提起</td><td>まぶたの重さやたるみによる日常不便を自覚させる。</td><td>「たしかに自分もこれで困っている」</td></tr>
+          <tr><td>煽り/放置リスク</td><td>放置を仮想敵にし、何もしない選択肢を弱める。</td><td>「放っておくのはまずいかもしれない」</td></tr>
+          <tr><td>解決策紹介</td><td>二重整形を美容ではなく、たるみ/視界/生活不便への解決策として提示。</td><td>「二重整形って自分にも関係あるのか」</td></tr>
+          <tr><td>効果実証/不安払拭/社会的証明</td><td>買わない理由を潰す。信頼、自然さ、痛み、費用、年齢不安、同年代実績を提示。</td><td>「怖いと思っていたけど、相談くらいならできるかも」</td></tr>
+          <tr><td>予約手順/最終プッシュ</td><td>無料カウンセリング、クリニック一覧、損失回避で最後の行動を促す。</td><td>「今確認だけしておこう」</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>デザイン: 構成は市場に揃え、見た目と訴求はF3向けにずらす</h3>
+    <p>市場上位と揃えた点は、美容整形記事としての一般的な構成。FV、アンケート、オファー、実績、問題提起、解決策、理由、口コミ、再オファー、CTAという流れは、既存の自社記事や市場記事に近い。</p>
+    <p>差別化した点は、ターゲット、訴求、素材、配色。市場が若年層向けに綺麗/かわいいデザインを使うのに対し、この記事は高年齢向けにピンク、水色、赤、黄色を強く使い、数字や価格、警告、ベネフィットを一目で認識できるようにした。綺麗とは言い切れないが、F3向けLPとして視認性と反応を優先した判断である。</p>
+
+    <h3>コピー: 過去勝ち構成を残し、新規訴求を作った</h3>
+    <p>コピーは、既存の「二重になれる」「自然な二重」「安い」「痛み/ダウンタイムが少ない」といった勝ち要素を残しながら、主訴求を新しく作った。新規訴求は「たるみすっきり」「視界がひらける」「朝の鏡で笑顔を取り戻す」「60代になってからまぶたが垂れた方」など。</p>
+    <p>理由は、市場の若年層向けコピーをそのまま使うと、F3女性のBeliefである「二重整形は若い人のもの」を突破できないから。まず「自分向けだ」と思わせ、その後に「自然」「安い」「痛みが少ない」「無料相談だけでよい」で背中を押す構造にしている。</p>
+  </section>
+
+  <section id="parts" class="card">
+    <h2>3. パートごとの詳細解説</h2>
+
+    <div class="part" id="fv">
+      <div>
+        <h3>FV</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>朝の鏡で笑顔を取り戻したい方へ、というコピーでF3女性の諦め感と理想を同時に拾う。モデルは60代以上に見えるが若々しく、目がぱっちりしていて笑顔が自然な女性。BAは、上まぶたが覆いかぶさるビフォーから、自然にぱっちりしたアフターへ変わる目元を見せる。価格は通常29,800円からクーポン適用で両目4,800円。満足度91%、視界がパッとひらける二重術、最短10分などを同時に置く。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>「自分の年齢でも対象なのか」「若すぎるモデルで違和感がないか」「不自然にならないか」「高そう/怖そう」という最初の疑問を、1画面でまとめて処理する。特に「朝の鏡」は、老け見えや諦めを日常のシーンに落としたコピーであり、読者のFeelingに触れる。</p>
+        <h4>売れている理由</h4>
+        <p>若年層向けの「可愛くなれる」ではなく、F3層にとって根深い「たるみ」「視界」「自然さ」「笑顔を取り戻す」をFVで提示している。市場にない「誰に何を」がFVで明確なため、対象読者が一瞬で自分ごと化しやすい。モデルも若すぎず、現実的な理想像として「私にもなれるかも」と感じられるラインを狙っている。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: ターゲットの現実的な理想像をFVモデルに置く。BAは悩みのビフォーと自然な解決後を直感的に見せる。価格/手軽さ/安心材料は初見で理解できる位置に置く。</li>
+          <li>変えるべき点: ターゲットがF3でない場合、危機感や生活不便を強く出すより、共感や理想像に寄せた方がよい場合がある。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-01.png" alt="FVとSV冒頭のスクリーンショット"><figcaption>FV: 現実的な理想像、たるみ/視界/自然な二重、4,800円オファーを同時提示。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="survey">
+      <div>
+        <h3>導入/アンケート/診断</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>SVでは「60代になってからまぶたが垂れたと感じる方、朗報です」と年齢と悩みで一気に絞る。来院者数96万人、業界大手TCB、特別キャンペーン、4問アンケート、個人情報入力なしを提示する。アンケートは、まぶたの悩み、不安、TCB二重整形の魅力、理想の二重になった後のベネフィットの順番で構成されている。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>SVは「これは私向けだ」という認識を作る。アンケートは、問題の自覚、不安の言語化、解決策の魅力理解、理想未来の想像を、読者自身に選ばせる装置である。個人情報入力なしは、60代前後のネット不安、詐欺不安、入力への抵抗を下げる。</p>
+        <h4>売れている理由</h4>
+        <p>アンケートの選択肢がCWリサーチで多かった悩みに沿っている。Q1は「鏡で老けた」「写真で落ち込む」「視界が悪い」で自覚を促す。Q2は金銭、仕上がり、体への負担を言語化させる。Q3は4,800円、AIシミュレーション、体への負担が少ない埋没法、ダウンタイム/痛みの少なさでQ2の不安に対応する。Q4はメイク、視界、鏡/写真で自分の顔を見る喜びというベネフィットを想像させる。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: アンケートは単なる入力ではなく、問題自覚からベネフィット想像までの心理誘導にする。不安を聞いた直後に、その不安を解決する商品魅力を出す。</li>
+          <li>変えるべき点: 選択肢は必ずターゲットリサーチに合わせる。表面的に「3択アンケート」を真似ても、悩みの粒度がズレると機能しない。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-02.png" alt="SVのスクリーンショット"><figcaption>SV: 60代、まぶたの垂れ、TCB実績、特別キャンペーンで自分向け感と安心感を作る。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-03.png" alt="アンケート前半のスクリーンショット"><figcaption>アンケート: 悩みと不安を読者自身に選ばせる。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-04.png" alt="アンケート後半のスクリーンショット"><figcaption>アンケート: 商品魅力と理想未来を選ばせ、CTA前の温度を上げる。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="first-cta">
+      <div>
+        <h3>最初のCTA</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>全国100院以上、テレビCM、TCB、通常29,800円から4,800円の特別クーポン、ページ限定申し込み、切らない施術、ダウンタイムほぼなし、痛みほぼなし、満足度91%、BA、悩みと解決後のベネフィット、枠が埋まり次第終了、無料カウンセリングの空き状況確認CTAを提示する。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>FV/SV/アンケートで温まった顕在層を、そのままOARへ送る。CTA文言は「受ける」ではなく「無料カウンセリングの空き状況を確認する」。行く決断や施術決断ではなく、空き状況確認という低い行動に落としている。</p>
+        <h4>売れている理由</h4>
+        <p>信頼、価格、手軽さ、不安払拭、限定性、ベネフィットがCTA前に揃っている。F3女性が気にする「体への負担」「痛み」「腫れ」「不自然さ」に対して、切らない/ダウンタイムほぼなし/痛みほぼなし/自然な二重という表現で答えている。価格も何度も見せることで、4,800円で受けられる認識を定着させている。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 最初のCTA前には、信頼、価格、手軽さ、読者固有の不安払拭、限定性をまとめて置く。CTAは行動ハードルを下げる文言にする。</li>
+          <li>変えるべき点: このパートは離脱が高かった箇所もあるため、動画/画像の長さや情報量はヒートマップがあれば調整する。特に実績動画や重複オファー画像は、CVユーザーに効いているか確認が必要。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-05.png" alt="最初のCTA前半"><figcaption>信頼: 全国100院、テレビCM、TCB、価格オファー。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-06.png" alt="最初のCTA中盤"><figcaption>不安払拭: 切らない、ダウンタイム、痛み、満足度、BA。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-07.png" alt="最初のCTA後半"><figcaption>ベネフィットと限定性: いま動く理由を作る。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="empathy">
+      <div>
+        <h3>共感</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>最初のCTA以降、記事は教育パートに入る。「まぶたの重みやたるみが気になってきますよね」「老け見え」「視界が狭い」「肩こり」「朝のメイクが仕上がらない」「アイプチやアイテープを試したけどすぐ取れる/外出中も気になる/かぶれる」「もう歳だし諦めるしかないかな」という日常の悩みを提示する。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>ここは読者の悩みを代弁し、「このページは自分のことを分かっている」と感じてもらうパート。特に、アイプチやテープなど過去の対策に触れることで、読者がすでに試した努力と失敗を認める。これにより、次の解決策が唐突ではなくなる。</p>
+        <h4>売れている理由</h4>
+        <p>CWアンケートで多かった、メイク、写真、視界、アイプチ/テープ、老け見えの悩みを具体的な日常シーンで出している。単に「たるみが気になりますよね」ではなく、「朝のメイク」「外出中」「写真」「鏡」という生活の中で困る場面を見せているため、問題の自覚が強まる。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 共感は一般論ではなく、読者が実際に経験している対策、失敗、日常の不便まで書く。</li>
+          <li>変えるべき点: ターゲットによって、共感中心にするか、次の煽りへ強く接続するかを変える。若年層や不安が強い層では、煽りより寄り添いを厚くした方がよい場合がある。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-08.png" alt="問題提起冒頭"><figcaption>問題提起の入口: 自然な二重を目指せる理由を説明すると予告。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-09.png" alt="共感パート前半"><figcaption>老け見え、視界、肩こり、メイク不便を提示。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-10.png" alt="共感パート後半"><figcaption>アイプチ/テープの不便と諦め感を代弁。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="agitation">
+      <div>
+        <h3>不安払拭の前段としての煽り/放置リスク</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>「そのたるみ、絶対に放置しないでください」と警告し、まぶたは体の中で最も皮膚が薄い部位で、刺激や加齢が負担になり、放置するとたるみが悪化する、肌荒れもひどくなる、一度たるむと元に戻りにくい、視界もどんどん狭くなるという流れを見せる。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>ここでは「放置」を最大の競合として扱う。高年齢層は「もう歳だし仕方ない」と諦めやすいため、何もしないことを安全な選択肢にしない。視界の狭さ、新聞の見づらさ、孫の顔が見えにくいといった恐怖に近いベネフィット損失を提示する。</p>
+        <h4>売れている理由</h4>
+        <p>F3層の悩みには、見た目だけでなく安全/快適/生活の質が含まれる。だから、煽りが単なる脅しではなく、自分ごとの問題として機能しやすい。黒/赤/黄の危険色も、ここでは「見た目の違和感」を作り、読者に立ち止まらせる役割を持つ。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 放置が本当に競合になる商材では、放置した場合の具体的な損失を日常シーンで見せる。</li>
+          <li>変えるべき点: すべての商材で煽りが正解ではない。ターゲットが不安で逃げやすい場合、煽りではなく共感や安心を厚くする。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-11.png" alt="放置リスク1"><figcaption>放置を仮想敵にする。危険色で読むモードを変える。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-12.png" alt="放置リスク2"><figcaption>まぶたの薄さ、肌荒れ、元に戻りにくさを提示。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-13.png" alt="放置リスク3"><figcaption>視界が狭くなる恐怖を生活シーンへ接続。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="solution">
+      <div>
+        <h3>解決策紹介</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>「そんな方におすすめなのが、自然なぱっちり二重を目指せる二重整形」として、ここまでの悩みの解決策を提示する。施術イメージ、自然な二重キープ、写真で目を気にせず笑顔、視界が広くなって大切な瞬間もはっきり見える、孫の顔などを見せる。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>ここは「二重整形 = 若い人の美容」から、「二重整形 = まぶたのたるみ/視界/生活不便の解決策」へ意味を変えるパート。煽りで高まった不安を、解決策へ接続する。</p>
+        <h4>売れている理由</h4>
+        <p>解決策の提示後すぐに、読者が得られる未来を生活シーンで見せている。自然な二重がキープできるだけでなく、写真で笑える、孫の顔が見える、メイクが楽しくなるという情緒と生活の両方を満たす。ここで「ただの美容整形」ではなく「人生の快適さを取り戻す手段」になる。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 解決策は商品名だけで出さず、悩みが解決した後の生活シーンまでセットで提示する。</li>
+          <li>変えるべき点: 商材によっては、施術/サービス説明を先に出しすぎると怖さが増す。読者の温度に合わせて、理想未来と機能説明の順番を調整する。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-14.png" alt="解決策紹介1"><figcaption>二重整形を、自然な二重キープと写真で笑える未来に接続。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-15.png" alt="解決策紹介2"><figcaption>視界が広がり、大切な瞬間がはっきり見えるという生活ベネフィット。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="evidence">
+      <div>
+        <h3>効果実証</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>理由1では、クリニック選びで重視することとして技術力と信頼感の調査を出し、TCBには日本形成外科学会専門医の資格を持つ医師が多数在籍していること、数多くの実績データをもとにカウンセリングとシミュレーションで仕上がりを提案することを見せる。理由2では、超極細の糸、皮膚へのダメージ軽減、痛みほぼなし、最短10分、腫れが短い、メイク再開などを見せる。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>ここからは買わない理由を潰すパート。読者は「不自然にならないか」「技術は大丈夫か」「痛くないか」「体への負担はないか」と疑っている。調査、医師、シミュレーション、BA、満足度、施術時間、腫れ、メイク再開を順に出して、疑いを小さくする。</p>
+        <h4>売れている理由</h4>
+        <p>ベネフィットだけでなく、F3層の現実的な不安に対して証拠を置いている。特に自然さは、若年層以上に重要。年齢を重ねた読者にとって、不自然な二重は「若作り」「周囲バレ」「恥ずかしさ」に直結するため、自然な形を提案、AIシミュレーション、ナチュラルな目元、BAで丁寧に払拭している。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 効果実証は、読者が疑っている順に置く。調査/専門家/実績/BA/満足度/口コミを役割分担させる。</li>
+          <li>変えるべき点: 専門性の押し出しが強すぎると難しくなる場合は、先に読者の言葉で不安を代弁し、その後に証拠を出す。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-16.png" alt="TCB紹介と来院実績"><figcaption>TCB紹介: 100院、96万人、60代以降の来院増加で自分だけではない感覚を作る。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-17.png" alt="理由1 信頼感"><figcaption>理由1: 技術力と信頼感を調査と医師で支える。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-18.png" alt="自然な形と満足度"><figcaption>自然さ、満足度、BAで「不自然になる不安」を払拭。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="anxiety">
+      <div>
+        <h3>不安払拭</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>不安払拭は記事全体に散らしている。最短10分、切らない、ダウンタイムほぼなし、痛みほぼなし、体への負担が少ない埋没法、AIシミュレーション、自然な形、追加料金なし、麻酔/鎮痛剤/医師の指名料無料、再施術保証、交通費補助、無料カウンセリングのみでもよい、同意がない限り追加料金なしなど。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>F3女性は、若年層よりも体への負担、回復の遅さ、周囲バレ、恥ずかしさ、費用、強引な営業への不安が強い。だから、ひとつの不安払拭パートだけでなく、FV、アンケート、CTA前、理由、オファー、予約手順に分散して何度も払拭している。</p>
+        <h4>売れている理由</h4>
+        <p>不安の種類と払拭材料が対応している。金額不安には4,800円と比較表、安さの理由。仕上がり不安にはAIシミュレーションと自然な形。体への負担には埋没法、超極細糸、痛み/腫れ/ダウンタイム。失敗不安には再施術保証。距離不安には交通費補助。行動不安には無料カウンセリングのみと空き状況確認CTAを置いている。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 不安を1つの大きな「怖い」でまとめず、金額、仕上がり、体、年齢、周囲、行動ハードルに分解する。</li>
+          <li>変えるべき点: 保証や無料特典は、商材側に実際に存在するものだけを使う。未確認の安心材料は入れない。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-19.png" alt="理由2 手軽さ"><figcaption>理由2: 糸の細さ、痛み、10分、腫れ、メイク再開で手軽さを証明。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-24.png" alt="オファーと比較表"><figcaption>金額不安: 比較表と4,800円で安さを視覚化。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-26.png" alt="保証と交通費"><figcaption>保証/交通費: 最後の不安を追加特典で潰す。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="social-proof">
+      <div>
+        <h3>社会的証明</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>96万人の来院実績、全国100院以上、テレビCM、満足度91%、60代以降の来院も増えている、口コミ、同年代に近い人物画像を提示する。口コミは、悩みや不安を代弁しながら「実際大丈夫だった」「やってよかった」という流れになっている。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>高年齢女性にとって「自分だけが行くのは恥ずかしい」「若い人ばかりの場所では浮く」という感情は大きい。来院実績や60代以降の来院増加、同年代画像は、「自分だけではない」「行っても恥ずかしくない」と間接的に伝える。</p>
+        <h4>売れている理由</h4>
+        <p>口コミ画像の選び方が、理想の女性だけでなく、年相応/地味め/どこにでもいそうな主婦層も含めている。これにより「綺麗な人だけがやるもの」ではなく「自分でもできるかもしれない」と感じやすい。社会的証明が、実績だけでなく年齢不安の払拭として機能している。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 社会的証明は数字だけでなく、読者と同じ属性の人がいる感覚を作る。</li>
+          <li>変えるべき点: 口コミ人物が理想像に寄りすぎると「自分とは違う」と思われる。理想像と現実像のバランスを取る。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-20.png" alt="ベネフィットと口コミ"><figcaption>ベネフィット後に口コミへ接続。読者の言い訳も作る。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-21.png" alt="口コミ1"><figcaption>口コミ: 若々しい人、年相応の人、身近な人を混ぜる。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-22.png" alt="口コミ2"><figcaption>不安から満足への流れを口コミで再現。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="offer">
+      <div>
+        <h3>オファー再提示</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>このページをご覧の方へ、4,800円でぱっちり自然な二重を目指せると再提示する。最短10分、ダウンタイムほぼなし、視界が明るい自然な仕上がり、通常料金、比較表、このページからの申し込みで25,000円OFF、大人女性の力になりたいという安さの理由、オファーカード、無料特典、再施術保証、交通費最大3万円補助、TCBだけ、枠が埋まり次第終了、CTAという流れ。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>教育後に改めてオファーを出し、「ここまで読んだ理由」を申し込みに変える。安すぎる価格に対しては、理由がないと怪しく見えるため、企業側の思いという理由を置く。理由の強さ自体より、「理由がある」ことで受容されやすくなる。</p>
+        <h4>売れている理由</h4>
+        <p>価格訴求だけでなく、安さへの疑い、追加料金不安、失敗不安、距離不安まで同時に処理している。保証は失敗を想起させるリスクもあるが、制作者は「技術への自信」「責任を持つ証明」として入れるべきと判断している。F3層の不安が強い商材では、保証があること自体が背中を押す。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 強いオファーには、なぜ安いのか、何が無料か、追加費用はあるのか、保証はあるのかをセットで置く。</li>
+          <li>変えるべき点: 安さの理由は案件ごとに実態に合うものにする。表面的に美談を置くだけでは弱い場合がある。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-23.png" alt="口コミからオファーへの接続"><figcaption>口コミ後、自然な二重とメイク時短のベネフィットを重ねる。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-25.png" alt="クーポンと無料特典"><figcaption>4,800円の理由、無料特典、追加料金なしを提示。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-27.png" alt="限定性とCTA"><figcaption>保証/交通費の後に、枠終了とCTAで行動へ戻す。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="reservation">
+      <div>
+        <h3>予約/申込手順</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>興味はあるけど少し不安というキャラクターを出し、無料カウンセリングのみの予約がおすすめと伝える。無料で二重シミュレーションが受けられる、自分のまぶたに合う二重の幅や形がその場で分かる、専門家に質問できる、同意がない限り追加料金は一切なし、話を聞くだけでも大丈夫、まずは気軽に無料カウンセリングを予約してみてください、という流れ。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>ここは申し込みのハードルを下げる段階。施術を受ける決断ではなく、無料相談で自分に合うか確認する行動へ変換している。強引に契約させられる不安、追加料金の不安、クリニックで何をされるのか分からない不安を払拭する。</p>
+        <h4>売れている理由</h4>
+        <p>F3層は、行動前の不安が強い。無料カウンセリングのみでよい、話を聞くだけでよい、追加料金なしと明記することで、「行ってみる」ではなく「確認してみる」レベルまで行動を小さくしている。クリニック一覧も重要で、読者が自分の近くに院があるか確認できるため、現実の行動イメージが湧く。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 最後は商品購入ではなく、読者が今日できる小さい行動に分解する。店舗/院一覧がCVに効く商材では必ず置く。</li>
+          <li>変えるべき点: 申込後の流れは商材ごとに違うため、実際の遷移先で求められる行動とズレないようにする。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-28.png" alt="無料カウンセリング案内"><figcaption>無料カウンセリングのみでよいと伝え、施術決断の重さを下げる。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-29.png" alt="シミュレーションと疑問解決"><figcaption>シミュレーション、疑問解決、追加料金なしで行動不安を潰す。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-30.png" alt="話を聞くだけでも大丈夫"><figcaption>話を聞くだけでも大丈夫という低ハードルCTA。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="faq">
+      <div>
+        <h3>FAQ</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>この記事には、独立したFAQパートは確認できなかった。ユーザー発話でも「FAQの有無、これはありません」と整理されている。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>FAQは独立していないが、FAQで扱うべき内容は本文中に分散されている。痛み、腫れ、ダウンタイム、自然さ、費用、追加料金、保証、交通費、カウンセリングのみでよいか、という疑問は各パートで処理されている。</p>
+        <h4>売れている理由</h4>
+        <p>このLPではFAQとしてまとめるより、疑問が出る直前/直後に不安払拭を置く形が機能している。特にステップアンケート後、最初のCTA前、理由パート、オファー、予約手順に不安払拭を分散しているため、読者が離脱する前に回答が出る。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: FAQがない場合でも、想定質問は本文の適切な位置で潰す。</li>
+          <li>変えるべき点: 医療/美容商材で疑問が多い場合、最後にFAQを追加してもよい。ただし本文中の不安払拭を削ってFAQに逃がすと離脱前の処理が弱くなる。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-31.png" alt="クリニック一覧冒頭"><figcaption>FAQはないが、行動前の疑問は予約導線とクリニック一覧で補完。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="after-click">
+      <div>
+        <h3>遷移後の行動イメージ</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>予約フォームのイメージを見せ、たった30秒で予約完了と伝える。無料カウンセリングの空き状況を確認する、近くのクリニックを選ぶ、予約できるという行動をイメージさせる。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>CTAを押した後に何が起きるか分からないと、読者は不安になる。特に高年齢層はネット入力や個人情報入力に抵抗があるため、行動後のイメージを先に見せることで、未知の不安を下げる。</p>
+        <h4>売れている理由</h4>
+        <p>「無料カウンセリングの空き状況確認」という低ハードルCTAと、「30秒で予約完了」という手軽さが合っている。施術を受けるのではなく、まず空きを見る/相談するだけという行動に分解されているため、遷移の抵抗が小さい。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: CTA後の行動を具体的に見せる。何分で終わるか、何を入力するか、何を確認できるかを示す。</li>
+          <li>変えるべき点: 実際の遷移先が複雑な場合、LP上で過度に簡単に見せすぎるとギャップが生まれる。実フォームに合わせる。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-33.png" alt="行動イメージ"><figcaption>クリニック一覧後、予約の現実性を高める。</figcaption></figure>
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-34.png" alt="最終プッシュ前半"><figcaption>30秒予約、4,800円、自然な二重まぶたを再提示。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="final-benefit">
+      <div>
+        <h3>最終ベネフィット</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>最後に、4,800円で二重術を受けられるチャンス、写真や鏡を見たくなる、自然な二重まぶたを目指してみませんか、無料カウンセリングを予約してみてくださいと提示する。メイクを楽しむ女性の画像で、読後の理想状態を再度見せる。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>最後は理屈より、行動した後の前向きな感情に戻す。ここまで不安払拭や限定性を重ねてきたため、最後は「こうなれるかも」という期待感でCTAに入れる。</p>
+        <h4>売れている理由</h4>
+        <p>記事全体で繰り返してきた「自然な二重」「視界」「鏡/写真」「メイク」を最後に回収している。行動理由が価格だけでなく、未来の自己イメージに接続される。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 最終CTA直前は、商品説明ではなく読者が得る未来を再提示する。</li>
+          <li>変えるべき点: 最終ベネフィットはFVと同じ言葉を使ってよいが、読後の状態に合わせて「確認だけでよい」など行動ハードルも添える。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-35.png" alt="最終ベネフィット"><figcaption>最後はメイク、鏡、自然な二重のベネフィットに戻す。</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="part" id="loss">
+      <div>
+        <h3>限定性/損失回避</h3>
+        <h4>そのパートで見せている内容</h4>
+        <p>緊急速報、予約が殺到中、後回しにすると25,000円も損する、通常価格に戻る前に早めの予約がおすすめ、クーポン割引終了、枠が埋まり次第終了などを提示する。</p>
+        <h4>読者心理に対する役割</h4>
+        <p>人はいつでも手に入るものを後回しにしやすい。そこで、値引き終了、予約枠、25,000円損するという損失回避で行動を促す。得をするより損したくない感情を動かすパート。</p>
+        <h4>売れている理由</h4>
+        <p>限定性が抽象的ではなく、25,000円という金額で具体化されている。読者は「今なら4,800円」だけでなく、「後回しにすると25,000円損する」と理解するため、行動理由が強くなる。</p>
+        <h4>横展開時に真似るべき点/変えるべき点</h4>
+        <ul>
+          <li>真似るべき点: 限定性は、何がいつ失われるのか、いくら損するのかを具体化する。</li>
+          <li>変えるべき点: 実態のない限定性は使わない。広告審査/景表リスクがあるため、根拠のある表現に限定する。</li>
+        </ul>
+      </div>
+      <div class="shot-stack">
+        <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-34.png" alt="限定性と損失回避"><figcaption>損失回避: 25,000円損するという金額で後回しを防ぐ。</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="abstract" class="card">
+    <h2>4. 抽象化: 今後の記事制作者が考えるべきポイント10個</h2>
+    <ol>
+      <li><strong>市場で誰が狙われていないかを見る。</strong> 市況が20-30代の「かわいくなれる」に寄っているなら、同じ商材でもF3層の未充足欲求がないかを見る。</li>
+      <li><strong>商材の機能ではなく、ターゲットにとっての意味を変える。</strong> 二重術という機能は同じでも、若年層には美容、F3層には視界/安全/快適/若々しさの回復として売れる。</li>
+      <li><strong>「誰に何を」をFVで最初に提示する。</strong> 対象読者が「これは自分向け」と思えないと、その後の構成は読まれない。</li>
+      <li><strong>BDFを必ず分解する。</strong> Beliefは「二重整形は若い人のもの」、Desireは「視界/自然/若々しさ」、Feelingは「諦め/恥ずかしさ/怖さ」。3つに対して打ち手を置く。</li>
+      <li><strong>リサーチで出た言葉をアンケートと問題提起に反映する。</strong> メイク、写真、視界、アイプチ、費用、痛み、腫れなど、読者が実際に話している悩みを選択肢や本文に落とす。</li>
+      <li><strong>構成は勝ち型を残し、差分はターゲットと訴求に集中する。</strong> 初回で構成まで大きく変えると検証点が増える。今回は通常記事の型を残し、「誰に何を」を変えた。</li>
+      <li><strong>放置が競合なら、放置の損失を具体化する。</strong> F3層では「何もしない」が最大競合。視界が狭くなる、新聞が見づらい、孫の顔が見えにくいなど、生活損失で動かす。</li>
+      <li><strong>不安払拭は1箇所にまとめず、発生地点で潰す。</strong> 金額、自然さ、体への負担、痛み、腫れ、年齢不安、周囲バレ、追加料金、保証をそれぞれ適切な位置で処理する。</li>
+      <li><strong>社会的証明は属性不安の払拭にも使う。</strong> 96万人、100院、60代以降の来院、同年代口コミは「自分だけが行くのは恥ずかしい」を弱める。</li>
+      <li><strong>最後のCTAは購入ではなく小さな確認行動にする。</strong> 無料カウンセリング、空き状況確認、30秒予約、クリニック一覧で、施術決断を相談行動に分解する。</li>
+    </ol>
+  </section>
+
+  <section id="checklist" class="card">
+    <h2>5. チェックリスト化</h2>
+    <ul class="checklist">
+      <li><span class="box-label">□</span><span>市況で主に狙われているターゲットと、取りこぼされているターゲットを分けて確認したか。</span></li>
+      <li><span class="box-label">□</span><span>自社CRや既存記事で、想定より上/下の年代や属性が取れている兆候を確認したか。</span></li>
+      <li><span class="box-label">□</span><span>ターゲットのBelief、Desire、Feelingをそれぞれ言語化したか。</span></li>
+      <li><span class="box-label">□</span><span>FVで「誰に」「何を」が一目で伝わる状態になっているか。</span></li>
+      <li><span class="box-label">□</span><span>FVモデルは、ターゲットにとって若すぎず、現実的な理想像になっているか。</span></li>
+      <li><span class="box-label">□</span><span>BAは、ターゲットの悩みのビフォーと、自然に受け入れられるアフターになっているか。</span></li>
+      <li><span class="box-label">□</span><span>アンケートの選択肢は、実際のリサーチで出た悩み/不安/欲求に基づいているか。</span></li>
+      <li><span class="box-label">□</span><span>不安を聞いた後、その不安に対応する商品魅力を提示しているか。</span></li>
+      <li><span class="box-label">□</span><span>最初のCTA前に、信頼、価格、手軽さ、不安払拭、限定性が揃っているか。</span></li>
+      <li><span class="box-label">□</span><span>最初のCTA文言は、施術決断ではなく、空き状況確認や無料相談など低ハードル行動になっているか。</span></li>
+      <li><span class="box-label">□</span><span>問題提起では、読者の日常シーン、過去の対策、失敗経験まで代弁しているか。</span></li>
+      <li><span class="box-label">□</span><span>放置が競合になる場合、放置による損失を具体的に提示しているか。</span></li>
+      <li><span class="box-label">□</span><span>煽りを使う理由がターゲット心理に合っているか。共感の方が適切なターゲットではないか。</span></li>
+      <li><span class="box-label">□</span><span>解決策紹介では、商品名だけでなく、悩みが解決した後の生活ベネフィットまで見せているか。</span></li>
+      <li><span class="box-label">□</span><span>技術力/信頼性/実績/専門家/満足度/BAなど、疑いを潰す証拠があるか。</span></li>
+      <li><span class="box-label">□</span><span>金額不安に対して、価格だけでなく、なぜ安いのか、追加料金はないのかを説明しているか。</span></li>
+      <li><span class="box-label">□</span><span>仕上がり不安に対して、自然さ、シミュレーション、BA、口コミで払拭しているか。</span></li>
+      <li><span class="box-label">□</span><span>体への負担不安に対して、痛み、腫れ、ダウンタイム、施術時間、回復目安を提示しているか。</span></li>
+      <li><span class="box-label">□</span><span>年齢不安や恥ずかしさに対して、同年代の来院/口コミ/素材を提示しているか。</span></li>
+      <li><span class="box-label">□</span><span>保証や交通費補助など、最後の迷いを消す材料が実態に基づいて入っているか。</span></li>
+      <li><span class="box-label">□</span><span>予約/申込手順で、何をするのか、何分で終わるのか、相談だけでもよいのかを明示しているか。</span></li>
+      <li><span class="box-label">□</span><span>店舗/院一覧など、読者が自分の生活圏で行動を想像できる情報を置いているか。</span></li>
+      <li><span class="box-label">□</span><span>最後に得られるベネフィットを再提示し、価格だけでなく未来の自己イメージに接続しているか。</span></li>
+      <li><span class="box-label">□</span><span>限定性/損失回避は、実態に基づき、何を失うのか具体的に示しているか。</span></li>
+      <li><span class="box-label">□</span><span>実績、リサーチ、ヒートマップなどの根拠を、確認済み/未確認に分けて扱っているか。</span></li>
+    </ul>
+  </section>
+
+  <section id="screenshots" class="card">
+    <h2>スクショ一覧: LP全体の連続キャプチャ</h2>
+    <p class="note">各パートの説明には主要スクショを配置済み。ここではAIや部内メンバーがLP全体の流れを追えるよう、公開LPから取得した連続スクショを全て並べる。</p>
+    <div class="mini-gallery">
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-01.png" alt="LP screenshot 01"><figcaption>01 FV/SV</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-02.png" alt="LP screenshot 02"><figcaption>02 SV/価格</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-03.png" alt="LP screenshot 03"><figcaption>03 アンケート</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-04.png" alt="LP screenshot 04"><figcaption>04 アンケート/回答</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-05.png" alt="LP screenshot 05"><figcaption>05 CTA前信頼</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-06.png" alt="LP screenshot 06"><figcaption>06 満足度/BA</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-07.png" alt="LP screenshot 07"><figcaption>07 悩み/限定性</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-08.png" alt="LP screenshot 08"><figcaption>08 問題提起入口</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-09.png" alt="LP screenshot 09"><figcaption>09 共感</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-10.png" alt="LP screenshot 10"><figcaption>10 対策失敗</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-11.png" alt="LP screenshot 11"><figcaption>11 放置警告</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-12.png" alt="LP screenshot 12"><figcaption>12 たるみ悪化</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-13.png" alt="LP screenshot 13"><figcaption>13 視界悪化</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-14.png" alt="LP screenshot 14"><figcaption>14 解決策</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-15.png" alt="LP screenshot 15"><figcaption>15 生活ベネフィット</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-16.png" alt="LP screenshot 16"><figcaption>16 TCB紹介</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-17.png" alt="LP screenshot 17"><figcaption>17 理由1</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-18.png" alt="LP screenshot 18"><figcaption>18 自然さ/満足度</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-19.png" alt="LP screenshot 19"><figcaption>19 理由2</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-20.png" alt="LP screenshot 20"><figcaption>20 ベネフィット</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-21.png" alt="LP screenshot 21"><figcaption>21 口コミ</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-22.png" alt="LP screenshot 22"><figcaption>22 口コミ</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-23.png" alt="LP screenshot 23"><figcaption>23 口コミ/オファー入口</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-24.png" alt="LP screenshot 24"><figcaption>24 比較表</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-25.png" alt="LP screenshot 25"><figcaption>25 クーポン/無料特典</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-26.png" alt="LP screenshot 26"><figcaption>26 保証/交通費</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-27.png" alt="LP screenshot 27"><figcaption>27 限定/CTA</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-28.png" alt="LP screenshot 28"><figcaption>28 無料カウンセリング</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-29.png" alt="LP screenshot 29"><figcaption>29 シミュレーション</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-30.png" alt="LP screenshot 30"><figcaption>30 相談CTA</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-31.png" alt="LP screenshot 31"><figcaption>31 クリニック一覧</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-32.png" alt="LP screenshot 32"><figcaption>32 クリニック一覧</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-33.png" alt="LP screenshot 33"><figcaption>33 クリニック一覧/最終</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-34.png" alt="LP screenshot 34"><figcaption>34 緊急速報</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-35.png" alt="LP screenshot 35"><figcaption>35 最終CTA</figcaption></figure>
+      <figure><img src="assets/article015-tcb-double-eyelid-f3/shot-36.png" alt="LP screenshot 36"><figcaption>36 末尾</figcaption></figure>
+    </div>
+  </section>
+</div>
+</body>
+</html>
