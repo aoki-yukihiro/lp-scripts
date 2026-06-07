@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事041 TCBピコレーザー女性 フリップアンケ 勝ち理由言語化</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    .page { max-width: 1120px; margin: 0 auto; padding: 24px 16px 56px; }
+    .hero {
+      background: #1e293b;
+      color: #fff;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+    .hero h1 { margin: 0; font-size: 27px; line-height: 1.35; letter-spacing: 0; }
+    .hero p { color: #cbd5e1; margin: 10px 0 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 12px;
+      background: rgba(245,247,251,.96);
+      border-bottom: 1px solid #dbe3ef;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      white-space: nowrap;
+      color: #1d4ed8;
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 6px;
+      padding: 5px 9px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid #2563eb;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+    h3 { margin: 22px 0 8px; font-size: 17px; color: #0f172a; letter-spacing: 0; }
+    h4 { margin: 16px 0 6px; font-size: 14px; color: #334155; }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 22px; margin: 8px 0 14px; }
+    li { margin: 5px 0; }
+    .lead {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 13px 15px;
+      color: #334155;
+      margin: 12px 0;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #7c2d12;
+      margin: 12px 0;
+    }
+    .ok {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #14532d;
+      margin: 12px 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    .blue { background: #dbeafe; color: #1d4ed8; }
+    .green { background: #dcfce7; color: #15803d; }
+    .red { background: #fee2e2; color: #b91c1c; }
+    .gray { background: #f1f5f9; color: #475569; }
+    .yellow { background: #fef3c7; color: #92400e; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { border-bottom: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f8fafc; color: #334155; }
+    tr:last-child td { border-bottom: none; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .metric { background: #fff; border: 1px solid #dbe3ef; border-radius: 8px; padding: 15px; }
+    .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 800; }
+    .metric strong { display: block; margin-top: 5px; font-size: 21px; color: #0f172a; }
+    .part {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .shot-stack { display: grid; gap: 12px; }
+    figure {
+      margin: 0;
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption {
+      padding: 8px 10px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+    }
+    .mini-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .mini-gallery figure { max-height: 360px; overflow: hidden; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .box-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .refs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    @media (max-width: 900px) {
+      .part { grid-template-columns: 1fr; }
+      .grid, .refs { grid-template-columns: 1fr; }
+      .mini-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .page { padding: 16px 10px 42px; }
+      .hero { padding: 22px; }
+      .hero h1 { font-size: 22px; }
+      .card { padding: 16px; }
+      table { min-width: 680px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>記事041 TCBピコレーザー女性<br>フリップアンケ勝ち理由言語化</h1>
+      <p>シミ・肝斑に悩む女性向け記事を、制作判断・読者心理・CV逆算・横展開ルールに分解した共有用メモ。</p>
+      <div class="meta">
+        <span class="pill">対象: ★041_TCB-ピコレーザー女性</span>
+        <span class="pill">型: フリップアンケート</span>
+        <span class="pill">CV: 無料カウンセリング枠確認</span>
+        <span class="pill">作成日: 2026-06-07</span>
+      </div>
+    </section>
+
+    <nav class="nav">
+      <a href="#summary">結論</a>
+      <a href="#facts">確認事実</a>
+      <a href="#decision">制作判断</a>
+      <a href="#structure">構造</a>
+      <a href="#parts">パート別</a>
+      <a href="#abstract">抽象化</a>
+      <a href="#checklist">チェックリスト</a>
+      <a href="#missing">未確認</a>
+    </nav>
+
+    <section id="summary" class="card">
+      <h2>結論</h2>
+      <p class="lead">勝ち筋は、既に取れていたピコ女性の訴求・素材・デザインを残し、フリップアンケで「悩みの自覚 → 理想像 → 不安払拭 → 0円オファー」へ感情を上下させ、即決層と警戒層を段階的に拾いにいったこと。</p>
+      <div class="grid">
+        <div class="metric"><span>狙った読者</span><strong>35〜60歳前後女性</strong><p>シミ・肝斑に悩む、または自分の悩みがシミか肝斑かわからない層。</p></div>
+        <div class="metric"><span>残した核</span><strong>既存勝ち訴求</strong><p>ピコ女性ステップアンケで取れていた素材・コピー・デザインを踏襲。</p></div>
+        <div class="metric"><span>変えた表層</span><strong>見せ方と導線</strong><p>通常/ステップアンケではなく、カード反転式のフリップアンケへ変更。</p></div>
+      </div>
+      <div class="warn">
+        <strong>実績データは未確認。</strong> この記事単体のAXAD実績、Beyond指標、CVR、CPA、配信面、CTA別成果は未提供のため、「売れている理由」は青木さんの制作仮説とLP上の事実を分けて扱う。
+      </div>
+    </section>
+
+    <section id="facts" class="card">
+      <h2>LP実査で確認した事実</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>項目</th><th>確認内容</th><th>根拠ラベル</th></tr></thead>
+          <tbody>
+            <tr><td>対象LP</td><td>https://beauty-recommend.org/ab/AtQGCCzObOyHesAWzWQ</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>アンケート構造</td><td>年代質問の後、悩み・シーン・不安・理想像をカード選択で進める。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>オファー条件</td><td>25,000円OFFクーポン、ピコレーザー0円〜、サリチル酸ピーリング0円〜、シミ・肝斑セット0円〜を提示。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>注釈</td><td>初回来院限定クーポン適用価格、1円以上の契約で割引適用、画像はイメージ、個人差あり。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>料金詳細</td><td>ピコレーザー ライト1回9,800円、スタンダード1回33,200円、プレミア1回66,300円。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>CTA遷移</td><td>CTAリンクはAXAD/CATS系URLへ遷移。ボタン上は「無料カウンセリング枠を確認する」。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+            <tr><td>教育パート</td><td>完了直後はオファーとCTAを表示し、「もっと詳しく知りたい」で教育パートが展開される。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="decision" class="card">
+      <h2>1. 制作判断</h2>
+      <h3>なぜこの商材・市場・ターゲット・型を選んだか</h3>
+      <p><span class="tag gray">制作者の仮説</span>商材は女性向けピコレーザー、訴求はシミ・肝斑治療。ターゲットは、シミ/肝斑に悩む、または自分の悩みがシミか肝斑かわからない35〜60歳前後女性。</p>
+      <p><span class="tag green">実績で支持</span>当時、自社クリエイティブでこの年齢層と悩みが幅広く取れていたため、あえて年齢を絞り込みすぎない方針にした。</p>
+      <p><span class="tag green">実績で支持</span>制作部から上がっていたターゲット悩みとも一致していた。直近1週間で300件以上のクリエイティブキャンペーンがあり、訴求検証の母数は十分と判断。</p>
+      <p><span class="tag gray">制作者の仮説</span>市場上位には通常記事やイラスト記事があり、フリップアンケート記事は少なかった。二重女性で反応が良かったフリップアンケを横展開すれば、同じ訴求でも見せ方を変えて新しい顧客を拾えると判断。</p>
+
+      <h3>参考元と変更点</h3>
+      <div class="refs">
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/ref-shunta-double-flip-fv.png" alt="参考元 駿太さん二重女性フリップアンケ">
+          <figcaption>参考元: 駿太さんの二重女性フリップアンケ。カード反転式アンケートの型を参考。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/ref-pico-step-design-fv.png" alt="参考元 自社ピコ女性ステップアンケ">
+          <figcaption>デザイン参考: 自社ピコ女性ステップアンケ。虹色/水色系のピコ女性トーンを踏襲。</figcaption>
+        </figure>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>比較軸</th><th>残したもの</th><th>変えたもの</th></tr></thead>
+          <tbody>
+            <tr><td>訴求</td><td>シミ・肝斑、コンシーラーいらず、ナチュラル整い肌、0円オファー。</td><td>大きく変えない。訴求ではなく導線で差分を作る。</td></tr>
+            <tr><td>デザイン</td><td>ピコ女性ステップアンケで取れていた虹色/水色系の清潔感。</td><td>二重女性のピンク寄りデザインから、ピコ商材に合う色へ変更。</td></tr>
+            <tr><td>構造</td><td>悩み共感、商材説明、信頼、FAQ、CTAの教育順。</td><td>ステップアンケではなく、カードを押して裏面が出るフリップアンケに変更。</td></tr>
+            <tr><td>狙い</td><td>既存勝ち要素の再利用。</td><td>既視感のある読者にも「別の見え方」と認識させる。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>2. 中の構造の大枠</h2>
+      <p><span class="tag blue">LP上の事実</span>FVの下に年代質問があり、その後3枚カードのフリップアンケートが続く。カードを押すと裏面の理想像/解決期待が表示され、次へ進む構造。</p>
+      <p><span class="tag gray">制作者の仮説</span>構造は「FVで期待 → 年代で自分ごと化 → 悩みで問題認識 → 生活シーンで感情増幅 → 不安で懸念先回り → 理想像で気持ちを上げる → クーポンで即時CTA → 教育で警戒層を拾う」。</p>
+      <div class="ok">
+        <strong>心理遷移:</strong> 自分ごと化 → 欲求喚起 → 不安の言語化 → 解決期待 → 信頼 → 行動。
+      </div>
+      <p><span class="tag gray">制作者の仮説</span>CVは無料カウンセリング枠確認であり、購入よりは軽いが「クリニックへ行く」行動は重い。そのため、即決層向けの早いCTAだけでなく、怖さ・費用・追加料金・施術流れを下部で処理する必要がある。</p>
+    </section>
+
+    <section id="parts" class="card">
+      <h2>3. パートごとの詳細解説</h2>
+
+      <div class="part">
+        <div>
+          <h3>FV: 期待と0円オファーを一気に見せる</h3>
+          <p><span class="tag blue">LP上の事実</span>「コンシーラーいらず」「ナチュラル整い肌」、Before/After、0円オファー、3つの不安払拭要素を提示。</p>
+          <p><span class="tag gray">制作者の仮説</span>シミ/肝斑訴求の広告から来た読者に、ビフォーアフターで「自分もこうなれるかも」と瞬時に思わせる。モデル素材とBefore/Afterは過去に取れていたステップアンケ素材を踏襲。</p>
+          <p><span class="tag gray">制作者の仮説</span>上部の水色系の肌期待と、下部の濃い色/金色座布団のオファーで情報の種類を分け、オファーに視線を落とす。</p>
+        </div>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/shot-01-fv-age.png" alt="FVと年代質問">
+          <figcaption>FVと年代質問。既存勝ち素材を残し、直下で参加アクションへ接続。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>年代質問: 答えやすさで参加姿勢を作る</h3>
+          <p><span class="tag blue">LP上の事実</span>「あなたの年代を教えてください」とし、〜20代/30代/40代/50代〜を提示。</p>
+          <p><span class="tag gray">制作者の仮説</span>最初から重い悩み質問にせず、年代という即答できる質問で能動的な1クリックを作る。35〜60歳前後を広く狙うため、年代選択で「自分も対象」と感じさせる。</p>
+        </div>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/shot-02-q2-worry-initial.png" alt="年代回答後の悩み質問">
+          <figcaption>年代回答後、悩みカードへ展開。最初のクリックで記事参加状態を作る。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>悩みカード: Problemを認識させる</h3>
+          <p><span class="tag blue">LP上の事実</span>そばかすのような細かいシミ、濃くてはっきり目立つシミ、ぼんやり広がるシミを提示。選択後は、ナチュラル肌/クリア肌/透明肌の理想像に反転。</p>
+          <p><span class="tag gray">制作者の仮説</span>PASのProblem。自分の悩みを選ばせた直後に理想像へ反転させ、「それが良くなるかも」という下げ上げを作る。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-02-q2-worry-initial.png" alt="悩みカード初期表示"><figcaption>表面: 悩みを網羅して問題認識。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-03-q2-worry-selected.png" alt="悩みカード選択後"><figcaption>裏面: 悩みの逆側にある理想肌を提示。</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>生活シーン質問: Agitationを不快に見せない</h3>
+          <p><span class="tag blue">LP上の事実</span>「シミを取りたいと思うのはどんなとき？」として、すっぴん、メイク、鏡・写真の場面を提示。上部には来院/受付シーンがある。</p>
+          <p><span class="tag gray">制作者の仮説</span>悩みを生活上の嫌なシーンに落とし、旧PASのAgitationを行う。ただし煽り文句にせず、読者が経験していそうな場面を選ばせることで不快感を抑える。</p>
+          <p><span class="tag gray">制作者の仮説</span>女性向け商材では、機能説明より「自分が来院する/変わる」イメージの疑似体験が行動意欲につながるため、実写風の来院シーンを見せる。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-04-q3-scene-initial.png" alt="生活シーン質問初期表示"><figcaption>表面: すっぴん、メイク、写真など過去経験に近いシーンを提示。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-05-q3-scene-selected.png" alt="生活シーン質問選択後"><figcaption>裏面: 外出、メイク、若々しい印象という生活ベネフィットに反転。</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>不安質問: 共感しながらSolutionを先出しする</h3>
+          <p><span class="tag blue">LP上の事実</span>「自分のシミに効果があるのか心配」「痛み・痕が心配」「費用が高そう」を提示。裏面は幅広い症状、痛み・痕ほぼゼロ、クーポン適用0円。</p>
+          <p><span class="tag gray">制作者の仮説</span>ここは共感とSolutionの中間。TCBの強みを一方的に語るのではなく、読者の懸念を押したら解決期待が出るYou Messageにしている。</p>
+          <p><span class="tag gray">制作者の仮説</span>確信させ切るのではなく、「本当にできるのかな、でもワンチャンあるかも」という半信半疑を作り、続きを読ませる。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-06-q4-anxiety-initial.png" alt="不安質問初期表示"><figcaption>表面: 効果・痛み・費用の主要懸念を先回り。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-07-q4-anxiety-selected.png" alt="不安質問選択後"><figcaption>裏面: 解決可能性を短く提示し、期待を残す。</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>理想質問: CTA前にBenefitで気持ちを上げる</h3>
+          <p><span class="tag blue">LP上の事実</span>「シミが取れたらどうなりたい？」として、周りの目、朝のメイク、印象への自信を提示。カード選択後に回答完了ボタンが緑で有効化される。</p>
+          <p><span class="tag gray">制作者の仮説</span>最後はネガからポジの反転ではなく、最初から理想像を選ばせる。女医風イラストと肯定的な文言で、「叶えられそう」という期待を作る。</p>
+          <p><span class="tag gray">制作者の仮説</span>プレゼントボックスと進捗バーで、ロールプレイングゲームのクリアに近い達成感を作り、回答完了へ進ませる。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-08-q5-benefit-initial.png" alt="理想質問初期表示"><figcaption>表面: 解決後の欲しい生活を選ばせる。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-09-q5-benefit-selected.png" alt="理想質問選択後"><figcaption>裏面: 医師風イラストと肯定文言で背中を押す。</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>初回CTA: 即決層を刈り取る</h3>
+          <p><span class="tag blue">LP上の事実</span>回答完了後、25,000円OFFクーポン、0円オファー、料金詳細、30秒予約手順、無料カウンセリング枠確認CTAを提示。</p>
+          <p><span class="tag gray">制作者の仮説</span>ここまで回答した報酬としてクーポンを出し、「もらえた」「ラッキー」というポジティブ感情を作る。細かい条件よりも、0円で悩みが解決するなら行きたい層をここで拾う。</p>
+          <p><span class="tag gray">制作者の仮説</span>一方で、0円の理由、追加条件、押し売り不安は残るため、即決しない読者向けに下部教育を用意する。</p>
+        </div>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/shot-10-after-answer-offer-full.png" alt="アンケート完了後のオファーとCTA">
+          <figcaption>完了後の全体。クーポン演出、0円オファー、予約手順、CTA、「もっと詳しく知りたい」まで。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>教育1: 共感からピコレーザーの理解へ</h3>
+          <p><span class="tag blue">LP上の事実</span>「毎日ふとした瞬間にどんより...」の共感から、「TCBのシミ・肝斑治療 ピコレーザー」へ接続。</p>
+          <p><span class="tag gray">制作者の仮説</span>「こんな悩みありませんか？」と売り手感を出さず、会話に近い情緒で共感させる。その後、ピコレーザーを「シミを根本からケアするレーザー美肌治療」と説明し、何をされるかわからない不安を下げる。</p>
+        </div>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/shot-23-education-scroll-5400.png" alt="教育パート 共感とピコレーザー説明">
+          <figcaption>即決しなかった読者へ、改めて悩み共感と商材理解を提示。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>教育2: 効果期待とTCBの信頼</h3>
+          <p><span class="tag blue">LP上の事実</span>Before/Afterで複数のシミ悩みを見せ、「こんなに綺麗に!?」と表現。その後「TCBが選ばれる理由」として、痛み・痕ほぼゼロ、医師が問診から一貫対応、幅広い症状を相談可能を提示。</p>
+          <p><span class="tag gray">制作者の仮説</span>「綺麗になります」と言い切らず、景表法配慮として断定を避けながら期待を作る。商材への期待の後に、提供元であるTCBへの安心感を積む。</p>
+          <p><span class="tag gray">制作者の仮説</span>「相談可能」は解決断定ではないが、読者には「対応してもらえるかも」と解釈されやすい余白を残している。</p>
+        </div>
+        <figure>
+          <img src="assets/article041-tcb-pico-women-flip/shot-24-education-scroll-6200.png" alt="効果期待と選ばれる理由">
+          <figcaption>効果期待から提供元信頼へ移る教育パート。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>教育3: 社会的証明から再CTAへ</h3>
+          <p><span class="tag blue">LP上の事実</span>年間来院者数96万人以上、仕上がり満足度91%、リピート希望率96.7%、全国100院以上を提示。</p>
+          <p><span class="tag gray">制作者の仮説</span>数字と金色エンブレムで、細かく読まなくても「大手で安心そう」とシステム1的に感じさせる。信頼を積んだ直後に予約手順とCTAを再提示する。</p>
+          <p><span class="tag yellow">未確認</span>この段階でCVする人が多いかは、CTA別クリック/CVデータがないため未確認。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-25-education-scroll-7000.png" alt="社会的証明"><figcaption>数字とエンブレムで直感的信頼を作る。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-26-education-scroll-7800.png" alt="教育後の再CTA"><figcaption>社会的証明後に再度、簡単30秒の予約手順とCTA。</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>FAQ・施術流れ・最終CTA: 最後の未知感をなくす</h3>
+          <p><span class="tag blue">LP上の事実</span>FAQは、痕、追加料金、相談だけでもOKかを扱う。施術流れは受付、カウンセリング、施術を実写で提示。最後に理想肌画像、CTA、注意喚起を置く。</p>
+          <p><span class="tag gray">制作者の仮説</span>FAQは懸念払拭だけでなく、「同じ不安を持つ人がいる」という社会的証明でもある。赤みについては「出ることもある」と誠実に伝えた方が、絶対ないと言い切るより安心されやすい。</p>
+          <p><span class="tag gray">制作者の仮説</span>来院後に何が起きるかわからない怖さを、受付→カウンセリング→施術の疑似体験で下げる。最後の注意喚起は、後回し離脱を防ぐ損失回避。</p>
+        </div>
+        <div class="shot-stack">
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-27-education-scroll-8600.png" alt="FAQと施術の流れ"><figcaption>FAQで最後の懸念を処理し、施術流れで未知感を減らす。</figcaption></figure>
+          <figure><img src="assets/article041-tcb-pico-women-flip/shot-28-education-scroll-9400.png" alt="最終CTAと注意喚起"><figcaption>理想像、CTA、損失回避で最後の行動を後押し。</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="abstract" class="card">
+      <h2>4. 抽象化: 次回制作者が考えるべき10個</h2>
+      <ol>
+        <li>既存勝ち記事を横展開する時は、訴求・素材・オファーの核と、導線・見せ方の変更点を分ける。</li>
+        <li>CVが無料カウンセリングでも、来院を伴うなら「怖さ」「費用」「追加条件」「流れ」の教育を用意する。</li>
+        <li>最初の質問は重くせず、答えやすい内容で能動的参加を作る。</li>
+        <li>悩み質問はProblem、生活シーン質問はAgitation、不安質問はSolution前の懸念処理、理想質問はBenefitとして役割を分ける。</li>
+        <li>カード反転は、表面で悩み/不安を出し、裏面で理想/解決期待を出す下げ上げ設計にする。</li>
+        <li>女性向け美容商材では、実際の来院・カウンセリング・施術シーンを入れて、購買後/来院後の疑似体験を作る。</li>
+        <li>即決層にはアンケート完了直後にCTAを出し、警戒層にはその後で教育を積む。</li>
+        <li>数字・エンブレム・院数・満足度は、細かく読ませるより直感的信頼を作る目的で使う。</li>
+        <li>景表法/薬機法に関わる表現は、効果断定ではなく「目指せる」「こんなに綺麗に!?」など期待表現に寄せる。</li>
+        <li>最終CTA前には、FAQと施術流れで最後の未知感を消し、損失回避で後回しを防ぐ。</li>
+      </ol>
+      <h3>横展開時の切り分け</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>分類</th><th>今回から抽出するルール</th></tr></thead>
+          <tbody>
+            <tr><td>絶対に残す核</td><td>悩み自覚→生活シーン→不安→理想像→報酬CTA→教育の順番。表面/裏面で感情を上下させる構造。</td></tr>
+            <tr><td>商材ごとに変える訴求</td><td>悩みカード、生活シーン、主要懸念、効果期待、FAQ。商材リサーチで出た実際の不安を入れる。</td></tr>
+            <tr><td>ターゲットごとに変えるデザイン</td><td>二重女性の可愛いピンクではなく、ピコ女性では水色/虹色/清潔感/医療感に寄せた。年齢と悩みの重さに合わせる。</td></tr>
+            <tr><td>テストしてよい表現</td><td>カード裏面の理想文言、CTA前のクーポン演出、社会的証明の順番、FAQの粒度。ただしオファー条件と注釈は正確に残す。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="checklist" class="card">
+      <h2>5. チェックリスト化</h2>
+      <ul class="checklist">
+        <li><span class="box-label">□</span><span>広告流入時点の読者心理を、悩み・期待・疑いに分けて書いたか。</span></li>
+        <li><span class="box-label">□</span><span>既存勝ち記事から残す核と、今回変える表層を分けたか。</span></li>
+        <li><span class="box-label">□</span><span>最初の質問は読者が迷わず押せる軽さになっているか。</span></li>
+        <li><span class="box-label">□</span><span>悩みカードは、ターゲットの主要悩みを取りこぼさない選択肢になっているか。</span></li>
+        <li><span class="box-label">□</span><span>カード裏面は、表面の悩みに対する理想像/解決期待になっているか。</span></li>
+        <li><span class="box-label">□</span><span>生活シーン質問で、悩みを日常の不便・感情に落とし込めているか。</span></li>
+        <li><span class="box-label">□</span><span>不安質問で、効果・痛み・費用・追加条件などの主要懸念を先回りできているか。</span></li>
+        <li><span class="box-label">□</span><span>即決層向けCTAと、警戒層向け教育パートを分けているか。</span></li>
+        <li><span class="box-label">□</span><span>社会的証明は、読まなくても直感的に安心できる見せ方になっているか。</span></li>
+        <li><span class="box-label">□</span><span>FAQと施術流れで、来院前の未知感を十分に下げているか。</span></li>
+        <li><span class="box-label">□</span><span>0円や割引の注釈、適用条件、初回来院限定などを正確に残しているか。</span></li>
+        <li><span class="box-label">□</span><span>効果断定になりそうな表現は、景表法/薬機法の観点で確認したか。</span></li>
+      </ul>
+    </section>
+
+    <section id="missing" class="card">
+      <h2>足りない情報・次回確認したいこと</h2>
+      <div class="warn">
+        <strong>この資料の弱点:</strong> 実績データが未確認のため、勝ち理由の一部は制作仮説。最終判断にはAXAD/Beyond実績の照合が必要。
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>不足項目</th><th>確認したい内容</th><th>なぜ必要か</th></tr></thead>
+          <tbody>
+            <tr><td>AXAD実績</td><td>記事041のCV、CPA、CTR、配信面、期間、課、キャンペーン名。</td><td>「売れた」を実績で支持できるか確認するため。</td></tr>
+            <tr><td>Beyond指標</td><td>FV到達、アンケート各ステップ、CTAクリック、もっと詳しく知りたい押下率。</td><td>フリップアンケのどこで効いた/落ちたかを分けるため。</td></tr>
+            <tr><td>CTA別成果</td><td>初回CTA、教育後CTA、最終CTAのクリック/CV差。</td><td>「即決層」「警戒層」の仮説を検証するため。</td></tr>
+            <tr><td>参考元比較</td><td>二重女性フリップアンケの成果、ピコ女性ステップアンケの成果。</td><td>横展開元として妥当だったかを確認するため。</td></tr>
+            <tr><td>オファー条件</td><td>25,000円OFF、0円、1円以上契約、初回来院限定の実運用条件。</td><td>共有資料で誤解を生まないため。</td></tr>
+            <tr><td>法務表現</td><td>「痛み・痕ほぼゼロ」「こんなに綺麗に!?」などの確認状況。</td><td>勝ち表現として横展開してよいか判断するため。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
