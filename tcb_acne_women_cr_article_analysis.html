@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ニキビ女性 CR棚卸し＋記事LP分析</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+    .page { max-width: 1120px; margin: 0 auto; padding: 24px 16px 56px; }
+    .hero {
+      background: #1e293b;
+      color: #fff;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+    .hero h1 { margin: 0; font-size: 28px; line-height: 1.35; letter-spacing: 0; }
+    .hero p { color: #cbd5e1; margin: 10px 0 0; max-width: 920px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 12px;
+      background: rgba(245,247,251,.96);
+      border-bottom: 1px solid #dbe3ef;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      white-space: nowrap;
+      color: #1d4ed8;
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 6px;
+      padding: 5px 9px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid #2563eb;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+    h3 { margin: 22px 0 8px; font-size: 17px; color: #0f172a; letter-spacing: 0; }
+    h4 { margin: 16px 0 6px; font-size: 14px; color: #334155; letter-spacing: 0; }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 22px; margin: 8px 0 14px; }
+    li { margin: 5px 0; }
+    .lead {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 13px 15px;
+      color: #334155;
+      margin: 12px 0;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #7c2d12;
+      margin: 12px 0;
+    }
+    .ok {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #14532d;
+      margin: 12px 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .blue { background: #dbeafe; color: #1d4ed8; }
+    .green { background: #dcfce7; color: #15803d; }
+    .red { background: #fee2e2; color: #b91c1c; }
+    .gray { background: #f1f5f9; color: #475569; }
+    .yellow { background: #fef3c7; color: #92400e; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { border-bottom: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f8fafc; color: #334155; }
+    tr:last-child td { border-bottom: none; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .metric { background: #fff; border: 1px solid #dbe3ef; border-radius: 8px; padding: 15px; }
+    .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 800; }
+    .metric strong { display: block; margin-top: 5px; font-size: 20px; color: #0f172a; }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .flow div {
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      text-align: center;
+    }
+    .part {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .quote {
+      background: #f8fafc;
+      border-left: 4px solid #94a3b8;
+      border-radius: 0 8px 8px 0;
+      padding: 11px 14px;
+      color: #334155;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .box-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .small { color: #64748b; font-size: 13px; }
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: #334155;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+    @media (max-width: 900px) {
+      .grid, .grid2 { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .page { padding: 16px 10px 42px; }
+      .hero { padding: 22px; }
+      .hero h1 { font-size: 22px; }
+      .card { padding: 16px; }
+      table { min-width: 760px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>ニキビ女性<br>CR棚卸し＋記事LP分析</h1>
+      <p>TCBのニキビ・ニキビ跡治療を、直近30日のDPro広告差分、通常LP、確認できた記事LP本文/OCRから、記事LP制作判断に変換した共有用資料。</p>
+      <div class="meta">
+        <span class="pill">案件名: ニキビ女性</span>
+        <span class="pill">商材: ニキビ・ニキビ跡治療</span>
+        <span class="pill">ターゲット: F2</span>
+        <span class="pill">CV: 通常LPの無料カウンセリング予約</span>
+        <span class="pill">媒体: TikTok / Instagram / Facebook</span>
+        <span class="pill">期間: 直近30日</span>
+        <span class="pill">作成日: 2026-06-09</span>
+      </div>
+    </section>
+
+    <nav class="nav">
+      <a href="#summary">勝ち筋</a>
+      <a href="#input">入力整理</a>
+      <a href="#evidence">根拠</a>
+      <a href="#company">商材理解</a>
+      <a href="#customer">読者心理</a>
+      <a href="#cr">CR棚卸し</a>
+      <a href="#article">記事LP分析</a>
+      <a href="#3c">3C/SWOT</a>
+      <a href="#type">戦術</a>
+      <a href="#fv">FV案</a>
+      <a href="#structure">構成</a>
+      <a href="#cta">CTA</a>
+      <a href="#risk">表現注意</a>
+      <a href="#rules">制作ルール</a>
+      <a href="#checklist">チェック</a>
+      <a href="#missing">未確認</a>
+    </nav>
+
+    <section class="card" id="summary">
+      <h2>1. 今回の勝ち筋 1文</h2>
+      <div class="lead">今回の記事LPは、ニキビそのものよりも「コンシーラーが手放せない」「すっぴんに自信がない」「鏡を見るたび気分が落ちる」という生活上の不自由から入り、価格だけで押し切らず、肌状態に合わせて医療相談できる安心感と通常LPの施術選択肢を見せることで、無料カウンセリング予約につなげる構成が勝ち筋です。</div>
+      <div class="flow">
+        <div>自分ごと化</div>
+        <div>理想像</div>
+        <div>市販ケア限界</div>
+        <div>医療相談期待</div>
+        <div>不安払拭</div>
+        <div>無料予約</div>
+      </div>
+      <p class="small">重要: 「0円」「治る」「全滅」などの強い表現は広告差分上の反応材料としては強いが、記事制作では条件注記と表現調整が必須。</p>
+    </section>
+
+    <section class="card" id="input">
+      <h2>2. 入力情報の整理</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>分類</th><th>内容</th><th>扱い</th></tr>
+          <tr><td>商材LP</td><td>TCB通常LP: t-c-b-biyougeka.com/nikibi_all1_c</td><td>公式LPとしてCompany分析の主根拠にする。</td></tr>
+          <tr><td>CV地点</td><td>通常LP上の無料カウンセリング予約。予約手段はWeb予約、LINE予約、電話予約。</td><td>CVはLINE追加より重い。記事内で施術理解、費用条件、不安払拭、来院後の流れを厚めに置く。</td></tr>
+          <tr><td>競合CR</td><td>DPro MCPでTikTok / Instagram / Facebook、直近30日、記事LP中心に取得。</td><td>差分再生・差分費用は「配信量で支持」として扱う。CVRではない。</td></tr>
+          <tr><td>他社記事</td><td>TCB記事LP複数、ANS記事LP、ZEN LP、クリニックフォアLP、タウン形成外科アンケートLP周辺。</td><td>TCB記事LPは本文/OCR取得済み。ANS/ZENはDPro本文が取れないものがあり、CR訴求中心。</td></tr>
+          <tr><td>補足情報</td><td>ターゲットはF2。分析目的はCR棚卸し＋記事LP分析。除外自社・商材なし。</td><td>女性向け美容医療として、共感、自己投影、理想像、生活不自由からの解放を重視。</td></tr>
+          <tr><td>未確認情報</td><td>記事LP別CVR、Beyondヒートマップ、CTA別成果、内部承認可能表現、最新クーポン条件の最終承認。</td><td>HTML末尾にも未確認として残す。主根拠にしない。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="evidence">
+      <h2>3. 根拠ラベルと調査条件</h2>
+      <div class="grid2">
+        <div class="note">
+          <h3>確認した条件</h3>
+          <ul>
+            <li>DPro媒体ID: TikTok=2、Instagram=4、Facebook=5。</li>
+            <li>期間: 2026-06-09時点の直近30日。</li>
+            <li>ジャンル: 美容医療系。キーワード: ニキビ、ニキビ跡。</li>
+            <li>遷移タイプ: 記事LPを主対象。必要に応じてLP含むその他、アンケートLPも参照。</li>
+            <li>並び: cost_difference descを基本。</li>
+          </ul>
+        </div>
+        <div class="warn">
+          <h3>この資料の限界</h3>
+          <ul>
+            <li>DProのキーワード検索には、シミ、二重、ほくろ、クマ等の混在がある。</li>
+            <li>差分費用・差分再生はCV成果ではない。</li>
+            <li>一部記事LPは本文/OCRが取得できず、広告文とURL情報中心。</li>
+            <li>スクリーンショット画像は未取得。本文/OCR確認結果と広告データで構成。</li>
+          </ul>
+        </div>
+      </div>
+      <h3>根拠ラベル</h3>
+      <p><span class="tag blue">LP上の事実</span>通常LPまたは記事LP本文/OCRに明記されていた内容。</p>
+      <p><span class="tag green">実績で支持</span>DProの差分再生・差分費用で大きく配信されていた内容。CV成果ではない。</p>
+      <p><span class="tag yellow">制作者の仮説</span>読者心理、構成意図、横展開判断として推定した内容。</p>
+      <p><span class="tag red">未確認</span>CVR、CPA、内部承認、最新条件など、今回の調査では確認できない内容。</p>
+    </section>
+
+    <section class="card" id="company">
+      <h2>4. Company 自社・商材理解</h2>
+      <div class="ok">
+        <strong>使える核:</strong> TCB通常LPは、ニキビの種類ごとに単一施術を押すのではなく、サリチル酸ピーリング、ハイドラジェントル、ダーマペン4、ピコレーザーフラクショナル、サブシジョンを並べ、肌状態に合わせて相談できる構造になっている。記事LPでは「自分の肌には何が合うか分からないから無料相談へ」という流れを作りやすい。
+      </div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>項目</th><th>通常LPで確認した内容</th><th>記事LPでの使い方</th><th>根拠</th></tr>
+          <tr><td>キャンペーン期間</td><td>2026/5/25(月)から2026/6/28(日)の記載。</td><td>限定性に使えるが、公開・運用時に最新期間確認が必要。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>CV</td><td>無料カウンセリング予約。Web予約、LINE予約、電話予約。</td><td>「まず相談」「予約手段が選べる」で心理的ハードルを下げる。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>施術選択肢</td><td>サリチル酸ピーリング、ハイドラジェントル、ダーマペン4、ピコレーザーフラクショナル、サブシジョン。</td><td>肌荒れ、毛穴、ニキビ跡、クレーターなど悩み別に整理して紹介。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>短時間</td><td>サリチル酸ピーリングは約10分の記載。</td><td>忙しいF2向けに「相談しやすい」「大掛かりに見えない」を作る。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>痛み配慮</td><td>ダーマペン4は麻酔塗布あり、痛みに配慮。サブシジョンも麻酔あり。</td><td>痛み不安のFAQやCTA前に置く。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>リスク</td><td>ピコレーザーフラクショナルは腫れ・内出血・赤み1日程度、サブシジョンは腫れ・痛み・内出血・赤み1から3日程度など。</td><td>良いことだけでなく副作用を短く明示し、信頼を作る。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>院数</td><td>全国101院の記載。</td><td>近くで相談しやすい、通いやすい信頼材料として使う。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>流れ</td><td>予約、美容カウンセラー、担当ドクターカウンセリング、契約、術後ケア。</td><td>予約後の行動イメージにして、CV直前の不安払拭に使う。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+        </table>
+      </div>
+      <h3>記事で使える見せ方</h3>
+      <ul>
+        <li>「ニキビ治療」ではなく「ニキビ、ニキビ跡、毛穴、クレーターで相談内容が変わる」と見せる。</li>
+        <li>「自分に合う施術が分からない」状態を無料カウンセリングの理由にする。</li>
+        <li>F2向けには、成分や施術機序の羅列より「すっぴん、メイク、鏡、写真、人前」の生活シーンへ翻訳する。</li>
+        <li>リスク・副作用を隠さず出すことで、強い0円訴求の胡散臭さを中和する。</li>
+      </ul>
+    </section>
+
+    <section class="card" id="customer">
+      <h2>5. Customer 読者心理</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>心理段階</th><th>F2読者の状態</th><th>記事内で必要な情報</th><th>注意点</th></tr>
+          <tr><td>自分ごと化</td><td>鏡を見るたびニキビや跡が気になる。コンシーラーで隠すことが習慣化。すっぴんに抵抗。</td><td>肌悩みそのものではなく、日常の不自由を選択式で見せる。</td><td>症状を過度に煽りすぎない。</td></tr>
+          <tr><td>欲求喚起</td><td>厚塗りを減らしたい、自然なメイクにしたい、写真や人前で肌を気にしたくない。</td><td>ナチュラルメイク、すっぴん外出、鏡を見るのが楽しい、肌を褒められる。</td><td>「誰でも美肌」などの保証にしない。</td></tr>
+          <tr><td>不安の言語化</td><td>痛み、ダウンタイム、費用、勧誘、何を選べばいいか、悪化しないかが不安。</td><td>施術ごとの特徴、リスク、カウンセリングの流れ、費用条件、予約変更可否。</td><td>0円だけで押すと不信感が出る。</td></tr>
+          <tr><td>解決期待</td><td>市販ケアで限界を感じつつ、美容医療までは怖い。</td><td>市販ケアで届く範囲と医療相談の役割を整理する。</td><td>市販化粧品を全否定しない。</td></tr>
+          <tr><td>信頼</td><td>大手か、医師が見てくれるか、症例や口コミがあるかを確認したい。</td><td>全国院数、医師相談、肌状態別の提案、リスク明記。</td><td>根拠のないNo.1や断定実績は使わない。</td></tr>
+          <tr><td>行動</td><td>予約しても契約しないといけないのでは、と不安。</td><td>無料カウンセリング、相談だけの心理的ハードル低下、予約後の流れ。</td><td>「勧誘なし」は根拠確認が必要。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="cr">
+      <h2>6. 競合CR棚卸し</h2>
+      <p class="small">数値はDPro上の差分値。CV成果ではなく、直近30日の配信量の参考として扱う。</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>競合CR / URL単位</th><th>媒体</th><th>差分指標</th><th>冒頭訴求</th><th>記事LPに使える核</th><th>注意点</th></tr>
+          <tr>
+            <td>TCB / tcn_ao_m138_7<br><code>6511-beauty.jp/ab/tcn_ao_m138_7</code></td>
+            <td>TikTok</td>
+            <td>差分再生 931,300<br>差分費用 1,117,560</td>
+            <td>ニキビ治療が今月限定0円から。ニキビ跡を強く消したい欲求に刺す。</td>
+            <td>0円オファー、ニキビ跡悩みの強い言語化、ダウンタイム不安の軽減、無料カウンセリング導線。</td>
+            <td>「全滅」「消し去る」系は危険。条件注記なしの0円表現も避ける。</td>
+          </tr>
+          <tr>
+            <td>TCB / tcn_ao_m138_2<br><code>6511-beauty.jp/ab/tcn_ao_m138_2</code></td>
+            <td>TikTok</td>
+            <td>差分再生 929,755<br>差分費用 1,115,706</td>
+            <td>アンケート回答のお礼に、特別価格のクーポンを提示。</td>
+            <td>回答後にクーポンを出す流れ。読者が参加した感覚を作ってCTA抵抗を下げる。</td>
+            <td>クーポン条件、初回来院、1円以上契約などの注記必須。</td>
+          </tr>
+          <tr>
+            <td>TCB / tcn_ao_m136_4<br><code>6511-beauty.jp/ab/tcn_ao_m136_4</code></td>
+            <td>TikTok</td>
+            <td>差分再生 306,500 / 273,200周辺<br>差分費用 367,800 / 327,840周辺</td>
+            <td>SRSマスク付き、ニキビ内服セット付きなど、治療以外の付加価値を見せる。</td>
+            <td>肌悩みを相談した先に、施術だけでなくケア提案もある期待。</td>
+            <td>通常LPにない特典や条件を勝手に流用しない。</td>
+          </tr>
+          <tr>
+            <td>ANS / acne-ig-bd<br><code>bihadadiary.com/ab/acne-ig-bd</code></td>
+            <td>Instagram</td>
+            <td>差分再生 470,170<br>差分費用 940,340</td>
+            <td>芸能人の肌が綺麗な理由、LINEで症状選択、顔写真送付、医師診察、薬配送。</td>
+            <td>忙しい女性に対する手軽さ、オンライン完結、定期縛りなし、診察料・送料無料の安心材料。</td>
+            <td>TCBは来院型。オンライン完結を真似るのではなく、施術選択肢と対面相談にずらす。</td>
+          </tr>
+          <tr>
+            <td>ZENクリニック / acne lp01<br><code>zenclinic.jp/lp-i/acne/in/lp01/</code></td>
+            <td>TikTok</td>
+            <td>差分再生 12,300<br>差分費用 14,760</td>
+            <td>肌荒れが治って垢抜けた友達だけSNSを聞かれる、という比較感情。</td>
+            <td>自分だけ肌で損している悔しさ、垢抜け、SNS・恋愛・人間関係の生活ベネフィット。</td>
+            <td>イソトレチノイン訴求はTCB通常LPの施術ラインと違うため、内容流用は不可。</td>
+          </tr>
+          <tr>
+            <td>クリニックフォア系<br><code>clinicfor.life/on/acne_d04_v01/</code></td>
+            <td>TikTok</td>
+            <td>差分は低め/ゼロ中心</td>
+            <td>40年以上のニキビ治療使用実績、重症ニキビ向け内服薬、最短翌日、薬代初回20%オフ。</td>
+            <td>頑固なニキビ、何をしても治らなかった人への医療期待。</td>
+            <td>内服薬・オンライン配送の事実をTCB施術記事へ混同しない。</td>
+          </tr>
+          <tr>
+            <td>タウン形成外科 / アンケートLP周辺</td>
+            <td>TikTok</td>
+            <td>赤み治療、ダーマペン深さなどで差分再生が大きいものあり</td>
+            <td>医師解説、施術理解、治療選びの誤解をほどく。</td>
+            <td>「自分にはどの治療が合うか分からない」問題を教育型で解く。</td>
+            <td>医師解説風にする場合は根拠と監修範囲の確認が必要。</td>
+          </tr>
+        </table>
+      </div>
+      <h3>CR棚卸しから見える市況</h3>
+      <ul>
+        <li><span class="tag green">実績で支持</span>TCBのTikTok記事LPは、0円オファー、ニキビ跡の強い悩み、ダウンタイム不安軽減の組み合わせで大きく配信されている。</li>
+        <li><span class="tag green">実績で支持</span>ANSはInstagramで、オンライン診療、顔写真送付、最短翌日配送、定期縛りなしの「手軽さ」で伸びている。</li>
+        <li><span class="tag yellow">制作者の仮説</span>TCBの記事LPでは、ANSの手軽さに真正面から勝つより、来院型だからこその施術選択肢、ニキビ跡・クレーター・毛穴まで相談できる幅で差別化する方が自然。</li>
+        <li><span class="tag yellow">制作者の仮説</span>F2向けの入口は「治療したい」より「肌のせいで生活が不自由」という感情翻訳の方が記事LPと相性が良い。</li>
+      </ul>
+    </section>
+
+    <section class="card" id="article">
+      <h2>7. 他社記事LP分析</h2>
+      <div class="warn">画像中心の記事LPについては、DProで取得できた本文/OCRを根拠に整理。スクリーンショットは今回未取得のため、HTML内の画像対応は「未取得」として扱う。</div>
+      <h3>主分析: TCB記事LP tcn_ao_m136_4 / m138系</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>パート</th><th>見せている内容</th><th>読者心理に対する役割</th><th>真似るべき核</th><th>変えるべき表層</th><th>根拠</th></tr>
+          <tr>
+            <td>FV</td>
+            <td>「検索しても出てこない」「全国100院以上」「特別キャンペーン」「ニキビ・クレーター・毛穴の開き」「最大25,000円OFF」「0円から」。</td>
+            <td>限定感、大手安心、肌悩みの広さ、価格メリットを一画面で伝える。</td>
+            <td>自分だけが見られる感、悩みの広さ、価格導線。</td>
+            <td>「0円」を条件なしで大きく見せすぎない。注記を近くに置く。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>アンケート1</td>
+            <td>「鏡を見るたびニキビが気になる」「コンシーラーが欠かせない」「すっぴんに自信が持てない」。</td>
+            <td>症状名ではなく生活の不自由で自己投影させる。</td>
+            <td>選択肢を読むだけで「自分のこと」と感じる設計。</td>
+            <td>F2向けに「写真」「職場」「友人との外出」「マスクを外す瞬間」などをテスト。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>アンケート2</td>
+            <td>「ニキビ治療が0円からできるとしたらやってみたいですか？」</td>
+            <td>価格ハードルを下げ、行動意欲を言語化させる。</td>
+            <td>回答の直後にオファー期待を作る。</td>
+            <td>「0円でできる」ではなく「クーポン適用で0円から相談可能」など条件込みにする。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>アンケート3</td>
+            <td>魅力に感じるもの: 0円から、ダウンタイムほぼなし、オーダーメイド、大手安心。</td>
+            <td>読者の不安を選択肢化し、後続の説得材料へつなげる。</td>
+            <td>価格・DT・個別提案・大手の4点を不安払拭セットにする。</td>
+            <td>「ほぼなし」は施術差・個人差の注記を入れる。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>アンケート4</td>
+            <td>理想の肌になったら、ナチュラルメイク、すっぴん外出、肌を褒められる、鏡を見るのが楽しい。</td>
+            <td>治療の機能便益を生活ベネフィットへ変換する。</td>
+            <td>「治す」より「生活が軽くなる」方向で欲求を作る。</td>
+            <td>過度な容姿変化保証にしない。個人の感想風は注記を置く。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>結果/中盤</td>
+            <td>全国100院以上、テレビCMでも話題、ニキビ・ニキビ跡・毛穴、オーダーメイド治療、0円キャンペーン、最短10分、ダウンタイムほぼゼロ。</td>
+            <td>アンケートで高まった期待に対し、施術・信頼・価格・時短の理由を与える。</td>
+            <td>大手安心、複数悩み対応、短時間、相談導線。</td>
+            <td>テレビCM、最短、DT表現は最新LP根拠と注記確認が必要。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>施術/料金</td>
+            <td>サリチル酸ピーリング、ハイドラフェイシャル、ダーマペン4、ピコレーザーフラクショナル、サブシジョンなどを0円からとして提示。</td>
+            <td>悩み別に選べる期待と価格メリットを同時に作る。</td>
+            <td>単一施術ではなく「自分に合う治療を探す」構造。</td>
+            <td>通常LPではハイドラジェントル表記。記事側のハイドラフェイシャル表記は整合確認が必要。</td>
+            <td><span class="tag blue">LP上の事実</span><span class="tag red">未確認</span></td>
+          </tr>
+          <tr>
+            <td>教育</td>
+            <td>市販化粧品では本当の原因まで届かない、医療の力が必要という主張。</td>
+            <td>市販ケアから医療相談へ移る理由を作る。</td>
+            <td>セルフケア限界の教育。</td>
+            <td>「全く意味がない」「お金をドブに捨てる」は避ける。市販ケアの役割を否定しすぎない。</td>
+            <td><span class="tag blue">LP上の事実</span><span class="tag red">表現注意</span></td>
+          </tr>
+          <tr>
+            <td>口コミ/症例風</td>
+            <td>26歳、31歳、23歳などの感想。画像イメージ・個人差注記あり。</td>
+            <td>自分と近い人の変化として安心感を作る。</td>
+            <td>年代・悩みの近さ、個人差注記。</td>
+            <td>Before/After風は一般化しない。感想の出典と注記を確認する。</td>
+            <td><span class="tag blue">LP上の事実</span></td>
+          </tr>
+          <tr>
+            <td>CTA</td>
+            <td>0円からクーポン、予約変更OK、無料カウンセリングを今すぐ予約。</td>
+            <td>限定性、可逆性、無料相談で最後の行動ハードルを下げる。</td>
+            <td>予約変更OKの安心感、相談前提のCTA。</td>
+            <td>予約変更OKの根拠確認。強い限定性は最新条件と合わせる。</td>
+            <td><span class="tag blue">LP上の事実</span><span class="tag red">未確認</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>心理遷移</h3>
+      <div class="flow">
+        <div>悩み選択</div>
+        <div>価格期待</div>
+        <div>魅力選択</div>
+        <div>理想像</div>
+        <div>医療理由</div>
+        <div>予約安心</div>
+      </div>
+      <p>この型の強さは、最初から説明を読ませるのではなく、読者自身に「悩み」「欲しい条件」「理想の生活」を選ばせてから、TCBのオファーと施術幅を出す点。無料カウンセリング予約という重めのCVでも、読者の中に「自分で選んだ感覚」が残るため、CTAが唐突になりにくい。</p>
+
+      <h3>ANS記事/CRから拾うべき点</h3>
+      <ul>
+        <li><span class="tag green">実績で支持</span>Instagramでは、オンライン診療、顔写真、医師診察、薬配送、診察料・送料無料、定期縛りなしのような「面倒が少ない」訴求が大きく配信されていた。</li>
+        <li><span class="tag yellow">制作者の仮説</span>TCBではオンライン完結を真似ず、「来院する価値」に変換する。肌状態を見て、ピーリング、ダーマペン、ピコ、サブシジョンなどから相談できる点を見せる。</li>
+        <li><span class="tag yellow">制作者の仮説</span>ANSとの差別化は「ニキビの薬が届く」ではなく「ニキビ跡・クレーター・毛穴まで含めた肌管理を相談できる」。</li>
+      </ul>
+    </section>
+
+    <section class="card" id="3c">
+      <h2>8. 3C分析</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>観点</th><th>分析内容</th><th>記事LP制作への示唆</th></tr>
+          <tr><td>Company</td><td>TCBは複数施術、全国院数、無料カウンセリング、症例モデル制度、医師/カウンセラー相談の流れを持つ。</td><td>「自分に合う治療が分からない」人を、無料相談に自然につなげる。</td></tr>
+          <tr><td>Customer</td><td>F2女性は、肌悩みを機能問題だけでなく、メイク、すっぴん、写真、人前、鏡を見る気分として感じやすい。</td><td>FVとアンケートは生活シーンから入り、後半で施術理解へ移す。</td></tr>
+          <tr><td>Competitor</td><td>TCB系は0円・DT・大手・オーダーメイド、ANSは手軽さ、ZENは垢抜け/比較感情、医師解説系は治療選び教育が強い。</td><td>CR追従で0円/自己投影を残しつつ、記事LPでは不安払拭と施術選択肢で厚みを出す。</td></tr>
+        </table>
+      </div>
+
+      <h2>9. SWOT分析</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>分類</th><th>内容</th><th>記事LPへの反映</th></tr>
+          <tr><td>Strength</td><td>全国院数、複数施術、無料カウンセリング、短時間施術の記載、肌状態別相談。</td><td>FV/CTA/信頼材料に「相談しやすさ」「選択肢の多さ」を入れる。</td></tr>
+          <tr><td>Weakness</td><td>来院型のため、オンライン診療勢より手軽さで劣る可能性。美容医療への怖さもある。</td><td>予約後の流れ、痛み/DT/費用/勧誘不安の払拭を厚くする。</td></tr>
+          <tr><td>Opportunity</td><td>市況では価格訴求が強い一方、ニキビ跡・毛穴・クレーターまで悩む層は「何を選べばいいか」不安が強い。</td><td>単なる0円記事ではなく、肌状態別の相談理由を作る。</td></tr>
+          <tr><td>Threat</td><td>0円表現の不信感、医療広告表現リスク、Before/After一般化、競合オンライン診療の手軽さ。</td><td>条件注記、リスク明記、相談前提、効果保証回避を徹底。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="type">
+      <h2>10. 記事型・戦術判断</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>採用する型</th><th>採用理由</th><th>参照元</th><th>残す核</th><th>変える表層</th><th>リスク</th></tr>
+          <tr>
+            <td>アンケート記事LP型 × CR追従 × 市況差別化</td>
+            <td>TCBの上位CRはアンケート、0円、ニキビ跡、DT不安軽減で大きく配信。F2向けには自分ごと化から無料カウンセリングへ進ませやすい。</td>
+            <td>TCB m138/m136系、ANS Instagram CR、ZEN TikTok CR、タウン形成外科教育型。</td>
+            <td>悩み選択、価格期待、魅力選択、理想像、相談CTA。</td>
+            <td>強すぎる断定表現を抑え、肌状態別相談、施術選択肢、予約後の流れを厚くする。</td>
+            <td>価格だけの記事にすると不信感が出る。教育が長すぎると離脱する。</td>
+          </tr>
+        </table>
+      </div>
+      <h3>採用しない型</h3>
+      <ul>
+        <li>医師解説だけの型: 信頼は作れるが、TikTok/Instagram起点では入口が重くなりやすい。</li>
+        <li>比較ランキング型: 美容医療の比較根拠が必要で、今回のCV地点では遠回りになりやすい。</li>
+        <li>体験談風だけの型: 個人差表現・症例表現の管理が重く、施術幅の強みを出しづらい。</li>
+      </ul>
+    </section>
+
+    <section class="card" id="fv">
+      <h2>11. FV案 3案</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>案</th><th>FVタイトル</th><th>サブコピー</th><th>素材方向</th><th>狙う心理</th><th>参照元</th><th>注意点</th></tr>
+          <tr>
+            <td>A: 生活不自由型</td>
+            <td>コンシーラーで隠しても、夕方にはまた気になるニキビ跡へ</td>
+            <td>ニキビ・毛穴・クレーター悩みを、今月のクーポンで無料相談。</td>
+            <td>鏡前、メイク直し、肌を隠す女性。文字は「隠す毎日から相談へ」。</td>
+            <td>F2の自己投影。肌悩みを生活シーンに変換。</td>
+            <td>TCB記事LPのアンケート選択肢。</td>
+            <td>治る保証にしない。0円条件注記を入れる。</td>
+          </tr>
+          <tr>
+            <td>B: すっぴん不安型</td>
+            <td>すっぴんに自信が持てない肌悩み、ひとりで抱えなくてOK</td>
+            <td>ニキビ・ニキビ跡・毛穴の状態に合わせて、TCBで無料カウンセリング。</td>
+            <td>自然光、洗面台、ナチュラルメイク。清潔感ある美容医療寄り。</td>
+            <td>怖さを下げる。相談していい悩みとして認識させる。</td>
+            <td>通常LPの無料カウンセリング、施術選択肢。</td>
+            <td>「すっぴん美肌」断定は避ける。</td>
+          </tr>
+          <tr>
+            <td>C: 選び方不安型</td>
+            <td>ピーリング？ダーマペン？ニキビ跡は何を選べばいいの？</td>
+            <td>肌状態に合わせて相談できるTCBのニキビ・ニキビ跡治療。</td>
+            <td>施術カード、悩み別チャート、医師/カウンセラー相談イメージ。</td>
+            <td>検討度がやや高い層に「相談する理由」を与える。</td>
+            <td>通常LPの施術ラインナップ、タウン形成外科の教育型。</td>
+            <td>専門説明に寄りすぎると冒頭離脱。アンケートで軽くする。</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="structure">
+      <h2>12. 記事LP構成案</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>パート</th><th>目的</th><th>見せる内容</th><th>読者心理の変化</th><th>参考元</th><th>残す核</th><th>変える表層</th><th>根拠</th></tr>
+          <tr><td>FV</td><td>足を止める</td><td>コンシーラー/すっぴん/鏡の悩みと、無料相談の入口。</td><td>これ自分のことかも。</td><td>TCB記事LP</td><td>生活悩み＋オファー</td><td>断定表現を抑える</td><td><span class="tag yellow">制作者の仮説</span></td></tr>
+          <tr><td>導入</td><td>悩みの言語化</td><td>肌荒れよりも、隠す手間、写真、人前、夕方のメイク崩れ。</td><td>肌で日常が制限されていると気づく。</td><td>TCB記事選択肢</td><td>自己投影</td><td>F2生活シーンへ広げる</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>アンケート/診断</td><td>参加させる</td><td>悩み、やってみたい条件、魅力、理想の生活を選ばせる。</td><td>自分で選んだ感覚。</td><td>TCB記事LP</td><td>4問構成</td><td>回答後の説明を厚く</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>最初のCTA</td><td>早期CV層を拾う</td><td>クーポン適用で無料相談、予約変更OKは根拠確認後。</td><td>今見ておく理由ができる。</td><td>TCB記事LP</td><td>限定性</td><td>注記を近接</td><td><span class="tag blue">LP上の事実</span><span class="tag red">未確認</span></td></tr>
+          <tr><td>共感</td><td>読む理由を作る</td><td>市販ケアを頑張っても繰り返す、跡が残る、厚塗りになる。</td><td>自分だけではない。</td><td>TCB記事LP</td><td>努力している読者を肯定</td><td>市販品全否定を避ける</td><td><span class="tag yellow">制作者の仮説</span></td></tr>
+          <tr><td>原因説明</td><td>医療相談の必要性</td><td>ニキビ、ニキビ跡、毛穴、クレーターでは必要な相談が違う。</td><td>自己判断だけでは難しい。</td><td>通常LP</td><td>悩み別整理</td><td>医学断定を避ける</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>解決策紹介</td><td>TCBへ接続</td><td>複数施術から肌状態に合わせて相談。</td><td>自分に合うものを聞けそう。</td><td>通常LP</td><td>選択肢</td><td>施術名の羅列を避ける</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>施術紹介</td><td>信頼と理解</td><td>ピーリング、ハイドラジェントル、ダーマペン4、ピコ、サブシジョン。</td><td>幅広く相談できる。</td><td>通常LP</td><td>施術幅</td><td>悩み別カード化</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>効果実証</td><td>期待を作る</td><td>通常LPの施術説明と症例モデル制度。個人差注記。</td><td>相談してみる価値がある。</td><td>通常LP</td><td>症例/説明</td><td>Before/After一般化しない</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>症例・口コミ</td><td>近い人の安心</td><td>年齢や悩みが近い感想。ただし出典・注記必須。</td><td>私も対象かもしれない。</td><td>TCB記事LP</td><td>自己投影</td><td>根拠確認後に採用</td><td><span class="tag red">未確認</span></td></tr>
+          <tr><td>料金・オファー</td><td>行動理由</td><td>クーポン、最大25,000円OFF、0円から。ただし条件つき。</td><td>今相談する理由。</td><td>TCB記事LP/通常LP</td><td>強い価格訴求</td><td>条件注記を大きく</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>不安払拭</td><td>予約前の迷いを消す</td><td>痛み、DT、費用、勧誘、施術後生活、予約後の流れ。</td><td>押しても大丈夫そう。</td><td>通常LP</td><td>FAQ</td><td>不明点は相談で回収</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>社会的証明</td><td>大手安心</td><td>全国101院、テレビCMは根拠確認後、院数・カウンセリング流れ。</td><td>怪しくなさそう。</td><td>通常LP/記事LP</td><td>大手安心</td><td>根拠不明なNo.1は使わない</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>予約手順</td><td>CVの具体化</td><td>Web/LINE/電話、予約、カウンセリング、医師相談、契約、術後ケア。</td><td>次に何が起きるか分かる。</td><td>通常LP</td><td>行動イメージ</td><td>契約強制に見せない</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>FAQ</td><td>最後の不安回収</td><td>相談だけOKか、痛み、DT、メイク、費用、キャンセル。</td><td>疑問が減る。</td><td>通常LP</td><td>実務不安</td><td>未確認は断定しない</td><td><span class="tag yellow">制作者の仮説</span></td></tr>
+          <tr><td>最終CTA</td><td>予約へ</td><td>今月クーポン、無料カウンセリング、肌状態に合う治療を相談。</td><td>今予約枠を見る。</td><td>TCB記事LP</td><td>限定性＋相談</td><td>押し売り感を抑える</td><td><span class="tag yellow">制作者の仮説</span></td></tr>
+          <tr><td>限定性/損失回避</td><td>後回し防止</td><td>キャンペーン期間、クーポン条件、予約枠。</td><td>閉じる前に確認しよう。</td><td>通常LP</td><td>期限</td><td>過剰な煽りを避ける</td><td><span class="tag blue">LP上の事実</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="cta">
+      <h2>13. CTA設計</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>CTA位置</th><th>CTA文言案</th><th>押す理由</th><th>直前に必要な情報</th><th>注意点</th></tr>
+          <tr><td>アンケート回答直後</td><td>クーポン適用で無料相談枠を確認する</td><td>回答した悩みとオファーがつながる。</td><td>0円からの条件、クーポン注記。</td><td>「0円で治療」と断定しない。</td></tr>
+          <tr><td>施術紹介後</td><td>自分の肌に合う治療を無料で相談する</td><td>施術が複数あり、自己判断では選びにくいから。</td><td>施術ごとの役割、肌状態別相談。</td><td>効果保証にしない。</td></tr>
+          <tr><td>不安払拭後</td><td>痛み・費用も含めて相談してみる</td><td>痛み、DT、費用、勧誘不安を回収した直後。</td><td>予約後の流れ、カウンセリング無料。</td><td>勧誘なし等は根拠確認。</td></tr>
+          <tr><td>最終CTA</td><td>今月の無料カウンセリング枠を確認する</td><td>キャンペーン期間と後回し防止。</td><td>期間、条件、予約手段。</td><td>最新期間確認。</td></tr>
+        </table>
+      </div>
+
+      <h2>14. 不安払拭設計</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>不安</th><th>記事内で出す位置</th><th>払拭する材料</th><th>表現例</th><th>根拠</th></tr>
+          <tr><td>痛み</td><td>施術紹介後/FAQ</td><td>麻酔塗布、痛みに配慮の記載。</td><td>痛みが不安な方は、カウンセリング時に相談できます。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>ダウンタイム</td><td>CTA前</td><td>施術ごとの赤み、腫れ、内出血などのリスク明記。</td><td>施術により赤みや腫れが出る場合があります。予定に合わせて相談しましょう。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>失敗/悪化</td><td>教育後</td><td>肌状態別に医師/カウンセラーへ相談。</td><td>自己判断で選ばず、肌状態を見ながら相談できます。</td><td><span class="tag yellow">制作者の仮説</span></td></tr>
+          <tr><td>バレる</td><td>生活ベネフィット後</td><td>施術差、個人差、メイク可否は施術別確認。</td><td>施術内容により過ごし方は異なるため、予定前に相談してください。</td><td><span class="tag red">未確認</span></td></tr>
+          <tr><td>費用</td><td>料金前/CTA前</td><td>クーポン、条件、1円以上契約などの注記。</td><td>クーポン適用条件を確認したうえで相談できます。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>勧誘</td><td>FAQ/最終CTA前</td><td>根拠確認が必要。断定は避ける。</td><td>費用や施術内容に不安がある場合も、まずカウンセリングで相談できます。</td><td><span class="tag red">未確認</span></td></tr>
+          <tr><td>医師の技術</td><td>信頼パート</td><td>全国院数、担当ドクターカウンセリング。</td><td>担当ドクターによるカウンセリングで、悩みに合わせて相談できます。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>施術後の生活</td><td>FAQ</td><td>副作用期間、当日メイク可否は施術別に確認。</td><td>施術後の過ごし方もカウンセリングで確認できます。</td><td><span class="tag red">未確認</span></td></tr>
+          <tr><td>予約後に何をするか</td><td>予約手順</td><td>予約、美容カウンセラー、担当ドクター、契約、術後ケア。</td><td>予約後の流れを先に見せることで不安を減らします。</td><td><span class="tag blue">LP上の事実</span></td></tr>
+          <tr><td>キャンセル/変更</td><td>CTA近く</td><td>記事LPに予約変更OKの記載。ただし通常LP側の整合確認が必要。</td><td>予約変更については予約時に確認してください。</td><td><span class="tag red">未確認</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="risk">
+      <h2>15. 残す核 / 変える表層</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>参照元</th><th>残す核</th><th>変える表層</th><th>変える理由</th><th>そのまま真似るリスク</th></tr>
+          <tr><td>TCB上位記事LP</td><td>アンケートで自分ごと化し、価格/DT/大手/理想像を選ばせる。</td><td>「全滅」「消し去る」「市販品無意味」系を柔らかくする。</td><td>医療広告表現と信頼性のため。</td><td>誇大表現、承認NG、不信感。</td></tr>
+          <tr><td>ANS Instagram</td><td>手軽さ、診察料/送料、定期縛りなしのような不安払拭の順番。</td><td>オンライン完結ではなく、対面相談と施術選択肢に置き換える。</td><td>TCBの商材特性が来院型だから。</td><td>事実と違う訴求になる。</td></tr>
+          <tr><td>ZEN TikTok</td><td>垢抜け、友人比較、SNSで聞かれるなど生活ベネフィット。</td><td>嫉妬や比較を強くしすぎず、F2向けの自然な自己投影にする。</td><td>煽りすぎると美容医療の怖さが増える。</td><td>不快感、誇大な期待。</td></tr>
+          <tr><td>タウン形成外科教育型</td><td>治療選びの誤解を解く教育。</td><td>医師解説だけにせず、アンケート後の短い教育にする。</td><td>SNS流入では読み始めの負荷を下げる必要がある。</td><td>冒頭離脱。</td></tr>
+        </table>
+      </div>
+
+      <h2>16. 危険表現と置き換え</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>避ける表現</th><th>理由</th><th>置き換え案</th></tr>
+          <tr><td>ニキビ跡を全滅</td><td>効果保証に見える。</td><td>ニキビ跡の悩みを相談、肌状態に合わせて治療を検討。</td></tr>
+          <tr><td>市販化粧品は全く意味がない</td><td>過度な断定。読者の努力否定にもなる。</td><td>市販ケアでは届く範囲に限界がある場合があります。</td></tr>
+          <tr><td>お金をドブに捨てている</td><td>煽りが強く不信感が出る。</td><td>同じケアを続けても変化を感じにくい方は、医療相談も選択肢です。</td></tr>
+          <tr><td>0円で治療</td><td>条件があるため誤認リスク。</td><td>クーポン適用で0円から。条件は注記で明記。</td></tr>
+          <tr><td>ダウンタイムなし</td><td>施術差・個人差がある。</td><td>ダウンタイムが少ない施術もあります。施術内容により異なります。</td></tr>
+          <tr><td>未来のニキビ予防もできる</td><td>保証表現に見える可能性。</td><td>肌状態に合わせて、今後のケアも相談できます。</td></tr>
+          <tr><td>追加料金は一切なし</td><td>根拠確認が必要。</td><td>費用はカウンセリング時に確認できます。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="rules">
+      <h2>17. 制作判断ルール</h2>
+      <ol>
+        <li>ニキビ女性向けの記事では、FVで症状名だけを出さず、コンシーラー、すっぴん、鏡、写真、人前の生活不自由に翻訳する。</li>
+        <li>無料カウンセリング予約がCVの場合、LINE追加記事よりも不安払拭と予約後の流れを厚くする。</li>
+        <li>0円訴求を使う場合は、必ず条件注記をCTA近くに置き、本文でも「クーポン適用」「0円から」と表現する。</li>
+        <li>アンケートでは、悩み、価格期待、魅力、不安、理想像を選ばせ、回答後にTCBの施術幅へ接続する。</li>
+        <li>市販ケア限界を語る時は、読者の努力を否定せず「届く範囲に限界がある場合がある」と表現する。</li>
+        <li>TCBの強みは、オンラインの手軽さではなく、複数施術から肌状態に合わせて相談できることとして出す。</li>
+        <li>ニキビ、ニキビ跡、毛穴、クレーターを一括で煽らず、悩み別に相談内容が違うと整理する。</li>
+        <li>施術名を並べるだけでなく、読者の悩みと対応施術をカード化して理解負荷を下げる。</li>
+        <li>CTA前には、痛み、DT、費用、勧誘、予約後の流れのうち最低3つを払拭してから押させる。</li>
+        <li>症例・口コミを使う場合は、個人差注記、画像イメージ、出典、条件を確認してから出す。</li>
+        <li>「全滅」「消える」「治る」「誰でも」は根拠があっても記事内では原則避け、相談可能性に落とす。</li>
+        <li>ANSの手軽さを見た場合、TCBでは「対面で肌状態を見て相談できる安心」に変換する。</li>
+        <li>ZENの垢抜け訴求を使う場合、比較感情を強めすぎず、肌を気にしない生活ベネフィットに変換する。</li>
+        <li>医師解説型を参考にする場合、冒頭から専門用語を増やさず、アンケート後の教育パートに置く。</li>
+        <li>価格で止めた読者には、後半で「なぜ相談が必要か」を必ず説明し、安いだけの記事にしない。</li>
+        <li>通常LPのキャンペーン期間は運用時に必ず再確認し、期間切れ表記を残さない。</li>
+        <li>予約変更OK、勧誘なし、追加料金なしは、根拠が確認できるまで断定しない。</li>
+        <li>Before/After風素材は、読者に期待を作るだけでなく個人差と施術条件を同時に見せる。</li>
+        <li>F2向けデザインは、過度に医療感を強くしすぎず、清潔感、鏡、メイク、自然光の自己投影を優先する。</li>
+        <li>最終CTAでは「治療を申し込む」ではなく「肌状態に合う治療を相談する」にして、行動の重さを下げる。</li>
+      </ol>
+    </section>
+
+    <section class="card" id="checklist">
+      <h2>18. 制作チェックリスト</h2>
+      <ul class="checklist">
+        <li><span class="box-label"></span><span>FVで読者が自分ごと化できる生活シーンを提示しているか。</span></li>
+        <li><span class="box-label"></span><span>ニキビ、ニキビ跡、毛穴、クレーターの違いを雑にまとめすぎていないか。</span></li>
+        <li><span class="box-label"></span><span>アンケートで読者が「悩み」「欲しい条件」「理想像」を選べるか。</span></li>
+        <li><span class="box-label"></span><span>最初のCTA前に、0円訴求の条件注記が近くにあるか。</span></li>
+        <li><span class="box-label"></span><span>通常LPに明記されていない特典や施術を勝手に入れていないか。</span></li>
+        <li><span class="box-label"></span><span>市販ケアを全否定せず、医療相談の理由に変換できているか。</span></li>
+        <li><span class="box-label"></span><span>TCBの強みをオンライン完結ではなく、対面相談と施術選択肢として出しているか。</span></li>
+        <li><span class="box-label"></span><span>CTA前に痛み、DT、費用、勧誘、予約後の流れの不安を扱っているか。</span></li>
+        <li><span class="box-label"></span><span>施術ごとの副作用やリスクを完全に隠していないか。</span></li>
+        <li><span class="box-label"></span><span>「治る」「消える」「全滅」「誰でも」などの断定表現を避けているか。</span></li>
+        <li><span class="box-label"></span><span>Before/After風の画像や口コミに個人差注記を置いているか。</span></li>
+        <li><span class="box-label"></span><span>予約後に何が起きるかを、読者が想像できる状態にしているか。</span></li>
+        <li><span class="box-label"></span><span>無料カウンセリングを「契約」ではなく「相談」として見せているか。</span></li>
+        <li><span class="box-label"></span><span>通常LPのキャンペーン期間が最新か確認したか。</span></li>
+        <li><span class="box-label"></span><span>予約変更OK、勧誘なし、追加料金なし等の表現に根拠があるか。</span></li>
+        <li><span class="box-label"></span><span>CRで伸びている訴求と、記事LPで安全に使う表現を分けているか。</span></li>
+        <li><span class="box-label"></span><span>ANSやZENの訴求を、TCBの商材特性に合わせて変換しているか。</span></li>
+        <li><span class="box-label"></span><span>記事後半が施術名の羅列だけになっていないか。</span></li>
+        <li><span class="box-label"></span><span>最終CTAで「今押しても大丈夫」と思える情報が直前にあるか。</span></li>
+        <li><span class="box-label"></span><span>根拠ラベルを、LP上の事実、実績で支持、仮説、未確認に分けているか。</span></li>
+        <li><span class="box-label"></span><span>DPro差分をCV成果として誤って書いていないか。</span></li>
+        <li><span class="box-label"></span><span>F2女性の生活ベネフィットが、抽象的な美肌ではなく具体シーンになっているか。</span></li>
+        <li><span class="box-label"></span><span>CTA文言が「治療申込」ではなく「相談」「枠確認」寄りになっているか。</span></li>
+        <li><span class="box-label"></span><span>医療広告として危険な効果保証・誇大表現を避けているか。</span></li>
+      </ul>
+    </section>
+
+    <section class="card" id="missing">
+      <h2>19. 未確認事項・人間が判断すべきこと</h2>
+      <div class="warn">
+        <ul>
+          <li>記事LP別のCVR、CPA、CTR、到達率は未確認。DPro差分は配信量の参考であり、CV成果ではない。</li>
+          <li>Beyondのヒートマップ、CTA別成果、ステップ別離脱は未確認。フリップ/ステップアンケ構造の場合、通常の離脱解釈が難しい可能性もある。</li>
+          <li>TCB内部で承認可能な表現範囲は未確認。「0円」「予約変更OK」「勧誘なし」「追加料金なし」は運用前に確認が必要。</li>
+          <li>通常LPのキャンペーン期間、価格、クーポン条件は公開前に再確認が必要。</li>
+          <li>ANS、ZEN、一部競合記事LPは本文/OCRが未取得のため、広告文ベースの示唆に限定している。</li>
+          <li>スクリーンショット画像は今回未取得。HTMLは本文/OCRとDPro広告情報をもとにした分析資料。</li>
+        </ul>
+      </div>
+      <h3>最終判断</h3>
+      <p>この資料は記事制作の判断材料であり、最終的な表現承認、キャンペーン条件、医療広告上の可否、実際に採用するFV/CTAは人間側で確認する。</p>
+    </section>
+
+    <div class="small" style="text-align:center; margin-top:32px;">
+      Last updated: 2026-06-09 / Source: DPro MCP, TCB通常LP, DPro記事LP本文・OCR確認結果
+    </div>
+  </main>
+</body>
+</html>
