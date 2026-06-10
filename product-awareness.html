@@ -141,6 +141,66 @@
       font-size: 14px;
     }
 
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .example-box h3,
+    .steps h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .example-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .step-name {
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .step-name small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .step-text {
+      color: #334155;
+      font-size: 14px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -185,6 +245,15 @@
 
       .guide {
         grid-template-columns: 1fr;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+        gap: 4px;
       }
 
       h1 {
@@ -275,6 +344,48 @@
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section class="card">
+      <h2>なぜ相手の状態で冒頭が変わるのか</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <h3>よく知っている相手</h3>
+          <p>夫・妻を食事に誘うなら、いきなり「今日食べに行かない？」で伝わる。関係性も前提もあるので、回りくどい導入はいらない。</p>
+        </div>
+        <div class="example-box">
+          <h3>まったく知らない相手</h3>
+          <p>道で初対面の人に同じ言い方をしても、ほぼ通じない。まず警戒を解き、会話に入る理由を作る必要がある。</p>
+        </div>
+      </div>
+      <p class="note">広告も同じ。商品を知っている人には直接言える。知らない人には、商品説明の前に「聞く理由」を作る。</p>
+    </section>
+
+    <section class="card">
+      <h2>具体例：足の痺れで見る5段階</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-name">認識なし<small>商品認知度 1</small></div>
+          <div class="step-text">足の痺れに気づいていない。健康でいたい気持ちはあっても、「足の痺れを治したい」という具体的な欲求はまだない。</div>
+        </div>
+        <div class="step">
+          <div class="step-name">問題認識<small>商品認知度 2</small></div>
+          <div class="step-text">「最近、足が痺れる」と気づく。歩く、座るなど日常に支障が出て、不安になる。ただし、どう解決できるかはわからない。</div>
+        </div>
+        <div class="step">
+          <div class="step-name">解決認識<small>商品認知度 3</small></div>
+          <div class="step-text">足の痺れを治したい、普通に歩きたいと思い始める。何か治療や対策が必要だとは感じているが、具体的な手段は未確定。</div>
+        </div>
+        <div class="step">
+          <div class="step-name">商品認識<small>商品認知度 4</small></div>
+          <div class="step-text">整体、病院、ストレッチ、サプリなどの候補を知っている。ただ、どれが自分に合うのか決めきれていない。</div>
+        </div>
+        <div class="step">
+          <div class="step-name">購買認識<small>商品認知度 5</small></div>
+          <div class="step-text">A整体院で改善した経験があり、継続したいと思っている。必要なのは、予約できる日時や申込方法だけ。</div>
+        </div>
+      </div>
+      <p class="note">同じ整体院でも、認識なしの人に「来週土曜空いています」と言っても動かない。相手の段階に合わせて、最初に伝えることを変える。</p>
     </section>
 
     <p class="note">参考: ユージン・シュワルツが提唱した商品認知度の概念を、部署共有用に要約・再構成。</p>
