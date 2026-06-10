@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品認知度の5段階</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #64748b;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --line: #cbd5e1;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --ink: #1e293b;
+      --green: #16a34a;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .doc-header {
+      background: var(--ink);
+      color: white;
+      padding: 28px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .doc-header p {
+      margin: 10px 0 0;
+      color: #dbeafe;
+      font-size: 15px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .pyramid {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .level {
+      margin: 0 auto;
+      min-height: 72px;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .level:nth-child(1) { width: 50%; border-left: 7px solid var(--green); }
+    .level:nth-child(2) { width: 63%; border-left: 7px solid var(--blue); }
+    .level:nth-child(3) { width: 76%; border-left: 7px solid var(--teal); }
+    .level:nth-child(4) { width: 89%; border-left: 7px solid var(--amber); }
+    .level:nth-child(5) { width: 100%; border-left: 7px solid var(--red); }
+
+    .name {
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .name small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .desc {
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .guide div {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    td:first-child {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 12px 0 0;
+    }
+
+    @media (max-width: 760px) {
+      .level,
+      .level:nth-child(1),
+      .level:nth-child(2),
+      .level:nth-child(3),
+      .level:nth-child(4),
+      .level:nth-child(5) {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .guide {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>商品認知度の5段階</h1>
+      <p>ターゲットが「商品・解決策・問題」をどこまで認識しているかで、広告の冒頭は変わる。</p>
+    </header>
+
+    <section class="card">
+      <h2>まず見ること</h2>
+      <p class="lead">見込み客は、いま何を知っているか？</p>
+      <p class="note">商品認知度は、セールスレターの冒頭で「商品から入るか」「悩みから入るか」「ストーリーから入るか」を決めるための分類。</p>
+    </section>
+
+    <section class="card">
+      <h2>5段階ピラミッド</h2>
+      <div class="pyramid" aria-label="商品認知度の5段階">
+        <div class="level">
+          <div class="name">購買認識<small>商品認知度 5</small></div>
+          <div class="desc">商品を知っていて、欲しい。あとは買う手段だけ知りたい。</div>
+        </div>
+        <div class="level">
+          <div class="name">商品認識<small>商品認知度 4</small></div>
+          <div class="desc">商品は知っている。ただし、自分に必要か、信じてよいか迷っている。</div>
+        </div>
+        <div class="level">
+          <div class="name">解決認識<small>商品認知度 3</small></div>
+          <div class="desc">欲しい結果はある。けれど、どの商品・手段で叶うかは知らない。</div>
+        </div>
+        <div class="level">
+          <div class="name">問題認識<small>商品認知度 2</small></div>
+          <div class="desc">問題には気づいている。けれど、解決策があるとはまだ思えていない。</div>
+        </div>
+        <div class="level">
+          <div class="name">認識なし<small>商品認知度 1</small></div>
+          <div class="desc">商品も問題も認識していない。あるのは価値観、日常の違和感、漠然とした感情。</div>
+        </div>
+      </div>
+
+      <div class="guide">
+        <div><strong>上ほど直接的に書く</strong><br>商品名、価格、申込方法、限定性を早く出してよい。</div>
+        <div><strong>下ほど間接的に書く</strong><br>問題提起、感情の代弁、ストーリー、意外な事実から入る。</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>一言で見分ける</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>段階</th>
+            <th>ターゲットの状態</th>
+            <th>冒頭の入口</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>購買認識</td>
+            <td>もう欲しい</td>
+            <td>オファー、価格、申込方法</td>
+          </tr>
+          <tr>
+            <td>商品認識</td>
+            <td>知っているが迷っている</td>
+            <td>選ぶ理由、証拠、比較、不安払拭</td>
+          </tr>
+          <tr>
+            <td>解決認識</td>
+            <td>結果は欲しいが、手段を知らない</td>
+            <td>欲しい未来、解決策の提示</td>
+          </tr>
+          <tr>
+            <td>問題認識</td>
+            <td>困っているが、解決できると思えていない</td>
+            <td>悩みの具体化、感情の代弁</td>
+          </tr>
+          <tr>
+            <td>認識なし</td>
+            <td>問題が自分ごとになっていない</td>
+            <td>違和感、物語、価値観への問い</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <p class="note">参考: ユージン・シュワルツが提唱した商品認知度の概念を、部署共有用に要約・再構成。</p>
+  </main>
+</body>
+</html>
