@@ -201,28 +201,57 @@
       font-size: 14px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
+    .diagnosis-list {
+      display: grid;
+      gap: 10px;
     }
 
-    th,
-    td {
+    .diagnosis-item {
       border: 1px solid var(--border);
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
     }
 
-    th {
+    .diagnosis-head {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
       background: #f8fafc;
+      border-left: 7px solid var(--accent);
+    }
+
+    .diagnosis-item:nth-child(1) .diagnosis-head { border-left-color: var(--green); }
+    .diagnosis-item:nth-child(2) .diagnosis-head { border-left-color: var(--blue); }
+    .diagnosis-item:nth-child(3) .diagnosis-head { border-left-color: var(--teal); }
+    .diagnosis-item:nth-child(4) .diagnosis-head { border-left-color: var(--amber); }
+    .diagnosis-item:nth-child(5) .diagnosis-head { border-left-color: var(--red); }
+
+    .diagnosis-name {
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .diagnosis-state {
+      color: #334155;
+      font-size: 14px;
       font-weight: 700;
     }
 
-    td:first-child {
-      font-weight: 700;
-      white-space: nowrap;
+    .diagnosis-body {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .diagnosis-row strong {
+      display: inline-block;
+      min-width: 116px;
+      color: #0f172a;
     }
 
     .note {
@@ -254,6 +283,17 @@
       .step {
         grid-template-columns: 1fr;
         gap: 4px;
+      }
+
+      .diagnosis-head {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .diagnosis-row strong {
+        display: block;
+        min-width: 0;
+        margin-bottom: 2px;
       }
 
       h1 {
@@ -308,42 +348,67 @@
 
     <section class="card">
       <h2>一言で見分ける</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>段階</th>
-            <th>ターゲットの状態</th>
-            <th>冒頭の入口</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>購買認識</td>
-            <td>もう欲しい</td>
-            <td>オファー、価格、申込方法</td>
-          </tr>
-          <tr>
-            <td>商品認識</td>
-            <td>知っているが迷っている</td>
-            <td>選ぶ理由、証拠、比較、不安払拭</td>
-          </tr>
-          <tr>
-            <td>解決認識</td>
-            <td>結果は欲しいが、手段を知らない</td>
-            <td>欲しい未来、解決策の提示</td>
-          </tr>
-          <tr>
-            <td>問題認識</td>
-            <td>困っているが、解決できると思えていない</td>
-            <td>悩みの具体化、感情の代弁</td>
-          </tr>
-          <tr>
-            <td>認識なし</td>
-            <td>問題が自分ごとになっていない</td>
-            <td>違和感、物語、価値観への問い</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="diagnosis-list">
+        <div class="diagnosis-item">
+          <div class="diagnosis-head">
+            <div class="diagnosis-name">購買認識</div>
+            <div class="diagnosis-state">もう欲しい。あとは「どう買うか」だけ知りたい。</div>
+          </div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-row"><strong>冒頭で言うこと</strong>商品名、価格、申込ボタン、予約枠、キャンペーン期限、特典などをすぐ見せる。</div>
+            <div class="diagnosis-row"><strong>書き方の例</strong>「今週土曜の午後に空きがあります」「本日23:59まで初回価格」「継続予約はこちら」のように、行動に必要な情報を前に出す。</div>
+            <div class="diagnosis-row"><strong>急がないこと</strong>長い悩みの共感や、なぜ必要かの教育。すでに欲しい人には遠回りになる。</div>
+          </div>
+        </div>
+
+        <div class="diagnosis-item">
+          <div class="diagnosis-head">
+            <div class="diagnosis-name">商品認識</div>
+            <div class="diagnosis-state">商品は知っている。でも「自分に合うか」「信じてよいか」で止まっている。</div>
+          </div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-row"><strong>冒頭で言うこと</strong>なぜこの商品を選ぶべきか、他と何が違うか、どんな人に向いているかを具体的に示す。</div>
+            <div class="diagnosis-row"><strong>書き方の例</strong>「整体・病院・ストレッチで迷っている方へ。足の痺れが姿勢由来なら、見るべきポイントはここです」のように、迷いの整理から入る。</div>
+            <div class="diagnosis-row"><strong>必要な材料</strong>実績、口コミ、比較表、保証、専門家の説明、料金の透明性。不安を先回りして減らす。</div>
+          </div>
+        </div>
+
+        <div class="diagnosis-item">
+          <div class="diagnosis-head">
+            <div class="diagnosis-name">解決認識</div>
+            <div class="diagnosis-state">治したい、変わりたい、結果は欲しい。でも手段や商品名はまだ決まっていない。</div>
+          </div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-row"><strong>冒頭で言うこと</strong>読者が欲しい未来を先に言語化し、その未来に近づく方法として解決策を紹介する。</div>
+            <div class="diagnosis-row"><strong>書き方の例</strong>「長時間歩いても足の痺れが気にならない状態を目指したい方へ。まず確認すべきは、痺れの原因がどこにあるかです」のように、結果から入る。</div>
+            <div class="diagnosis-row"><strong>急がないこと</strong>いきなり商品名や料金だけを出すこと。読者はまだ、どの手段が自分に合うかを探している段階。</div>
+          </div>
+        </div>
+
+        <div class="diagnosis-item">
+          <div class="diagnosis-head">
+            <div class="diagnosis-name">問題認識</div>
+            <div class="diagnosis-state">困っている。ただし、解決できるとは思えていない。不安や諦めが強い。</div>
+          </div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-row"><strong>冒頭で言うこと</strong>悩みが出る場面、生活の支障、不安な気持ちを代弁して「自分のことだ」と思ってもらう。</div>
+            <div class="diagnosis-row"><strong>書き方の例</strong>「長く座ったあと、立ち上がるたびに足がジンジンする」「歩くのが少し怖くなってきた」のように、具体的な場面から入る。</div>
+            <div class="diagnosis-row"><strong>次にやること</strong>悩みを十分に言語化してから、「原因によっては改善を目指せる」と解決可能性を少し見せる。</div>
+          </div>
+        </div>
+
+        <div class="diagnosis-item">
+          <div class="diagnosis-head">
+            <div class="diagnosis-name">認識なし</div>
+            <div class="diagnosis-state">問題がまだ自分ごとになっていない。商品にも解決策にも関心がない。</div>
+          </div>
+          <div class="diagnosis-body">
+            <div class="diagnosis-row"><strong>冒頭で言うこと</strong>商品を出す前に、日常の違和感、価値観、ストーリー、意外な事実で注意を向ける。</div>
+            <div class="diagnosis-row"><strong>書き方の例</strong>「最近、何もないところでつまずく回数が増えていませんか？」のように、本人が見逃している小さなサインから入る。</div>
+            <div class="diagnosis-row"><strong>急がないこと</strong>冒頭で予約、料金、商品名を押すこと。まだ必要性が立ち上がっていないため、売り込みに見えると離脱されやすい。</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="card">
