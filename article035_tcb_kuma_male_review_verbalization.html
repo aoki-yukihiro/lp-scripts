@@ -189,9 +189,52 @@
       margin: 12px 0;
       border-radius: 0 8px 8px 0;
     }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .flow-step {
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 13px;
+      background: #f8fafc;
+    }
+    .flow-step span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+    .flow-step strong {
+      display: block;
+      color: #0f172a;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .flow-step p {
+      margin: 0;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
     @media (max-width: 900px) {
       .part { grid-template-columns: 1fr; }
-      .grid, .gallery, .comparison { grid-template-columns: 1fr; }
+      .grid, .gallery, .comparison, .flow, .two-col { grid-template-columns: 1fr; }
       table { min-width: 720px; }
     }
     @media (max-width: 600px) {
@@ -218,6 +261,7 @@
 
     <nav class="nav">
       <a href="#summary">結論</a>
+      <a href="#horizontal">横展開</a>
       <a href="#metrics">数値</a>
       <a href="#decision">制作判断</a>
       <a href="#references">参考元比較</a>
@@ -233,6 +277,77 @@
       <p><span class="tag blue">制作者の仮説</span>記事035は、市況に少ない「高年齢男性向け + フリップアンケ」の穴を狙い、Juno男性フリップアンケの構成をクマ再生注射に横展開した記事。</p>
       <p><span class="tag green">実績で支持</span>ただし数値上は、同じクマ男性商材の好調記事よりCPCが高い一方でMCVRは同水準に留まり、CVR/利益も弱い。レビュー会の「MCVRとCVRがもう一歩」という課題感は数値と整合する。</p>
       <p><span class="tag yellow">改善筋</span>最大の論点はQ3。「どのようにクマをなくしたいか」という問いは、解決策をすでに知っている読者には効くが、クマが美容医療で治せることを知らない高年齢男性には距離がある。先に「そんな方法があるのか」「切らずに短時間でいけるのか」という解決期待を作る必要がある。</p>
+    </section>
+
+    <section class="card" id="horizontal">
+      <h2>横展開の考え方</h2>
+      <p class="lead">横展開は、元記事の順番やデザインをそのまま移す作業ではない。元記事が読者に起こしている心理を読み取り、横展開先のターゲットでも同じ心理が起きるように伝え方を作り直す作業。</p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <span>1</span>
+          <strong>元記事の構成を見る</strong>
+          <p>FV、質問、教育、CTA、FAQなど、読者がどの順番で情報に触れるかを分解する。</p>
+        </div>
+        <div class="flow-step">
+          <span>2</span>
+          <strong>各パートの心理を読む</strong>
+          <p>そのパートで、不安、驚き、期待、安心、納得、行動意欲のどれを作っているかを言語化する。</p>
+        </div>
+        <div class="flow-step">
+          <span>3</span>
+          <strong>今回のターゲットに翻訳する</strong>
+          <p>悩みの深さ、普段の対策、商材理解、解決策との距離に合わせて、同じ心理が起きる表現へ変える。</p>
+        </div>
+        <div class="flow-step">
+          <span>4</span>
+          <strong>もっと強くできないか考える</strong>
+          <p>ただ再現するだけでなく、画像、言い方、順番、具体例でその心理をより強く感じさせる余地を探す。</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="note">
+          <h3>初心者がやりがちな横展開</h3>
+          <p>「JunoがQ1でこう聞いているから、今回も似た質問にする」「元記事が4問構成だから4問にする」のように、見えている形だけを移す。これだと、読者の前提が違う時に心理が再現されない。</p>
+        </div>
+        <div class="ok">
+          <h3>今回残したい横展開</h3>
+          <p>「JunoのQ3は、ダイエット経験者が知っている辛さを外して解決期待を作っている。では、クマ男性にも同じ期待を作るには、先に“美容医療で治せる・切らない・短時間”を見せる必要がある」と考える。</p>
+        </div>
+      </div>
+
+      <h3>今回の事例で見ると</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>見るポイント</th><th>元記事Junoで起きている心理</th><th>クマ男性で再現するなら</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Q1後の教育</td>
+              <td>「努力不足ではなく、脂肪細胞という原因があるのか」と驚く。</td>
+              <td>「老け見えは年齢のせいだけではなく、目元の膨らみや影に原因があるのか」と自分ごと化させる。</td>
+            </tr>
+            <tr>
+              <td>Q3の解決方法</td>
+              <td>食事制限や運動の辛さを知っている読者に、「それなしで痩せられるかも」と期待させる。</td>
+              <td>美容医療でクマが治せることを知らない読者に、先に「切らずに注射で相談できる」「短時間で済む」という発見を作る。</td>
+            </tr>
+            <tr>
+              <td>Q4の未来像</td>
+              <td>痩せた後の自分を想像させ、回答しながら欲求を強くする。</td>
+              <td>クマが消えた後の若々しさ、明るい印象、仕事や写真での見え方をビジュアルで選ばせる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn">
+        <span class="tag yellow">制作判断</span>横展開で最初に問うべきことは「何を真似るか」ではなく、「元記事のこのパートは読者をどんな心理状態にしているか」。その答えが出てから、今回のターゲットならどの画像・コピー・順番で同じ心理を起こせるかを決める。
+      </div>
     </section>
 
     <section class="card" id="metrics">
