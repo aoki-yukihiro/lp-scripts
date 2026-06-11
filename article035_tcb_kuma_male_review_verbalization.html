@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事035 TCBクマ再生注射男性 レビュー会 言語化</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    .page { max-width: 1120px; margin: 0 auto; padding: 24px 16px 56px; }
+    .hero {
+      background: #1e293b;
+      color: #fff;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+    .hero h1 { margin: 0; font-size: 27px; line-height: 1.35; letter-spacing: 0; }
+    .hero p { color: #cbd5e1; margin: 10px 0 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 12px;
+      background: rgba(245,247,251,.96);
+      border-bottom: 1px solid #dbe3ef;
+      margin-bottom: 18px;
+    }
+    .nav a {
+      white-space: nowrap;
+      color: #1d4ed8;
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 6px;
+      padding: 5px 9px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h2 {
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid #2563eb;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+    h3 { margin: 22px 0 8px; font-size: 17px; color: #0f172a; letter-spacing: 0; }
+    h4 { margin: 16px 0 6px; font-size: 14px; color: #334155; }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 22px; margin: 8px 0 14px; }
+    li { margin: 5px 0; }
+    .lead {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 13px 15px;
+      color: #334155;
+      margin: 12px 0;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #7c2d12;
+      margin: 12px 0;
+    }
+    .ok {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 15px;
+      color: #14532d;
+      margin: 12px 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+    .blue { background: #dbeafe; color: #1d4ed8; }
+    .green { background: #dcfce7; color: #15803d; }
+    .red { background: #fee2e2; color: #b91c1c; }
+    .gray { background: #f1f5f9; color: #475569; }
+    .yellow { background: #fef3c7; color: #92400e; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 780px; }
+    th, td { border-bottom: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f8fafc; color: #334155; }
+    tr:last-child td { border-bottom: none; }
+    .neg { color: #b91c1c; font-weight: 800; }
+    .pos { color: #15803d; font-weight: 800; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .metric { background: #fff; border: 1px solid #dbe3ef; border-radius: 8px; padding: 15px; }
+    .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 800; }
+    .metric strong { display: block; margin-top: 5px; font-size: 21px; color: #0f172a; }
+    .part {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .shot-stack { display: grid; gap: 12px; }
+    figure {
+      margin: 0;
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption {
+      padding: 8px 10px;
+      font-size: 12px;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      background: #fff;
+    }
+    .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+    .gallery figure { max-height: 460px; overflow: hidden; }
+    .comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .box-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .quote {
+      border-left: 4px solid #94a3b8;
+      padding: 10px 14px;
+      background: #f8fafc;
+      color: #334155;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    @media (max-width: 900px) {
+      .part { grid-template-columns: 1fr; }
+      .grid, .gallery, .comparison { grid-template-columns: 1fr; }
+      table { min-width: 720px; }
+    }
+    @media (max-width: 600px) {
+      .page { padding: 14px 10px 40px; }
+      .hero { padding: 22px 18px; }
+      .hero h1 { font-size: 22px; }
+      .card { padding: 17px; }
+      h2 { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>記事035 TCBクマ再生注射男性<br>レビュー会の言語化</h1>
+      <p>高年齢男性向けフリップアンケ記事を題材に、横展開の本質を「構成コピー」から「心理動線の再翻訳」へ引き上げるための部内共有メモ。</p>
+      <div class="meta">
+        <span class="pill">対象: ★035_TCB-クマ再生注射男性</span>
+        <span class="pill">レビュー会: 2026-06-09</span>
+        <span class="pill">参考元: Juno / ATOM</span>
+        <span class="pill">用途: 競合分析・自社記事分析・制作判断</span>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a href="#summary">結論</a>
+      <a href="#metrics">数値</a>
+      <a href="#decision">制作判断</a>
+      <a href="#references">参考元比較</a>
+      <a href="#parts">パート別</a>
+      <a href="#abstract">抽象化</a>
+      <a href="#checklist">チェックリスト</a>
+      <a href="#unknowns">未確認</a>
+    </nav>
+
+    <section class="card" id="summary">
+      <h2>結論</h2>
+      <p class="lead">今回の学びは、横展開とは「売れている記事の見た目や問いを移植すること」ではなく、「横展元が読者に起こしている感情を、今回のペルソナの悩みの深さ・解決策との距離に合わせて再翻訳すること」だと整理できる。</p>
+      <p><span class="tag blue">制作者の仮説</span>記事035は、市況に少ない「高年齢男性向け + フリップアンケ」の穴を狙い、Juno男性フリップアンケの構成をクマ再生注射に横展開した記事。</p>
+      <p><span class="tag green">実績で支持</span>ただし数値上は、同じクマ男性商材の好調記事よりCPCが高い一方でMCVRは同水準に留まり、CVR/利益も弱い。レビュー会の「MCVRとCVRがもう一歩」という課題感は数値と整合する。</p>
+      <p><span class="tag yellow">改善筋</span>最大の論点はQ3。「どのようにクマをなくしたいか」という問いは、解決策をすでに知っている読者には効くが、クマが美容医療で治せることを知らない高年齢男性には距離がある。先に「そんな方法があるのか」「切らずに短時間でいけるのか」という解決期待を作る必要がある。</p>
+    </section>
+
+    <section class="card" id="metrics">
+      <h2>実績と課題</h2>
+      <div class="grid">
+        <div class="metric"><span>対象記事利益</span><strong class="neg">-67,253円</strong></div>
+        <div class="metric"><span>対象記事CPC</span><strong>695円</strong></div>
+        <div class="metric"><span>対象記事MCVR</span><strong>16.28%</strong></div>
+      </div>
+      <h3>同じクマ男性商材の他記事Meta比較</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>記事</th><th>COST</th><th>MCV</th><th>CV</th><th>利益</th><th>ROAS</th><th>CPC</th><th>MCVR</th><th>CVR</th><th>実質CVR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>★009 クマ男性 通常</td><td>85,568円</td><td>10</td><td>5</td><td class="pos">33,182円</td><td>138.8%</td><td>719円</td><td>8.40%</td><td>50.00%</td><td>4.20%</td>
+            </tr>
+            <tr>
+              <td>★027 クマ男性 メガネ男</td><td>6,726,926円</td><td>1,886</td><td>340</td><td class="pos">1,438,324円</td><td>121.4%</td><td>592円</td><td>16.59%</td><td>18.03%</td><td>2.99%</td>
+            </tr>
+            <tr>
+              <td>★035 クマ男性 高齢向けフリップ</td><td>328,503円</td><td>77</td><td>11</td><td class="neg">-67,253円</td><td>79.5%</td><td>695円</td><td>16.28%</td><td>14.29%</td><td>2.33%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn"><span class="tag green">実績で支持</span>★035は★027よりCPCが高いがMCVRはほぼ同水準。ChatWork共有文の「CPCが同商材の記事よりも高いのにMCVRは同じ。本来ならCPCが高くなればMCVRも上がる傾向にあるため、今回はMCVRは低いと判断」と一致する。</div>
+
+      <h3>フリップアンケ他記事との比較</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>記事</th><th>リリース日</th><th>COST</th><th>MCV</th><th>CV</th><th>利益</th><th>ROAS</th><th>CPC</th><th>MCVR</th><th>CVR</th><th>実質CVR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>★035 クマ男性 高齢向けフリップ</td><td>5/29</td><td>340,114円</td><td>78</td><td>11</td><td class="neg">-78,864円</td><td>76.8%</td><td>698円</td><td>16.02%</td><td>14.10%</td><td>2.26%</td>
+            </tr>
+            <tr>
+              <td>★037 二重女性 綺麗めフリップ</td><td>5/25</td><td>739,239円</td><td>172</td><td>34</td><td class="pos">116,711円</td><td>115.8%</td><td>629円</td><td>14.64%</td><td>19.77%</td><td>2.89%</td>
+            </tr>
+            <tr>
+              <td>★009 鼻女性 綺麗めフリップ</td><td>5/22</td><td>1,168,674円</td><td>377</td><td>95</td><td class="pos">365,576円</td><td>131.3%</td><td>516円</td><td>16.64%</td><td>25.20%</td><td>4.19%</td>
+            </tr>
+            <tr>
+              <td>★024 ピコレーザー男性 綺麗めフリップ</td><td>5/22</td><td>1,366,442円</td><td>720</td><td>109</td><td class="pos">342,133円</td><td>125.0%</td><td>335円</td><td>17.68%</td><td>15.14%</td><td>2.68%</td>
+            </tr>
+            <tr>
+              <td>★030 クマ再生注射女性 綺麗めフリップ</td><td>5/19</td><td>9,057,034円</td><td>3,007</td><td>515</td><td class="pos">4,397,341円</td><td>148.6%</td><td>596円</td><td>19.77%</td><td>17.13%</td><td>3.39%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><span class="tag green">実績で支持</span>★035はフリップアンケ群の中でもCPCが高めで、MCVRは突出して高くない。記事内の興味形成、教育到達前の引き込み、Q3以降の心理接続に改善余地がある仮説を補強する。</p>
+    </section>
+
+    <section class="card" id="decision">
+      <h2>制作判断</h2>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>商材</th><td>TCB クマ取り再生注射。0円オファーを前面に出せる美容医療商材。</td></tr>
+            <tr><th>ターゲット</th><td>45〜65歳男性。ぷくっと膨らんだ脂肪、黒い影ができている目元に悩む層。</td></tr>
+            <tr><th>市場の穴</th><td>市場は20〜40代向け、通常記事、即CTA、直LP、ステップアンケが中心。高年齢男性向けフリップアンケは少ない。</td></tr>
+            <tr><th>構成参考</th><td>Juno男性フリップアンケ。補助としてATOM AGA。Junoのアンケート/教育の流れを横展開。</td></tr>
+            <tr><th>戦術判断</th><td>横展開 + 市況差別化。市況にない見せ方で男性向けフリップアンケの成功事例を作る狙い。</td></tr>
+            <tr><th>主要課題</th><td>横展元の構成は持ってこれているが、横展元のターゲット理解と今回ターゲットの解決策理解度の差分補正が浅い。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="quote">
+        駿太さんの要点: 人は感情/心理で動く。売れる記事は、読者をCVまで動かすための感情動線が敷けている記事。横展開は、売れている記事の心理動線を「今回のペルソナの場合、どう伝えれば再現できるか」を考えること。
+      </div>
+    </section>
+
+    <section class="card" id="references">
+      <h2>参考元との比較</h2>
+      <p class="lead">横展開で借りるべきなのは「問いの文言」ではなく、「その問いで読者に起こしている心理」。Junoはダイエットの辛さを既に知る層に、ATOMはAGAの悩みと解決方法に一定の理解がある層に向けて設計されている。</p>
+
+      <div class="comparison">
+        <figure>
+          <img src="assets/tcb-kuma-male-035-review/juno-00-fv-q1.png" alt="Juno FVとQ1">
+          <figcaption>Juno: 「何キロ痩せたいか」から入り、脂肪細胞の数という新情報へ接続する。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-male-035-review/atom-00-fv-q1.png" alt="ATOM FVとQ1">
+          <figcaption>ATOM: 「いま気になるのはどこ？」で薄毛部位を自己認識させる。</figcaption>
+        </figure>
+      </div>
+
+      <h3>Junoから借りる核</h3>
+      <div class="part">
+        <div>
+          <p><span class="tag blue">LP上の事実</span>Junoは、Q1「何キロ痩せたいですか？」、Q2「いつまでに痩せたいですか？」、Q3「どのように痩せたいですか？」、Q4「痩せたらどうなりたいですか？」という4段階。</p>
+          <p><span class="tag blue">LP上の事実</span>Q1後は「食べても太らないあの子...違いは脂肪細胞の数!?」という教育画像で、努力不足ではなく脂肪細胞という原因へ視点を移す。</p>
+          <p><span class="tag yellow">制作者の仮説</span>この役割は、驚きと解決期待の同時発生。読者に「自分ではどうにもならない原因だったのか」「原因が分かったなら改善できるかも」と思わせる。</p>
+          <p><span class="tag yellow">横展開判断</span>クマ男性へ持ってくるなら、「4種類あります」だけでは弱い。読者が知らない原因と、だから医療で改善できる期待まで翻訳する必要がある。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/juno-01-q1-education.png" alt="Juno Q1教育">
+            <figcaption>Q1後の教育。原因の不可抗力性と解決期待を作る。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/juno-03-q3-education.png" alt="Juno Q3教育">
+            <figcaption>Q3後の教育。「食事制限なし」「運動なし」など、既知の辛さを外す。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <h3>ATOMから借りる核</h3>
+      <div class="part">
+        <div>
+          <p><span class="tag blue">LP上の事実</span>ATOMは、Q1で気になる部位、Q2で悩みへの共感、Q3で解決方法、Q4で改善後の未来を聞く。</p>
+          <p><span class="tag yellow">制作者の仮説</span>男性向け商材では、ただ不安を煽るより、悩みの自己認識から「解決方法として何を重視するか」へ進ませる設計が参考になる。</p>
+          <p><span class="tag yellow">横展開判断</span>ただしクマ男性はAGAよりも「美容医療で治せる」という認知が遠い可能性がある。Q3の前に、解決策の存在とハードルの低さを強く出す方が合う。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/atom-01-q2-front.png" alt="ATOM Q2">
+            <figcaption>ATOM Q2。悩みの共感を先に置く。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/atom-02-q3-front.png" alt="ATOM Q3">
+            <figcaption>ATOM Q3。解決方法の選択へ進ませる。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="parts">
+      <h2>パートごとの詳細解説</h2>
+
+      <div class="part">
+        <div>
+          <h3>FV / Q1入口</h3>
+          <p><span class="tag blue">LP上の事実</span>FVは「たるみ」「膨らみ」「黒い影」を消し、ハリツヤのある若々しい印象を目指せる訴求。0円オファーも大きく表示。</p>
+          <p><span class="tag yellow">制作者の仮説</span>高年齢男性には、共感より先に「若々しい印象」「0円」「切らない」という解決期待を作る設計。</p>
+          <p><span class="tag gray">未確認</span>FV別の媒体差分はレビュー会で話題に出たが、今回HTMLでは1パターンのみ扱う。</p>
+        </div>
+        <figure>
+          <img src="assets/tcb-kuma-male-035-review/tcb-00-fv-q1-front.png" alt="対象記事 FVとQ1">
+          <figcaption>対象記事FVとQ1。高年齢男性向けに、若々しさと0円オファーを前面に出す。</figcaption>
+        </figure>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>Q1: 気になるクマの自己認識</h3>
+          <p><span class="tag blue">LP上の事実</span>Q1は「いま気になるのはどれですか？」として、パンパンに膨らんだ目元、三日月型のたるみ、黒い影ができたクマを選ばせる。</p>
+          <p><span class="tag blue">LP上の事実</span>回答後に「実は...クマには4つの種類があった!?」と、青クマ・黒クマ・茶クマ・複合クマを出す。</p>
+          <p><span class="tag yellow">レビュー指摘</span>「4つの種類があった」は分類情報としては分かるが、自分の症状と原因が直感的に結びつきにくい。たるみ、黒い影、膨らみなど症状名で伝えた方がよい可能性がある。</p>
+          <p><span class="tag yellow">横展開判断</span>Q1で残す核は「自分の状態に名前をつける」こと。変える表層は分類名ではなく、ターゲットが鏡を見て感じている症状表現。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-01-q1-card1.png" alt="Q1カード1">
+            <figcaption>Q1カード1。悩みの自己認識を作る。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-03-q1-card3.png" alt="Q1カード3">
+            <figcaption>Q1カード3。黒い影を気にする読者を拾う。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>Q2: いつまでになくしたいか</h3>
+          <p><span class="tag blue">LP上の事実</span>Q2は「いつまでにクマを無くせたら嬉しいですか？」として、3日以内、1週間以内、1ヶ月以内を選ばせる。</p>
+          <p><span class="tag yellow">レビュー指摘</span>イラストの差分が弱く、カードごとの意味差が視覚的に伝わりにくい。Juno元記事でもここは強い差分が少ないため、そのまま踏襲した印象。</p>
+          <p><span class="tag yellow">横展開判断</span>このパートの役割は期限の回答取得ではなく、即効性や近い未来への期待を作ること。カード画像は「予定」「人前に出る」「写真」「仕事」など、期限の理由が見える方がよい。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-04-q2-front.png" alt="Q2表面">
+            <figcaption>Q2表面。期限を選ばせることで、今すぐ解決したい心理へ寄せる。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-05-q2-card1.png" alt="Q2カード">
+            <figcaption>Q2カード例。レビューでは、画像差分の弱さが指摘された。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>Q3: どのようにクマをなくしたいか</h3>
+          <p><span class="tag blue">LP上の事実</span>Q3は「どのようにクマをなくせたら良いですか？」として、費用、痛みやダウンタイム、恥ずかしさなどの懸念をカード化している。</p>
+          <p><span class="tag yellow">レビュー指摘</span>ここが最重要論点。Junoの「どのように痩せたいですか？」は、読者がダイエットの大変さを知っているから効く。クマ男性は、美容医療でクマをなくせること自体を知らない可能性が高く、「どのように」と聞かれても前のめりになりにくい。</p>
+          <p><span class="tag yellow">改善仮説</span>「クマは切らずに注射1本で改善を目指せる」「最短10分」「スーツのまま帰れる」など、知らなかった解決策の存在とハードルの低さを先に見せる方が、JunoのQ3と同じ驚きを再現しやすい。</p>
+          <p><span class="tag yellow">横展開判断</span>残す核は「既存の不安や辛さを外して、解決策への魅力を作る」こと。変える表層は問いの言い方。解決策認知が低い層には、懸念を聞く前に解決策の発見を置く。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-08-q3-front.png" alt="Q3表面">
+            <figcaption>Q3表面。レビュー会で最も議論されたパート。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-10-q3-card2.png" alt="Q3カード2">
+            <figcaption>痛みやダウンタイムへの不安。男性向けでは仕事復帰・周囲バレの文脈に翻訳したい。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>Q4: どうなりたいか / 未来像</h3>
+          <p><span class="tag blue">LP上の事実</span>Q4は「クマを無くせたらどうなりたいですか？」として、昔のような若々しさ、明るい印象、同世代と差が出る印象を選ばせる。</p>
+          <p><span class="tag yellow">レビュー指摘</span>理想と一緒に添える画像は、悩んでいる状態よりも「選びたい未来像」にした方が直感的に答えやすい。明るい印象なら明るい印象の男性、若々しさなら若々しい男性、渋く年を重ねたいならイケオジを見せる。</p>
+          <p><span class="tag yellow">横展開判断</span>Q4で残す核は「なりたい未来を自分で選ばせる」こと。変える表層は、読者が拒否なく憧れられる男性像。年齢をラベル付けするより、本人が欲しい自己像に寄せる。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-12-q4-front.png" alt="Q4表面">
+            <figcaption>Q4表面。未来像を選ばせるパート。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-15-q4-card3.png" alt="Q4カード3">
+            <figcaption>「同世代と差が出る印象」。未来像としては分かるが、もっと憧れの絵に寄せられる。</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="part">
+        <div>
+          <h3>Q4後: 「中高年が行きやすいクリニック」</h3>
+          <p><span class="tag blue">LP上の事実</span>Q4後に「だから！様々なクマに対応」「中高年が行きやすいクリニック」と続き、施術前後の比較や動画風の見せ方を挟む。</p>
+          <p><span class="tag yellow">レビュー指摘</span>「中高年」というワードは、人によっては不快感や拒否感を煽る。若くいたい男性に対して「あなたは中高年です」と言っているように見える可能性がある。</p>
+          <p><span class="tag yellow">改善仮説</span>言い換えるなら「同年代の男性も相談しやすい」「仕事帰りにも相談しやすい」「男性も入りやすい」など、年齢ラベルではなく来院ハードルの低さに変換する。</p>
+        </div>
+        <div class="shot-stack">
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-16-after-answer.png" alt="回答後">
+            <figcaption>回答後。「様々なクマに対応」からQ4へ接続。</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/tcb-kuma-male-035-review/tcb-17-final-complete.png" alt="中高年が行きやすいクリニック">
+            <figcaption>中高年が行きやすいクリニック。レビュー会ではワード選びのリスクが指摘された。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="abstract">
+      <h2>抽象化: 次回制作で使う10個の判断ルール</h2>
+      <ol>
+        <li>横展元を読む時は、構成だけでなく「そのターゲットがなぜその問いで動くのか」まで読む。</li>
+        <li>各パートの役割を、驚き、期待、共感、確信、不安払拭、安心、行動のどれを作るパートかに分ける。</li>
+        <li>横展開先では、悩みの深さ、普段の対策、解決策認知、検討度を先に整理する。</li>
+        <li>解決策との距離が遠い層には、「どうしたいか」より「そんな方法があるのか」を先に作る。</li>
+        <li>男性向け美容医療では、共感より先に課題解決期待、効率、生活ベネフィット、来院ハードル低下を作る。</li>
+        <li>分類情報を置く時は、分類名ではなく、読者が鏡を見て感じている症状名へ翻訳する。</li>
+        <li>未来像パートでは、悩みの再提示よりも、選びたい未来が一瞬で分かる絵を出す。</li>
+        <li>高年齢ターゲットでも、本人に年齢ラベルを貼る表現は慎重に扱う。</li>
+        <li>「効いた理由」は実績・AB・到達率・CTR・CR別成果がある時だけ実績根拠とし、なければ仮説に分ける。</li>
+        <li>横展開は、構成抽出、心理抽出、ターゲット差分整理、再翻訳、感情増幅の順で行う。</li>
+      </ol>
+    </section>
+
+    <section class="card" id="checklist">
+      <h2>次回制作チェックリスト</h2>
+      <ul class="checklist">
+        <li><span class="box-label">□</span><span>横展元の構成だけでなく、横展元ターゲットの商材理解度まで書いたか。</span></li>
+        <li><span class="box-label">□</span><span>今回ターゲットの悩みの深さ、普段の対策、解決策との距離を整理したか。</span></li>
+        <li><span class="box-label">□</span><span>Q1で、読者の症状に名前をつけ、自分ごと化できているか。</span></li>
+        <li><span class="box-label">□</span><span>Q1後の教育が、分類情報で止まらず、驚きと解決期待につながっているか。</span></li>
+        <li><span class="box-label">□</span><span>Q3の問いが、解決策を知っている人向けになっていないか。</span></li>
+        <li><span class="box-label">□</span><span>解決策を知らない層には、先に「知らなかった解決策の存在」と「ハードルの低さ」を見せているか。</span></li>
+        <li><span class="box-label">□</span><span>未来像は悩み顔ではなく、読者が選びたい自己像になっているか。</span></li>
+        <li><span class="box-label">□</span><span>「中高年」など、本人が貼られたくないラベルを不用意に使っていないか。</span></li>
+        <li><span class="box-label">□</span><span>カードの表面と裏面で、読者心理が一段進む設計になっているか。</span></li>
+        <li><span class="box-label">□</span><span>数値で支持されていることと、制作者の仮説を混同していないか。</span></li>
+      </ul>
+    </section>
+
+    <section class="card" id="unknowns">
+      <h2>未確認 / 主根拠にしないこと</h2>
+      <ul>
+        <li><span class="tag gray">未確認</span>各カード単体でどれが効いたかは、カード別成果や到達率の根拠がないため断定しない。</li>
+        <li><span class="tag gray">未確認</span>FV別の媒体差分はレビュー会で話題に出たが、今回のHTMLでは1パターンのみ確認。</li>
+        <li><span class="tag gray">未確認</span>「AI素材で問題ない」「CTA色が効いた」などの要素効果は、今回の根拠からは断定しない。</li>
+        <li><span class="tag gray">対象外</span>フリップアンケ構造上、Beyondのステップ別離脱をそのままパート評価に使うことは避ける。</li>
+      </ul>
+      <div class="ok">このHTMLの主目的は、記事035の成否を単独で断定することではなく、レビュー会で出た「横展開の考え方」を次回以降の競合分析・自社記事分析・制作判断に使える形へ変換すること。</div>
+    </section>
+  </div>
+</body>
+</html>
