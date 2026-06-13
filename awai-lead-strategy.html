@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWAIリード戦略編 | 商品認知度と6つのリード戦略</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #5f6b7a;
+      --bg: #f5f5f5;
+      --paper: #ffffff;
+      --line: #d9e1ea;
+      --blue: #2563eb;
+      --blue-soft: #dbeafe;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --amber: #b45309;
+      --amber-soft: #fef3c7;
+      --violet: #6d28d9;
+      --violet-soft: #ede9fe;
+      --slate: #1e293b;
+      --slate-soft: #eef2f7;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.85;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, p, li, td, th, a, span, strong {
+      overflow-wrap: anywhere;
+      word-break: break-all;
+      line-break: anywhere;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px 16px 72px;
+    }
+
+    .doc-header {
+      background: var(--slate);
+      color: white;
+      padding: 32px;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+
+    .doc-header h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .lead {
+      margin: 16px 0 0;
+      color: #e2e8f0;
+      font-size: 16px;
+      max-width: 840px;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      color: #cbd5e1;
+      font-size: 13px;
+    }
+
+    .meta-pill {
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      padding: 4px 10px;
+      max-width: 100%;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .summary-card span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--blue);
+      line-height: 1.45;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      margin: 28px 0 10px;
+      line-height: 1.55;
+    }
+
+    .card h4 {
+      font-size: 15px;
+      margin: 22px 0 8px;
+      color: var(--slate);
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul, ol {
+      margin: 8px 0 16px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 4px 0;
+    }
+
+    .note {
+      background: var(--slate-soft);
+      border-left: 4px solid var(--slate);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 16px;
+      margin: 16px 0;
+      color: #263445;
+    }
+
+    .action-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--blue);
+      padding: 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 16px 0;
+    }
+
+    .warning-box {
+      background: var(--red-soft);
+      border-left: 4px solid var(--red);
+      padding: 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 16px 0;
+    }
+
+    .example-box {
+      background: #fff7ed;
+      border-left: 4px solid #ea580c;
+      padding: 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 16px 0;
+    }
+
+    .quote-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .quote-box .label,
+    .action-box .label,
+    .warning-box .label,
+    .example-box .label,
+    .note .label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    .warning-box .label { color: var(--red); }
+    .example-box .label { color: #c2410c; }
+    .note .label { color: var(--slate); }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+      margin: 12px 0 0;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      background: #f8fafc;
+      line-height: 1.5;
+    }
+
+    .toc a:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      background: white;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #273447;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+    .badge-blue { background: var(--blue-soft); color: #1d4ed8; }
+    .badge-green { background: var(--green-soft); color: #15803d; }
+    .badge-red { background: var(--red-soft); color: #b91c1c; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+    .badge-amber { background: var(--amber-soft); color: var(--amber); }
+    .badge-violet { background: var(--violet-soft); color: var(--violet); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+      padding: 14px;
+    }
+
+    .mini-card h3,
+    .mini-card h4 {
+      margin-top: 0;
+    }
+
+    .mini-card p:last-child,
+    .mini-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .axis-chart {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 18px 0;
+      background: white;
+    }
+
+    .axis-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 180px;
+      min-height: 64px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .axis-row:last-child { border-bottom: none; }
+
+    .axis-label {
+      padding: 12px;
+      font-weight: 800;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .axis-row:nth-child(1) .axis-label { background: #14532d; }
+    .axis-row:nth-child(2) .axis-label { background: #166534; }
+    .axis-row:nth-child(3) .axis-label { background: #1d4ed8; }
+    .axis-row:nth-child(4) .axis-label { background: #b45309; }
+    .axis-row:nth-child(5) .axis-label { background: #7f1d1d; }
+
+    .axis-body,
+    .axis-lead {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .axis-body { color: #273447; }
+    .axis-lead {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .pyramid {
+      margin: 22px auto;
+      max-width: 740px;
+    }
+
+    .pyramid-band {
+      min-height: 70px;
+      margin: 0 auto 8px;
+      border-radius: var(--radius);
+      color: white;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      align-items: center;
+      padding: 12px 18px;
+      gap: 14px;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
+    }
+
+    .pyramid-band strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .pyramid-band span {
+      display: block;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .pyramid-band.level-5 { width: 48%; background: #14532d; }
+    .pyramid-band.level-4 { width: 60%; background: #166534; }
+    .pyramid-band.level-3 { width: 74%; background: #1d4ed8; }
+    .pyramid-band.level-2 { width: 88%; background: #b45309; }
+    .pyramid-band.level-1 { width: 100%; background: #7f1d1d; }
+
+    .pyramid-caption {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .flow-step {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: #fbfdff;
+      min-height: 110px;
+      position: relative;
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+      color: var(--slate);
+    }
+
+    .flow-step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .formula {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: stretch;
+      margin: 14px 0;
+    }
+
+    .formula-part {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      background: #fbfdff;
+    }
+
+    .formula-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-weight: 800;
+      padding: 0 6px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 9px 0;
+      border-bottom: 1px solid #eef2f7;
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: var(--blue-soft);
+      border: 1px solid #93c5fd;
+      margin-top: 5px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 760px) {
+      .doc-header { padding: 24px 18px; }
+      .doc-header h1 {
+        font-size: 24px;
+        word-break: break-all;
+      }
+      .lead { font-size: 15px; }
+      .lead,
+      .summary-card span,
+      .card p,
+      .mini-card p,
+      .axis-body,
+      .axis-lead {
+        word-break: break-all;
+      }
+      .card { padding: 20px 16px; }
+      .summary-grid,
+      .two-col,
+      .three-col,
+      .toc,
+      .flow,
+      .pyramid-caption {
+        grid-template-columns: 1fr;
+      }
+      .axis-row {
+        grid-template-columns: 1fr;
+      }
+      .axis-label,
+      .axis-body,
+      .axis-lead {
+        min-height: auto;
+      }
+      .pyramid-band {
+        width: 100% !important;
+        grid-template-columns: 1fr;
+      }
+      .formula {
+        grid-template-columns: 1fr;
+      }
+      .formula-arrow {
+        min-height: 20px;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: none; padding: 0; }
+      .card, .summary-card, .doc-header { break-inside: avoid; }
+      .toc a { color: var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>AWAIリード戦略編<br>商品認知度と6つのリード戦略</h1>
+      <p class="lead">動画本編の音声とスライド映像を照合し、商品認知度の5段階を「どんな冒頭で入るべきか」まで実務用に整理した共有資料。記事LP、FV、広告リード、セールスレター冒頭の判断材料として使う。</p>
+      <div class="doc-meta">
+        <span class="meta-pill">対象: セールスライター / 記事LP制作者 / 広告運用者</span>
+        <span class="meta-pill">確認: 音声文字起こし + 映像OCR + 重要スライド目視</span>
+        <span class="meta-pill">作成日: 2026-06-13</span>
+      </div>
+    </header>
+
+    <section class="summary-grid" aria-label="概要">
+      <div class="summary-card">
+        <strong>5段階</strong>
+        <span>見込み客の問題認識、解決策認識、商品認識の深さで分類する。</span>
+      </div>
+      <div class="summary-card">
+        <strong>6リード</strong>
+        <span>オファー、プロミス、問題解決、秘密、予言・宣言、ストーリー。</span>
+      </div>
+      <div class="summary-card">
+        <strong>126分</strong>
+        <span>前半約70分、後半約56分。映像上のスライドも確認。</span>
+      </div>
+      <div class="summary-card">
+        <strong>結論</strong>
+        <span>商品からではなく、読者の認知度からリードを決める。</span>
+      </div>
+    </section>
+
+    <section class="card" id="purpose">
+      <h2>この資料の目的</h2>
+      <p>この資料の目的は、AWAIリード戦略編で解説されていた内容を、記事LPや広告制作で使える判断材料として整理すること。単に「商品認知度には5段階ある」と覚えるだけでは足りない。実務では、その5段階ごとに、冒頭で何を言い、何を言わず、どのリード戦略を選ぶかまで決める必要がある。</p>
+      <p>今回の講義では、リードを「ヘッドライン、サブヘッド、オープニングを含む冒頭の入り口」として扱っていた。セールスレター、LP、動画広告、DM、メール、記事LPでも、読者が続きを見るかどうかは、この入口でほぼ決まる。どれだけ商品が良くても、冒頭の心理状態の読み違えがあると、読者は本文まで到達しない。</p>
+      <div class="action-box">
+        <span class="label">この資料の使い方</span>
+        <p>FVやリードを書く前に、まず読者がどの認知度にいるかを仮置きする。そのうえで、下の対応表からリード戦略を選ぶ。認知度が高ければ直接的に、低ければ間接的に入る。</p>
+      </div>
+      <ul class="toc">
+        <li><a href="#core">1. 核となる考え方</a></li>
+        <li><a href="#pyramid">2. 商品認知度のピラミッド</a></li>
+        <li><a href="#five-levels">3. 5段階の詳細</a></li>
+        <li><a href="#lead-map">4. 5段階と6リードの対応</a></li>
+        <li><a href="#six-leads">5. 6つのリード戦略</a></li>
+        <li><a href="#examples">6. 具体例で理解する</a></li>
+        <li><a href="#lp">7. 記事LPへの応用</a></li>
+        <li><a href="#checklist">8. 制作チェックリスト</a></li>
+      </ul>
+    </section>
+
+    <section class="card" id="core">
+      <h2>核となる考え方</h2>
+      <p>リード戦略の中心にある考え方はシンプルで、「同じ商品でも、相手の心理状態が違えば、最初に言うべきことは変わる」ということ。講義冒頭では、見知らぬ相手を食事に誘う例が使われていた。すでに関係性があり、好意や信頼がある相手なら「今日食べに行かない？」で通じる。しかし、まったく知らない相手に同じ言い方をすれば警戒される。</p>
+      <p>広告も同じ。商品をすでに知っていて、買う寸前の人には、価格、保証、申込方法、限定性をすぐに出してよい。一方で、商品も問題も自覚していない人に、いきなり価格や商品名を出しても意味がない。相手はまだ「それが自分に関係ある」と思えていないから。</p>
+
+      <div class="three-col">
+        <div class="mini-card">
+          <h3>判断軸1<br>問題の自覚</h3>
+          <p>読者は、自分が何に困っているかを自覚しているか。悩みや願望が明確か、それとも違和感レベルか。</p>
+        </div>
+        <div class="mini-card">
+          <h3>判断軸2<br>解決策の知識</h3>
+          <p>その問題には解決方法があると知っているか。知っている場合、どんな手段を候補にしているか。</p>
+        </div>
+        <div class="mini-card">
+          <h3>判断軸3<br>商品の知識</h3>
+          <p>自社商品や競合商品を知っているか。スペックや違いを比較できるほど知っているか。</p>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <span class="label">制作時の最重要注意</span>
+        <p>商品認知度は、商品そのものに固定されるものではない。同じ商品でも、商材名検索で来た人、悩み検索で来た人、SNS広告で偶然見た人、既存顧客への再配信では認知度が変わる。だから「この商材は商品意識向け」と決めつけず、流入面ごとに仮説を置く。</p>
+      </div>
+    </section>
+
+    <section class="card" id="pyramid">
+      <h2>商品認知度のピラミッド</h2>
+      <p>講義では、見込み客を5つの意識レベルで捉えていた。上に行くほど商品や解決策をよく知っており、直接的な訴求が効く。下に行くほど人数は多くなるが、商品や解決策を知らないため、入口は間接的になる。</p>
+
+      <div class="pyramid" role="img" aria-label="商品認知度の5段階ピラミッド">
+        <div class="pyramid-band level-5">
+          <strong>5. 最大意識</strong>
+          <span>問題も解決策も商品も知っている。比較できる。あとは条件で選ぶ。</span>
+        </div>
+        <div class="pyramid-band level-4">
+          <strong>4. 商品意識</strong>
+          <span>商品は知っている。ただし、自分に合うか、信じてよいか迷っている。</span>
+        </div>
+        <div class="pyramid-band level-3">
+          <strong>3. 解決意識</strong>
+          <span>欲しい結果や解決したい悩みはある。だが商品は知らない。</span>
+        </div>
+        <div class="pyramid-band level-2">
+          <strong>2. 問題意識</strong>
+          <span>悩みや不安はある。だが解決方法があるとは思えていない。</span>
+        </div>
+        <div class="pyramid-band level-1">
+          <strong>1. 無自覚</strong>
+          <span>問題も願望も商品も明確ではない。価値観や感情から入る必要がある。</span>
+        </div>
+        <div class="pyramid-caption">
+          <div>上に行くほど、読者は比較・購入に近い。オファー、保証、価格、証拠が効きやすい。</div>
+          <div>下に行くほど、市場は広い。だが商品名から入ると届かないため、感情や物語で入口を作る。</div>
+        </div>
+      </div>
+
+      <div class="axis-chart">
+        <div class="axis-row">
+          <div class="axis-label">最大意識</div>
+          <div class="axis-body">問題、解決策、商品を知っていて、商品同士を比較できる。</div>
+          <div class="axis-lead">直接: オファー</div>
+        </div>
+        <div class="axis-row">
+          <div class="axis-label">商品意識</div>
+          <div class="axis-body">商品は知っているが、買う必要性や信頼性に迷いがある。</div>
+          <div class="axis-lead">やや直接: 証拠</div>
+        </div>
+        <div class="axis-row">
+          <div class="axis-label">解決意識</div>
+          <div class="axis-body">欲しい結果や解決したい悩みはあるが、商品を知らない。</div>
+          <div class="axis-lead">中間: 解決策</div>
+        </div>
+        <div class="axis-row">
+          <div class="axis-label">問題意識</div>
+          <div class="axis-body">問題や不安はあるが、解決策があるとは思えていない。</div>
+          <div class="axis-lead">間接: 悩み・希望</div>
+        </div>
+        <div class="axis-row">
+          <div class="axis-label">無自覚</div>
+          <div class="axis-body">問題や願望がまだ言葉になっていない。商品への関心もない。</div>
+          <div class="axis-lead">かなり間接: 物語</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="five-levels">
+      <h2>5段階の詳細</h2>
+
+      <h3>5. 最大意識</h3>
+      <p>最大意識の読者は、自分の問題や願望を自覚しており、その解決策も知っていて、さらに商品や競合商品まで知っている。商品同士のスペックや違いを比較できる状態にある。</p>
+      <p>講義では、おむつ、パソコン、ビデオカメラ、テレビ、シャンプーなどの例が出ていた。赤ちゃんのおむつであれば、問題は「漏れる、汚れる、処理が必要」。解決策は「おむつ」。商品は「パンパース、メリーズ、布おむつ、紙おむつ」など。ここまで分かっている人に、今さら「おむつとは何か」を教育する必要はない。</p>
+      <p>パソコンも同じ。多くの人は、仕事、資料作成、ネット、動画編集などのためにパソコンが必要だと知っている。MacとWindowsの違い、CPU、メモリ、ストレージ、端子、動画編集に必要な性能などを比較できる人もいる。この状態では、長い教育よりも、価格、保証、条件、納期、スペック、買いやすさが重要になる。</p>
+      <div class="example-box">
+        <span class="label">最大意識の入口例</span>
+        <p>「今だけ30%OFF」「30日間返金保証」「本日中の申込で特典追加」「新モデル発売」「予約枠残りわずか」「通常価格より安く買える理由」など、行動に直結する情報を先に出す。</p>
+      </div>
+      <div class="warning-box">
+        <span class="label">やってはいけないこと</span>
+        <p>すでに商品を知っている人に、問題提起や長いストーリーから入ること。読者は「それは知っている。条件を見せて」と思っているため、遠回りに見える。</p>
+      </div>
+
+      <h3>4. 商品意識</h3>
+      <p>商品意識の読者は、商品やカテゴリーを知っている。ただし「本当に自分に合うのか」「今買うべきなのか」「この商品は約束を果たせるのか」で止まっている。</p>
+      <p>この層には教育の必要性は低い。しかし、確信が足りない。だから必要なのは、商品の存在を知らせることではなく、選ぶ理由を作ること。証拠、実績、比較、保証、口コミ、専門家の推薦、他社との差分、USPを早めに見せる。</p>
+      <p>講義では、商品意識の人には「イメージを鮮明にする」「欲求を刺激する」「新しい証拠や仕組みを出す」ことが重要だと説明されていた。読者は欲求を持っているため、その欲求をより具体的にし、商品がそれを叶えると確信させる必要がある。</p>
+      <div class="example-box">
+        <span class="label">商品意識の入口例</span>
+        <p>「なぜ同じ悩みでも、この方法を選ぶ人が増えているのか」「他社との違いはここです」「この商品が約束を果たせる理由」「実際に選ばれている3つの理由」「失敗しない選び方」など。</p>
+      </div>
+      <div class="note">
+        <span class="label">実務メモ</span>
+        <p>美容医療、整体、サプリ、スクール、SaaSなどでは、商品意識層はかなり多い。知ってはいるが、怖い、怪しい、面倒、損したくない、自分に合うか不安、という状態で止まっていることが多い。</p>
+      </div>
+
+      <h3>3. 解決意識</h3>
+      <p>解決意識の読者は、欲しい結果や解決したい悩みを自覚している。しかし、どの商品や手段でそれが叶うかは知らない。講義では、ここから「教育が必要になってくる」と説明されていた。</p>
+      <p>この層にいきなり商品名や料金を出しても、読者はまだその商品を選ぶ準備ができていない。まず、読者の内面にある欲求をピンポイントで言語化する。「こうなりたいんですよね」「これに困っているんですよね」と、本人がぼんやり感じていた願望や悩みを明確にする。</p>
+      <p>講義で分かりやすかったのは、洗剤の例。読者は「洗濯物が少しくすんでいる」「なんとなく嫌だ」と感じているだけかもしれない。そこに「もっと白くしたいですよね」「買った時の白さに戻したいですよね」と言われると、欲求がはっきりする。欲求が言葉になって初めて、解決策の提案が入る。</p>
+      <div class="formula">
+        <div class="formula-part">
+          <strong>Beforeから入る</strong>
+          <p class="small">悩み、支障、モヤモヤ、不満を明確にする。</p>
+        </div>
+        <div class="formula-arrow">→</div>
+        <div class="formula-part">
+          <strong>解決策へ接続</strong>
+          <p class="small">その状態から抜ける方法として商品や手段を提示する。</p>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="formula-part">
+          <strong>Afterから入る</strong>
+          <p class="small">欲しい未来、理想の状態、手に入れたい感情を描く。</p>
+        </div>
+        <div class="formula-arrow">→</div>
+        <div class="formula-part">
+          <strong>解決策へ接続</strong>
+          <p class="small">その未来に近づく手段として商品やノウハウを提示する。</p>
+        </div>
+      </div>
+
+      <h3>2. 問題意識</h3>
+      <p>問題意識の読者は、自分に問題や不安があることは分かっている。ただし、それを解決する方法があるとは思えていない。解決意識との違いは、希望の有無。解決意識の人は「どこかに解決策があるはず」と思っているが、問題意識の人は「これはどうにもならないのではないか」と感じている。</p>
+      <p>この層には、まず痛みに共感し、悩みを正確に言語化する必要がある。講義では、心配、不安、フラストレーション、絶望、怒り、恐れを掘ることが重要だと説明されていた。特に、表面的な症状だけでなく、その奥にある感情的な痛みを見つけることが大事。</p>
+      <p>例えば「関節が痛い」は表面的な問題。その奥には、「このまま満足に生活できなくなるのでは」「家族に迷惑をかけるのでは」「昔のように動けなくなるのでは」という感情がある。この感情に触れられると、読者は「この人は分かっている」と感じる。</p>
+      <div class="warning-box">
+        <span class="label">問題意識での注意</span>
+        <p>問題を長く煽りすぎない。悩みを言語化したら、早めに希望を提示する。読者はすでに苦しいため、問題だけを延々と見せると離脱する。</p>
+      </div>
+
+      <h3>1. 無自覚</h3>
+      <p>無自覚の読者は、商品も解決策も欲しいと思っていない。さらに、自分に問題や願望があることも明確に認識していない。この層に対して、商品名、ブランド名、価格、機能ベネフィットを出しても刺さりにくい。</p>
+      <p>講義では、ウォークマン、iPod、ピアノ講座、タバコやファッションの例が使われていた。新しいカテゴリーでは、読者はそもそも「欲しい」と思っていない。だから機能を説明しても、「それで？」となる。必要なのは、セルフイメージ、理想像、感情、価値観、ストーリーへの接続。</p>
+      <p>iPod以前にもMP3プレイヤーは存在していたが、多くの人は「ポケットに音楽を入れて持ち歩きたい」と強く望んでいたわけではない。そこに、かっこよさ、自由さ、音楽と一緒に生きる感覚が提示されることで、欲求が立ち上がる。これは、機能よりもアイデンティティに訴える入口である。</p>
+      <div class="example-box">
+        <span class="label">無自覚の入口例</span>
+        <p>「その人が本当はどう見られたいか」「どんな自分になりたいか」「どんな不満を言葉にできず抱えているか」「誰を見返したいか」「どんな物語に自分を重ねるか」から入る。</p>
+      </div>
+    </section>
+
+    <section class="card" id="lead-map">
+      <h2>5段階と6つのリード戦略の対応</h2>
+      <p>講義の後半では、商品認知度に応じて使うリード戦略が整理されていた。大きく見ると、上の層には直接的なリード、下の層には間接的なリードが向く。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>認知度</th>
+              <th>読者の状態</th>
+              <th>主に向くリード</th>
+              <th>最初に出すもの</th>
+              <th>避けること</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-green">最大意識</span></td>
+              <td>商品や競合を知っており、比較・購入に近い。</td>
+              <td>オファーリード、プロミスリード</td>
+              <td>価格、保証、特典、期限、スペック、買う理由。</td>
+              <td>長い問題提起、基礎教育。</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">商品意識</span></td>
+              <td>商品は知っているが、まだ確信できない。</td>
+              <td>プロミスリード、USP訴求、証拠型リード</td>
+              <td>約束、証拠、比較、選ぶ理由、他社との差分。</td>
+              <td>商品名だけで売れる前提。</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">解決意識</span></td>
+              <td>欲しい結果はあるが、商品や具体手段は知らない。</td>
+              <td>問題解決リード、秘密リード</td>
+              <td>悩み/願望の言語化、解決策、希望。</td>
+              <td>いきなり商品名・料金・予約導線。</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-amber">問題意識</span></td>
+              <td>問題はあるが、解決できると思えていない。</td>
+              <td>問題解決リード、秘密リード、予言・宣言リード</td>
+              <td>痛み、不安、感情の代弁、解決可能性。</td>
+              <td>悩みを無視した商品説明。</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-red">無自覚</span></td>
+              <td>問題も商品も自分ごとになっていない。</td>
+              <td>ストーリーリード、予言・宣言リード、秘密リード</td>
+              <td>物語、価値観、意外な事実、アイデンティティ。</td>
+              <td>商品名、価格、機能ベネフィットから入ること。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <strong>無自覚</strong>
+          <span>商品を欲しいと思っていない。まず注意を取る。</span>
+        </div>
+        <div class="flow-step">
+          <strong>問題意識</strong>
+          <span>悩みを代弁し、解決可能性を見せる。</span>
+        </div>
+        <div class="flow-step">
+          <strong>解決意識</strong>
+          <span>欲しい未来や解決策を明確にする。</span>
+        </div>
+        <div class="flow-step">
+          <strong>商品意識</strong>
+          <span>商品が約束を果たせる証拠を出す。</span>
+        </div>
+        <div class="flow-step">
+          <strong>最大意識</strong>
+          <span>オファーと条件で行動を促す。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="six-leads">
+      <h2>6つのリード戦略</h2>
+
+      <h3>1. オファーリード</h3>
+      <p>オファーリードは、商品やカテゴリーをすでに理解している読者に対して、取引条件を前面に出すリード。割引、返金保証、特典、期限、新商品、スペック、無料体験、予約枠などを最初に見せる。</p>
+      <p>全てのプロモーションにはオファーが必要だが、通常はクロージングで出すことが多い。オファーリードでは、それを冒頭に持ってくる。なぜなら、読者はすでに商品価値を理解しており、「どの条件なら買うか」を見ているから。</p>
+      <div class="quote-box">
+        <span class="label">使う場面</span>
+        <p>最大意識。商品や競合を知っていて、購入判断に近い読者。リターゲティング、既存リスト、商材名検索、キャンペーン告知、既存顧客への再購入案内など。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>要素</th>
+              <th>内容</th>
+              <th>記事LPでの使い方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>価格</td>
+              <td>割引、初回価格、無料、返金保証。</td>
+              <td>FV直下やCTA周辺で明確に見せる。</td>
+            </tr>
+            <tr>
+              <td>条件</td>
+              <td>期限、人数、対象者、予約枠、特典条件。</td>
+              <td>「今動く理由」を作る。</td>
+            </tr>
+            <tr>
+              <td>理由</td>
+              <td>なぜその条件が可能なのか。</td>
+              <td>強いオファーの疑念を消す。</td>
+            </tr>
+            <tr>
+              <td>保証</td>
+              <td>返金、成果保証、満足保証、安全性。</td>
+              <td>行動前の損失不安を下げる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warning-box">
+        <span class="label">注意</span>
+        <p>最大意識でない読者にオファーリードを使うと、「売り込み」に見える。商品価値や必要性が立ち上がっていない状態では、割引や期限を出しても行動理由にならない。</p>
+      </div>
+
+      <h3>2. プロミスリード</h3>
+      <p>プロミスリードは、読者がすでに強く望んでいる結果を、冒頭で大胆に約束するリード。最大意識から商品意識に向いている。商品が顧客に何をしてくれるのか、使っている間にどんな気分にさせるのか、他人からどう見られるのかを約束する。</p>
+      <p>講義では、プロミスは機能だけではないと説明されていた。人は商品を使っている時、自分自身についてどう感じるか、他人からどう見られるかにも強く動かされる。特に、恥ずかしさ、優越感、安心感、承認、見返したい感情は強い。</p>
+      <div class="three-col">
+        <div class="mini-card">
+          <h4>機能の約束</h4>
+          <p>何ができるようになるか。何が改善されるか。どんな結果が出るか。</p>
+        </div>
+        <div class="mini-card">
+          <h4>気分の約束</h4>
+          <p>使っている時に、安心、誇り、自信、解放感、楽しさを感じられるか。</p>
+        </div>
+        <div class="mini-card">
+          <h4>対人評価の約束</h4>
+          <p>他人から、すごい、若い、仕事ができる、魅力的、信頼できると思われるか。</p>
+        </div>
+      </div>
+      <div class="action-box">
+        <span class="label">プロミスリードの作り方</span>
+        <p>最も大きなベネフィットから始める。すぐ約束する。見込み客の核となる欲求と、商品の核となるベネフィットをつなげる。新しく、独自に聞こえるようにする。大胆だが信じられるよう、証拠で支える。</p>
+      </div>
+
+      <h3>3. 問題解決リード</h3>
+      <p>問題解決リードは、悩み、心配、不安、痛みを言語化し、読者に「これは自分のことだ」と感じてもらうリード。解決意識、問題意識に向いている。読者が具体的な問題に悩んでいる時、特に強い。</p>
+      <p>講義では、問題解決リードでは「夜も眠れないほどの悩み」を探すことが強調されていた。夜寝る前に考えてしまうこと、誰にも言えないこと、自分だけではないかと思っていること、怒りや絶望や恥ずかしさが絡むことは強い入口になる。</p>
+      <div class="two-col">
+        <div class="mini-card">
+          <h4>表面的な問題</h4>
+          <p>手足が冷たい、眠れない、関節が痛い、売上が伸びない、広告反応が悪い、肌のシミが気になる。</p>
+        </div>
+        <div class="mini-card">
+          <h4>深い感情</h4>
+          <p>このまま悪化する不安、誰にも分かってもらえない孤独、失敗を見られる恥ずかしさ、将来後悔する恐れ。</p>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="formula-part">
+          <strong>これなら、それ</strong>
+          <p class="small">もしこの問題があるなら、この解決策を試してください。</p>
+        </div>
+        <div class="formula-arrow">→</div>
+        <div class="formula-part">
+          <strong>問題から解決へ</strong>
+          <p class="small">読者の状態を先に示し、その状態に合う解決策を出す。</p>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="formula-part">
+          <strong>反転</strong>
+          <p class="small">解決や約束を先に見せ、その後で問題へ戻る。</p>
+        </div>
+        <div class="formula-arrow">→</div>
+        <div class="formula-part">
+          <strong>解決から問題へ</strong>
+          <p class="small">希望を先に置くことで、問題訴求の重さを調整する。</p>
+        </div>
+      </div>
+      <div class="formula">
+        <div class="formula-part">
+          <strong>指示・説明</strong>
+          <p class="small">複雑な問題を、読者が一瞬で分かる形に言い換える。</p>
+        </div>
+        <div class="formula-arrow">→</div>
+        <div class="formula-part">
+          <strong>特徴を短く伝える</strong>
+          <p class="small">問題の正体や影響を、短く分かりやすく説明する。</p>
+        </div>
+      </div>
+      <div class="warning-box">
+        <span class="label">注意</span>
+        <p>問題だけを長く語らない。悩みを正確に代弁したら、どこかで適切な解決策や希望を提示する。痛みの共感と希望の提示はセットで扱う。</p>
+      </div>
+
+      <h3>4. 秘密リード</h3>
+      <p>秘密リードは、「うまくいっている人には、自分が知らない何かがあるはず」という本能的な好奇心を使うリード。成功者の秘密、美しさの秘密、若さの秘密、儲けの秘密、失敗しない秘密、専門家だけが知る秘密などが入口になる。</p>
+      <p>秘密リードのポイントは、秘密をすぐ明かさないこと。ヘッドラインやリードで秘密の存在を紹介するが、その正体はすぐには出さない。代わりに、話が進むにつれてヒントを増やし、その秘密がどんな結果をもたらすか、どう機能するかを見せていく。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>秘密の作り方</th>
+              <th>内容</th>
+              <th>使いどころ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>新造語</td>
+              <td>既存の仕組みや特徴に新しい名前を付ける。</td>
+              <td>商品に新しさや独自性を出したい時。</td>
+            </tr>
+            <tr>
+              <td>隠されていたもの</td>
+              <td>業界や専門家が語っていない情報として見せる。</td>
+              <td>不信、疑念、陰にある理由を扱う時。</td>
+            </tr>
+            <tr>
+              <td>発見されたばかり</td>
+              <td>新しい研究、調査、方法、仕組みとして見せる。</td>
+              <td>ニュース性や新規性を出したい時。</td>
+            </tr>
+            <tr>
+              <td>迷信や誤解を解く</td>
+              <td>読者が信じていた常識をひっくり返す。</td>
+              <td>既存の思い込みが行動を妨げている時。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="action-box">
+        <span class="label">秘密リードの原則</span>
+        <p>秘密にはベネフィットが必要。単に「秘密です」では弱い。読者が知りたいのは、秘密そのものではなく、その秘密がもたらす変化、利益、安心、回避できる損失である。</p>
+      </div>
+
+      <h3>5. 予言・宣言リード</h3>
+      <p>予言・宣言リードは、大胆な未来予測、強い主張、驚きの事実から入るリード。読者の通常の認識パターンを中断し、「なぜ？」「本当なら知りたい」と思わせる。</p>
+      <p>このリードは、無自覚寄りや問題意識の広い層に対して、注意を取る力がある。ただし、大胆な宣言だけでは危険。読者が信じられるように、すぐ強い根拠、証拠、データ、デモンストレーションを続ける必要がある。</p>
+      <div class="two-col">
+        <div class="mini-card">
+          <h4>向くテーマ</h4>
+          <p>市場の変化、制度変更、将来リスク、新しい常識、意外な成功法則、見落とされている事実。</p>
+        </div>
+        <div class="mini-card">
+          <h4>必要な支え</h4>
+          <p>データ、事例、専門家の見解、ニュース性、因果関係、読者の未来との関連性。</p>
+        </div>
+      </div>
+      <div class="warning-box">
+        <span class="label">注意</span>
+        <p>予言や宣言は大胆でなければ弱い。しかし、大胆すぎて根拠が薄いと怪しくなる。宣言の強さと証拠の強さはセットで設計する。</p>
+      </div>
+
+      <h3>6. ストーリーリード</h3>
+      <p>ストーリーリードは、人の物語から入るリード。人はストーリーに抵抗しにくく、記憶にも残りやすい。商品やオファーを直接出すと警戒される読者にも、ストーリーなら入りやすい。</p>
+      <p>講義では、ストーリーは最初から始めると退屈になりやすいと説明されていた。映画や小説と同じで、何かが起きている途中、事件の場面、感情が動いている瞬間から始める。詳細があるほどイメージは強くなるが、語りすぎてはいけない。目的はセールスなので、読者が引き込まれたら商品やベネフィットへ接続する。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>探す場所</th>
+              <th>何を見るか</th>
+              <th>記事LPでの使い方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>顧客の声</td>
+              <td>購入前の不安、変化の瞬間、予想外の使い方。</td>
+              <td>導入、共感、成功事例に使う。</td>
+            </tr>
+            <tr>
+              <td>開発者の話</td>
+              <td>なぜ作ったのか、何に怒ったのか、何を変えたかったのか。</td>
+              <td>商品紹介前の信頼形成に使う。</td>
+            </tr>
+            <tr>
+              <td>歴史・ニュース</td>
+              <td>市場変化、制度変更、過去の事件、業界の転換点。</td>
+              <td>予言・宣言リードと組み合わせる。</td>
+            </tr>
+            <tr>
+              <td>フィクション</td>
+              <td>読者の感情を表す象徴的な話。</td>
+              <td>無自覚層に自分ごと化させる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="action-box">
+        <span class="label">ストーリーリードの原則</span>
+        <p>中心は人。事実やデータだけでなく、人が何を感じ、何を恐れ、何に驚き、どう変わったかを見せる。ストーリーは感情の動きである。</p>
+      </div>
+    </section>
+
+    <section class="card" id="examples">
+      <h2>具体例で理解する</h2>
+
+      <h3>例1: 食事に誘う</h3>
+      <p>商品認知度は、人間関係に置き換えると理解しやすい。すでに好意や信頼がある相手なら、直接「食事に行こう」で成立する。これは最大意識や商品意識に近い。相手はあなたを知っていて、誘いの意味も分かっている。</p>
+      <p>しかし、まったく知らない相手に同じことを言えば、警戒される。この場合は、まず会話に入る理由、共通点、安心材料、相手が聞いてもよいと思う入口が必要。これは問題意識や無自覚に近い。商品説明より前に、聞く理由を作る必要がある。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>相手の状態</th>
+              <th>広告でいう認知度</th>
+              <th>通じる入口</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>すでに好意がある</td>
+              <td>最大意識</td>
+              <td>日時、場所、条件を言うだけでよい。</td>
+            </tr>
+            <tr>
+              <td>知っているが迷っている</td>
+              <td>商品意識</td>
+              <td>なぜ行くと良いか、安心材料を出す。</td>
+            </tr>
+            <tr>
+              <td>食事に行きたい気分はある</td>
+              <td>解決意識</td>
+              <td>楽しさ、気分転換、具体的な店を提案する。</td>
+            </tr>
+            <tr>
+              <td>疲れているが、食事の発想がない</td>
+              <td>問題意識</td>
+              <td>疲れや空腹、気分転換の必要性を代弁する。</td>
+            </tr>
+            <tr>
+              <td>そもそも関心がない</td>
+              <td>無自覚</td>
+              <td>会話、ストーリー、共通の興味から入る。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>例2: おむつ</h3>
+      <p>おむつは、最大意識を説明しやすい。親は「赤ちゃんが排泄する」「漏れると困る」「おむつが必要」という問題と解決策をすでに知っている。商品も複数知っている。パンパース、メリーズ、紙おむつ、布おむつなどを比較できる。</p>
+      <p>この状態で必要なのは、おむつの存在を教育することではない。価格、吸水性、肌へのやさしさ、サイズ、枚数、買いやすさ、ポイント還元などが判断材料になる。記事LPなら、長い共感よりも、条件と比較が必要。</p>
+
+      <h3>例3: パソコン・カメラ</h3>
+      <p>パソコンやカメラも、商品知識が高い人には最大意識に近い。動画撮影をする人なら、長時間撮影、オートフォーカス、レンズ、端子、熱停止、編集環境などを比較する。この人に「動画とは何か」「カメラでできること」から説明すると遠回りになる。</p>
+      <p>一方で、まったく動画制作を知らない人に高級カメラのスペックを見せても刺さらない。その人には「商品紹介動画を作れないせいで売上機会を逃している」「スマホだけでは伝わらない価値がある」など、問題や解決策の自覚から作る必要がある。</p>
+
+      <h3>例4: 洗剤</h3>
+      <p>洗剤の例では、解決意識の作り方が分かる。読者は「洗濯物がくすんでいる」「タオルがごわつく」ことに何となく不満を持っている。しかし、その不満を強い欲求として言語化できていない場合がある。</p>
+      <p>そこで「もっと白くしたい」「買った時のような清潔感に戻したい」「ふわふわのタオルにしたい」と言語化すると、読者は自分の欲求に気づく。その後で、洗剤の成分や仕組みを見せると、商品説明が意味を持つ。</p>
+
+      <h3>例5: 冷え・睡眠・関節</h3>
+      <p>問題解決リードでは、読者の具体的な悩みを言葉にする。手足が冷える人には「布団に入っても足だけ冷たい」。睡眠に悩む人には「寝つけない、夜中に起きる、朝早く目が覚める」。関節に悩む人には「痛い」だけでなく、「また自由に動ける生活を送りたい」「家族に迷惑をかけたくない」という感情がある。</p>
+      <p>表面的な症状だけでは弱い。症状が生活や自尊心や将来不安にどうつながっているかまで言語化すると、読者は強く反応する。</p>
+
+      <h3>例6: iPod・ファッション・ピアノ講座</h3>
+      <p>無自覚層に対しては、機能よりもアイデンティティや物語が強い。iPodは、単なる容量や音質だけではなく、音楽と一緒に自由に動くかっこよさを提示した。ファッションやアクセサリーも、機能的な必要性より「どう見られたいか」「どんな自分でいたいか」が強い。</p>
+      <p>ピアノ講座の有名な型では、読者は最初からピアノ講座を探していたわけではない。人に見返されたい、すごいと思われたい、場を変えたいという感情に反応し、その解決策としてピアノが接続される。このように、無自覚層には商品ではなく感情から入る。</p>
+    </section>
+
+    <section class="card" id="lp">
+      <h2>記事LPへの応用</h2>
+      <p>記事LPで重要なのは、FVや構成を先に決めないこと。まず流入面を見て、読者がどの認知度で入ってくるかを仮置きする。同じ商材でも、広告文、媒体、検索語、リターゲティングかどうかで入口は変わる。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>流入面</th>
+              <th>想定認知度</th>
+              <th>FV/リードの方向</th>
+              <th>教育量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>商材名検索</td>
+              <td>商品意識以上</td>
+              <td>比較、証拠、選ぶ理由、オファー。</td>
+              <td>少なめ。迷いと不安を潰す。</td>
+            </tr>
+            <tr>
+              <td>悩み検索</td>
+              <td>解決意識または問題意識</td>
+              <td>悩みの言語化、解決可能性、仕組み。</td>
+              <td>中程度。解決策と商品をつなぐ。</td>
+            </tr>
+            <tr>
+              <td>SNS広告</td>
+              <td>問題意識または無自覚寄り</td>
+              <td>違和感、感情、意外な事実、ストーリー。</td>
+              <td>多め。自分ごと化から必要。</td>
+            </tr>
+            <tr>
+              <td>リターゲティング</td>
+              <td>商品意識から最大意識</td>
+              <td>再提示、限定性、保証、申込導線。</td>
+              <td>少なめ。背中を押す。</td>
+            </tr>
+            <tr>
+              <td>既存顧客</td>
+              <td>最大意識に近い</td>
+              <td>新商品、追加特典、継続メリット。</td>
+              <td>少なめ。信頼前提で条件提示。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>美容医療の記事LPで考える場合</h3>
+      <p>美容医療では、商品意識と問題意識が混ざりやすい。施術名を知っている人もいれば、悩みだけを持っていて施術名を知らない人もいる。例えば「クマ取り」を知っている人には、症例、価格、安全性、ダウンタイム、失敗不安、医師の信頼性が重要になる。一方で「疲れて見える」「老けて見える」という悩みだけの人には、まず見た目の印象や日常の損失を言語化する必要がある。</p>
+      <p>同じクマ商材でも、商材名検索なら商品意識、SNSで偶然見た30代女性なら問題意識、男性向けなら共感よりも効率や生活ベネフィットを先に見せる、というように入口が変わる。</p>
+
+      <h3>スクール・講座系で考える場合</h3>
+      <p>セールスライティング講座のような商材では、「セールスライティングを学びたい」と分かっている人は商品意識に近い。この層には、実績、講師、カリキュラム、他講座との違い、サポート、成果事例が効く。</p>
+      <p>一方で「会社を辞めたい」「副業で稼ぎたい」「広告反応が悪い」「売れる文章が書けない」という人は、解決意識や問題意識にいる。その人にいきなり講座名を出すのではなく、悩みや願望を言語化し、その解決策としてセールスライティングを提示する。</p>
+
+      <h3>リード選択の実務フロー</h3>
+      <ol>
+        <li>流入面を確認する。広告文、媒体、検索語、既存顧客かどうかを見る。</li>
+        <li>読者の認知度を仮置きする。迷う場合は2パターン出す。</li>
+        <li>認知度に合わせて、6つのリードから入口を選ぶ。</li>
+        <li>読者がすでに知っていることを説明しすぎない。</li>
+        <li>読者がまだ知らないことを前提に売り込まない。</li>
+        <li>FVで止める理由、リードで読み進める理由、CTAで行動する理由を分ける。</li>
+      </ol>
+    </section>
+
+    <section class="card" id="copy-patterns">
+      <h2>認知度別の冒頭コピー設計</h2>
+      <p>ここでは、各認知度で「冒頭に何を言うか」を実務用に言語化する。これはそのまま使う文言ではなく、構造の型として使う。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>認知度</th>
+              <th>冒頭で言うこと</th>
+              <th>コピー構造</th>
+              <th>例の方向性</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>最大意識</td>
+              <td>今買う理由、条件、保証、限定性。</td>
+              <td>条件 → 理由 → 行動</td>
+              <td>「本日限定」「初回無料」「返金保証」「予約枠残り」</td>
+            </tr>
+            <tr>
+              <td>商品意識</td>
+              <td>なぜこの商品か、信じてよい理由。</td>
+              <td>約束 → 証拠 → 比較 → 行動</td>
+              <td>「選ばれる理由」「他と違う仕組み」「実績」</td>
+            </tr>
+            <tr>
+              <td>解決意識</td>
+              <td>欲しい未来や悩みを明確にし、解決策を示す。</td>
+              <td>願望/悩み → 解決策 → 商品</td>
+              <td>「こうなりたい」「この悩みを抜けたい」</td>
+            </tr>
+            <tr>
+              <td>問題意識</td>
+              <td>痛みと感情を代弁し、希望を見せる。</td>
+              <td>問題 → 共感 → 希望 → 解決策</td>
+              <td>「このまま続くのでは」「自分だけでは」</td>
+            </tr>
+            <tr>
+              <td>無自覚</td>
+              <td>価値観、意外な事実、物語、セルフイメージ。</td>
+              <td>場面/物語 → 感情 → 意味づけ → 解決策</td>
+              <td>「なぜあの人だけ」「ある日」「見返したい」</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="two-col">
+        <div class="mini-card">
+          <h3>高認知度の書き方</h3>
+          <p>読者はすでに知っている。だから、長い背景説明よりも、条件、証拠、比較、行動導線を早く見せる。文章は直接的でよい。</p>
+        </div>
+        <div class="mini-card">
+          <h3>低認知度の書き方</h3>
+          <p>読者はまだ自分ごと化していない。だから、商品を急がず、違和感、悩み、感情、物語、未来の変化から入る。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="checklist">
+      <h2>制作チェックリスト</h2>
+      <p>リードを書く前と、書いた後に確認する項目。記事LP、セールスレター、広告文、動画冒頭のすべてで使える。</p>
+      <ul class="checklist">
+        <li><span class="check"></span><span>この読者は、自分の問題や願望をどこまで自覚しているか。</span></li>
+        <li><span class="check"></span><span>この読者は、その問題に解決策があると知っているか。</span></li>
+        <li><span class="check"></span><span>この読者は、自社商品や競合商品を知っているか。</span></li>
+        <li><span class="check"></span><span>流入面ごとに認知度を分けて考えたか。</span></li>
+        <li><span class="check"></span><span>高認知度なのに、長い共感や基礎教育を置きすぎていないか。</span></li>
+        <li><span class="check"></span><span>低認知度なのに、いきなり商品名、価格、予約導線を出していないか。</span></li>
+        <li><span class="check"></span><span>オファーリードを使うなら、読者はすでに商品価値を理解しているか。</span></li>
+        <li><span class="check"></span><span>プロミスリードを使うなら、機能だけでなく気分と対人評価まで約束できているか。</span></li>
+        <li><span class="check"></span><span>問題解決リードを使うなら、表面的な悩みではなく感情的な痛みまで掘れているか。</span></li>
+        <li><span class="check"></span><span>秘密リードを使うなら、秘密にベネフィットがあり、すぐ明かしすぎていないか。</span></li>
+        <li><span class="check"></span><span>予言・宣言リードを使うなら、大胆な主張を支える証拠があるか。</span></li>
+        <li><span class="check"></span><span>ストーリーリードを使うなら、人の感情の動きが中心になっているか。</span></li>
+        <li><span class="check"></span><span>ストーリーを語りすぎて、商品やベネフィットへの接続が遅れていないか。</span></li>
+        <li><span class="check"></span><span>読者が本文を読み進める理由が、冒頭で作れているか。</span></li>
+        <li><span class="check"></span><span>CTA前に、行動を妨げる不安が潰れているか。</span></li>
+      </ul>
+    </section>
+
+    <section class="card" id="swipe">
+      <h2>Swipeの集め方</h2>
+      <p>講義の最後では、各リードタイプごとにSwipeを集める重要性が語られていた。単に「良い広告」を集めるのではなく、リードタイプ別に分類しておくと、制作時に使いやすい。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>保存カテゴリ</th>
+              <th>集めるもの</th>
+              <th>見る観点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>オファー</td>
+              <td>割引、返金保証、無料、限定特典、条件提示。</td>
+              <td>何が断れない条件になっているか。</td>
+            </tr>
+            <tr>
+              <td>プロミス</td>
+              <td>強い約束、大胆なベネフィット、USP。</td>
+              <td>何を約束し、どう信じさせているか。</td>
+            </tr>
+            <tr>
+              <td>問題解決</td>
+              <td>悩みの代弁、不安の言語化、希望提示。</td>
+              <td>どの感情を掘っているか。</td>
+            </tr>
+            <tr>
+              <td>秘密</td>
+              <td>新造語、隠された事実、専門家だけが知る話。</td>
+              <td>秘密をどこまで明かし、どこで引っ張っているか。</td>
+            </tr>
+            <tr>
+              <td>予言・宣言</td>
+              <td>市場予測、強い主張、ニュース性のある事実。</td>
+              <td>大胆さと根拠のバランス。</td>
+            </tr>
+            <tr>
+              <td>ストーリー</td>
+              <td>顧客の声、開発秘話、事件、失敗と成功。</td>
+              <td>どこから始め、どこで商品へ接続しているか。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="final-rule">
+      <h2>最終ルール</h2>
+      <p>この講義で一番実務に効くのは、「リードは商品から決めない。相手の認知度から決める」という一点。商品が同じでも、狙う読者が違えば正解の入口は変わる。</p>
+      <div class="action-box">
+        <span class="label">制作判断として覚えること</span>
+        <p>商品認知度が高いほど、商品、条件、オファー、証拠へ寄せる。商品認知度が低いほど、問題、感情、価値観、ストーリーへ寄せる。大量に売りたい時は下の層まで降りる必要があるが、その分、冒頭は間接的に設計する。</p>
+      </div>
+      <p>記事LPの制作では、まず流入面を見て「この読者はどの認知度か」を仮置きする。次に、オファー、プロミス、問題解決、秘密、予言・宣言、ストーリーのどの入口で入るかを選ぶ。そして最後に、証拠、教育、不安払拭、CTAの量を調整する。</p>
+      <p>この順番を守ると、FVやリードが「売り手が言いたいこと」ではなく、「読者が今なら聞けること」から始まる。そこが、読まれるリードと読まれないリードの差になる。</p>
+    </section>
+
+    <section class="card" id="source-note">
+      <h2>確認方法と注意</h2>
+      <p>この資料は、指定された動画2本をもとに作成した。音声文字起こしに加えて、30秒間隔で抽出したスライド映像をOCRし、重要スライドを目視確認した。講義内容の理解と実務転用を目的に再構成している。</p>
+      <p>ただし、動画内の発話やスライド文言を全文書き起こしたものではない。固有名詞、広告原文、細かな数字の完全一致が必要な場合は、元動画や元資料で再確認する。</p>
+      <p class="small">ローカル参照メモ: /Users/aokiyukihiro/Documents/Obsidian/MyVault/80_Outputs/awai-lead-strategy-video-notes.md</p>
+    </section>
+  </main>
+</body>
+</html>
