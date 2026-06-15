@@ -238,9 +238,43 @@
       gap: 12px;
       margin: 12px 0;
     }
+    .concept-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 14px;
+      align-items: start;
+      margin: 14px 0;
+    }
+    .focus-figure img {
+      max-height: 360px;
+      object-fit: cover;
+      object-position: bottom;
+    }
+    .mini-steps {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .mini-step {
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #fff;
+    }
+    .mini-step strong { color: #0f172a; }
+    .mini-step code {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #334155;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      font-weight: 800;
+    }
     @media (max-width: 900px) {
       .part { grid-template-columns: 1fr; }
-      .grid, .gallery, .comparison, .flow, .two-col { grid-template-columns: 1fr; }
+      .grid, .gallery, .comparison, .flow, .two-col, .concept-box { grid-template-columns: 1fr; }
       table { min-width: 720px; }
     }
     @media (max-width: 600px) {
@@ -321,6 +355,33 @@
         <h3>なぜ「元記事のターゲット分析」を先に挟むのか</h3>
         <p>同じ質問や教育でも、誰に向けているかで役割が変わる。レビュー会でも、元記事の構造は見えていた一方で「元記事が狙っているユーザー層」まで深掘りできていなかったことが論点になった。元記事ターゲットの悩みの温度感や商材理解度を置くと、そのパートがなぜ効くのかを読み違えにくくなる。</p>
         <p>今回で言えば、Junoの読者は「痩せるにはダイエットが必要」「食事制限や運動は大変」という前提を持っているから、Q3の「どのように痩せたいですか？」で解決期待が生まれる。クマ男性は「クマは治せるものだと思っていない」「美容医療で治せることを知らない」可能性があるため、同じ聞き方では心理が再現されにくい。</p>
+      </div>
+
+      <div class="concept-box">
+        <div>
+          <h3>抽象化は、浅く試して違えば一段上げる</h3>
+          <p class="lead">一言で言うと、一回読者の立場になって考えてみる。もしこの記事が読者に刺さっていたとしたら、この表現はどんな心理的な効果を持っていたのかを仮説化する。</p>
+          <p>横展開では、いきなり大きく抽象化しすぎると具体に戻せなくなる。まずは浅い抽象化で筋が通るかを試し、解決策につながらなそうなら、すぐに抽象度を一段上げて考え直す。この切り替えの速さが、横展開のスピードと精度を上げる。</p>
+
+          <div class="mini-steps">
+            <div class="mini-step">
+              <p><code>1段抽象化して具体に落とす</code></p>
+              <p><strong>食べても太らないあの子</strong> → 理由はわからないが同じ悩みを全く抱えていない存在 → セルフケアで肌がきれいな人</p>
+              <p><strong>違いは脂肪細胞の数</strong> → 上記の存在と読者の決定的な違い → 違いはニキビ跡があるかどうか / スキンケアの仕方</p>
+              <p><span class="tag yellow">判断</span>ここで「解決策に結びつかなそう」と感じたら、粘らず抽象度を上げる。</p>
+            </div>
+            <div class="mini-step">
+              <p><code>行き詰まったら振り出しに戻ってさらに抽象化</code></p>
+              <p><strong>食べても太らないあの子</strong> → 悩みを抱えている人が思わず共感できる1文 → スキンケアで全く肌が改善しない</p>
+              <p><strong>違いは脂肪細胞の数</strong> → 読者が知らない共感の正体、解決への期待感が生まれる新認知 → 肌表面にしか届かないから</p>
+              <p><span class="tag green">狙い</span>読者に「今までのやり方が間違いだったのか」「新しい方法なら変わるかも」と感じさせる。</p>
+            </div>
+          </div>
+        </div>
+        <figure class="focus-figure">
+          <img src="assets/tcb-kuma-male-035-review/juno-01-q1-education.png" alt="Juno Q1後の教育画像">
+          <figcaption>元記事が刺さっているなら、読者は「食べても太らないあの子」を具体的にイメージでき、「脂肪細胞の数」という新認知で解決期待を持つ。</figcaption>
+        </figure>
       </div>
 
       <div class="two-col">
@@ -619,7 +680,7 @@
     </section>
 
     <section class="card" id="abstract">
-      <h2>抽象化: 次回制作で使う10個の判断ルール</h2>
+      <h2>抽象化: 次回制作で使う判断ルール</h2>
       <ol>
         <li>横展元を読む時は、構成だけでなく「そのターゲットがなぜその問いで動くのか」まで読む。</li>
         <li>各パートの役割を、驚き、期待、共感、確信、不安払拭、安心、行動のどれを作るパートかに分ける。</li>
@@ -630,7 +691,8 @@
         <li>未来像パートでは、悩みの再提示よりも、選びたい未来が一瞬で分かる絵を出す。</li>
         <li>高年齢ターゲットでも、本人に年齢ラベルを貼る表現は慎重に扱う。</li>
         <li>「効いた理由」は実績・AB・到達率・CTR・CR別成果がある時だけ実績根拠とし、なければ仮説に分ける。</li>
-        <li>横展開は、構成抽出、心理抽出、ターゲット差分整理、再翻訳、感情増幅の順で行う。</li>
+        <li>横展開は、構成抽出、元記事ターゲット分析、心理抽出、ターゲット差分整理、再翻訳、感情増幅の順で行う。</li>
+        <li>浅い抽象化で具体化して筋が通らない時は、すぐに一段上の抽象へ戻して、解決期待につながる新認知を探す。</li>
       </ol>
     </section>
 
@@ -646,6 +708,8 @@
         <li><span class="box-label">□</span><span>未来像は悩み顔ではなく、読者が選びたい自己像になっているか。</span></li>
         <li><span class="box-label">□</span><span>「中高年」など、本人が貼られたくないラベルを不用意に使っていないか。</span></li>
         <li><span class="box-label">□</span><span>カードの表面と裏面で、読者心理が一段進む設計になっているか。</span></li>
+        <li><span class="box-label">□</span><span>浅い抽象化で具体化した時に、解決策やCVまで自然につながるか。</span></li>
+        <li><span class="box-label">□</span><span>つながらない場合、抽象度を一段上げて「読者が知らない共感の正体」や「解決期待が生まれる新認知」まで戻ったか。</span></li>
         <li><span class="box-label">□</span><span>数値で支持されていることと、制作者の仮説を混同していないか。</span></li>
       </ul>
     </section>
