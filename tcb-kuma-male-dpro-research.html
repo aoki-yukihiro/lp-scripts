@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCB男性向けクマ取り DPro競合リサーチ</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.7;
+      letter-spacing: 0;
+    }
+    .page { max-width: 1080px; margin: 0 auto; padding: 24px 16px 56px; }
+    .doc-header {
+      background: #1e293b;
+      color: white;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .doc-header h1 { margin: 0; font-size: 28px; line-height: 1.35; letter-spacing: 0; }
+    .doc-header p { margin: 10px 0 0; color: #cbd5e1; }
+    .doc-meta { color: #94a3b8; font-size: 14px; margin-top: 8px; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+    .badge-blue { background: #dbeafe; color: #1d4ed8; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-red { background: #fee2e2; color: #b91c1c; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 12px;
+      background: rgba(245, 245, 245, .96);
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 16px;
+    }
+    .nav a {
+      white-space: nowrap;
+      color: #1d4ed8;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 5px 9px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #2563eb;
+      letter-spacing: 0;
+    }
+    h3 { margin: 18px 0 8px; font-size: 16px; letter-spacing: 0; }
+    p { margin: 8px 0; }
+    ul, ol { margin: 8px 0 12px; padding-left: 22px; }
+    li { margin: 5px 0; }
+    a { color: #1d4ed8; overflow-wrap: anywhere; }
+    .lead {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+    .note {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+      margin: 12px 0;
+      color: #334155;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      border-radius: 0 8px 8px 0;
+      padding: 14px;
+      margin: 12px 0;
+      color: #7c2d12;
+    }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .metric {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 700; }
+    .metric strong { display: block; margin-top: 4px; font-size: 22px; color: #0f172a; }
+    .metric small { display: block; color: #64748b; font-size: 12px; margin-top: 3px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; margin: 12px 0; }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    th, td { border-bottom: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; vertical-align: top; font-size: 13px; }
+    th { background: #f8fafc; color: #334155; font-weight: 700; }
+    tr:last-child td { border-bottom: none; }
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .three-col { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .mini-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px;
+      background: #f8fafc;
+    }
+    .mini-card h3 { margin-top: 0; }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .flow-step {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+    .flow-step b {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: white;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .quote {
+      border-left: 4px solid #94a3b8;
+      background: #f8fafc;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      margin: 12px 0;
+      color: #334155;
+    }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .box-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92em;
+    }
+    @media (max-width: 760px) {
+      .page { padding: 16px 12px 40px; }
+      .doc-header { padding: 24px 18px; }
+      .doc-header h1 { font-size: 22px; }
+      .grid, .two-col, .three-col, .flow { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+      table { min-width: 760px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>TCB男性向けクマ取り DPro競合リサーチ</h1>
+      <p>直近1週間のCR・記事LPを、記事制作判断に使える形で整理したレポート。</p>
+      <div class="doc-meta">作成日: 2026-06-16 / 調査期間: 2026-06-09〜2026-06-15 / 取得元: DPro MCP</div>
+      <div class="meta-row">
+        <span class="badge badge-blue">TikTok</span>
+        <span class="badge badge-blue">Instagram</span>
+        <span class="badge badge-blue">Facebook</span>
+        <span class="badge badge-green">CR + 記事LP</span>
+        <span class="badge badge-gray">TCB広告含む</span>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a href="#summary">結論</a>
+      <a href="#scope">調査条件</a>
+      <a href="#cr">CR一覧</a>
+      <a href="#lp">記事LP比較</a>
+      <a href="#structure">構造分析</a>
+      <a href="#strategy">制作判断</a>
+      <a href="#checklist">チェックリスト</a>
+      <a href="#unknown">未確認</a>
+    </nav>
+
+    <section id="summary" class="card">
+      <h2>今回の結論</h2>
+      <p class="lead">今回の勝ち筋は、男性の「疲れて見える・老けて見える」悩みを、共感より先に「モテる・自信・第一印象」という生活ベネフィットへ接続し、0円オファーと痛み/ダウンタイムの軽さで無料相談への心理的ハードルを下げる構成です。</p>
+      <div class="grid">
+        <div class="metric">
+          <span>最大差分費用</span>
+          <strong>815,948</strong>
+          <small>TCB男性 / Facebook</small>
+        </div>
+        <div class="metric">
+          <span>最大差分再生</span>
+          <strong>287,830</strong>
+          <small>TCB男性 / Instagram</small>
+        </div>
+        <div class="metric">
+          <span>主要LP</span>
+          <strong>1本</strong>
+          <small>kumatorimens.com</small>
+        </div>
+        <div class="metric">
+          <span>主要媒体</span>
+          <strong>IG / FB</strong>
+          <small>TikTokは主要クマ取り商材IDで0件</small>
+        </div>
+      </div>
+      <div class="note">
+        <span class="badge badge-green">実績で支持</span>
+        DPro上では、TCB男性向けクマ取りLPへのCRが、今回取得したクマ取り周辺の中で最も大きい差分費用を持っていました。
+      </div>
+    </section>
+
+    <section id="scope" class="card">
+      <h2>調査条件と取得範囲</h2>
+      <div class="two-col">
+        <div class="mini-card">
+          <h3>検索・取得条件</h3>
+          <ul>
+            <li>対象商材: TCB 男性向けクマ取り</li>
+            <li>期間: 直近1週間、DPro集計基準で <code>to_date=2026-06-15</code> / <code>interval=7</code></li>
+            <li>媒体: TikTok、Instagram、Facebook</li>
+            <li>取得対象: CR、広告URL、動画URL、遷移先URL、記事LP本文/OCR</li>
+            <li>TCB広告: 含めて取得</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>確認できたこと</h3>
+          <ul>
+            <li><span class="badge badge-green">事実</span> 主要LP URLはすべてHTTP 200で到達確認済み</li>
+            <li><span class="badge badge-green">事実</span> DProのアプリIDは TikTok=2、Instagram=4、Facebook=5</li>
+            <li><span class="badge badge-yellow">未確認</span> AXAD上のCV、利益、記事別ROASは今回未照合</li>
+            <li><span class="badge badge-yellow">未確認</span> DProで本文/OCRが空のLPは、画面内容の詳細分析対象外</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="cr" class="card">
+      <h2>主要CR一覧</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>分類</th>
+              <th>媒体</th>
+              <th>差分費用</th>
+              <th>差分再生</th>
+              <th>広告主 / アカウント</th>
+              <th>冒頭訴求</th>
+              <th>URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-green">TCB男性</span></td>
+              <td>Facebook</td>
+              <td>815,948</td>
+              <td>203,987</td>
+              <td>医療法人社団メディカルフロンティア / Beautycoco</td>
+              <td>限定配信、切らないクマ取り。おじさんだけどクマ取りしたい男性、男性症例データ不足、地域限定、0円〜。</td>
+              <td><a href="https://www.facebook.com/100086977981076/videos/1842032526760626">広告</a><br><a href="https://assets.douga-pro.com/facebook/1842032526760626/video.mp4">動画</a><br><a href="https://kumatorimens.com/ab/x_qmEBimF_SVkjLw">記事LP</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-green">TCB男性</span></td>
+              <td>Instagram</td>
+              <td>575,660</td>
+              <td>287,830</td>
+              <td>医療法人社団メディカルフロンティア / Beautycoco</td>
+              <td>限定配信、切らないクマ取り。男性の悩みを直接指定し、予約枠・地域限定の希少性へ接続。</td>
+              <td><a href="https://www.instagram.com/p/DY3aPROABsV/">広告</a><br><a href="https://assets.douga-pro.com/instagram/DY3aPROABsV/video.mp4">動画</a><br><a href="https://kumatorimens.com/ab/x_qmEBimF_SVkjLw">記事LP</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">TCB汎用</span></td>
+              <td>Facebook</td>
+              <td>445,504</td>
+              <td>111,376</td>
+              <td>医療法人社団メディカルフロンティア / Ayako美容専門</td>
+              <td>この動画限定、0円〜でクマ取り。募集終了・枠残りわずか・クマ取り再生注射。</td>
+              <td><a href="https://www.facebook.com/61580001416533/videos/2371659680029992">広告</a><br><a href="https://assets.douga-pro.com/facebook/2371659680029992/video.mp4">動画</a><br><a href="https://sb-double-beauty.service-introduction.com/ab/kuma_nidole_fb_93">記事LP</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue">TCB汎用</span></td>
+              <td>Facebook</td>
+              <td>306,376</td>
+              <td>76,594</td>
+              <td>医療法人社団メディカルフロンティア / Ayako美容専門</td>
+              <td>目の下のブヨブヨ除去、0円〜、ラストチャンス。女性寄りの悩み・美容文脈。</td>
+              <td><a href="https://www.facebook.com/61580001416533/videos/1500320797602107">広告</a><br><a href="https://assets.douga-pro.com/facebook/122138313843000047/video.mp4">動画</a><br><a href="https://sb-double-beauty.service-introduction.com/ab/kuma_nidole_fb_92">記事LP</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-gray">競合</span></td>
+              <td>Instagram</td>
+              <td>5,324</td>
+              <td>0</td>
+              <td>更新中 / クマ取り名医 松田裕太</td>
+              <td>裏ハムラ法、ナノファット注入、構造的なくすみ、医師個人の技術訴求。</td>
+              <td><a href="https://www.instagram.com/p/DWvDA9_gD29/">広告</a><br><a href="https://assets.douga-pro.com/instagram/DWvDA9_gD29/thumbnail.webp">画像</a><br><a href="https://www.instagram.com/dr_matsuda/">遷移先</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-gray">競合</span></td>
+              <td>Instagram</td>
+              <td>2,000</td>
+              <td>1</td>
+              <td>更新中 / 共立美容外科・歯科 公式</td>
+              <td>10年後の美しさ、医師が直接カウンセリング、自然な仕上がり、老けた印象。</td>
+              <td><a href="https://www.instagram.com/p/DZg4q21M2ee/">広告</a><br><a href="https://assets.douga-pro.com/instagram/DZg4q21M2ee/thumbnail.webp">画像</a><br><a href="https://www.kyoritsu-biyo.com/lp/eye/under-eye-bags/kumatori-focus-full-adult_line/">記事LP</a></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-gray">競合</span></td>
+              <td>Instagram</td>
+              <td>0</td>
+              <td>0</td>
+              <td>医療法人社団Artists / L'or Clinic</td>
+              <td>口コミ件数1,890件、4.6高評価、高品質くま取り術、専門クリニック。</td>
+              <td><a href="https://www.facebook.com/ads/library/?id=899325782766036">広告</a><br><a href="https://assets.douga-pro.com/meta/899325782766036/video.mp4">動画</a><br><a href="https://lor-clinic-omotesando.com/eyes/kuma">LP</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn">
+        <span class="badge badge-yellow">注意</span>
+        TikTokは「TCB」キーワードでは大きい広告が出ましたが、今回のクマ取り主要商材IDでは0件でした。TikTok横断は別途テキスト検索・類似広告検索で深掘り余地があります。
+      </div>
+    </section>
+
+    <section id="lp" class="card">
+      <h2>記事LP比較</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>LP</th>
+              <th>取得状況</th>
+              <th>入口</th>
+              <th>信頼・不安払拭</th>
+              <th>制作で見る点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://kumatorimens.com/ab/x_qmEBimF_SVkjLw">TCB男性LP</a></td>
+              <td>本文/OCRあり</td>
+              <td>4問アンケート。「爆モテ目元」「女性にモテたい」「第一印象を良くしたい」など男性欲求へ直接接続。</td>
+              <td>大手クリニック、ダウンタイムほぼゼロ、痛みが少ない、満足度91%、0円〜注釈。</td>
+              <td>男性向けのCV前教育として最重要。共感よりベネフィット先行。</td>
+            </tr>
+            <tr>
+              <td><a href="https://sb-double-beauty.service-introduction.com/ab/kuma_nidole_fb_93">TCB汎用LP 93</a></td>
+              <td>本文/OCRあり</td>
+              <td>3問アンケート、特別クーポン、募集終了カウントダウン。</td>
+              <td>累計96万件以上、満足度91%、4成分、痛み・ダウンタイムほぼ無し。</td>
+              <td>オファー・希少性は参考。男性向けには欲求選択肢を差し替える。</td>
+            </tr>
+            <tr>
+              <td><a href="https://lor-clinic-omotesando.com/eyes/kuma">L'or Clinic</a></td>
+              <td>本文あり</td>
+              <td>専門クリニック、極小ダウンタイム、切らないクマ取り。</td>
+              <td>眼窩脂肪除去、ヒアルロン酸、脂肪注入、医師技術の必要性。</td>
+              <td>技術・専門性・価格以外の納得材料として参考。</td>
+            </tr>
+            <tr>
+              <td><a href="https://tclinic-official.com/lp/230906/">T Clinic</a></td>
+              <td>本文あり</td>
+              <td>黄金比、バレない、顔整形専門。</td>
+              <td>医師100名以上を指導、症例10,000件以上、Google口コミ4.8以上。</td>
+              <td>「バレない」「顔専門」「黄金比」は男性の来院不安に転用可能。</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.kyoritsu-biyo.com/lp/eye/under-eye-bags/kumatori-focus-full-adult_line/">共立美容外科</a></td>
+              <td>DPro本文/OCR空</td>
+              <td>CR上は、10年後の美しさ、自然な仕上がり、医師カウンセリング。</td>
+              <td>医師直接、個別提案、自然さ。</td>
+              <td>男性向けでは「長期的・自然・失敗回避」訴求の比較軸。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>TCB男性LPの構造分析</h2>
+      <div class="flow">
+        <div class="flow-step"><b>1</b><br>4問アンケートで自分ごと化</div>
+        <div class="flow-step"><b>2</b><br>モテ・自信・若見え・第一印象へ欲求化</div>
+        <div class="flow-step"><b>3</b><br>0円〜オファーで行動理由を作る</div>
+        <div class="flow-step"><b>4</b><br>痛み・DT・大手安心で不安払拭</div>
+        <div class="flow-step"><b>5</b><br>満足度91%と限定性でCTAへ押す</div>
+      </div>
+      <div class="quote">
+        LP上で確認できた選択肢: 「女性にモテたい」「見た目に自信を持ちたい」「若く見られたい」「第一印象を良くしたい」。
+      </div>
+      <div class="two-col">
+        <div class="mini-card">
+          <h3>残す核</h3>
+          <ul>
+            <li>男性の悩みを「美容」ではなく「印象改善」として扱う。</li>
+            <li>アンケート内で、悩みと欲求を両方選ばせる。</li>
+            <li>0円〜の直後に、注釈と条件を近くに置く。</li>
+            <li>CTA前に「痛み」「ダウンタイム」「大手安心」を置く。</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>変える表層</h3>
+          <ul>
+            <li>「爆モテ」は強いが、審査・案件温度に応じて清潔感/仕事印象へ弱める。</li>
+            <li>女性向けの「キレイ」「若返り」だけではなく、疲れ顔・信頼感・初対面印象へ翻訳する。</li>
+            <li>満足度や実績数値は注釈ごとセットで扱う。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="strategy" class="card">
+      <h2>記事制作への示唆</h2>
+      <div class="three-col">
+        <div class="mini-card">
+          <h3>FV案 A: 男性限定オファー型</h3>
+          <p><span class="badge badge-green">根拠</span> TCB男性CRで差分費用が最大。</p>
+          <p>「クマ取りしたい男性へ」「男性症例データ不足」「地域限定」「0円〜」を前面に出す。</p>
+        </div>
+        <div class="mini-card">
+          <h3>FV案 B: 第一印象改善型</h3>
+          <p><span class="badge badge-blue">仮説</span> 男性向けで軽すぎない表現。</p>
+          <p>「疲れて見える」「老けて見える」「初対面で損しているかも」から入る。</p>
+        </div>
+        <div class="mini-card">
+          <h3>FV案 C: バレない時短型</h3>
+          <p><span class="badge badge-gray">競合事実</span> T Clinicは「バレない」「黄金比」を使用。</p>
+          <p>「最短20分」「ダウンタイムほぼゼロ」「切らない」を来院ハードル低下に使う。</p>
+        </div>
+      </div>
+
+      <h3>次回制作ルール</h3>
+      <ol>
+        <li>男性向けクマ取りでは、共感より先に「疲れ顔・老け見え・第一印象の損失」を置く。</li>
+        <li>アンケートは、悩み確認だけでなく「解消後に得たい生活ベネフィット」を選ばせる。</li>
+        <li>価格訴求は単独で置かず、「男性症例データ不足」「地域限定」「予約枠」などの理由を添える。</li>
+        <li>0円〜訴求は、初回来院限定・1円以上契約で割引適用などの条件を近接表示する。</li>
+        <li>CTA前には、痛み・ダウンタイム・大手安心・施術時間を必ず払拭する。</li>
+        <li>医師権威型に寄せる場合は、男性LPの軽い欲求訴求と混ぜすぎず、失敗回避・自然さへ寄せる。</li>
+        <li>「若返る」「効果がすごい」などは、個人差・根拠・注釈がない場合は主張の中心にしない。</li>
+        <li>Instagram/Facebookで強いCRを先に見て、TikTokは別途類似広告検索で補完する。</li>
+      </ol>
+    </section>
+
+    <section id="checklist" class="card">
+      <h2>制作チェックリスト</h2>
+      <ul class="checklist">
+        <li><span class="box-label">□</span><span>FVで男性が自分ごと化できる悩みを提示しているか</span></li>
+        <li><span class="box-label">□</span><span>美容欲求ではなく、第一印象・清潔感・自信・仕事/恋愛上の損失へ翻訳しているか</span></li>
+        <li><span class="box-label">□</span><span>アンケート内に「悩み」と「解消後に得たいこと」の両方があるか</span></li>
+        <li><span class="box-label">□</span><span>0円〜訴求の条件・注釈を近くに表示しているか</span></li>
+        <li><span class="box-label">□</span><span>CTA前に痛み・ダウンタイム・施術時間の不安払拭があるか</span></li>
+        <li><span class="box-label">□</span><span>大手クリニック・全国展開・TVCMなどの安心材料を入れているか</span></li>
+        <li><span class="box-label">□</span><span>満足度や実績数値は、調査時期・母数・出典を併記しているか</span></li>
+        <li><span class="box-label">□</span><span>競合の医師権威型を使う場合、自然さ・失敗回避・バレにくさへ接続しているか</span></li>
+        <li><span class="box-label">□</span><span>「必ず」「誰でも」「治る」など、医療広告上危ない断定を避けているか</span></li>
+        <li><span class="box-label">□</span><span>女性向けの「キレイ」文脈をそのまま男性向けに持ち込んでいないか</span></li>
+      </ul>
+    </section>
+
+    <section id="unknown" class="card">
+      <h2>未確認事項・人間が判断すべきこと</h2>
+      <ul>
+        <li><span class="badge badge-yellow">未確認</span> AXAD上のCV、利益、ROAS。今回の主根拠はDProの差分費用・差分再生。</li>
+        <li><span class="badge badge-yellow">未確認</span> DPro本文/OCRが空だった共立、比較記事、Instagramプロフィールの詳細構造。</li>
+        <li><span class="badge badge-yellow">未確認</span> 「爆モテ」表現を今後の案件でどこまで使えるか。審査・ブランド温度で調整が必要。</li>
+        <li><span class="badge badge-red">注意</span> 「0円〜」「-5歳」「満足度91%」などは、注釈・条件・出典とセットで扱う。</li>
+      </ul>
+      <div class="note">
+        元データ: <code>dpro_tcb_kuma_tcb_advertiser_probe.json</code>、<code>dpro_tcb_kuma_competitor_probe.json</code>、<code>dpro_tcb_kuma_lp_texts.json</code>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
