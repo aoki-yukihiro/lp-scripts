@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品認知度 早見ガイド | 5段階と6つのリード戦略</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #64748b;
+      --bg: #f5f5f5;
+      --paper: #ffffff;
+      --line: #d9e2ec;
+      --blue: #2563eb;
+      --blue-soft: #dbeafe;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --amber: #b45309;
+      --amber-soft: #fef3c7;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --slate: #1e293b;
+      --slate-soft: #f1f5f9;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+
+    h1, h2, h3, p, li, td, th, span, strong, a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .hero {
+      background: var(--slate);
+      color: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      color: #dbeafe;
+      max-width: 820px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .meta span {
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .mini {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .mini span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h2 {
+      font-size: 19px;
+      line-height: 1.45;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    h3 {
+      font-size: 16px;
+      margin: 20px 0 8px;
+    }
+
+    p { margin: 0 0 10px; }
+
+    .lead-rule {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .rule-box {
+      border-radius: var(--radius);
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fbfdff;
+    }
+
+    .rule-box strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .b-green { background: var(--green-soft); color: #15803d; }
+    .b-blue { background: var(--blue-soft); color: #1d4ed8; }
+    .b-amber { background: var(--amber-soft); color: var(--amber); }
+    .b-red { background: var(--red-soft); color: #b91c1c; }
+    .b-gray { background: var(--slate-soft); color: #475569; }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--slate-soft);
+      font-weight: 800;
+      color: #273447;
+    }
+
+    .decision {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 14px 0 4px;
+    }
+
+    .step {
+      background: #fbfdff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      min-height: 112px;
+    }
+
+    .step strong {
+      display: block;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+      border-bottom: 1px solid #eef2f7;
+      padding: 10px 0;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .box {
+      width: 18px;
+      height: 18px;
+      border: 1px solid #93c5fd;
+      background: var(--blue-soft);
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+
+    .warn {
+      background: var(--red-soft);
+      border-left: 4px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .links a {
+      display: inline-block;
+      text-decoration: none;
+      color: #1d4ed8;
+      background: var(--blue-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 16px 12px 48px; }
+      .hero { padding: 22px 18px; }
+      .hero h1 { font-size: 25px; }
+      .grid, .lead-rule, .decision { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+      table { min-width: 760px; }
+      h1, h2, h3, p, li, td, th, span, strong, a { word-break: break-all; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>商品認知度 早見ガイド<br>5段階と6つのリード戦略</h1>
+      <p>記事LPや広告の冒頭で迷った時に、30秒で「誰に、何から話すか」を決めるための簡易版。詳しく学ぶ前に、まず現場で使う判断表として見る。</p>
+      <div class="meta">
+        <span>対象: アクシス記事部 / 広告運用者</span>
+        <span>用途: FV・リード・CTA・広告文の判断</span>
+        <span>版: すぐ見返す用</span>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="概要">
+      <div class="mini"><strong>1分</strong><span>読者の認知度を仮置きする</span></div>
+      <div class="mini"><strong>5段階</strong><span>認識なしから購買認識まで</span></div>
+      <div class="mini"><strong>6リード</strong><span>入口の型を選ぶ</span></div>
+      <div class="mini"><strong>明日から</strong><span>記事・広告の冒頭に反映する</span></div>
+    </section>
+
+    <section class="card">
+      <h2>まずこれだけ覚える</h2>
+      <p>商品認知度とは、読者が「自分の問題」「解決策」「商品」をどこまで知っているかを見る考え方。記事LPや広告では、売り手が言いたいことからではなく、読者がすでに認識していることから話し始める。</p>
+      <div class="lead-rule">
+        <div class="rule-box">
+          <strong>認知度が高い人</strong>
+          <p>商品や解決策を知っている。遠回りせず、商品名、証拠、比較、オファー、申込導線を早めに見せる。</p>
+        </div>
+        <div class="rule-box">
+          <strong>認知度が低い人</strong>
+          <p>まだ自分ごと化していない。商品名より先に、悩み、違和感、感情、ストーリー、意外な事実から入る。</p>
+        </div>
+      </div>
+      <div class="note">
+        <strong>実務ルール:</strong> 同じ商材でも、商材名検索、悩み検索、SNS広告、リターゲティングでは認知度が変わる。流入面ごとに仮置きする。
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5段階の早見表</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>段階</th>
+              <th>読者の状態</th>
+              <th>冒頭で言うこと</th>
+              <th>急がないこと</th>
+              <th>足の痺れなら</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge b-red">認識なし</span></td>
+              <td>商品も問題も、まだ自分ごとではない。</td>
+              <td>日常の違和感、価値観、ストーリー、意外な事実。</td>
+              <td>商品名、料金、予約導線。</td>
+              <td>足の痺れに気づいていない。健康でいたい程度。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-amber">問題認識</span></td>
+              <td>問題には気づいているが、解決策があるとは思えていない。</td>
+              <td>悩みの具体化、生活の支障、不安や恐れの代弁。</td>
+              <td>いきなり商品紹介へ飛ぶこと。</td>
+              <td>最近足が痺れる。不安だが、どうすればよいか分からない。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-blue">解決認識</span></td>
+              <td>欲しい結果はあるが、どの商品・手段で叶うか知らない。</td>
+              <td>欲しい未来、解決可能性、解決策の提示。</td>
+              <td>商品名や料金だけを出すこと。</td>
+              <td>足の痺れを治したい。普通に歩ける状態になりたい。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-green">商品認識</span></td>
+              <td>商品や候補は知っているが、自分に合うか迷っている。</td>
+              <td>選ぶ理由、証拠、比較、口コミ、保証、不安払拭。</td>
+              <td>商品名だけで売れる前提。</td>
+              <td>整体、病院、ストレッチ、サプリなど候補を知っている。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-green">購買認識</span></td>
+              <td>商品を知っていて欲しい。あとは買うだけ。</td>
+              <td>価格、申込方法、予約枠、期限、特典、保証。</td>
+              <td>長い共感や基礎教育。</td>
+              <td>A整体院で改善できそう。予約方法と空き枠を知りたい。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5段階と6つのリード戦略</h2>
+      <div class="decision">
+        <div class="step"><strong>認識なし</strong><span>ストーリー、予言・宣言、秘密。まず注意と自分ごと化。</span></div>
+        <div class="step"><strong>問題認識</strong><span>問題解決、秘密、予言・宣言。不安を言語化して希望へ。</span></div>
+        <div class="step"><strong>解決認識</strong><span>問題解決、秘密。欲しい未来と解決策をつなぐ。</span></div>
+        <div class="step"><strong>商品認識</strong><span>プロミス、USP、証拠。なぜこの商品かを示す。</span></div>
+        <div class="step"><strong>購買認識</strong><span>オファー、保証、限定性。行動に必要な情報を出す。</span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リード戦略</th>
+              <th>向く読者</th>
+              <th>入口の作り方</th>
+              <th>記事LPでの使い方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge b-green">オファー</span></td>
+              <td>購買認識、最大意識</td>
+              <td>価格、保証、特典、期限、条件を最初に見せる。</td>
+              <td>リタゲ、既存顧客、商材名検索、キャンペーン訴求。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-green">プロミス</span></td>
+              <td>商品認識、購買認識</td>
+              <td>読者が強く望む結果を大胆に約束し、証拠で支える。</td>
+              <td>「この商品で何が変わるか」をFVや導入で示す。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-blue">問題解決</span></td>
+              <td>問題認識、解決認識</td>
+              <td>悩み、心配、不安、生活の支障を言語化し、希望を出す。</td>
+              <td>悩み検索、SNSの潜在層向け記事、共感導入。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-blue">秘密</span></td>
+              <td>解決認識、問題認識、認識なし寄り</td>
+              <td>「知らない理由」「隠れた仕組み」「成功の裏側」で好奇心を作る。</td>
+              <td>原因説明、仕組み紹介、専門家/業界の知見。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-amber">予言・宣言</span></td>
+              <td>問題認識、認識なし寄り</td>
+              <td>大胆な主張、未来予測、意外な事実でパターンを止める。</td>
+              <td>市場変化、制度変更、今すぐ知るべき理由。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-red">ストーリー</span></td>
+              <td>認識なし、広い潜在層</td>
+              <td>人の感情の動きで抵抗を下げ、商品や約束へ接続する。</td>
+              <td>体験談、開発秘話、悩みのある1人の物語。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>流入面別にまず仮置きする</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>流入</th>
+              <th>多い認知度</th>
+              <th>冒頭の優先順位</th>
+              <th>運用/制作の見方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>商材名検索</td>
+              <td>商品認識〜購買認識</td>
+              <td>比較、実績、症例、価格、保証、申込導線。</td>
+              <td>「知っているが迷っている」不安を潰す。</td>
+            </tr>
+            <tr>
+              <td>悩み検索</td>
+              <td>問題認識〜解決認識</td>
+              <td>悩みの言語化、解決可能性、原因、解決策。</td>
+              <td>悩みと商品を早くつなぎすぎない。</td>
+            </tr>
+            <tr>
+              <td>SNS広告</td>
+              <td>認識なし〜問題認識</td>
+              <td>違和感、生活シーン、感情、ストーリー、意外な事実。</td>
+              <td>商品名より先に「自分の話だ」と思わせる。</td>
+            </tr>
+            <tr>
+              <td>リターゲティング</td>
+              <td>商品認識〜購買認識</td>
+              <td>再提示、限定性、保証、予約枠、口コミ。</td>
+              <td>教育よりも背中を押す材料を前に出す。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>美容医療記事でのざっくり使い分け</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>読者の言葉</th>
+              <th>認知度</th>
+              <th>FV/導入の方向</th>
+              <th>置くべき証拠</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>「なんか老けて見える」「疲れて見える」</td>
+              <td>問題認識</td>
+              <td>生活シーン、見た目の印象、感情の代弁。</td>
+              <td>原因、同じ悩みの多さ、解決可能性。</td>
+            </tr>
+            <tr>
+              <td>「クマをどうにかしたい」</td>
+              <td>解決認識</td>
+              <td>クマの種類、改善の選択肢、施術の位置づけ。</td>
+              <td>症例、仕組み、安全性。</td>
+            </tr>
+            <tr>
+              <td>「クマ取りが気になる」</td>
+              <td>商品認識</td>
+              <td>失敗不安、ダウンタイム、料金、院選び。</td>
+              <td>BA、口コミ、医師、保証、FAQ。</td>
+            </tr>
+            <tr>
+              <td>「この院で受けたいかも」</td>
+              <td>購買認識</td>
+              <td>予約枠、価格、キャンペーン、手順。</td>
+              <td>申込導線、限定性、最終不安払拭。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>制作前チェックリスト</h2>
+      <ul class="checklist">
+        <li><span class="box"></span><span>この読者は、商品名を知っているか。</span></li>
+        <li><span class="box"></span><span>この読者は、解決策があると知っているか。</span></li>
+        <li><span class="box"></span><span>この読者は、自分の問題を言葉にできているか。</span></li>
+        <li><span class="box"></span><span>流入面ごとに認知度を変えて考えたか。</span></li>
+        <li><span class="box"></span><span>高認知度に長い共感を置きすぎていないか。</span></li>
+        <li><span class="box"></span><span>低認知度にいきなり商品名や価格を出していないか。</span></li>
+        <li><span class="box"></span><span>選んだリード戦略が、読者の認知度と合っているか。</span></li>
+        <li><span class="box"></span><span>CTA前に、読者の不安や疑問が潰れているか。</span></li>
+      </ul>
+      <div class="warn">
+        <strong>迷った時:</strong> 1つに決めつけない。商品認識寄りと問題認識寄りなど、2パターンを出して、広告文・流入面・過去実績で判断する。
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>詳しく学ぶ</h2>
+      <p>初見メンバーに共有する時や、なぜこの分類になるのかまで説明したい時は、学習版を見る。</p>
+      <div class="links">
+        <a href="product-awareness-full-guide.html">ゼロからの学習版を見る</a>
+        <a href="product-awareness.html">旧: 商品認知度5段階</a>
+        <a href="awai-lead-strategy.html">旧: AWAIリード戦略編</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
