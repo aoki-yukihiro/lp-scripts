@@ -536,22 +536,53 @@
     </section>
 
     <section class="card">
-      <h2>5. 参考画面</h2>
-      <p class="note">参考LPと現AI記事をブラウザで確認した証跡。添付画像で示された後半パーツの内容は、上記ルールに文章化して反映済み。</p>
+      <h2>5. 入れたい要素が分かる参考スクショ</h2>
+      <p class="note">糸リフト女性記事から、今回AI記事にも入れたい後半パーツをセクション別に撮り直した。AI担当者は「画像の見た目を丸写し」ではなく、各パーツの役割をクマ取り女性記事へ置換する。</p>
       <div class="image-grid">
         <figure>
-          <img src="assets/tcb-kuma-female-ai-feedback/reference-itolift-flow-full.png" alt="糸リフト女性参考LPの確認スクリーンショット">
-          <figcaption>参考: ★013 TCB糸リフト女性。フリップアンケート型と後半教育の参照元。</figcaption>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-result-section-02.png" alt="糸リフト女性の予約手順画像">
+          <figcaption><strong>予約手順 1回目。</strong>最初のCTA前に、ページ下のボタンを押した後の流れを見せる。店舗/来店日時選択、名前/電話番号入力まで先に出すことで、CTA後の迷子化を減らす。</figcaption>
         </figure>
         <figure>
-          <img src="assets/tcb-kuma-female-ai-feedback/current-kuma-ai-flow-full.png" alt="現TCBクマ女性AI記事の確認スクリーンショット">
-          <figcaption>現AI記事。前半の質問導線はあるが、予約手順、ビフォーアフター、当日の流れが不足。</figcaption>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-more-section-02.png" alt="糸リフト女性のビフォーアフター画像">
+          <figcaption><strong>ビフォーアフター。</strong>悩みと理想を一気に可視化するパート。クマ女性では、記事部提供のクマ/目元系Before/After素材をここに当てる。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-more-section-04.png" alt="糸リフト女性の選ばれる理由画像">
+          <figcaption><strong>選ばれる理由。</strong>痛み/腫れ、仕上がり、追加料金、アフターケアなどを、画像と文章でメリット化している。クマ女性では「切らない」「クマタイプ相談」「同意のない追加料金なし」などへ置換する。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-more-section-05.png" alt="糸リフト女性の評価バッジ画像">
+          <figcaption><strong>実績/評価バッジ。</strong>多くの人に選ばれている社会的証明を作る。次回以降、「全国100院以上」は使わず「全国展開」に置き換える。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-more-section-06.png" alt="糸リフト女性の予約手順再掲画像">
+          <figcaption><strong>予約手順 2回目。</strong>後半でもう一度予約手順を出し、最終CTA前の行動不安を下げる。同じ手順でも、終盤では「今押しても大丈夫」の再確認になる。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/itolift-more-section-08.png" alt="糸リフト女性の当日の施術の流れ画像">
+          <figcaption><strong>当日の施術の流れ。</strong>受付、カウンセリング、施術のように、来院後の場面を画像付きで見せる。ユーザーが読む時に先の流れを想像しやすくなる。</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="card">
-      <h2>6. Codexへの実装指示として残す文</h2>
+      <h2>6. 現クマ女性AI記事の不足が分かるスクショ</h2>
+      <p class="note">長い全体スクショでは分かりづらいため、問題箇所だけに絞った。現状は結果CTAと教育パートはあるが、CTA前後の予約手順、Before/After、当日の流れが入っていない。</p>
+      <div class="image-grid">
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/current-kuma-result-cta.png" alt="現クマ女性AI記事の結果CTA周辺">
+          <figcaption><strong>現状の結果CTA周辺。</strong>回答報酬とCTAはあるが、ボタンを押した後に何を選択/入力するのかが見えない。ここに予約手順画像を追加したい。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/current-kuma-education-start.png" alt="現クマ女性AI記事の教育パート冒頭">
+          <figcaption><strong>現状の教育パート。</strong>悩みの印象説明はあるが、記事部提供Before/Afterや来院後の流れがない。もっと見る後の説得材料を増やす必要がある。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>7. Codexへの実装指示として残す文</h2>
       <div class="prompt">今後、TCB系のフリップアンケ記事を生成する時は、アンケート完了後のCTA前後に以下を標準で入れる。
 
 1. 結果/クーポン表示の直後、最初の外部CTAの前に「予約確認手順」画像を置く。
@@ -577,7 +608,7 @@
     </section>
 
     <section class="card">
-      <h2>7. 未確認/素材待ち</h2>
+      <h2>8. 未確認/素材待ち</h2>
       <ul class="checklist">
         <li>クマ女性用のビフォーアフター画像は記事部提供待ち。未提供ならAI生成で代替しない。</li>
         <li>予約手順画像内のLP画面は、クマ取り再生注射の実際の遷移先画面に合わせる。</li>
@@ -588,7 +619,7 @@
     </section>
 
     <section class="card">
-      <h2>8. 最終チェックリスト</h2>
+      <h2>9. 最終チェックリスト</h2>
       <ul class="checklist">
         <li>最初のCTA前に予約手順画像があるか。</li>
         <li>CTA後に何を選択/入力するかが、画像だけで分かるか。</li>
