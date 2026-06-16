@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCBクマ女性AI記事 フィードバック整理</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #647084;
+      --line: #e5e9f0;
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --accent: #e94b86;
+      --accent-soft: #fff0f6;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --amber: #b7791f;
+      --red: #dc2626;
+      --navy: #1e293b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.35;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #dbe4f0;
+      font-size: 15px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 4px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .badge.blue { background: #dbeafe; color: #1d4ed8; }
+    .badge.green { background: #dcfce7; color: #15803d; }
+    .badge.red { background: #fee2e2; color: #b91c1c; }
+    .badge.gray { background: #eef2f7; color: #475569; }
+    .badge.pink { background: #ffe3ef; color: #be185d; }
+    .badge.amber { background: #fef3c7; color: #92400e; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .card h3 {
+      margin: 18px 0 8px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .lead {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 12px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 8px 0 0;
+    }
+
+    .summary {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .summary strong {
+      color: #be185d;
+    }
+
+    ul, ol {
+      padding-left: 1.3em;
+      margin: 10px 0 0;
+    }
+
+    li { margin: 6px 0; }
+
+    .compact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .compact-list li {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #f1f5f9;
+      padding: 9px 0;
+    }
+
+    .compact-list li:last-child { border-bottom: 0; }
+
+    .label {
+      flex: 0 0 126px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .flow {
+      counter-reset: flow;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .flow-item::before {
+      counter-increment: flow;
+      content: counter(flow);
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .flow-item h3 {
+      margin: 0 0 3px;
+      font-size: 15px;
+    }
+
+    .flow-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .quote {
+      background: var(--accent-soft);
+      border: 1px solid #ffd1e3;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #7f1d44;
+      font-size: 14px;
+      margin: 12px 0;
+    }
+
+    .prompt {
+      white-space: pre-wrap;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    figure {
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      border-top: 1px solid var(--line);
+    }
+
+    .wireframe {
+      background: linear-gradient(180deg, #fff 0%, #fff7fb 100%);
+      border: 1px solid #ffd1e3;
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .wire-block {
+      background: #fff;
+      border: 1px solid #f9b8d0;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+
+    .wire-block strong {
+      color: #be185d;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .55em;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--green);
+      border-radius: 3px;
+      background: #f0fdf4;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 22px; }
+      .hero h1 { font-size: 22px; }
+      .grid, .image-grid { grid-template-columns: 1fr; }
+      .label { flex-basis: 104px; }
+      .page { padding-left: 12px; padding-right: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>TCBクマ女性AI記事 フィードバック整理</h1>
+      <p>目的: AXISのAI記事担当者にそのまま共有し、Codexが次回以降のフリップアンケ記事生成で同じ不足を出さないための制作ルールに変換する。</p>
+      <div class="meta">
+        <span class="badge pink">対象: TCBクマ女性AI記事</span>
+        <span class="badge blue">参照: ★013 TCB糸リフト女性</span>
+        <span class="badge green">用途: AI生成ルール</span>
+        <span class="badge gray">作成日: 2026-06-16</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <p class="lead">結論: 今回のAI記事は、アンケート前半の自己認識導線は作れているが、CTA前後の不安回収と来院後イメージが不足している。</p>
+      <p>次回からは、結果CTAの前後に <strong>予約手順</strong>、<strong>ビフォーアフター</strong>、<strong>選ばれる理由</strong>、<strong>実績/評価バッジ</strong>、<strong>当日の施術の流れ</strong> を標準パーツとして入れる。目的は、ユーザーが「押した後に何が起きるか分からない」「本当に変われるのか分からない」「来院後が怖い」という状態で離脱するのを防ぐこと。</p>
+    </section>
+
+    <section class="card">
+      <h2>1. 今回のフィードバックで確定したこと</h2>
+      <ul class="compact-list">
+        <li><span class="label">追加する核</span><span>CTA前に「予約確認手順」の画像を置く。ボタンを押した後の店舗選択、来店日時選択、名前/電話番号入力まで先に見せる。</span></li>
+        <li><span class="label">狙い</span><span>ユーザーがCTA後に迷子にならないよう、先に進んでも大丈夫だと思える安心感を作る。</span></li>
+        <li><span class="label">もっと見る後</span><span>記事部から提供されるビフォーアフター画像を入れる。悩みと理想を一気に可視化する。</span></li>
+        <li><span class="label">理由パート</span><span>「選ばれる理由」はバッジだけで終わらせず、メリットが伝わる文章として説明する。</span></li>
+        <li><span class="label">表現修正</span><span>「全国100院以上」は次回以降「全国展開」に置き換える。レギュレーション懸念があるため。</span></li>
+        <li><span class="label">終盤</span><span>予約手順画像をもう一度置き、最後に「当日の施術の流れ」を入れて来院後の具体イメージを作る。</span></li>
+      </ul>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>現AI記事の不足</h2>
+        <ul>
+          <li>結果オファー直後にCTAはあるが、その先で何を入力・選択するかの説明がない。</li>
+          <li>教育パートはクマの悩み/治療理解/料金理由まではあるが、実際の予約行動の不安を十分に潰していない。</li>
+          <li>ビフォーアフターがなく、悩みから理想への変化が視覚で一気に伝わらない。</li>
+          <li>選ばれる理由が「料金・追加料金・相談」寄りで、施術体験や来院ハードル低下まで広がっていない。</li>
+          <li>当日何が起こるかが見えないため、カウンセリング/施術への怖さが残る。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>参考記事から取り入れる核</h2>
+        <ul>
+          <li>CTA直前の予約手順画像で「押した後」を先に見せる。</li>
+          <li>ビフォーアフターで、症状と理想の差分を視覚的に理解させる。</li>
+          <li>選ばれる理由を4点ほどに分け、画像と文章で納得材料を出す。</li>
+          <li>実績/評価バッジで「多くの人が選んでいる」感覚を作る。</li>
+          <li>終盤で予約手順と当日の流れを再提示し、行動直前の不安を下げる。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. 次回以降の標準構成</h2>
+      <p class="note">前半のフリップアンケート後、結果オファーから下はこの順番を標準にする。商材によって一部差し替えるが、この5パーツは省略しない。</p>
+      <div class="flow">
+        <div class="flow-item">
+          <div>
+            <h3>回答完了/オファー提示</h3>
+            <p>アンケート回答への報酬として、クーポンや無料カウンセリング枠を見せる。注記は近接配置する。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>予約確認手順画像</h3>
+            <p>ページ下のボタンをタップ、店舗/来店日時を選択、名前/電話番号を入力、という流れを画像で見せる。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>最初のCTA</h3>
+            <p>手順画像の直後にCTAを置く。CTA単体で押させず、直前に「押した後の安心材料」を置く。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>もっと見る後: ビフォーアフター</h3>
+            <p>記事部提供素材を使い、悩みと理想を一気に可視化する。素材がない場合は勝手に捏造せず、素材待ちとして止める。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>選ばれる理由</h3>
+            <p>理由を文章で説明する。例: バレにくい、痛み/腫れ/ダウンタイムへの配慮、同意のない追加料金なし、アフターケアなど。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>実績/評価バッジ</h3>
+            <p>来院者数、満足度、リピート希望率、アクセスなどを表示。ただし「全国100院以上」は「全国展開」に置換する。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>予約確認手順を再掲</h3>
+            <p>終盤CTAの前にも予約手順をもう一度見せる。行動直前の迷いを減らす。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <div>
+            <h3>当日の施術の流れ</h3>
+            <p>受付、カウンセリング、施術の流れを画像付きで見せる。来院後の怖さを具体的に下げる。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. パーツ別の制作ルール</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>パーツ</th>
+              <th>入れる内容</th>
+              <th>読者心理への役割</th>
+              <th>Codexへのルール</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge pink">予約手順</span></td>
+              <td>CTAタップ、店舗/来店日時選択、名前/電話番号入力の3ステップ。</td>
+              <td>押した後の不明点をなくし、CTAへの心理的抵抗を下げる。</td>
+              <td>最初のCTA直前と終盤CTA前に入れる。動画でなく画像でも可。</td>
+            </tr>
+            <tr>
+              <td><span class="badge blue">ビフォーアフター</span></td>
+              <td>記事部提供の症例/イメージ素材。症状ごとにBefore/Afterを見せる。</td>
+              <td>「自分の悩みもこう変われるかも」と一瞬で理解させる。</td>
+              <td>素材が来ていない場合は生成で補完しない。素材待ちを明示する。</td>
+            </tr>
+            <tr>
+              <td><span class="badge green">選ばれる理由</span></td>
+              <td>4点程度の理由。施術特性、料金不安、体験不安、通いやすさを分ける。</td>
+              <td>メリットを短く整理し、CTA前の不安を論理で潰す。</td>
+              <td>画像だけでなく文章で説明する。商材ごとに理由は作り替える。</td>
+            </tr>
+            <tr>
+              <td><span class="badge amber">実績バッジ</span></td>
+              <td>来院者数、満足度、リピート希望率、アクセスなど。</td>
+              <td>「多くの人が選んでいる」社会的証明を作る。</td>
+              <td>数値/出典/期間が不明なら未確認扱い。「全国100院以上」は「全国展開」へ。</td>
+            </tr>
+            <tr>
+              <td><span class="badge gray">当日の流れ</span></td>
+              <td>受付、カウンセリング、施術。必要に応じてアフターケア。</td>
+              <td>来院後の見通しを作り、怖さと面倒さを下げる。</td>
+              <td>全記事で入れる。写真と短い安心コピーをセットにする。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. クマ女性記事に当てはめる場合</h2>
+      <div class="wireframe">
+        <div class="wire-block">
+          <strong>回答完了/0円オファー</strong>
+          既存の結果クーポン画像は残す。注記も近接で残す。
+        </div>
+        <div class="wire-block">
+          <strong>予約確認手順画像を追加</strong>
+          「ページ下のボタンをタップ -> ご希望の院/日時を選択 -> 名前と電話番号を入力」の3ステップにする。クマ取り再生注射用のLP画面に差し替える。
+        </div>
+        <div class="wire-block">
+          <strong>CTA</strong>
+          「無料カウンセリングで目元の状態を確認する」など、予約後に何をするかが分かる動詞にする。
+        </div>
+        <div class="wire-block">
+          <strong>もっと見る後: ビフォーアフター</strong>
+          クマ/目の下の影/茶色っぽいくすみなど、Q1の悩みと対応するBefore/Afterを置く。記事部素材待ち。
+        </div>
+        <div class="wire-block">
+          <strong>TCBが選ばれる理由</strong>
+          例: 切らない目元ケア、クマタイプに合わせて相談、同意のない追加料金なし、全国展開で通いやすい。痛み/腫れ表現は公式確認後。
+        </div>
+        <div class="wire-block">
+          <strong>予約手順再掲 -> 当日の流れ -> 最終CTA</strong>
+          受付、カウンセリング、施術の3枚構成で、来院後の不安を最後にもう一度下げる。
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5. 参考画面</h2>
+      <p class="note">参考LPと現AI記事をブラウザで確認した証跡。添付画像で示された後半パーツの内容は、上記ルールに文章化して反映済み。</p>
+      <div class="image-grid">
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/reference-itolift-flow-full.png" alt="糸リフト女性参考LPの確認スクリーンショット">
+          <figcaption>参考: ★013 TCB糸リフト女性。フリップアンケート型と後半教育の参照元。</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/tcb-kuma-female-ai-feedback/current-kuma-ai-flow-full.png" alt="現TCBクマ女性AI記事の確認スクリーンショット">
+          <figcaption>現AI記事。前半の質問導線はあるが、予約手順、ビフォーアフター、当日の流れが不足。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>6. Codexへの実装指示として残す文</h2>
+      <div class="prompt">今後、TCB系のフリップアンケ記事を生成する時は、アンケート完了後のCTA前後に以下を標準で入れる。
+
+1. 結果/クーポン表示の直後、最初の外部CTAの前に「予約確認手順」画像を置く。
+   - 手順は「ボタンをタップ」「店舗/来店日時を選択」「名前と電話番号を入力」の3段階で見せる。
+   - 目的は、CTA後にユーザーが迷子にならないようにし、押す前の不安を減らすこと。
+
+2. 「もっと見る」後には、記事部提供のビフォーアフター画像を入れる。
+   - 悩みと理想を一気に可視化するため。
+   - 素材が提供されていない場合、AIが勝手に症例画像を作らない。素材待ちとして明示する。
+
+3. 「選ばれる理由」は、バッジや見出しだけで終わらせない。
+   - 読者にとってのメリットが分かる文章を添える。
+   - 理由は商材ごとに変える。例: 切らない、痛み/腫れへの配慮、同意のない追加料金なし、アフターケア、通いやすさ。
+
+4. 実績/評価バッジを使う場合、数値・期間・出典を確認する。
+   - 「全国100院以上」はレギュレーション懸念があるため、今後は「全国展開」に置き換える。
+
+5. 終盤CTA前に予約確認手順を再掲し、その後に「当日の施術の流れ」を入れる。
+   - 受付、カウンセリング、施術の3ステップを画像と短い安心コピーで見せる。
+   - 目的は、来院後の怖さ・面倒さ・迷いを減らすこと。
+
+この一連の後半構成は、単なる装飾ではなく、CTA前後の不安回収、CV地点への移動補助、来院後イメージ形成のための必須パーツとして扱う。</div>
+    </section>
+
+    <section class="card">
+      <h2>7. 未確認/素材待ち</h2>
+      <ul class="checklist">
+        <li>クマ女性用のビフォーアフター画像は記事部提供待ち。未提供ならAI生成で代替しない。</li>
+        <li>予約手順画像内のLP画面は、クマ取り再生注射の実際の遷移先画面に合わせる。</li>
+        <li>「痛み・腫れほぼゼロ」などの強い表現は、公式表現/医療広告チェック後に採用する。</li>
+        <li>満足度、リピート希望率、来院者数などの実績バッジは、出典・期間・注釈を確認してから入れる。</li>
+        <li>「全国100院以上」は使わず、現時点では「全国展開」を標準表現にする。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>8. 最終チェックリスト</h2>
+      <ul class="checklist">
+        <li>最初のCTA前に予約手順画像があるか。</li>
+        <li>CTA後に何を選択/入力するかが、画像だけで分かるか。</li>
+        <li>もっと見る後にビフォーアフターがあり、Q1の悩みと対応しているか。</li>
+        <li>選ばれる理由が、画像だけでなく文章でメリット化されているか。</li>
+        <li>実績/評価バッジの数値・注釈・表現は確認済みか。</li>
+        <li>「全国100院以上」ではなく「全国展開」になっているか。</li>
+        <li>終盤に予約手順を再掲しているか。</li>
+        <li>当日の施術の流れで、受付/カウンセリング/施術が見えるか。</li>
+        <li>素材待ちのものをAIが勝手に埋めていないか。</li>
+      </ul>
+    </section>
+
+    <p class="footer">このHTMLは、青木さんの2026-06-16フィードバックをAI記事生成ルールに変換するための共有資料です。</p>
+  </main>
+</body>
+</html>
