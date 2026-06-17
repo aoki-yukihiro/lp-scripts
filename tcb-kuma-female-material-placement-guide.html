@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCBクマ女性AI記事 素材差し込み指示</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #64748b;
+      --line: #e5e7eb;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --pink: #e83e78;
+      --pink-soft: #fff1f6;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #b45309;
+      --slate: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      line-height: 1.75;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    a {
+      color: var(--blue);
+      word-break: break-all;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #3f1d35 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 26px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      color: #f8d9e6;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .meta div {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin: 16px 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      line-height: 1.45;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--pink);
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul,
+    ol {
+      margin: 10px 0;
+      padding-left: 1.4em;
+    }
+
+    li {
+      margin: 4px 0;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .notice {
+      border-left: 5px solid var(--red);
+      background: #fff7f7;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .notice strong {
+      color: var(--red);
+    }
+
+    .action {
+      border-left: 5px solid var(--blue);
+      background: #eff6ff;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .badge-delete {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .badge-insert {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-layout {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .badge-important {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: var(--slate);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .slot {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 14px 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .slot-head {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--pink-soft);
+      border-bottom: 1px solid #ffd4e2;
+    }
+
+    .slot-title {
+      font-weight: 800;
+      color: #9f1239;
+    }
+
+    .slot-body {
+      padding: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--slate);
+    }
+
+    .flow-list {
+      counter-reset: flow;
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+
+    .flow-list li {
+      position: relative;
+      padding: 12px 12px 12px 44px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .flow-list li::before {
+      counter-increment: flow;
+      content: counter(flow);
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 22px;
+    }
+
+    .quote-rule {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+
+    .red-text {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 16px 12px 44px;
+      }
+
+      .hero {
+        padding: 22px 18px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+
+      .meta,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 18px 14px;
+      }
+
+      .slot-head {
+        display: block;
+      }
+
+      table {
+        min-width: 720px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <h1>TCBクマ女性AI記事<br>素材差し込み・削除指示まとめ</h1>
+      <p>秀介さんがCodexへそのまま渡せるように、素材が入る位置、削除する位置、比率・配置・文言生成ルールを端折らず整理した引き継ぎ資料です。</p>
+      <div class="meta">
+        <div><strong>対象記事</strong><br><a href="https://axis-ad.github.io/flip-anketo-workflow/kuma-female-test/?deploy=e185e87bfe856a58155bd2343976ca8f7d0a90eb">kuma-female-test deploy版</a></div>
+        <div><strong>作成日</strong><br>2026-06-18</div>
+        <div><strong>対象者</strong><br>秀介さん / AI記事実装担当</div>
+        <div><strong>目的</strong><br>緑プレースホルダーへの素材差し込み・不要枠削除を迷わず反映する</div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>最初に必ず守ること</h2>
+      <div class="notice">
+        <strong>重要:</strong> 途中で一度、素材の対応位置が1つずれていたため、古い対応は破棄してください。このHTMLに書いてある「修正版の対応表」を正とします。
+      </div>
+      <ul>
+        <li>スクショ内の緑ベタ部分は、素材の差し込み位置または削除対象を示しています。</li>
+        <li>ただし、緑枠だから必ず素材を入れるわけではありません。「削除」と書いてある箇所は枠ごと削除してください。</li>
+        <li>Drive素材が見つからないものは、指定されたSquadBeyondの素材URLから探してください。</li>
+        <li>口コミ欄は、参考画像の内容をそのまま丸写しするのではなく、語られていること・語り口・赤字強調ルールを抽象化して作成してください。</li>
+        <li>当日の施術の流れは、カルーセルではなく縦並び表示を推奨します。理由も後述の通り必ず伝えてください。</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>全体対応表</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>記事内の位置</th>
+              <th>対応</th>
+              <th>素材URL / 参照元</th>
+              <th>絶対に伝える注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>「年代を教えてください」直後</td>
+              <td><span class="badge badge-delete">削除</span></td>
+              <td>なし</td>
+              <td>ここには何も画像・動画を入れない。緑プレースホルダーごと削除。</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>「一番気になるお悩みは？」直後</td>
+              <td><span class="badge badge-insert">動画挿入</span></td>
+              <td><a href="https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4">SquadBeyond MP4</a></td>
+              <td>「ドライブに見当たらないから、ビヨンドで下記のURLで探して」と伝える。</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>「今どう対処してますか？」直後</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=1t42dsaUGr4GbxGt7I7s6UHsqKW2ofQEL&amp;usp=drive_fs">Drive: 1t42dsa...</a></td>
+              <td>この質問直後の緑枠に入れる。前の質問へずらさない。</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>「魅力的だと思うポイントは？」直後</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=1seGP2wJ5pVtEU40oQQetHaoVJd1SFeVw&amp;usp=drive_fs">Drive: 1seGP2...</a></td>
+              <td>この質問直後の緑枠に入れる。アンケート内の最後の素材枠。</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>「院内の雰囲気も事前に確認」</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=1VQp_SYUsgeD4fkLe_QNAyModxyuGNsrJ&amp;usp=drive_fs">Drive: 1VQp...</a></td>
+              <td>教育パート内の院内雰囲気確認枠。緑の大きな枠に入れる。</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>症例 Before / After</td>
+              <td><span class="badge badge-insert">素材挿入</span><span class="badge badge-important">比率修正</span></td>
+              <td><a href="https://drive.google.com/open?id=1NuEcEPbDrKOneAcmm9srGtAWYYmZxv6j&amp;usp=drive_fs">Drive: 1NuEc...</a></td>
+              <td>現行記事の縦長比率はNG。参考画像内の症例写真枠の縦横比に直す。</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>「口コミで見る安心ポイント」</td>
+              <td><span class="badge badge-layout">口コミ生成</span></td>
+              <td>チャット添付の参考画像3枚</td>
+              <td>2枚目は内容・語り口・赤字傾向の参考。3枚目は配置だけ参考。内容は使わない。</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>当日の施術の流れ 受付</td>
+              <td><span class="badge badge-insert">動画挿入</span><span class="badge badge-important">切り出し</span></td>
+              <td><a href="https://drive.google.com/open?id=1FvXYZVdGJ1LRcM4ENpUkPx6Ys9AddT1o&amp;usp=drive_fs">Drive: 1FvXYZ...</a></td>
+              <td>動画内の店員と客が映っている部分のみ使用。周りの装飾は無視。</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>当日の施術の流れ カウンセリング</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=16Ty8PBNVDwa86bejtTXJ_0ccCRtHXNw-&amp;usp=drive_fs">Drive: 16Ty...</a></td>
+              <td>「医師がクマの状態を診断 無料でなんでも相談OK！」の枠に入れる。</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>当日の施術の流れ 料金・内容の確認</td>
+              <td><span class="badge badge-delete">削除</span></td>
+              <td>なし</td>
+              <td>この画像・スライドは不要。素材を入れず削除。空スライドを残さない。</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>当日の施術の流れ 施術</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=1tM5EhPh3kaQzqotmgvHtiiaaCJjaxjvd&amp;usp=drive_fs">Drive: 1tM5...</a></td>
+              <td>「目元に合わせて丁寧に対応」の枠に入れる。</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>当日の施術の流れ アフター説明・帰宅</td>
+              <td><span class="badge badge-insert">素材挿入</span></td>
+              <td><a href="https://drive.google.com/open?id=1y9skF_DAUHdfNwiRD7w7VHX_kPQgLFSi&amp;usp=drive_fs">Drive: 1y9sk...</a></td>
+              <td>「過ごし方まで確認」の枠に入れる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>パート別の詳細指示</h2>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">1. 年代選択直後</div>
+          <span class="badge badge-delete">削除</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 「年代を教えてください」の4択ボタン直後にある緑ベタ部分。</p>
+          <p><strong>対応:</strong> ここには何も画像・動画素材を入れません。緑プレースホルダーごと削除してください。</p>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            年代選択直後の緑色の空き枠は不要です。該当ブロックは画像を入れず、枠ごと削除してください。
+          </div>
+        </div>
+      </article>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">2. 「一番気になるお悩みは？」直後</div>
+          <span class="badge badge-insert">動画挿入</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 「青っぽいクマ / 影感のない印象へ / 茶色っぽいくすみ」の回答カード直後にある緑ベタ部分。</p>
+          <p><strong>対応:</strong> 下記のMP4動画を差し込みます。</p>
+          <p><a href="https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4">https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4</a></p>
+          <div class="notice">
+            <strong>必須文言:</strong> ドライブに見当たらないから、ビヨンドで下記のURLで探して。
+          </div>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            「一番気になるお悩みは？」直後の緑枠には、上記MP4素材を入れてください。ドライブに見当たらない素材なので、ビヨンドで上記URLを探して差し込んでください。
+          </div>
+        </div>
+      </article>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">3. 「今どう対処してますか？」直後</div>
+          <span class="badge badge-insert">素材挿入</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 「コンシーラーで隠す / 美容代を好きなことに / 寝ても取れない」の回答カード直後にある緑ベタ部分。</p>
+          <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1t42dsaUGr4GbxGt7I7s6UHsqKW2ofQEL&amp;usp=drive_fs">Google Drive素材</a></p>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            「今どう対処してますか？」直後の緑枠に、Drive素材 <code>1t42dsaUGr4GbxGt7I7s6UHsqKW2ofQEL</code> を差し込んでください。
+          </div>
+        </div>
+      </article>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">4. 「魅力的だと思うポイントは？」直後</div>
+          <span class="badge badge-insert">素材挿入</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 「クマ取り再生注射 / 幅広いクマに対応 / 痛み・腫れほぼなし」の回答カード直後にある緑ベタ部分。</p>
+          <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1seGP2wJ5pVtEU40oQQetHaoVJd1SFeVw&amp;usp=drive_fs">Google Drive素材</a></p>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            「魅力的だと思うポイントは？」直後の緑枠に、Drive素材 <code>1seGP2wJ5pVtEU40oQQetHaoVJd1SFeVw</code> を差し込んでください。
+          </div>
+        </div>
+      </article>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">5. 「院内の雰囲気も事前に確認」</div>
+          <span class="badge badge-insert">素材挿入</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 教育パート内の「院内の雰囲気も事前に確認 / はじめてでも相談しやすい空間へ」の大きな緑枠。</p>
+          <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1VQp_SYUsgeD4fkLe_QNAyModxyuGNsrJ&amp;usp=drive_fs">Google Drive素材</a></p>
+          <p><strong>意図:</strong> 施術前に院内の雰囲気が見えることで、初めての相談への不安を下げる。</p>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            「院内の雰囲気も事前に確認」内の緑枠に、Drive素材 <code>1VQp_SYUsgeD4fkLe_QNAyModxyuGNsrJ</code> を差し込んでください。
+          </div>
+        </div>
+      </article>
+
+      <article class="slot">
+        <div class="slot-head">
+          <div class="slot-title">6. 症例 Before / After</div>
+          <span class="badge badge-important">比率修正必須</span>
+        </div>
+        <div class="slot-body">
+          <p><strong>対象:</strong> 症例01 / 症例02 の Before / After 画像パート。</p>
+          <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1NuEcEPbDrKOneAcmm9srGtAWYYmZxv6j&amp;usp=drive_fs">Google Drive素材</a></p>
+          <div class="notice">
+            <strong>絶対に伝えること:</strong><br>
+            添付した記事の症例画像は縦長になっているため、そのまま使わないでください。上記Drive素材内、または添付参考画像の中にある症例画像枠の縦横比に合わせて修正してください。
+          </div>
+          <ul>
+            <li>現行記事の縦長の症例画像比率はNG。</li>
+            <li>参考画像の中の症例 Before / After 枠と同じ縦横比に直す。</li>
+            <li>上記Drive内の素材を使用する。</li>
+            <li>BeforeとAfterの写真が、見比べやすい横並びの症例枠になるよう調整する。</li>
+          </ul>
+          <div class="action">
+            <strong>秀介さん向け文:</strong><br>
+            症例画像パートでは、Drive素材 <code>1NuEcEPbDrKOneAcmm9srGtAWYYmZxv6j</code> を使用してください。その際、現行記事の縦長画像比率ではなく、添付参考画像内の症例Before / After枠と同じ縦横比になるように必ず調整してください。
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>口コミ欄の作成ルール</h2>
+      <p><strong>対象:</strong> 「口コミで見る安心ポイント」内の Voice 01 / 02 / 03 の緑枠。</p>
+      <div class="notice">
+        <strong>ここは素材をそのまま貼る作業ではありません。</strong><br>
+        2枚目の参考画像から口コミの中身・語り口・赤字強調の傾向を抽象化し、3枚目の参考画像から配置だけを借りて作成してください。
+      </div>
+
+      <div class="grid">
+        <div class="mini">
+          <strong>1枚目の役割</strong>
+          現在の記事の口コミ欄。Voice 01 / 02 / 03 の緑枠が、実装対象の空き枠。
+        </div>
+        <div class="mini">
+          <strong>2枚目の役割</strong>
+          口コミの内容・語り口・赤字強調の参考。何が語られているかを抽象化して次回以降にも活かす。
+        </div>
+        <div class="mini">
+          <strong>3枚目の役割</strong>
+          画像と文言の配置参考のみ。内容は参考にしない。
+        </div>
+        <div class="mini">
+          <strong>配置の型</strong>
+          左側に人物画像、右上に名前のイニシャル、その下に口コミ本文。
+        </div>
+      </div>
+
+      <h3>2枚目の口コミから読み取るべき内容</h3>
+      <ul>
+        <li>施術前は、腫れ・痛み・料金・年齢的な不安がある。</li>
+        <li>実際は思ったより安心できた、相談しやすかった。</li>
+        <li>周囲から「表情が明るくなった」「疲れて見えなくなった」と言われた。</li>
+        <li>鏡を見る、メイクする、外出する気持ちが前向きになった。</li>
+        <li>同じように悩む人にも、勇気を出してほしいという後押しで締めている。</li>
+      </ul>
+
+      <h3>口コミの語り口</h3>
+      <div class="quote-rule">
+        医療説明ではなく、本人の体験談っぽい一人称で書く。<br>
+        例: 「不安でした」「驚きました」「相談しやすかった」「鏡を見るのが楽しみ」「同じ世代にも知ってほしい」
+      </div>
+      <p>淡々と説明するより、最初の不安から施術後の安心・生活変化へ移る流れを作ってください。</p>
+
+      <h3>赤字強調の傾向</h3>
+      <p>赤字は、読者の不安が反転するポイントに使います。赤字にする候補は以下です。</p>
+      <ul>
+        <li><span class="red-text">不安が軽くなった事実</span></li>
+        <li><span class="red-text">先生やスタッフへの安心感</span></li>
+        <li><span class="red-text">周囲から言われた変化</span></li>
+        <li><span class="red-text">40代以降でも大丈夫という後押し</span></li>
+        <li><span class="red-text">勇気を出してよかったという結論</span></li>
+      </ul>
+
+      <h3>Voiceごとの内容設計</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Voice</th>
+              <th>記事内ラベル</th>
+              <th>書くべき内容</th>
+              <th>赤字にしやすい箇所</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Voice 01</td>
+              <td>料金の不安</td>
+              <td>料金が心配だったが、事前に内容を確認できて安心できた。同意のない追加料金がないことが不安払拭になった、という方向。</td>
+              <td>「事前に確認できて安心」「同意のない追加料金がなく安心」</td>
+            </tr>
+            <tr>
+              <td>Voice 02</td>
+              <td>相談のしやすさ</td>
+              <td>初めてで緊張していたが、先生・スタッフが親身で相談しやすかった。悩みを話しても否定されず安心した、という方向。</td>
+              <td>「先生が親身」「相談しやすかった」「不安を聞いてくれた」</td>
+            </tr>
+            <tr>
+              <td>Voice 03</td>
+              <td>施術後の印象</td>
+              <td>疲れて見える印象やクマ悩みが軽くなり、表情が明るく見えるようになった。鏡を見る、メイクする、外出する気持ちが前向きになった、という方向。</td>
+              <td>「表情が明るくなった」「疲れて見えにくくなった」「鏡を見るのが楽しみ」</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="action">
+        <strong>秀介さん向け文:</strong><br>
+        口コミ欄は、2枚目の参考画像から「不安があった読者が、相談・施術を通して安心し、見た目や気持ちの変化を感じた」という内容を抽象化して作成してください。3枚目は内容ではなく、左に人物画像、右上に名前のイニシャル、その下に本文を置くレイアウト参考として使ってください。赤字は、不安が反転する箇所、周囲から言われた変化、先生やスタッフへの安心感、同世代への後押しに使ってください。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>当日の施術の流れ</h2>
+      <div class="notice">
+        <strong>絶対に伝えること:</strong><br>
+        これまで1枚ずつ送った施術フロー素材は、カルーセルのように横送りで見せるより、縦に並べて縦長の流れとして見せるのがおすすめです。
+      </div>
+      <p><strong>理由:</strong> フリップアンケート記事は、読者が下へスクロールしながら読み進める記事構造です。そのため、施術フローも縦に並べた方が、読者が自然にスクロールで理解できて読みやすくなります。</p>
+      <p>現在のような左右矢印つきカルーセルでは、読者が横操作をしないと続きが見えません。縦並びにすることで、記事本来の読了動線に沿って「受付 -> カウンセリング -> 施術 -> アフター説明・帰宅」を一気に確認できます。</p>
+
+      <h3>縦並びに入れる素材</h3>
+      <ol class="flow-list">
+        <li>
+          <strong>受付 / 優しいスタッフがお出迎え</strong><br>
+          素材: <a href="https://drive.google.com/open?id=1FvXYZVdGJ1LRcM4ENpUkPx6Ys9AddT1o&amp;usp=drive_fs">Drive素材</a><br>
+          注意: 動画内の店員とお客さんが映っている部分のみ使用。周りの装飾は無視。
+        </li>
+        <li>
+          <strong>カウンセリング / 医師がクマの状態を診断 無料でなんでも相談OK！</strong><br>
+          素材: <a href="https://drive.google.com/open?id=16Ty8PBNVDwa86bejtTXJ_0ccCRtHXNw-&amp;usp=drive_fs">Drive素材</a>
+        </li>
+        <li>
+          <strong>施術 / 目元に合わせて丁寧に対応</strong><br>
+          素材: <a href="https://drive.google.com/open?id=1tM5EhPh3kaQzqotmgvHtiiaaCJjaxjvd&amp;usp=drive_fs">Drive素材</a>
+        </li>
+        <li>
+          <strong>アフター説明・帰宅 / 過ごし方まで確認</strong><br>
+          素材: <a href="https://drive.google.com/open?id=1y9skF_DAUHdfNwiRD7w7VHX_kPQgLFSi&amp;usp=drive_fs">Drive素材</a>
+        </li>
+      </ol>
+
+      <h3>削除する施術フローステップ</h3>
+      <div class="notice">
+        「③ 料金・内容の確認 / 同意のない追加料金なし」は不要です。素材を入れず、該当画像・スライドを削除してください。カルーセルや縦並びの中に空枠として残さないでください。
+      </div>
+
+      <h3>縦並び化するときの番号について</h3>
+      <p>「③ 料金・内容の確認」を削除するため、最終表示で番号をどう扱うかは実装時に整えてください。読者に見える状態では、空番や空スライドが残らないことを優先します。</p>
+      <ul>
+        <li>推奨: 受付、カウンセリング、施術、アフター説明・帰宅の4ステップとして自然に縦並び表示する。</li>
+        <li>避ける: 削除した③の空枠だけ残る、またはカルーセルの3枚目だけ緑のまま残る。</li>
+      </ul>
+
+      <div class="action">
+        <strong>秀介さん向け文:</strong><br>
+        「当日の施術の流れ」は、可能であればカルーセル形式ではなく、縦スクロールで順番に見える構成にしてください。フリップアンケート記事は下へスクロールして読むため、施術フローも縦に並べた方が読者がスムーズに読み進められます。削除指定の「③ 料金・内容の確認」は入れず、受付・カウンセリング・施術・アフター説明の素材を縦に連続配置してください。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Codexへそのまま渡す実装指示</h2>
+      <p>以下は、秀介さんがCodexへ貼れるようにまとめた実装指示です。</p>
+      <pre>対象記事:
+https://axis-ad.github.io/flip-anketo-workflow/kuma-female-test/?deploy=e185e87bfe856a58155bd2343976ca8f7d0a90eb
+
+目的:
+クマ女性AI記事内の緑プレースホルダーに、指定素材を正しい位置へ差し込む。不要な緑枠は削除する。前回、素材対応が1つずれていたため、古い対応は破棄して下記を正とする。
+
+修正指示:
+
+1. 「年代を教えてください」直後
+この緑枠には何も入れない。画像・動画を入れず、緑プレースホルダーごと削除する。
+
+2. 「一番気になるお悩みは？」直後
+下記MP4を入れる。ドライブに見当たらないから、ビヨンドで下記のURLで探して差し込む。
+https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4
+
+3. 「今どう対処してますか？」直後
+下記Drive素材を入れる。
+https://drive.google.com/open?id=1t42dsaUGr4GbxGt7I7s6UHsqKW2ofQEL&amp;usp=drive_fs
+
+4. 「魅力的だと思うポイントは？」直後
+下記Drive素材を入れる。
+https://drive.google.com/open?id=1seGP2wJ5pVtEU40oQQetHaoVJd1SFeVw&amp;usp=drive_fs
+
+5. 「院内の雰囲気も事前に確認」
+大きな緑枠に下記Drive素材を入れる。
+https://drive.google.com/open?id=1VQp_SYUsgeD4fkLe_QNAyModxyuGNsrJ&amp;usp=drive_fs
+
+6. 症例 Before / After
+下記Drive素材を使う。
+https://drive.google.com/open?id=1NuEcEPbDrKOneAcmm9srGtAWYYmZxv6j&amp;usp=drive_fs
+重要: 現行記事の症例画像は縦長になっているが、そのまま使わない。添付参考画像内の症例Before / After枠と同じ縦横比になるように修正する。BeforeとAfterが見比べやすい横並びの症例枠にする。
+
+7. 「口コミで見る安心ポイント」
+1枚目は現在の記事の口コミ欄。2枚目は口コミの内容・語り口・赤字傾向の参考。3枚目は配置だけ参考にする。3枚目の内容は参考にしない。
+配置は、左側に人物画像、右上に名前のイニシャル、その下に本文。
+口コミ内容は、2枚目から以下を抽象化して作る:
+- 施術前は、腫れ・痛み・料金・年齢的な不安がある
+- 実際は相談しやすく安心できた
+- 周囲から表情が明るくなった、疲れて見えなくなったと言われた
+- 鏡を見る、メイクする、外出する気持ちが前向きになった
+- 同じように悩む人にも勇気を出してほしいと後押しする
+語り口は、医療説明ではなく本人の体験談っぽい一人称にする。
+赤字は、不安が反転するポイント、先生やスタッフへの安心感、周囲から言われた変化、同世代への後押しに使う。
+Voice 01「料金の不安」: 料金確認・同意のない追加料金なしへの安心を書く。
+Voice 02「相談のしやすさ」: 親身に聞いてもらえた、相談しやすかった安心を書く。
+Voice 03「施術後の印象」: 疲れて見えにくくなった、表情が明るく見える、鏡を見るのが楽しみになった方向で書く。
+
+8. 「当日の施術の流れ」
+カルーセル形式ではなく、可能であれば縦スクロールで順番に見える構成にする。フリップアンケート記事は下へスクロールして読むため、施術フローも縦に並べた方が読者がスムーズに読み進められる。この点は必ず反映する。
+
+8-1. 受付 / 優しいスタッフがお出迎え
+下記Drive動画を使う。ただし、動画内の店員とお客さんが映っている部分のみ使用する。周りの装飾は無視する。
+https://drive.google.com/open?id=1FvXYZVdGJ1LRcM4ENpUkPx6Ys9AddT1o&amp;usp=drive_fs
+
+8-2. カウンセリング / 医師がクマの状態を診断 無料でなんでも相談OK！
+下記Drive素材を入れる。
+https://drive.google.com/open?id=16Ty8PBNVDwa86bejtTXJ_0ccCRtHXNw-&amp;usp=drive_fs
+
+8-3. 料金・内容の確認 / 同意のない追加料金なし
+この画像・スライドは不要なので削除する。素材は入れない。空スライドや空枠を残さない。
+
+8-4. 施術 / 目元に合わせて丁寧に対応
+下記Drive素材を入れる。
+https://drive.google.com/open?id=1tM5EhPh3kaQzqotmgvHtiiaaCJjaxjvd&amp;usp=drive_fs
+
+8-5. アフター説明・帰宅 / 過ごし方まで確認
+下記Drive素材を入れる。
+https://drive.google.com/open?id=1y9skF_DAUHdfNwiRD7w7VHX_kPQgLFSi&amp;usp=drive_fs
+
+当日の施術の流れの最終表示:
+「料金・内容の確認」は削除し、受付・カウンセリング・施術・アフター説明/帰宅を縦に連続表示する。番号は、読者に空番や空スライドが見えないように自然に整える。</pre>
+    </section>
+
+    <section class="section">
+      <h2>最終チェックリスト</h2>
+      <ul>
+        <li>年代選択直後の緑枠を削除したか。</li>
+        <li>「一番気になるお悩みは？」直後にBeyondのMP4を入れたか。</li>
+        <li>「今どう対処してますか？」直後にDrive素材 <code>1t42...</code> を入れたか。</li>
+        <li>「魅力的だと思うポイントは？」直後にDrive素材 <code>1se...</code> を入れたか。</li>
+        <li>院内雰囲気パートにDrive素材 <code>1VQp...</code> を入れたか。</li>
+        <li>症例画像を縦長のままにせず、参考画像の症例枠と同じ縦横比に修正したか。</li>
+        <li>口コミ欄は、2枚目から内容・語り口・赤字傾向を抽象化し、3枚目から配置だけを借りたか。</li>
+        <li>受付動画は、店員と客が映っている部分のみを切り出し、周囲の装飾を使っていないか。</li>
+        <li>当日の施術の流れから「料金・内容の確認」を削除したか。</li>
+        <li>施術フローをカルーセルではなく、縦並びで読める構成にしたか。</li>
+        <li>削除後に空スライド・空枠・番号の不自然な抜けが残っていないか。</li>
+      </ul>
+    </section>
+
+    <p class="footer">このHTMLは、TCBクマ女性AI記事の素材差し込み指示を秀介さんへ共有するための内部資料です。</p>
+  </main>
+</body>
+</html>
