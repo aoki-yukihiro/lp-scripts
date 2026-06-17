@@ -247,6 +247,48 @@
       padding: 14px;
     }
 
+    .evidence {
+      display: grid;
+      grid-template-columns: minmax(220px, 340px) 1fr;
+      gap: 14px;
+      align-items: start;
+      margin: 12px 0 14px;
+      padding: 12px;
+      background: #fbfdff;
+      border: 1px solid #dbeafe;
+      border-radius: 8px;
+    }
+
+    .evidence img {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      display: block;
+    }
+
+    .evidence-wide {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .evidence-wide img {
+      max-width: 100%;
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .pin {
+      margin: 0 0 8px;
+      color: #0f172a;
+      font-weight: 800;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -343,6 +385,11 @@
 
       .slot-head {
         display: block;
+      }
+
+      .evidence,
+      .evidence-wide {
+        grid-template-columns: 1fr;
       }
 
       table {
@@ -490,6 +537,16 @@
           <span class="badge badge-delete">削除</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-09.png" alt="年代選択直後の削除対象スクショ">
+              <div class="caption">チャット添付スクショ: 年代選択直後の緑枠</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = 削除対象</p>
+              <p>年代選択の直後にある緑ベタ部分です。ここには素材を入れず、緑枠そのものを削除します。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 「年代を教えてください」の4択ボタン直後にある緑ベタ部分。</p>
           <p><strong>対応:</strong> ここには何も画像・動画素材を入れません。緑プレースホルダーごと削除してください。</p>
           <div class="action">
@@ -505,6 +562,16 @@
           <span class="badge badge-insert">動画挿入</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-10.png" alt="一番気になるお悩み直後の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 「一番気になるお悩みは？」直後</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = Beyond MP4を入れる位置</p>
+              <p>「青っぽいクマ / 影感のない印象へ / 茶色っぽいくすみ」の回答カード直後です。Driveではなく、SquadBeyondのMP4を探して入れます。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 「青っぽいクマ / 影感のない印象へ / 茶色っぽいくすみ」の回答カード直後にある緑ベタ部分。</p>
           <p><strong>対応:</strong> 下記のMP4動画を差し込みます。</p>
           <p><a href="https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4">https://file.mysquadbeyond.com/uploads/article_photo/photo/6770883/d144b574-8da5-4bf5-a651-2a5f33ba1acb.mp4</a></p>
@@ -524,6 +591,16 @@
           <span class="badge badge-insert">素材挿入</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-11.png" alt="今どう対処してますか直後の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 「今どう対処してますか？」直後</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = Drive素材 1t42... を入れる位置</p>
+              <p>「コンシーラーで隠す / 美容代を好きなことに / 寝ても取れない」の回答カード直後です。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 「コンシーラーで隠す / 美容代を好きなことに / 寝ても取れない」の回答カード直後にある緑ベタ部分。</p>
           <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1t42dsaUGr4GbxGt7I7s6UHsqKW2ofQEL&amp;usp=drive_fs">Google Drive素材</a></p>
           <div class="action">
@@ -539,6 +616,16 @@
           <span class="badge badge-insert">素材挿入</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-12.png" alt="魅力的だと思うポイント直後の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 「魅力的だと思うポイントは？」直後</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = Drive素材 1se... を入れる位置</p>
+              <p>「クマ取り再生注射 / 幅広いクマに対応 / 痛み・腫れほぼなし」の回答カード直後です。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 「クマ取り再生注射 / 幅広いクマに対応 / 痛み・腫れほぼなし」の回答カード直後にある緑ベタ部分。</p>
           <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1seGP2wJ5pVtEU40oQQetHaoVJd1SFeVw&amp;usp=drive_fs">Google Drive素材</a></p>
           <div class="action">
@@ -554,6 +641,16 @@
           <span class="badge badge-insert">素材挿入</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-13.png" alt="院内の雰囲気確認パートの素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 「院内の雰囲気も事前に確認」</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = Drive素材 1VQp... を入れる位置</p>
+              <p>教育パート内の、院内の雰囲気を事前確認させるための大きな素材枠です。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 教育パート内の「院内の雰囲気も事前に確認 / はじめてでも相談しやすい空間へ」の大きな緑枠。</p>
           <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1VQp_SYUsgeD4fkLe_QNAyModxyuGNsrJ&amp;usp=drive_fs">Google Drive素材</a></p>
           <p><strong>意図:</strong> 施術前に院内の雰囲気が見えることで、初めての相談への不安を下げる。</p>
@@ -570,6 +667,16 @@
           <span class="badge badge-important">比率修正必須</span>
         </div>
         <div class="slot-body">
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-14.png" alt="症例Before After比率修正の参考スクショ">
+              <div class="caption">チャット添付スクショ: 症例Before / After 比率参考</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの症例枠 = 正しい縦横比の参考</p>
+              <p>現行記事の縦長画像ではなく、このスクショ内のBefore / After枠と同じ比率に直します。Drive素材内の症例画像を使います。</p>
+            </div>
+          </div>
           <p><strong>対象:</strong> 症例01 / 症例02 の Before / After 画像パート。</p>
           <p><strong>素材:</strong> <a href="https://drive.google.com/open?id=1NuEcEPbDrKOneAcmm9srGtAWYYmZxv6j&amp;usp=drive_fs">Google Drive素材</a></p>
           <div class="notice">
@@ -596,6 +703,21 @@
       <div class="notice">
         <strong>ここは素材をそのまま貼る作業ではありません。</strong><br>
         2枚目の参考画像から口コミの中身・語り口・赤字強調の傾向を抽象化し、3枚目の参考画像から配置だけを借りて作成してください。
+      </div>
+
+      <div class="evidence evidence-wide">
+        <div>
+          <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-15.png" alt="口コミ欄の現記事スクショ">
+          <div class="caption">1枚目: 現記事の口コミ欄。Voice 01 / 02 / 03 の緑枠が実装対象。</div>
+        </div>
+        <div>
+          <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-16.png" alt="口コミ内容と語り口の参考スクショ">
+          <div class="caption">2枚目: 口コミの内容、語り口、赤字強調の傾向を抽象化する参考。</div>
+        </div>
+        <div>
+          <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-17.png" alt="口コミ配置の参考スクショ">
+          <div class="caption">3枚目: 配置だけ参考。内容は使わない。</div>
+        </div>
       </div>
 
       <div class="grid">
@@ -689,31 +811,91 @@
         <strong>絶対に伝えること:</strong><br>
         これまで1枚ずつ送った施術フロー素材は、カルーセルのように横送りで見せるより、縦に並べて縦長の流れとして見せるのがおすすめです。
       </div>
+      <div class="evidence">
+        <div>
+          <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-23.png" alt="施術フロー縦並びの参考スクショ">
+          <div class="caption">チャット添付スクショ: 施術フローは縦並び表示を推奨</div>
+        </div>
+        <div>
+          <p class="pin">このスクショ = 最終的な見せ方の参考</p>
+          <p>1枚ずつ送った動画素材は、横送りカルーセルではなく、このように縦に並べて縦長の流れとして見せる方が、フリップアンケート記事のスクロール体験に合います。</p>
+        </div>
+      </div>
       <p><strong>理由:</strong> フリップアンケート記事は、読者が下へスクロールしながら読み進める記事構造です。そのため、施術フローも縦に並べた方が、読者が自然にスクロールで理解できて読みやすくなります。</p>
       <p>現在のような左右矢印つきカルーセルでは、読者が横操作をしないと続きが見えません。縦並びにすることで、記事本来の読了動線に沿って「受付 -> カウンセリング -> 施術 -> アフター説明・帰宅」を一気に確認できます。</p>
 
       <h3>縦並びに入れる素材</h3>
       <ol class="flow-list">
         <li>
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-18.png" alt="施術フロー受付の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 受付の緑枠</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = 受付動画の実写部分を入れる位置</p>
+              <p>Drive動画全体ではなく、店員とお客さんが映っている実写部分だけを使います。周りの装飾は使いません。</p>
+            </div>
+          </div>
           <strong>受付 / 優しいスタッフがお出迎え</strong><br>
           素材: <a href="https://drive.google.com/open?id=1FvXYZVdGJ1LRcM4ENpUkPx6Ys9AddT1o&amp;usp=drive_fs">Drive素材</a><br>
           注意: 動画内の店員とお客さんが映っている部分のみ使用。周りの装飾は無視。
         </li>
         <li>
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-19.png" alt="施術フローカウンセリングの素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: カウンセリングの緑枠</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = カウンセリング素材を入れる位置</p>
+              <p>「医師がクマの状態を診断 無料でなんでも相談OK！」のカードに対応する素材です。</p>
+            </div>
+          </div>
           <strong>カウンセリング / 医師がクマの状態を診断 無料でなんでも相談OK！</strong><br>
           素材: <a href="https://drive.google.com/open?id=16Ty8PBNVDwa86bejtTXJ_0ccCRtHXNw-&amp;usp=drive_fs">Drive素材</a>
         </li>
         <li>
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-21.png" alt="施術フロー施術の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: 施術の緑枠</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = 施術素材を入れる位置</p>
+              <p>削除対象の「料金・内容の確認」は挟まず、カウンセリングの次にこの施術素材を縦に続けます。</p>
+            </div>
+          </div>
           <strong>施術 / 目元に合わせて丁寧に対応</strong><br>
           素材: <a href="https://drive.google.com/open?id=1tM5EhPh3kaQzqotmgvHtiiaaCJjaxjvd&amp;usp=drive_fs">Drive素材</a>
         </li>
         <li>
+          <div class="evidence">
+            <div>
+              <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-22.png" alt="施術フローアフター説明帰宅の素材挿入スクショ">
+              <div class="caption">チャット添付スクショ: アフター説明・帰宅の緑枠</div>
+            </div>
+            <div>
+              <p class="pin">このスクショの緑枠 = アフター説明・帰宅素材を入れる位置</p>
+              <p>「過ごし方まで確認」のカードに対応する素材です。施術の次に縦並びで配置します。</p>
+            </div>
+          </div>
           <strong>アフター説明・帰宅 / 過ごし方まで確認</strong><br>
           素材: <a href="https://drive.google.com/open?id=1y9skF_DAUHdfNwiRD7w7VHX_kPQgLFSi&amp;usp=drive_fs">Drive素材</a>
         </li>
       </ol>
 
       <h3>削除する施術フローステップ</h3>
+      <div class="evidence">
+        <div>
+          <img src="assets/tcb-kuma-female-material-placement/chat-screenshot-20.png" alt="施術フロー料金内容確認の削除対象スクショ">
+          <div class="caption">チャット添付スクショ: 料金・内容の確認</div>
+        </div>
+        <div>
+          <p class="pin">このスクショの緑枠 = 削除対象</p>
+          <p>この画像・スライドは必要ありません。素材を入れず、縦並びにもカルーセルにも残さないでください。</p>
+        </div>
+      </div>
       <div class="notice">
         「③ 料金・内容の確認 / 同意のない追加料金なし」は不要です。素材を入れず、該当画像・スライドを削除してください。カルーセルや縦並びの中に空枠として残さないでください。
       </div>
