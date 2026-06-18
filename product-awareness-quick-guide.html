@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品認知度 早見ガイド | 5段階と6つのリード戦略</title>
+  <title>商品認知度 早見ガイド | 5段階と6つの冒頭アプローチ</title>
   <style>
     :root {
       --ink: #1a1a1a;
@@ -218,6 +218,85 @@
       line-height: 1.55;
     }
 
+    .visual-split {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 14px;
+      align-items: stretch;
+      margin: 14px 0;
+    }
+
+    .quick-pyramid,
+    .approach-map {
+      border: 1px solid var(--line);
+      background: #fbfdff;
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .quick-pyramid h3,
+    .approach-map h3 {
+      margin-top: 0;
+    }
+
+    .quick-band {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin: 0 auto 7px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .quick-band strong { font-size: 14px; }
+    .q5 { width: 54%; background: #14532d; }
+    .q4 { width: 66%; background: #166534; }
+    .q3 { width: 78%; background: #1d4ed8; }
+    .q2 { width: 90%; background: #b45309; }
+    .q1 { width: 100%; background: #7f1d1d; }
+
+    .approach-axis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #334155;
+      font-weight: 800;
+    }
+
+    .approach-axis span:last-child {
+      text-align: right;
+    }
+
+    .approach-lane {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .approach-item {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      padding: 9px;
+      min-height: 78px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .approach-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
     .lead-examples {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -338,7 +417,8 @@
       .page { padding: 16px 12px 48px; }
       .hero { padding: 22px 18px; }
       .hero h1 { font-size: 25px; }
-      .grid, .lead-rule, .decision, .lead-examples { grid-template-columns: 1fr; }
+      .grid, .lead-rule, .decision, .lead-examples, .visual-split, .approach-lane { grid-template-columns: 1fr; }
+      .quick-band { width: 100% !important; grid-template-columns: 1fr; }
       .card { padding: 16px; }
       table { min-width: 760px; }
       h1, h2, h3, p, li, td, th, span, strong, a { word-break: break-all; }
@@ -348,11 +428,11 @@
 <body>
   <main class="page">
     <header class="hero">
-      <h1>商品認知度 早見ガイド<br>5段階と6つのリード戦略</h1>
+      <h1>商品認知度 早見ガイド<br>5段階と冒頭アプローチ</h1>
       <p>記事LPや広告の冒頭で迷った時に、30秒で「誰に、何から話すか」を決めるための簡易版。詳しく学ぶ前に、まず現場で使う判断表として見る。</p>
       <div class="meta">
         <span>対象: アクシス記事部 / 広告運用者</span>
-        <span>用途: FV・リード・CTA・広告文の判断</span>
+        <span>用途: FV・冒頭・CTA・広告文の判断</span>
         <span>版: すぐ見返す用</span>
       </div>
     </header>
@@ -360,7 +440,7 @@
     <section class="grid" aria-label="概要">
       <div class="mini"><strong>1分</strong><span>読者の認知度を仮置きする</span></div>
       <div class="mini"><strong>5段階</strong><span>認識なしから購買認識まで</span></div>
-      <div class="mini"><strong>6リード</strong><span>入口の型を選ぶ</span></div>
+      <div class="mini"><strong>6種類</strong><span>冒頭の型を選ぶ</span></div>
       <div class="mini"><strong>明日から</strong><span>記事・広告の冒頭に反映する</span></div>
     </section>
 
@@ -382,12 +462,37 @@
       </div>
       <div class="lead-rule">
         <div class="rule-box">
-          <strong>リード選定の鉄則</strong>
+          <strong>冒頭を決める鉄則</strong>
           <p>見込み客がすでに認識していること、または「次に知りたいこと」から始める。商品を知らない人には商品名ではなく悩みや違和感、問題に気づいていない人には物語や意外な事実から入る。</p>
         </div>
         <div class="rule-box">
           <strong>ズレると起きること</strong>
           <p>問題認識の人に価格だけを見せても「何の商品？」で止まる。購買認識の人に長い共感を見せると「早く条件を見せて」で離れる。入口の早すぎ・遅すぎを防ぐのが商品認知度。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>一目で見る全体像</h2>
+      <div class="visual-split">
+        <div class="quick-pyramid">
+          <h3>商品認知度の5段階</h3>
+          <div class="quick-band q5"><strong>購買認識</strong><span>商品を欲しい</span></div>
+          <div class="quick-band q4"><strong>商品認識</strong><span>商品候補を知っている</span></div>
+          <div class="quick-band q3"><strong>解決認識</strong><span>解決したい</span></div>
+          <div class="quick-band q2"><strong>問題認識</strong><span>問題に気づいている</span></div>
+          <div class="quick-band q1"><strong>認識なし</strong><span>まだ自分ごとではない</span></div>
+        </div>
+        <div class="approach-map">
+          <h3>認知度が高いほど直接、低いほど間接</h3>
+          <div class="approach-axis"><span>直接的に言える</span><span>遠回りして興味を作る</span></div>
+          <div class="approach-lane">
+            <div class="approach-item"><strong>オファー型</strong>価格・特典・保証・期限</div>
+            <div class="approach-item"><strong>プロミス型</strong>欲しい結果と証拠</div>
+            <div class="approach-item"><strong>問題解決型</strong>悩みと解決可能性</div>
+            <div class="approach-item"><strong>秘密型 / 宣言型</strong>知らない理由・意外な事実</div>
+            <div class="approach-item"><strong>ストーリー型</strong>人の体験や変化</div>
+          </div>
         </div>
       </div>
     </section>
@@ -444,42 +549,42 @@
           </tbody>
         </table>
       </div>
-      <h3>見出し例で見る6つのリード戦略</h3>
-      <p>表だけで決めにくい時は、まず「冒頭の見出しにしたらどうなるか」で考える。下の例は、美容医療のクマ取り・目元悩みに寄せた使い方。</p>
-      <div class="lead-examples" aria-label="6つのリード戦略の具体例">
+      <h3>見出し例で見る6つの冒頭アプローチ</h3>
+      <p>表だけで決めにくい時は、まず「冒頭の見出しにしたらどうなるか」で考える。例は、足の痺れ、冷え、睡眠、関節、食事に誘う場面などに絞る。</p>
+      <div class="lead-examples" aria-label="6つの冒頭アプローチの具体例">
         <div class="lead-example-card">
           <div class="lead-head"><span class="badge b-green">オファー</span><strong>条件が良いから今動く入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>今月限定、クマ取りの無料相談枠を受付中</li>
-            <li>モニター枠残りわずか。目元悩みを特別価格で相談できます</li>
-            <li>費用・ダウンタイム・適応を予約前にまとめて確認</li>
+            <li>いつも買っているおむつが、今日だけ20%OFF</li>
+            <li>欲しかったパソコンが、保証付きで今週だけ特別価格</li>
+            <li>A整体院の土曜午後に、1枠だけ空きがあります</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 商材名検索、リターゲティング、キャンペーン告知など、読者がすでに商品や院を知っている時。</p>
-          <p class="use-case"><strong>作る時:</strong> 価格、特典、期限、枠数、相談条件、保証制度がある場合の不安払拭を先に見せる。</p>
+          <p class="use-case"><strong>使う場面:</strong> 読者が商品やお店を知っていて、あとは条件を知りたい時。</p>
+          <p class="use-case"><strong>作る時:</strong> 価格、特典、期限、枠数、保証など、買う判断に必要な情報を先に見せる。</p>
         </div>
 
         <div class="lead-example-card">
           <div class="lead-head"><span class="badge b-green">プロミス</span><strong>欲しい未来を最初に見せる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>疲れて見える目元から、明るい第一印象へ</li>
-            <li>鏡を見るたび気になるクマ悩みに、切らない選択肢も</li>
-            <li>メイクで隠す毎日から、すっぴんの目元に自信を</li>
+            <li>条件に合う人なら、1時間以内に足の痺れを軽くします</li>
+            <li>朝までぐっすり眠れる環境づくりを、今日から始められます</li>
+            <li>手ブレしにくいカメラで、子どもの運動会をきれいに残せます</li>
           </ul>
           <p class="use-case"><strong>使う場面:</strong> 商品認識から購買認識。悩みも解決策も分かっていて、「結局どう変われるのか」を知りたい時。</p>
-          <p class="use-case"><strong>作る時:</strong> 結果だけを強く言い切らず、症例、医師、口コミ、仕組みなどの証拠をすぐ近くに置く。</p>
+          <p class="use-case"><strong>作る時:</strong> 結果だけを強く言い切らず、なぜそう言えるのかの理由や証拠を近くに置く。</p>
         </div>
 
         <div class="lead-example-card">
           <div class="lead-head"><span class="badge b-blue">問題解決</span><strong>悩みを言語化して希望へつなぐ入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>「寝不足？」と聞かれる目元、実はクマの種類が原因かも</li>
-            <li>写真の自分だけ老けて見える。そんな目元悩みの見直し方</li>
-            <li>コンシーラーで隠しきれないクマに悩む人へ</li>
+            <li>足の痺れを引き起こす5つの原因。あなたはどのタイプ？</li>
+            <li>布団に入っても足先が冷えて眠れない人へ</li>
+            <li>朝起きると関節が重い。その原因を見直してみませんか？</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 悩み検索、SNS広告、共感導入。読者は困っているが、まだ施術や商品に直結していない時。</p>
+          <p class="use-case"><strong>使う場面:</strong> 悩み検索、SNS広告、共感導入。読者は困っているが、まだ商品に直結していない時。</p>
           <p class="use-case"><strong>作る時:</strong> 生活シーン、感情、困りごとを先に出し、次に原因と解決可能性へ進める。</p>
         </div>
 
@@ -487,9 +592,9 @@
           <div class="lead-head"><span class="badge b-blue">秘密</span><strong>知らなかった原因で読み進めさせる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>クマが濃く見える本当の理由は、睡眠不足だけではありません</li>
-            <li>目元の影を濃くする人が見落としがちな3つの原因</li>
-            <li>同じクマでも、青クマ・茶クマ・黒クマで対策は変わります</li>
+            <li>足の痺れが長引く人が見落としがちな原因</li>
+            <li>冷え対策で、多くの人が見逃しているポイント</li>
+            <li>睡眠の質を下げる、意外と知られていない習慣</li>
           </ul>
           <p class="use-case"><strong>使う場面:</strong> 問題認識から解決認識。悩みはあるが、なぜ起きるのか、何を選べばよいか分からない時。</p>
           <p class="use-case"><strong>作る時:</strong> 「知らないと損」だけで煽らず、分類、原因、仕組み、専門家視点で納得感を作る。</p>
@@ -499,21 +604,21 @@
           <div class="lead-head"><span class="badge b-amber">予言・宣言</span><strong>意外な主張で注意を止める入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>これからの老け見え対策は、ファンデより目元ケアが重要です</li>
-            <li>「疲れ顔」は年齢のせいだけではなく、目元の影で決まる</li>
-            <li>美容医療は、隠す時代から原因に合わせて選ぶ時代へ</li>
+            <li>これからのパソコン選びは、スペック表だけでは決められません</li>
+            <li>関節の不調は、年齢だけの問題とは限りません</li>
+            <li>「冷えは体質だから仕方ない」と考える前に見てください</li>
           </ul>
           <p class="use-case"><strong>使う場面:</strong> SNS広告や広い潜在層。読者がまだ悩みを深く考えていないが、価値観のズレや新常識には反応する時。</p>
-          <p class="use-case"><strong>作る時:</strong> 大きな主張の後に、なぜそう言えるのかをデータ、症例、生活実感、専門家の説明で支える。</p>
+          <p class="use-case"><strong>作る時:</strong> 大きな主張の後に、なぜそう言えるのかをデータ、生活実感、専門家の説明で支える。</p>
         </div>
 
         <div class="lead-example-card">
           <div class="lead-head"><span class="badge b-red">ストーリー</span><strong>1人の体験で自分ごと化させる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>同窓会の写真を見て、初めて目元の変化に気づいた話</li>
-            <li>マスクを外した瞬間、「疲れてる？」と言われた日のこと</li>
-            <li>毎朝コンシーラーを重ねていた私が、相談を決めるまで</li>
+            <li>足の痺れを我慢していた人が、歩く不安を減らすまで</li>
+            <li>冷えで眠れなかった人が、寝る前の習慣を変えた話</li>
+            <li>「今日ご飯行かない？」と自然に誘える相手と、そうでない相手の違い</li>
           </ul>
           <p class="use-case"><strong>使う場面:</strong> 認識なしから問題認識。いきなり商品を出すと読まれにくい、広い潜在層向けの導入。</p>
           <p class="use-case"><strong>作る時:</strong> 出来事、感情、気づき、調べ始める理由、解決策との出会いの順で、自然に商品へ接続する。</p>
@@ -522,19 +627,19 @@
     </section>
 
     <section class="card">
-      <h2>5段階と6つのリード戦略</h2>
+      <h2>5段階と6つの冒頭アプローチ</h2>
       <div class="decision">
         <div class="step"><strong>認識なし</strong><span>ストーリー、予言・宣言、秘密。まず注意と自分ごと化。</span></div>
         <div class="step"><strong>問題認識</strong><span>問題解決、秘密、予言・宣言。不安を言語化して希望へ。</span></div>
         <div class="step"><strong>解決認識</strong><span>問題解決、秘密。欲しい未来と解決策をつなぐ。</span></div>
-        <div class="step"><strong>商品認識</strong><span>プロミス、USP、証拠。なぜこの商品かを示す。</span></div>
+        <div class="step"><strong>商品認識</strong><span>プロミス、独自の強み、証拠。なぜこの商品かを示す。</span></div>
         <div class="step"><strong>購買認識</strong><span>オファー、保証、限定性。行動に必要な情報を出す。</span></div>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>リード戦略</th>
+              <th>冒頭アプローチ</th>
               <th>向く読者</th>
               <th>入口の作り方</th>
               <th>記事LPでの使い方</th>
@@ -580,13 +685,13 @@
           </tbody>
         </table>
       </div>
-      <h3>6リードを作る時の最短手順</h3>
-      <p>迷ったら、リード名から考えるより「何を材料にして、どの順番で見せるか」まで落とす。</p>
+      <h3>6つの冒頭アプローチを作る時の最短手順</h3>
+      <p>迷ったら、名前から考えるより「何を材料にして、どの順番で見せるか」まで落とす。</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>リード</th>
+              <th>種類</th>
               <th>最初に集める材料</th>
               <th>冒頭の並べ方</th>
               <th>使う前の確認</th>
@@ -601,7 +706,7 @@
             </tr>
             <tr>
               <td><span class="badge b-green">プロミス</span></td>
-              <td>USP、競合との違い、症例、実績、口コミ、理由。</td>
+              <td>他の商品との違い、実績、口コミ、理由。</td>
               <td>欲しい結果の約束 → なぜ叶うかの証拠 → 商品詳細 → オファー。</td>
               <td>約束を証明する根拠があるか。</td>
             </tr>
@@ -650,7 +755,7 @@
             <tr>
               <td>商材名検索</td>
               <td>商品認識〜購買認識</td>
-              <td>比較、実績、症例、価格、保証、申込導線。</td>
+              <td>比較、実績、価格、保証、申込導線。</td>
               <td>「知っているが迷っている」不安を潰す。</td>
             </tr>
             <tr>
@@ -677,40 +782,46 @@
     </section>
 
     <section class="card">
-      <h2>美容医療記事でのざっくり使い分け</h2>
+      <h2>身近な例でのざっくり使い分け</h2>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>読者の言葉</th>
+              <th>読者の状態</th>
               <th>認知度</th>
-              <th>FV/導入の方向</th>
+              <th>冒頭の方向</th>
               <th>置くべき証拠</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>「なんか老けて見える」「疲れて見える」</td>
+              <td>足が痺れていることに、まだ気づいていない</td>
+              <td>認識なし</td>
+              <td>健康でいたい気持ち、歩けなくなる不安、日常の違和感から入る。</td>
+              <td>すぐ商品を出さず、自分ごと化できる話。</td>
+            </tr>
+            <tr>
+              <td>「最近、足が痺れる」「足先が冷える」</td>
               <td>問題認識</td>
-              <td>生活シーン、見た目の印象、感情の代弁。</td>
-              <td>原因、同じ悩みの多さ、解決可能性。</td>
+              <td>悩み、生活の支障、不安を言葉にする。</td>
+              <td>原因、同じ悩みの多さ、解決できる可能性。</td>
             </tr>
             <tr>
-              <td>「クマをどうにかしたい」</td>
+              <td>「睡眠を良くしたい」「関節の重さを減らしたい」</td>
               <td>解決認識</td>
-              <td>クマの種類、改善の選択肢、施術の位置づけ。</td>
-              <td>症例、仕組み、安全性。</td>
+              <td>欲しい未来と、解決方法の選択肢をつなぐ。</td>
+              <td>仕組み、実績、なぜその方法が合うのか。</td>
             </tr>
             <tr>
-              <td>「クマ取りが気になる」</td>
+              <td>整体、サプリ、ストレッチ、寝具など候補を知っている</td>
               <td>商品認識</td>
-              <td>失敗不安、ダウンタイム、料金、院選び。</td>
-              <td>BA、口コミ、医師、保証、FAQ。</td>
+              <td>どれが自分に合うのか、選ぶ理由を出す。</td>
+              <td>比較、口コミ、実績、保証、よくある疑問。</td>
             </tr>
             <tr>
-              <td>「この院で受けたいかも」</td>
+              <td>買いたいおむつ、欲しいパソコン、行きたい整体院が決まっている</td>
               <td>購買認識</td>
-              <td>予約枠、価格、キャンペーン、手順。</td>
+              <td>価格、在庫、予約枠、保証、手順をすぐ見せる。</td>
               <td>申込導線、限定性、最終不安払拭。</td>
             </tr>
           </tbody>
@@ -728,7 +839,7 @@
         <li><span class="box"></span><span>流入面ごとに認知度を変えて考えたか。</span></li>
         <li><span class="box"></span><span>高認知度に長い共感を置きすぎていないか。</span></li>
         <li><span class="box"></span><span>低認知度にいきなり商品名や価格を出していないか。</span></li>
-        <li><span class="box"></span><span>選んだリード戦略が、読者の認知度と合っているか。</span></li>
+        <li><span class="box"></span><span>選んだ冒頭アプローチが、読者の認知度と合っているか。</span></li>
         <li><span class="box"></span><span>オファー、プロミス、問題、秘密、宣言、ストーリーのうち、今回の入口に必要な材料を集めたか。</span></li>
         <li><span class="box"></span><span>CTA前に、読者の不安や疑問が潰れているか。</span></li>
       </ul>
@@ -743,7 +854,7 @@
       <div class="links">
         <a href="product-awareness-full-guide.html">ゼロからの学習版を見る</a>
         <a href="product-awareness.html">旧: 商品認知度5段階</a>
-        <a href="awai-lead-strategy.html">旧: AWAIリード戦略編</a>
+        <a href="awai-lead-strategy.html">旧: 6つの冒頭アプローチ</a>
       </div>
     </section>
   </main>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品認知度とリード戦略 学習ガイド | 初見向け</title>
+  <title>商品認知度と冒頭アプローチ 学習ガイド | 初見向け</title>
   <style>
     :root {
       --ink: #1a1a1a;
@@ -352,6 +352,90 @@
       color: var(--ink);
     }
 
+    .awareness-matrices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .matrix-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+      padding: 14px;
+      overflow-x: auto;
+    }
+
+    .matrix-card h4 {
+      margin-top: 0;
+    }
+
+    .matrix-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 10px;
+    }
+
+    .mini-matrix {
+      display: grid;
+      grid-template-columns: 94px repeat(3, 48px) 1fr;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      background: white;
+      font-size: 13px;
+    }
+
+    .mini-matrix div {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      min-height: 38px;
+      padding: 7px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .mini-matrix div:nth-child(5n) {
+      border-right: none;
+    }
+
+    .mini-matrix div:nth-last-child(-n+5) {
+      border-bottom: none;
+    }
+
+    .matrix-head {
+      background: var(--slate-soft);
+      font-weight: 800;
+      color: #273447;
+    }
+
+    .matrix-row {
+      justify-content: flex-start !important;
+      font-weight: 800;
+      color: #334155;
+      background: #f8fafc;
+    }
+
+    .hit {
+      background: #ecfdf5;
+      color: #166534;
+      font-weight: 800;
+    }
+
+    .maybe {
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 800;
+    }
+
+    .weak {
+      color: #94a3b8;
+    }
+
     .checklist {
       list-style: none;
       padding: 0;
@@ -401,7 +485,8 @@
       .hero { padding: 24px 18px; }
       .hero h1 { font-size: 25px; }
       .card { padding: 18px 16px; }
-      .toc, .summary, .two, .three, .flow, .lead-recipes { grid-template-columns: 1fr; }
+      .toc, .summary, .two, .three, .flow, .lead-recipes, .awareness-matrices { grid-template-columns: 1fr; }
+      .mini-matrix { min-width: 720px; }
       .band { width: 100% !important; grid-template-columns: 1fr; }
       table { min-width: 760px; }
       h1, h2, h3, h4, p, li, td, th, span, strong, a { word-break: break-all; }
@@ -411,8 +496,8 @@
 <body>
   <main class="page">
     <header class="hero">
-      <h1>商品認知度とリード戦略<br>初見でもわかる学習ガイド</h1>
-      <p>「商品認知度の5段階」と「AWAIリード戦略編」を統合し、記事部と広告運用者が同じ判断軸で、FV・リード・広告文・CTAを改善できるように整理した資料。</p>
+      <h1>商品認知度<br>冒頭アプローチ<br>学習ガイド</h1>
+      <p>読者が「商品」「欲求」「問題」をどこまで知っているかを見て、FV・冒頭・広告文・CTAを同じ判断軸で改善できるように整理した資料。</p>
       <div class="meta">
         <span>対象: アクシス記事部 / 広告運用者</span>
         <span>用途: 学習・レビュー・制作判断</span>
@@ -423,7 +508,7 @@
     <section class="card">
       <h2>この資料でできるようになること</h2>
       <p>記事LPや広告で成果を出すには、商材の魅力をただ並べるだけでは足りない。読者がその商材や自分の悩みをどこまで認識しているかによって、冒頭で言うべきことが変わる。</p>
-      <p>この資料では、読者の状態を5段階に分け、その状態に合う6つのリード戦略へつなげる。読み終わった時に、「この流入なら、まず何から話すべきか」を判断できる状態を目指す。</p>
+      <p>この資料では、読者の状態を5段階に分け、その状態に合う6つの冒頭アプローチへつなげる。読み終わった時に、「この流入なら、まず何から話すべきか」を判断できる状態を目指す。</p>
       <div class="summary">
         <div class="mini"><strong>1. 読者の距離感を判定</strong><p>商品、解決策、問題をどこまで知っているかを見る。</p></div>
         <div class="mini"><strong>2. 冒頭の入口を選ぶ</strong><p>商品から入るか、問題から入るか、物語から入るかを決める。</p></div>
@@ -433,7 +518,7 @@
         <li><a href="#basic">1. 基本の考え方</a></li>
         <li><a href="#pyramid">2. 5段階ピラミッド</a></li>
         <li><a href="#levels">3. 5段階の詳しい解説</a></li>
-        <li><a href="#leads">4. 6つのリード戦略</a></li>
+        <li><a href="#leads">4. 6つの冒頭アプローチ</a></li>
         <li><a href="#examples">5. 具体例で理解する</a></li>
         <li><a href="#operation">6. 記事部・運用者の使い方</a></li>
         <li><a href="#check">7. チェックリスト</a></li>
@@ -459,20 +544,20 @@
           <p>問題、違和感、生活シーン、感情、物語、意外な事実から入る。読者はまだ商品を聞く準備ができていない。</p>
         </div>
       </div>
-      <h3>直接リードと間接リードの使い分け</h3>
-      <p>商品認知度が高いほど、リードは直接的にできる。すでに商品を欲しい人には、価格、条件、予約方法などを見せた方が早い。商品認知度が低いほど、リードは間接的にする。商品を知らない人、問題に気づいていない人、広告に疑い深い人には、商品説明の前に「聞く理由」を作る必要がある。</p>
+      <h3>直接言える時と、遠回りが必要な時</h3>
+      <p>商品認知度が高いほど、価格、条件、予約方法などをそのまま見せても伝わりやすい。商品認知度が低いほど、商品を知らない人、問題に気づいていない人、広告に疑い深い人が多いため、商品説明の前に「聞く理由」を作る必要がある。</p>
       <div class="two">
         <div class="mini">
-          <strong>直接リードが向く時</strong>
+          <strong>直接言ってよい時</strong>
           <p>商品が分かりやすい、読者が既存客、オファーが強い、約束が受け入れられやすい、商品改良や保証で購入不安を減らせている時。</p>
         </div>
         <div class="mini">
-          <strong>間接リードが向く時</strong>
+          <strong>遠回りが必要な時</strong>
           <p>商品説明が必要、読者が広告に飽きている、商品や主張を信じていない、問題や解決策をまだ認識していない、ニュース性や意外性がある時。</p>
         </div>
       </div>
       <div class="note">
-        <span class="label">リード選定のセオリー</span>
+        <span class="label">冒頭を決めるルール</span>
         <p>出発点は「見込み客がすでに認識していること」か「次に知りたいこと」。問題認識なら問題から、解決認識なら欲しい未来や解決可能性から、商品認識なら選ぶ理由から、購買認識なら条件や申込方法から始める。</p>
       </div>
     </section>
@@ -522,7 +607,7 @@
 
       <h3>4. 商品認識</h3>
       <p>商品や候補は知っているが、まだ欲しいとは言い切れない状態。読者は「本当に自分に合うのか」「効果があるのか」「失敗しないか」「他と何が違うのか」で止まっている。</p>
-      <p>この段階では、商品の存在を知らせるより、選ぶ理由を作る。証拠、比較、口コミ、症例、保証、FAQ、専門性、料金の透明性などで不安を減らす。</p>
+      <p>この段階では、商品の存在を知らせるより、選ぶ理由を作る。証拠、比較、口コミ、実績、保証、FAQ、専門性、料金の透明性などで不安を減らす。</p>
       <div class="example">
         <span class="label">足の痺れなら</span>
         <p>整体、病院、ストレッチ、サプリなどを知っている。ただし、自分には何が合うのか、どこへ行くべきか決めきれていない。</p>
@@ -538,18 +623,18 @@
     </section>
 
     <section class="card" id="leads">
-      <h2>4. 6つのリード戦略</h2>
-      <p>商品認知度が分かったら、次はリード戦略を選ぶ。リードとは、ヘッドライン、サブヘッド、オープニングを含む冒頭の入り口。記事LPでも、広告でも、動画でも、読者が続きを見るかどうかはこの入口で大きく決まる。</p>
+      <h2>4. 6つの冒頭アプローチ</h2>
+      <p>商品認知度が分かったら、次は冒頭アプローチを選ぶ。ここでいう冒頭アプローチとは、ヘッドライン、サブヘッド、オープニングを含む最初の入り口。記事LPでも、広告でも、動画でも、読者が続きを見るかどうかはこの入口で大きく決まる。</p>
       <div class="note">
         <span class="label">最初に決めること</span>
-        <p>リード名を先に選ぶのではなく、読者が今知っているものを確認する。商品を知っているならオファーやプロミス。問題だけ知っているなら問題解決や秘密。何も自分ごと化していないなら宣言やストーリーで注意を取る。</p>
+        <p>名前を先に選ぶのではなく、読者が今知っているものを確認する。商品を知っているならオファーやプロミス。問題だけ知っているなら問題解決や秘密。何も自分ごと化していないなら宣言やストーリーで注意を取る。</p>
       </div>
 
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>リード戦略</th>
+              <th>冒頭アプローチ</th>
               <th>向く認知度</th>
               <th>何から入るか</th>
               <th>注意点</th>
@@ -557,37 +642,37 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="badge b-green">オファーリード</span></td>
+              <td><span class="badge b-green">オファー型</span></td>
               <td>購買認識</td>
               <td>価格、保証、特典、期限、予約枠、スペック。</td>
               <td>低認知度に使うと売り込みに見える。</td>
             </tr>
             <tr>
-              <td><span class="badge b-green">プロミスリード</span></td>
+              <td><span class="badge b-green">プロミス型</span></td>
               <td>商品認識〜購買認識</td>
               <td>読者が強く望む結果を大胆に約束する。</td>
               <td>証拠や根拠がないと怪しくなる。</td>
             </tr>
             <tr>
-              <td><span class="badge b-blue">問題解決リード</span></td>
+              <td><span class="badge b-blue">問題解決型</span></td>
               <td>問題認識〜解決認識</td>
               <td>悩み、心配、生活の支障、感情の痛み。</td>
               <td>問題だけを長く煽らず、希望を出す。</td>
             </tr>
             <tr>
-              <td><span class="badge b-violet">秘密リード</span></td>
+              <td><span class="badge b-violet">秘密型</span></td>
               <td>解決認識〜認識なし寄り</td>
               <td>知られていない仕組み、成功の裏側、隠れた理由。</td>
               <td>秘密そのものより、秘密がもたらす結果を見せる。</td>
             </tr>
             <tr>
-              <td><span class="badge b-amber">予言・宣言リード</span></td>
+              <td><span class="badge b-amber">予言・宣言型</span></td>
               <td>問題認識〜認識なし寄り</td>
               <td>大胆な主張、未来予測、意外な事実。</td>
               <td>大胆な宣言の直後に根拠が必要。</td>
             </tr>
             <tr>
-              <td><span class="badge b-red">ストーリーリード</span></td>
+              <td><span class="badge b-red">ストーリー型</span></td>
               <td>認識なし、広い潜在層</td>
               <td>人の物語、感情の動き、変化の瞬間。</td>
               <td>語りすぎず、商品やベネフィットへ接続する。</td>
@@ -596,7 +681,7 @@
         </table>
       </div>
 
-      <h3>リード戦略の選び方</h3>
+      <h3>冒頭アプローチの選び方</h3>
       <div class="flow">
         <div><strong>認識なし</strong><span>ストーリー、予言・宣言、秘密で注意を取る。</span></div>
         <div><strong>問題認識</strong><span>問題解決で感情を代弁し、希望を出す。</span></div>
@@ -605,11 +690,88 @@
         <div><strong>購買認識</strong><span>オファー、保証、申込導線で行動を促す。</span></div>
       </div>
 
-      <h3>6リード別の構成と作り方</h3>
-      <p>ここからは、各リードを実際に書く時の順番。記事LPではこの通りに全文を書く必要はないが、FV、冒頭、広告文、CTA前の教育を作る時の材料出しに使える。</p>
+      <h3>認識レベル別に見た効きやすさ</h3>
+      <p>◎は特に効きやすい層、○は使える層、×はそのままだと伝わりにくい層。迷った時は、まずこの図で読者との距離を確認する。</p>
+      <div class="awareness-matrices" aria-label="認識レベル別の効きやすさ">
+        <div class="matrix-card">
+          <h4><span class="badge b-green">オファー型</span></h4>
+          <p class="matrix-note">すでに商品を欲しい人に、条件を見せて動かす。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">補足が必要</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="weak">急ぎすぎ</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">向きにくい</div>
+          </div>
+        </div>
+        <div class="matrix-card">
+          <h4><span class="badge b-green">プロミス型</span></h4>
+          <p class="matrix-note">商品候補を知っている人に、欲しい結果と理由を見せる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">問題からなら可</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">向きにくい</div>
+          </div>
+        </div>
+        <div class="matrix-card">
+          <h4><span class="badge b-blue">問題解決型</span></h4>
+          <p class="matrix-note">問題や悩みを入口にして、解決できる希望を出す。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="weak">遠回り</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">問題に気づかせる必要あり</div>
+          </div>
+        </div>
+        <div class="matrix-card">
+          <h4><span class="badge b-violet">秘密型</span></h4>
+          <p class="matrix-note">知らない原因や仕組みで、続きを見たくさせる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">新情報なら可</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">話題次第</div>
+          </div>
+        </div>
+        <div class="matrix-card">
+          <h4><span class="badge b-amber">予言・宣言型</span></h4>
+          <p class="matrix-note">意外な事実や強い主張で、注意を止める。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">効きやすい</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="hit">効きやすい</div>
+          </div>
+        </div>
+        <div class="matrix-card">
+          <h4><span class="badge b-red">ストーリー型</span></h4>
+          <p class="matrix-note">人の体験で警戒心を下げ、自分ごと化させる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="hit">効きやすい</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>6種類別の構成と作り方</h3>
+      <p>ここからは、実際に書く時の順番。記事LPではこの通りに全文を書く必要はないが、FV、冒頭、広告文、CTA前の教育を作る時の材料出しに使える。</p>
       <div class="lead-recipes">
         <div class="recipe-card">
-          <h4><span class="badge b-green">オファーリード</span>取引条件から動かす</h4>
+          <h4><span class="badge b-green">オファー型</span>取引条件から動かす</h4>
           <p>すでに欲しい読者へ、価格・特典・限定枠・保証など、行動判断に必要な情報を最初に見せる。</p>
           <ol>
             <li>オファーの中で一番魅力的な条件を選ぶ。</li>
@@ -617,23 +779,23 @@
             <li>なぜその条件で出せるのか、納得できる理由を添える。</li>
             <li>商品詳細、保証、申込手順へ進める。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「初回相談無料」「モニター枠」「今月限定価格」だけで終わらせず、費用不安・ダウンタイム不安・適応確認まで一緒に見せる。</div>
+          <div class="question-box"><strong>例:</strong> いつも買っているおむつ、欲しかったパソコン、行きたい整体院のように、読者がすでに分かっているものは価格・保証・空き枠を先に見せる。</div>
         </div>
 
         <div class="recipe-card">
-          <h4><span class="badge b-green">プロミスリード</span>欲しい結果を約束する</h4>
-          <p>商品候補を知っているが決め手がない読者へ、USPを読者の欲求に変換して「この結果が得られる」と示す。</p>
+          <h4><span class="badge b-green">プロミス型</span>欲しい結果を約束する</h4>
+          <p>商品候補を知っているが決め手がない読者へ、独自の強みを読者の欲求に変換して「この結果が得られる」と示す。</p>
           <ol>
             <li>競合にはない独自価値、強み、違いを見つける。</li>
             <li>その独自価値を、読者が欲しい結果の約束に変える。</li>
-            <li>約束が本当だと分かる証拠、理由、症例、口コミ、データを集める。</li>
+            <li>約束が本当だと分かる証拠、理由、口コミ、データを集める。</li>
             <li>約束、証拠、商品詳細、オファーの順に並べる。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「疲れ顔から明るい印象へ」と約束するなら、症例、医師説明、施術適応、リスク説明まで近くに置く。</div>
+          <div class="question-box"><strong>例:</strong> 足の痺れなら「条件に合う人は1時間以内に軽くする」と約束し、その理由を説明する。カメラなら「手ブレしにくく運動会をきれいに残せる」と伝える。</div>
         </div>
 
         <div class="recipe-card">
-          <h4><span class="badge b-blue">問題解決リード</span>悩みを代弁して希望を出す</h4>
+          <h4><span class="badge b-blue">問題解決型</span>悩みを代弁して希望を出す</h4>
           <p>問題は自覚しているが、商品や解決策を知らない読者へ、「その悩みは解決できる」と橋渡しする。</p>
           <ol>
             <li>読者が夜も考えてしまう不安、心配、生活上の支障を見つける。</li>
@@ -641,11 +803,11 @@
             <li>商品でその問題が解決できる証拠や理由を集める。</li>
             <li>問題の場面、共感、解決可能性、商品詳細、オファーの順に進める。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「写真だけ老けて見える」「寝不足に見られる」など生活場面から入り、原因と解決可能性へつなぐ。</div>
+          <div class="question-box"><strong>例:</strong> 足の痺れ、冷えで眠れない、朝の関節の重さなど、本人がすでに困っていることから入り、原因と解決可能性へつなぐ。</div>
         </div>
 
         <div class="recipe-card">
-          <h4><span class="badge b-violet">秘密リード</span>知らない理由で読み進めさせる</h4>
+          <h4><span class="badge b-violet">秘密型</span>知らない理由で読み進めさせる</h4>
           <p>「その話は聞いたことがない」と思わせ、好奇心で読み進めてもらう。問題認識から購買認識まで広く使える。</p>
           <ol>
             <li>秘密にできる特徴、原因、仕組み、分類、独自メソッドを探す。</li>
@@ -653,11 +815,11 @@
             <li>秘密に名前をつけ、知らないこととして認識しやすくする。</li>
             <li>ヒントや事例を小出しにし、十分に価値を伝えてから商品へ接続する。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「睡眠不足だけではないクマの原因」「青・茶・黒で変わる対策」など、読者が知らない分類や仕組みを入口にする。</div>
+          <div class="question-box"><strong>例:</strong> 足の痺れが長引く人が見落としがちな原因、冷え対策で見逃されがちなポイントなど、「知らなかった」を入口にする。</div>
         </div>
 
         <div class="recipe-card">
-          <h4><span class="badge b-amber">予言・宣言リード</span>大胆な主張で注意を止める</h4>
+          <h4><span class="badge b-amber">予言・宣言型</span>大胆な主張で注意を止める</h4>
           <p>認識なし寄りの読者に、ニュース、未来予測、新常識、意外な事実で「続きを見たい」と思わせる。</p>
           <ol>
             <li>資料や市場から、読者にとって驚きのある事実を探す。</li>
@@ -665,11 +827,11 @@
             <li>宣言が本当だと分かる証拠、根拠、生活実感を示す。</li>
             <li>宣言から導かれる行動と、商品を自然につなげる。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「老け見え対策はファンデより目元ケアへ」など、新常識として出す。ただし根拠や症例なしの断定は避ける。</div>
+          <div class="question-box"><strong>例:</strong> 「これからのパソコン選びはスペック表だけでは決められません」「関節の不調は年齢だけの問題とは限りません」のように、思い込みを止める。</div>
         </div>
 
         <div class="recipe-card">
-          <h4><span class="badge b-red">ストーリーリード</span>疑似体験で自分ごと化する</h4>
+          <h4><span class="badge b-red">ストーリー型</span>疑似体験で自分ごと化する</h4>
           <p>物語で警戒心を下げ、感情移入させる。認識なしにも使えるが、内容次第ではどの認知度にも接続できる。</p>
           <ol>
             <li>問題解決ストーリーか、商品開発ストーリーかを決める。</li>
@@ -677,13 +839,13 @@
             <li>本人や開発者への確認など、詳細情報を集める。</li>
             <li>悩み、葛藤、出会い、変化、現在の生活、商品詳細の順に整理する。</li>
           </ol>
-          <div class="question-box"><strong>美容医療なら:</strong> 「写真を見て目元の変化に気づいた」「相談前は怖かったが、説明で不安が減った」など、読者が追体験できる場面から入る。</div>
+          <div class="question-box"><strong>例:</strong> 足の痺れを我慢していた人の変化、冷えで眠れなかった人の習慣変更、食事に自然に誘える相手とそうでない相手の違いなど、追体験できる話から入る。</div>
         </div>
       </div>
 
       <div class="warn">
         <span class="label">注意</span>
-        <p>秘密、宣言、ストーリーは強力だが、面白さだけで商品と関係が薄いと離脱を生む。どのリードでも、最終的には商品が解決する問題、叶える欲求、行動する理由へ戻す。</p>
+        <p>秘密、宣言、ストーリーは強力だが、面白さだけで商品と関係が薄いと離脱を生む。どの型でも、最終的には商品が解決する問題、叶える欲求、行動する理由へ戻す。</p>
       </div>
     </section>
 
@@ -694,7 +856,7 @@
       <p>商品認知度は、人間関係に置き換えると分かりやすい。すでに仲が良い相手なら「今日食べに行かない？」で伝わる。相手はあなたを知っていて、誘いの意味も分かっている。</p>
       <p>しかし、まったく知らない相手に同じ言い方をすると警戒される。まず話しかける理由、聞いてもいいと思える入口、安心材料が必要。広告も同じで、商品を知らない人には、商品説明の前に「聞く理由」を作る必要がある。</p>
 
-      <h3>美容医療の記事LP</h3>
+      <h3>足の痺れ・冷え・睡眠・関節の例</h3>
       <div class="table-wrap">
         <table>
           <thead>
@@ -707,27 +869,33 @@
           </thead>
           <tbody>
             <tr>
-              <td>「なんか疲れて見える」と感じているだけ</td>
+              <td>足の痺れや冷えを、まだ大きな問題だと思っていない</td>
+              <td>認識なし</td>
+              <td>健康でいたい気持ち、歩く不安、眠れない日の違和感から入る。</td>
+              <td>問題に気づくための話、身近な生活場面。</td>
+            </tr>
+            <tr>
+              <td>「足が痺れる」「足先が冷えて眠れない」「朝だけ関節が重い」</td>
               <td>問題認識</td>
-              <td>鏡を見る場面、写真写り、周囲からの見られ方を代弁する。</td>
-              <td>原因、解決可能性、自然な変化の説明。</td>
+              <td>悩みの場面と、不安を言葉にする。</td>
+              <td>原因、同じ悩みの多さ、解決できる可能性。</td>
             </tr>
             <tr>
-              <td>「クマを改善したい」</td>
+              <td>「足の痺れを治したい」「睡眠を良くしたい」「関節を楽にしたい」</td>
               <td>解決認識</td>
-              <td>クマの種類、改善方法、施術が選択肢になる理由。</td>
-              <td>症例、仕組み、安全性。</td>
+              <td>欲しい未来と、解決方法の選択肢をつなぐ。</td>
+              <td>仕組み、理由、実績、どんな人に合うか。</td>
             </tr>
             <tr>
-              <td>「クマ取りが気になるが怖い」</td>
+              <td>整体、サプリ、ストレッチ、寝具など候補を知っている</td>
               <td>商品認識</td>
-              <td>失敗不安、ダウンタイム、料金、院選びの不安を潰す。</td>
-              <td>BA、医師、口コミ、FAQ、保証。</td>
+              <td>どれが自分に合うか、なぜそれを選ぶべきかを見せる。</td>
+              <td>比較、口コミ、保証、よくある疑問。</td>
             </tr>
             <tr>
-              <td>「予約するか迷っている」</td>
+              <td>行きたい整体院、買いたい寝具、試したいサプリが決まっている</td>
               <td>購買認識</td>
-              <td>価格、空き枠、初回の流れ、限定キャンペーン。</td>
+              <td>価格、空き枠、買い方、保証、期限を見せる。</td>
               <td>申込手順、最後の不安払拭。</td>
             </tr>
           </tbody>
@@ -776,11 +944,11 @@
         <li><span class="box"></span><span>読者が商品を知っている前提で書いてよいか確認したか。</span></li>
         <li><span class="box"></span><span>読者が解決策を知っている前提で書いてよいか確認したか。</span></li>
         <li><span class="box"></span><span>読者が自分の問題を言葉にできているか確認したか。</span></li>
-        <li><span class="box"></span><span>見込み客がすでに認識していること、または次に知りたいことからリードを始めているか。</span></li>
+        <li><span class="box"></span><span>見込み客がすでに認識していること、または次に知りたいことから冒頭を始めているか。</span></li>
         <li><span class="box"></span><span>認知度が低いのに、商品名・価格・予約導線を急いでいないか。</span></li>
         <li><span class="box"></span><span>認知度が高いのに、長い共感や基礎教育で遠回りしていないか。</span></li>
-        <li><span class="box"></span><span>選んだリード戦略に必要な証拠や希望が入っているか。</span></li>
-        <li><span class="box"></span><span>オファーなら条件、プロミスならUSPと証拠、問題解決なら悩みの場面、秘密なら名前付きの未知情報、宣言なら根拠、ストーリーなら取材材料を集めたか。</span></li>
+        <li><span class="box"></span><span>選んだ冒頭アプローチに必要な証拠や希望が入っているか。</span></li>
+        <li><span class="box"></span><span>オファーなら条件、プロミスなら独自の強みと証拠、問題解決なら悩みの場面、秘密なら名前付きの未知情報、宣言なら根拠、ストーリーなら取材材料を集めたか。</span></li>
         <li><span class="box"></span><span>広告文と記事FVの認知度がズレていないか。</span></li>
         <li><span class="box"></span><span>CTA前に、読者が行動できない理由を潰しているか。</span></li>
         <li><span class="box"></span><span>迷った時、複数パターンとトレードオフを出したか。</span></li>
@@ -793,7 +961,7 @@
       <div class="links">
         <a href="product-awareness-quick-guide.html">早見ガイドを見る</a>
         <a href="product-awareness.html">旧: 商品認知度5段階</a>
-        <a href="awai-lead-strategy.html">旧: AWAIリード戦略編</a>
+        <a href="awai-lead-strategy.html">旧: 6つの冒頭アプローチ</a>
       </div>
     </section>
   </main>
