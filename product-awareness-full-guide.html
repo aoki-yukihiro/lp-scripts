@@ -300,6 +300,58 @@
       margin: 14px 0;
     }
 
+    .lead-recipes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .recipe-card {
+      background: #fbfdff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .recipe-card h4 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .recipe-card p {
+      color: #334155;
+      margin-bottom: 10px;
+    }
+
+    .recipe-card ol {
+      margin: 8px 0 12px;
+      padding-left: 22px;
+    }
+
+    .recipe-card li {
+      line-height: 1.65;
+    }
+
+    .question-box {
+      background: var(--slate-soft);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.65;
+      margin-top: 10px;
+    }
+
+    .question-box strong {
+      color: var(--ink);
+    }
+
     .checklist {
       list-style: none;
       padding: 0;
@@ -349,7 +401,7 @@
       .hero { padding: 24px 18px; }
       .hero h1 { font-size: 25px; }
       .card { padding: 18px 16px; }
-      .toc, .summary, .two, .three, .flow { grid-template-columns: 1fr; }
+      .toc, .summary, .two, .three, .flow, .lead-recipes { grid-template-columns: 1fr; }
       .band { width: 100% !important; grid-template-columns: 1fr; }
       table { min-width: 760px; }
       h1, h2, h3, h4, p, li, td, th, span, strong, a { word-break: break-all; }
@@ -406,6 +458,22 @@
           <strong>認知度が低い人への入口</strong>
           <p>問題、違和感、生活シーン、感情、物語、意外な事実から入る。読者はまだ商品を聞く準備ができていない。</p>
         </div>
+      </div>
+      <h3>直接リードと間接リードの使い分け</h3>
+      <p>商品認知度が高いほど、リードは直接的にできる。すでに商品を欲しい人には、価格、条件、予約方法などを見せた方が早い。商品認知度が低いほど、リードは間接的にする。商品を知らない人、問題に気づいていない人、広告に疑い深い人には、商品説明の前に「聞く理由」を作る必要がある。</p>
+      <div class="two">
+        <div class="mini">
+          <strong>直接リードが向く時</strong>
+          <p>商品が分かりやすい、読者が既存客、オファーが強い、約束が受け入れられやすい、商品改良や保証で購入不安を減らせている時。</p>
+        </div>
+        <div class="mini">
+          <strong>間接リードが向く時</strong>
+          <p>商品説明が必要、読者が広告に飽きている、商品や主張を信じていない、問題や解決策をまだ認識していない、ニュース性や意外性がある時。</p>
+        </div>
+      </div>
+      <div class="note">
+        <span class="label">リード選定のセオリー</span>
+        <p>出発点は「見込み客がすでに認識していること」か「次に知りたいこと」。問題認識なら問題から、解決認識なら欲しい未来や解決可能性から、商品認識なら選ぶ理由から、購買認識なら条件や申込方法から始める。</p>
       </div>
     </section>
 
@@ -472,6 +540,10 @@
     <section class="card" id="leads">
       <h2>4. 6つのリード戦略</h2>
       <p>商品認知度が分かったら、次はリード戦略を選ぶ。リードとは、ヘッドライン、サブヘッド、オープニングを含む冒頭の入り口。記事LPでも、広告でも、動画でも、読者が続きを見るかどうかはこの入口で大きく決まる。</p>
+      <div class="note">
+        <span class="label">最初に決めること</span>
+        <p>リード名を先に選ぶのではなく、読者が今知っているものを確認する。商品を知っているならオファーやプロミス。問題だけ知っているなら問題解決や秘密。何も自分ごと化していないなら宣言やストーリーで注意を取る。</p>
+      </div>
 
       <div class="table-wrap">
         <table>
@@ -531,6 +603,87 @@
         <div><strong>解決認識</strong><span>欲しい未来と解決策をつなぐ。</span></div>
         <div><strong>商品認識</strong><span>プロミス、証拠、比較で確信を作る。</span></div>
         <div><strong>購買認識</strong><span>オファー、保証、申込導線で行動を促す。</span></div>
+      </div>
+
+      <h3>6リード別の構成と作り方</h3>
+      <p>ここからは、各リードを実際に書く時の順番。記事LPではこの通りに全文を書く必要はないが、FV、冒頭、広告文、CTA前の教育を作る時の材料出しに使える。</p>
+      <div class="lead-recipes">
+        <div class="recipe-card">
+          <h4><span class="badge b-green">オファーリード</span>取引条件から動かす</h4>
+          <p>すでに欲しい読者へ、価格・特典・限定枠・保証など、行動判断に必要な情報を最初に見せる。</p>
+          <ol>
+            <li>オファーの中で一番魅力的な条件を選ぶ。</li>
+            <li>その条件が読者にとってどんな価値になるかをベネフィット化する。</li>
+            <li>なぜその条件で出せるのか、納得できる理由を添える。</li>
+            <li>商品詳細、保証、申込手順へ進める。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「初回相談無料」「モニター枠」「今月限定価格」だけで終わらせず、費用不安・ダウンタイム不安・適応確認まで一緒に見せる。</div>
+        </div>
+
+        <div class="recipe-card">
+          <h4><span class="badge b-green">プロミスリード</span>欲しい結果を約束する</h4>
+          <p>商品候補を知っているが決め手がない読者へ、USPを読者の欲求に変換して「この結果が得られる」と示す。</p>
+          <ol>
+            <li>競合にはない独自価値、強み、違いを見つける。</li>
+            <li>その独自価値を、読者が欲しい結果の約束に変える。</li>
+            <li>約束が本当だと分かる証拠、理由、症例、口コミ、データを集める。</li>
+            <li>約束、証拠、商品詳細、オファーの順に並べる。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「疲れ顔から明るい印象へ」と約束するなら、症例、医師説明、施術適応、リスク説明まで近くに置く。</div>
+        </div>
+
+        <div class="recipe-card">
+          <h4><span class="badge b-blue">問題解決リード</span>悩みを代弁して希望を出す</h4>
+          <p>問題は自覚しているが、商品や解決策を知らない読者へ、「その悩みは解決できる」と橋渡しする。</p>
+          <ol>
+            <li>読者が夜も考えてしまう不安、心配、生活上の支障を見つける。</li>
+            <li>読者の頭の中の言葉、恥ずかしさ、不安、諦めを言語化する。</li>
+            <li>商品でその問題が解決できる証拠や理由を集める。</li>
+            <li>問題の場面、共感、解決可能性、商品詳細、オファーの順に進める。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「写真だけ老けて見える」「寝不足に見られる」など生活場面から入り、原因と解決可能性へつなぐ。</div>
+        </div>
+
+        <div class="recipe-card">
+          <h4><span class="badge b-violet">秘密リード</span>知らない理由で読み進めさせる</h4>
+          <p>「その話は聞いたことがない」と思わせ、好奇心で読み進めてもらう。問題認識から購買認識まで広く使える。</p>
+          <ol>
+            <li>秘密にできる特徴、原因、仕組み、分類、独自メソッドを探す。</li>
+            <li>その秘密が読者にどんなベネフィットをもたらすか確認する。</li>
+            <li>秘密に名前をつけ、知らないこととして認識しやすくする。</li>
+            <li>ヒントや事例を小出しにし、十分に価値を伝えてから商品へ接続する。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「睡眠不足だけではないクマの原因」「青・茶・黒で変わる対策」など、読者が知らない分類や仕組みを入口にする。</div>
+        </div>
+
+        <div class="recipe-card">
+          <h4><span class="badge b-amber">予言・宣言リード</span>大胆な主張で注意を止める</h4>
+          <p>認識なし寄りの読者に、ニュース、未来予測、新常識、意外な事実で「続きを見たい」と思わせる。</p>
+          <ol>
+            <li>資料や市場から、読者にとって驚きのある事実を探す。</li>
+            <li>その事実を大胆な宣言や未来予測に変える。</li>
+            <li>宣言が本当だと分かる証拠、根拠、生活実感を示す。</li>
+            <li>宣言から導かれる行動と、商品を自然につなげる。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「老け見え対策はファンデより目元ケアへ」など、新常識として出す。ただし根拠や症例なしの断定は避ける。</div>
+        </div>
+
+        <div class="recipe-card">
+          <h4><span class="badge b-red">ストーリーリード</span>疑似体験で自分ごと化する</h4>
+          <p>物語で警戒心を下げ、感情移入させる。認識なしにも使えるが、内容次第ではどの認知度にも接続できる。</p>
+          <ol>
+            <li>問題解決ストーリーか、商品開発ストーリーかを決める。</li>
+            <li>一番商品の魅力が伝わる出来事、人物、変化を選ぶ。</li>
+            <li>本人や開発者への確認など、詳細情報を集める。</li>
+            <li>悩み、葛藤、出会い、変化、現在の生活、商品詳細の順に整理する。</li>
+          </ol>
+          <div class="question-box"><strong>美容医療なら:</strong> 「写真を見て目元の変化に気づいた」「相談前は怖かったが、説明で不安が減った」など、読者が追体験できる場面から入る。</div>
+        </div>
+      </div>
+
+      <div class="warn">
+        <span class="label">注意</span>
+        <p>秘密、宣言、ストーリーは強力だが、面白さだけで商品と関係が薄いと離脱を生む。どのリードでも、最終的には商品が解決する問題、叶える欲求、行動する理由へ戻す。</p>
       </div>
     </section>
 
@@ -623,9 +776,11 @@
         <li><span class="box"></span><span>読者が商品を知っている前提で書いてよいか確認したか。</span></li>
         <li><span class="box"></span><span>読者が解決策を知っている前提で書いてよいか確認したか。</span></li>
         <li><span class="box"></span><span>読者が自分の問題を言葉にできているか確認したか。</span></li>
+        <li><span class="box"></span><span>見込み客がすでに認識していること、または次に知りたいことからリードを始めているか。</span></li>
         <li><span class="box"></span><span>認知度が低いのに、商品名・価格・予約導線を急いでいないか。</span></li>
         <li><span class="box"></span><span>認知度が高いのに、長い共感や基礎教育で遠回りしていないか。</span></li>
         <li><span class="box"></span><span>選んだリード戦略に必要な証拠や希望が入っているか。</span></li>
+        <li><span class="box"></span><span>オファーなら条件、プロミスならUSPと証拠、問題解決なら悩みの場面、秘密なら名前付きの未知情報、宣言なら根拠、ストーリーなら取材材料を集めたか。</span></li>
         <li><span class="box"></span><span>広告文と記事FVの認知度がズレていないか。</span></li>
         <li><span class="box"></span><span>CTA前に、読者が行動できない理由を潰しているか。</span></li>
         <li><span class="box"></span><span>迷った時、複数パターンとトレードオフを出したか。</span></li>
