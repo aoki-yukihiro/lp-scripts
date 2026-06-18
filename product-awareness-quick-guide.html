@@ -165,33 +165,6 @@
       color: #273447;
     }
 
-    .decision {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin: 14px 0 4px;
-    }
-
-    .step {
-      background: #fbfdff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 12px;
-      min-height: 112px;
-    }
-
-    .step strong {
-      display: block;
-      line-height: 1.35;
-      margin-bottom: 6px;
-    }
-
-    .step span {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
     .visual-split {
       display: grid;
       grid-template-columns: .8fr 1.2fr;
@@ -252,7 +225,7 @@
 
     .approach-lane {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 8px;
     }
 
@@ -391,7 +364,7 @@
       .page { padding: 16px 12px 48px; }
       .hero { padding: 22px 18px; }
       .hero h1 { font-size: 25px; }
-      .lead-rule, .decision, .lead-examples, .visual-split, .approach-lane { grid-template-columns: 1fr; }
+      .lead-rule, .lead-examples, .visual-split, .approach-lane { grid-template-columns: 1fr; }
       .quick-band { width: 100% !important; grid-template-columns: 1fr; }
       .card { padding: 16px; }
       table { min-width: 760px; }
@@ -412,29 +385,16 @@
     </header>
 
     <section class="card">
-      <h2>まずこれだけ覚える</h2>
-      <p>商品認知度とは、読者が「自分の問題」「解決策」「商品」をどこまで知っているかを見る考え方。記事LPや広告では、売り手が言いたいことからではなく、読者がすでに認識していることから話し始める。</p>
+      <h2>この資料の使い方</h2>
+      <p>商品認知度をゼロから学ぶ資料ではなく、読者の状態に合わせて「記事や広告の冒頭を何から始めるか」を選ぶための早見表です。</p>
       <div class="lead-rule">
         <div class="rule-box">
-          <strong>認知度が高い人</strong>
-          <p>商品や解決策を知っている。遠回りせず、商品名、証拠、比較、オファー、申込導線を早めに見せる。</p>
+          <strong>先に見ること</strong>
+          <p>読者は「問題」「解決策」「商品」のどこまで知っているか。</p>
         </div>
         <div class="rule-box">
-          <strong>認知度が低い人</strong>
-          <p>まだ自分ごと化していない。商品名より先に、悩み、違和感、感情、ストーリー、意外な事実から入る。</p>
-        </div>
-      </div>
-      <div class="note">
-        <strong>実務ルール:</strong> 同じ商材でも、商材名検索、悩み検索、SNS広告、リターゲティングでは認知度が変わる。流入面ごとに仮置きする。
-      </div>
-      <div class="lead-rule">
-        <div class="rule-box">
-          <strong>冒頭を決める鉄則</strong>
-          <p>見込み客がすでに認識していること、または「次に知りたいこと」から始める。商品を知らない人には商品名ではなく悩みや違和感、問題に気づいていない人には物語や意外な事実から入る。</p>
-        </div>
-        <div class="rule-box">
-          <strong>ズレると起きること</strong>
-          <p>問題認識の人に価格だけを見せても「何の商品？」で止まる。購買認識の人に長い共感を見せると「早く条件を見せて」で離れる。入口の早すぎ・遅すぎを防ぐのが商品認知度。</p>
+          <strong>決めること</strong>
+          <p>商品をすぐ見せるか、悩み・意外な事実・ストーリーから入るか。</p>
         </div>
       </div>
     </section>
@@ -457,7 +417,8 @@
             <div class="approach-item"><strong>オファー型</strong>価格・特典・保証・期限</div>
             <div class="approach-item"><strong>プロミス型</strong>欲しい結果と証拠</div>
             <div class="approach-item"><strong>問題解決型</strong>悩みと解決可能性</div>
-            <div class="approach-item"><strong>秘密型 / 宣言型</strong>知らない理由・意外な事実</div>
+            <div class="approach-item"><strong>秘密型</strong>知らない理由</div>
+            <div class="approach-item"><strong>予言・宣言型</strong>意外な主張</div>
             <div class="approach-item"><strong>ストーリー型</strong>人の体験や変化</div>
           </div>
         </div>
@@ -465,353 +426,192 @@
     </section>
 
     <section class="card">
-      <h2>5段階の早見表</h2>
+      <h2>読者の状態 × 冒頭アプローチ</h2>
+      <p>商品認知度の細かい説明はここでは省略。まずは「読者が今どこにいるか」と「どの入口が合いやすいか」を見る。</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>段階</th>
               <th>読者の状態</th>
-              <th>冒頭で言うこと</th>
-              <th>急がないこと</th>
-              <th>足の痺れなら</th>
+              <th>知っていること</th>
+              <th>使いやすい冒頭</th>
+              <th>最初に見せるもの</th>
+              <th>身近な例</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="badge b-red">認識なし</span></td>
-              <td>商品も問題も、まだ自分ごとではない。</td>
-              <td>日常の違和感、価値観、ストーリー、意外な事実。</td>
-              <td>商品名、料金、予約導線。</td>
-              <td>足の痺れに気づいていない。健康でいたい程度。</td>
+              <td>問題も商品も、まだ自分ごとではない。</td>
+              <td>ストーリー型 / 予言・宣言型</td>
+              <td>日常の違和感、体験、意外な事実。</td>
+              <td>足の痺れに気づいていない。冷えを体質だと思っている。</td>
             </tr>
             <tr>
               <td><span class="badge b-amber">問題認識</span></td>
-              <td>問題には気づいているが、解決策があるとは思えていない。</td>
-              <td>悩みの具体化、生活の支障、不安や恐れの代弁。</td>
-              <td>いきなり商品紹介へ飛ぶこと。</td>
-              <td>最近足が痺れる。不安だが、どうすればよいか分からない。</td>
+              <td>困りごとはあるが、解決策までは分からない。</td>
+              <td>問題解決型 / 秘密型</td>
+              <td>悩み、生活の支障、原因の見方。</td>
+              <td>足が痺れる。足先が冷えて眠れない。</td>
             </tr>
             <tr>
               <td><span class="badge b-blue">解決認識</span></td>
-              <td>欲しい結果はあるが、どの商品・手段で叶うか知らない。</td>
-              <td>欲しい未来、解決可能性、解決策の提示。</td>
-              <td>商品名や料金だけを出すこと。</td>
-              <td>足の痺れを治したい。普通に歩ける状態になりたい。</td>
+              <td>欲しい結果はあるが、手段は決まっていない。</td>
+              <td>問題解決型 / 秘密型 / プロミス型</td>
+              <td>欲しい未来、解決できる理由、選択肢。</td>
+              <td>睡眠を良くしたい。関節の重さを減らしたい。</td>
             </tr>
             <tr>
               <td><span class="badge b-green">商品認識</span></td>
-              <td>商品や候補は知っているが、自分に合うか迷っている。</td>
-              <td>選ぶ理由、証拠、比較、口コミ、保証、不安払拭。</td>
-              <td>商品名だけで売れる前提。</td>
-              <td>整体、病院、ストレッチ、サプリなど候補を知っている。</td>
+              <td>商品や候補は知っているが、選びきれていない。</td>
+              <td>プロミス型 / オファー型</td>
+              <td>選ぶ理由、証拠、比較、不安の解消。</td>
+              <td>整体、寝具、サプリなど候補を知っている。</td>
             </tr>
             <tr>
               <td><span class="badge b-green">購買認識</span></td>
-              <td>商品を知っていて欲しい。あとは買うだけ。</td>
-              <td>価格、申込方法、予約枠、期限、特典、保証。</td>
-              <td>長い共感や基礎教育。</td>
-              <td>A整体院で改善できそう。予約方法と空き枠を知りたい。</td>
+              <td>欲しい商品がほぼ決まっている。</td>
+              <td>オファー型</td>
+              <td>価格、期限、保証、申込手順。</td>
+              <td>買うおむつ、欲しいパソコン、予約したい整体院が決まっている。</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h3>見出し例で見る6つの冒頭アプローチ</h3>
-      <p>表だけで決めにくい時は、まず「冒頭の見出しにしたらどうなるか」で考える。例は、足の痺れ、冷え、睡眠、関節、食事に誘う場面などに絞る。</p>
+      <h3>6つの冒頭アプローチ一覧</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>冒頭アプローチ</th>
+              <th>何から入るか</th>
+              <th>合いやすい状態</th>
+              <th>例</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge b-green">オファー型</span></td>
+              <td>価格、特典、期限、保証、空き枠など。</td>
+              <td>商品を知っていて、最後の判断材料が欲しい。</td>
+              <td>いつものおむつが今日だけ20%OFF。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-green">プロミス型</span></td>
+              <td>欲しい結果、変化、得られる未来。</td>
+              <td>解決策や商品に興味があり、何が変わるか知りたい。</td>
+              <td>足の痺れを軽くするために、まず原因を見直す。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-blue">問題解決型</span></td>
+              <td>悩み、困りごと、生活の支障。</td>
+              <td>問題には気づいているが、解決策はまだ曖昧。</td>
+              <td>布団に入っても足先が冷えて眠れない人へ。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-blue">秘密型</span></td>
+              <td>見落としている原因、知らない仕組み。</td>
+              <td>悩みはあるが、原因や選び方が分からない。</td>
+              <td>睡眠の質を下げる、意外と知られていない習慣。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-amber">予言・宣言型</span></td>
+              <td>意外な主張、新しい見方、今後の変化。</td>
+              <td>まだ自分ごとではないが、強い主張には反応しそう。</td>
+              <td>関節の不調は、年齢だけの問題とは限りません。</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-red">ストーリー型</span></td>
+              <td>人の体験、感情の変化、気づき。</td>
+              <td>いきなり商品を出すと読まれにくい。</td>
+              <td>冷えで眠れなかった人が、寝る前の習慣を変えた話。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>具体例で見る6つの冒頭アプローチ</h3>
+      <p>表だけで決めにくい時は、冒頭の見出しにしたらどうなるかで考える。</p>
       <div class="lead-examples" aria-label="6つの冒頭アプローチの具体例">
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-green">オファー</span><strong>条件が良いから今動く入口</strong></div>
+          <div class="lead-head"><span class="badge b-green">オファー型</span><strong>条件が良いから今動く入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
             <li>いつも買っているおむつが、今日だけ20%OFF</li>
             <li>欲しかったパソコンが、保証付きで今週だけ特別価格</li>
             <li>A整体院の土曜午後に、1枠だけ空きがあります</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 読者が商品やお店を知っていて、あとは条件を知りたい時。</p>
-          <p class="use-case"><strong>作る時:</strong> 価格、特典、期限、枠数、保証など、買う判断に必要な情報を先に見せる。</p>
+          <p class="use-case"><strong>向く状態:</strong> 読者が商品やお店を知っていて、あとは条件を知りたい時。</p>
         </div>
 
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-green">プロミス</span><strong>欲しい未来を最初に見せる入口</strong></div>
+          <div class="lead-head"><span class="badge b-green">プロミス型</span><strong>欲しい未来を最初に見せる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
-            <li>条件に合う人なら、1時間以内に足の痺れを軽くします</li>
+            <li>足の痺れを軽くするために、まず原因を見直しませんか？</li>
             <li>朝までぐっすり眠れる環境づくりを、今日から始められます</li>
             <li>手ブレしにくいカメラで、子どもの運動会をきれいに残せます</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 商品認識から購買認識。悩みも解決策も分かっていて、「結局どう変われるのか」を知りたい時。</p>
-          <p class="use-case"><strong>作る時:</strong> 結果だけを強く言い切らず、なぜそう言えるのかの理由や証拠を近くに置く。</p>
+          <p class="use-case"><strong>向く状態:</strong> 解決策や商品に興味があり、何が変わるか知りたい時。</p>
         </div>
 
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-blue">問題解決</span><strong>悩みを言語化して希望へつなぐ入口</strong></div>
+          <div class="lead-head"><span class="badge b-blue">問題解決型</span><strong>悩みを言語化して希望へつなぐ入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
             <li>足の痺れを引き起こす5つの原因。あなたはどのタイプ？</li>
             <li>布団に入っても足先が冷えて眠れない人へ</li>
             <li>朝起きると関節が重い。その原因を見直してみませんか？</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 悩み検索、SNS広告、共感導入。読者は困っているが、まだ商品に直結していない時。</p>
-          <p class="use-case"><strong>作る時:</strong> 生活シーン、感情、困りごとを先に出し、次に原因と解決可能性へ進める。</p>
+          <p class="use-case"><strong>向く状態:</strong> 困っているが、まだ商品に直結していない時。</p>
         </div>
 
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-blue">秘密</span><strong>知らなかった原因で読み進めさせる入口</strong></div>
+          <div class="lead-head"><span class="badge b-blue">秘密型</span><strong>知らなかった原因で読み進めさせる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
             <li>足の痺れが長引く人が見落としがちな原因</li>
             <li>冷え対策で、多くの人が見逃しているポイント</li>
             <li>睡眠の質を下げる、意外と知られていない習慣</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 問題認識から解決認識。悩みはあるが、なぜ起きるのか、何を選べばよいか分からない時。</p>
-          <p class="use-case"><strong>作る時:</strong> 「知らないと損」だけで煽らず、分類、原因、仕組み、専門家視点で納得感を作る。</p>
+          <p class="use-case"><strong>向く状態:</strong> 悩みはあるが、原因や選び方が分からない時。</p>
         </div>
 
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-amber">予言・宣言</span><strong>意外な主張で注意を止める入口</strong></div>
+          <div class="lead-head"><span class="badge b-amber">予言・宣言型</span><strong>意外な主張で注意を止める入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
             <li>これからのパソコン選びは、スペック表だけでは決められません</li>
             <li>関節の不調は、年齢だけの問題とは限りません</li>
             <li>「冷えは体質だから仕方ない」と考える前に見てください</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> SNS広告や広い潜在層。読者がまだ悩みを深く考えていないが、価値観のズレや新常識には反応する時。</p>
-          <p class="use-case"><strong>作る時:</strong> 大きな主張の後に、なぜそう言えるのかをデータ、生活実感、専門家の説明で支える。</p>
+          <p class="use-case"><strong>向く状態:</strong> まだ悩みを深く考えていないが、強い主張には反応しそうな時。</p>
         </div>
 
         <div class="lead-example-card">
-          <div class="lead-head"><span class="badge b-red">ストーリー</span><strong>1人の体験で自分ごと化させる入口</strong></div>
+          <div class="lead-head"><span class="badge b-red">ストーリー型</span><strong>1人の体験で自分ごと化させる入口</strong></div>
           <span class="example-title">見出し例</span>
           <ul class="pattern-list">
             <li>足の痺れを我慢していた人が、歩く不安を減らすまで</li>
             <li>冷えで眠れなかった人が、寝る前の習慣を変えた話</li>
             <li>「今日ご飯行かない？」と自然に誘える相手と、そうでない相手の違い</li>
           </ul>
-          <p class="use-case"><strong>使う場面:</strong> 認識なしから問題認識。いきなり商品を出すと読まれにくい、広い潜在層向けの導入。</p>
-          <p class="use-case"><strong>作る時:</strong> 出来事、感情、気づき、調べ始める理由、解決策との出会いの順で、自然に商品へ接続する。</p>
+          <p class="use-case"><strong>向く状態:</strong> いきなり商品を出すと読まれにくい時。</p>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>5段階と6つの冒頭アプローチ</h2>
-      <div class="decision">
-        <div class="step"><strong>認識なし</strong><span>ストーリー、予言・宣言、秘密。まず注意と自分ごと化。</span></div>
-        <div class="step"><strong>問題認識</strong><span>問題解決、秘密、予言・宣言。不安を言語化して希望へ。</span></div>
-        <div class="step"><strong>解決認識</strong><span>問題解決、秘密。欲しい未来と解決策をつなぐ。</span></div>
-        <div class="step"><strong>商品認識</strong><span>プロミス、独自の強み、証拠。なぜこの商品かを示す。</span></div>
-        <div class="step"><strong>購買認識</strong><span>オファー、保証、限定性。行動に必要な情報を出す。</span></div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>冒頭アプローチ</th>
-              <th>向く読者</th>
-              <th>入口の作り方</th>
-              <th>記事LPでの使い方</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge b-green">オファー</span></td>
-              <td>購買認識、最大意識</td>
-              <td>価格、保証、特典、期限、条件を最初に見せる。</td>
-              <td>リタゲ、既存顧客、商材名検索、キャンペーン訴求。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-green">プロミス</span></td>
-              <td>商品認識、購買認識</td>
-              <td>読者が強く望む結果を大胆に約束し、証拠で支える。</td>
-              <td>「この商品で何が変わるか」をFVや導入で示す。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-blue">問題解決</span></td>
-              <td>問題認識、解決認識</td>
-              <td>悩み、心配、不安、生活の支障を言語化し、希望を出す。</td>
-              <td>悩み検索、SNSの潜在層向け記事、共感導入。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-blue">秘密</span></td>
-              <td>解決認識、問題認識、認識なし寄り</td>
-              <td>「知らない理由」「隠れた仕組み」「成功の裏側」で好奇心を作る。</td>
-              <td>原因説明、仕組み紹介、専門家/業界の知見。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-amber">予言・宣言</span></td>
-              <td>問題認識、認識なし寄り</td>
-              <td>大胆な主張、未来予測、意外な事実でパターンを止める。</td>
-              <td>市場変化、制度変更、今すぐ知るべき理由。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-red">ストーリー</span></td>
-              <td>認識なし、広い潜在層</td>
-              <td>人の感情の動きで抵抗を下げ、商品や約束へ接続する。</td>
-              <td>体験談、開発秘話、悩みのある1人の物語。</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>6つの冒頭アプローチを作る時の最短手順</h3>
-      <p>迷ったら、名前から考えるより「何を材料にして、どの順番で見せるか」まで落とす。</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>種類</th>
-              <th>最初に集める材料</th>
-              <th>冒頭の並べ方</th>
-              <th>使う前の確認</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="badge b-green">オファー</span></td>
-              <td>価格、割引、特典、限定枠、保証、予約条件。</td>
-              <td>一番魅力的な条件 → その価値 → なぜ今その条件なのか → 商品詳細。</td>
-              <td>読者はすでに商品や解決策を知っているか。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-green">プロミス</span></td>
-              <td>他の商品との違い、実績、口コミ、理由。</td>
-              <td>欲しい結果の約束 → なぜ叶うかの証拠 → 商品詳細 → オファー。</td>
-              <td>約束を証明する根拠があるか。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-blue">問題解決</span></td>
-              <td>悩み、不安、夜に考えること、生活の支障、解決根拠。</td>
-              <td>問題が出る場面 → 感情の代弁 → 解決可能性 → 商品詳細。</td>
-              <td>読者がその問題を自覚しているか。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-blue">秘密</span></td>
-              <td>知られていない原因、仕組み、分類、独自技術、名前をつけられる要素。</td>
-              <td>秘密の存在 → ヒント → ベネフィット → 商品で詳しく知れる流れ。</td>
-              <td>秘密の正体が読者にとって得になるか。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-amber">予言・宣言</span></td>
-              <td>驚きの事実、市場変化、データ、新常識、今後起きる不利益/チャンス。</td>
-              <td>大胆な宣言 → 根拠 → 取るべき行動 → 商品との接続。</td>
-              <td>宣言が読者の生活や悩みに関係しているか。</td>
-            </tr>
-            <tr>
-              <td><span class="badge b-red">ストーリー</span></td>
-              <td>悩みが変わった体験、開発背景、利用者の変化、印象的な出来事。</td>
-              <td>変化を暗示 → 悩み/葛藤 → 出会い/発見 → 結果 → 商品詳細。</td>
-              <td>面白いだけでなく、商品や約束へ自然につながるか。</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>流入面別にまず仮置きする</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>流入</th>
-              <th>多い認知度</th>
-              <th>冒頭の優先順位</th>
-              <th>運用/制作の見方</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>商材名検索</td>
-              <td>商品認識〜購買認識</td>
-              <td>比較、実績、価格、保証、申込導線。</td>
-              <td>「知っているが迷っている」不安を潰す。</td>
-            </tr>
-            <tr>
-              <td>悩み検索</td>
-              <td>問題認識〜解決認識</td>
-              <td>悩みの言語化、解決可能性、原因、解決策。</td>
-              <td>悩みと商品を早くつなぎすぎない。</td>
-            </tr>
-            <tr>
-              <td>SNS広告</td>
-              <td>認識なし〜問題認識</td>
-              <td>違和感、生活シーン、感情、ストーリー、意外な事実。</td>
-              <td>商品名より先に「自分の話だ」と思わせる。</td>
-            </tr>
-            <tr>
-              <td>リターゲティング</td>
-              <td>商品認識〜購買認識</td>
-              <td>再提示、限定性、保証、予約枠、口コミ。</td>
-              <td>教育よりも背中を押す材料を前に出す。</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>身近な例でのざっくり使い分け</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>読者の状態</th>
-              <th>認知度</th>
-              <th>冒頭の方向</th>
-              <th>置くべき証拠</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>足が痺れていることに、まだ気づいていない</td>
-              <td>認識なし</td>
-              <td>健康でいたい気持ち、歩けなくなる不安、日常の違和感から入る。</td>
-              <td>すぐ商品を出さず、自分ごと化できる話。</td>
-            </tr>
-            <tr>
-              <td>「最近、足が痺れる」「足先が冷える」</td>
-              <td>問題認識</td>
-              <td>悩み、生活の支障、不安を言葉にする。</td>
-              <td>原因、同じ悩みの多さ、解決できる可能性。</td>
-            </tr>
-            <tr>
-              <td>「睡眠を良くしたい」「関節の重さを減らしたい」</td>
-              <td>解決認識</td>
-              <td>欲しい未来と、解決方法の選択肢をつなぐ。</td>
-              <td>仕組み、実績、なぜその方法が合うのか。</td>
-            </tr>
-            <tr>
-              <td>整体、サプリ、ストレッチ、寝具など候補を知っている</td>
-              <td>商品認識</td>
-              <td>どれが自分に合うのか、選ぶ理由を出す。</td>
-              <td>比較、口コミ、実績、保証、よくある疑問。</td>
-            </tr>
-            <tr>
-              <td>買いたいおむつ、欲しいパソコン、行きたい整体院が決まっている</td>
-              <td>購買認識</td>
-              <td>価格、在庫、予約枠、保証、手順をすぐ見せる。</td>
-              <td>申込導線、限定性、最終不安払拭。</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>制作前チェックリスト</h2>
+      <h2>迷った時の確認ポイント</h2>
       <ul class="checklist">
         <li><span class="box"></span><span>この読者は、商品名を知っているか。</span></li>
         <li><span class="box"></span><span>この読者は、解決策があると知っているか。</span></li>
         <li><span class="box"></span><span>この読者は、自分の問題を言葉にできているか。</span></li>
-        <li><span class="box"></span><span>見込み客がすでに認識していること、または次に知りたいことから始めているか。</span></li>
-        <li><span class="box"></span><span>流入面ごとに認知度を変えて考えたか。</span></li>
-        <li><span class="box"></span><span>高認知度に長い共感を置きすぎていないか。</span></li>
-        <li><span class="box"></span><span>低認知度にいきなり商品名や価格を出していないか。</span></li>
-        <li><span class="box"></span><span>選んだ冒頭アプローチが、読者の認知度と合っているか。</span></li>
-        <li><span class="box"></span><span>オファー、プロミス、問題、秘密、宣言、ストーリーのうち、今回の入口に必要な材料を集めたか。</span></li>
-        <li><span class="box"></span><span>CTA前に、読者の不安や疑問が潰れているか。</span></li>
+        <li><span class="box"></span><span>商品を先に見せても、読者が置いていかれないか。</span></li>
+        <li><span class="box"></span><span>悩み・意外な事実・ストーリーから入った方が自然ではないか。</span></li>
+        <li><span class="box"></span><span>選んだ冒頭アプローチに必要な材料がそろっているか。</span></li>
       </ul>
       <div class="warn">
-        <strong>迷った時:</strong> 1つに決めつけない。商品認識寄りと問題認識寄りなど、2パターンを出して、広告文・流入面・過去実績で判断する。
+        <strong>注意:</strong> この表は絶対の正解ではなく、冒頭を考えるための整理用。判断に迷う時は、認識が高い人向け・低い人向けの2案を出して比較する。
       </div>
     </section>
 
