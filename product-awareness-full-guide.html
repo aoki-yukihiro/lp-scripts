@@ -436,85 +436,6 @@
       color: #94a3b8;
     }
 
-    .shared-matrix {
-      display: grid;
-      grid-template-columns: 128px repeat(3, 1fr);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      overflow: hidden;
-      background: white;
-      margin: 12px 0 18px;
-      font-size: 14px;
-    }
-
-    .shared-matrix div {
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      min-height: 42px;
-      padding: 9px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.35;
-    }
-
-    .shared-matrix div:nth-child(4n) {
-      border-right: none;
-    }
-
-    .shared-matrix div:nth-last-child(-n+4) {
-      border-bottom: none;
-    }
-
-    .fit-map {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin: 16px 0;
-    }
-
-    .fit-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fbfdff;
-      padding: 14px;
-    }
-
-    .fit-card h4 {
-      margin-top: 0;
-    }
-
-    .fit-levels {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      overflow: hidden;
-      background: white;
-      font-size: 13px;
-    }
-
-    .fit-levels div {
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      min-height: 38px;
-      padding: 7px 8px;
-      display: flex;
-      align-items: center;
-      line-height: 1.35;
-    }
-
-    .fit-levels div:nth-child(2n) {
-      border-right: none;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .fit-levels div:nth-last-child(-n+2) {
-      border-bottom: none;
-    }
-
     .checklist {
       list-style: none;
       padding: 0;
@@ -564,9 +485,8 @@
       .hero { padding: 24px 18px; }
       .hero h1 { font-size: 25px; }
       .card { padding: 18px 16px; }
-      .toc, .summary, .two, .three, .flow, .lead-recipes, .awareness-matrices, .fit-map { grid-template-columns: 1fr; }
+      .toc, .summary, .two, .three, .flow, .lead-recipes, .awareness-matrices { grid-template-columns: 1fr; }
       .mini-matrix { min-width: 720px; }
-      .shared-matrix { min-width: 560px; }
       .band { width: 100% !important; grid-template-columns: 1fr; }
       table { min-width: 760px; }
       h1, h2, h3, h4, p, li, td, th, span, strong, a { word-break: break-all; }
@@ -771,86 +691,78 @@
       </div>
 
       <h3>認識レベル別に見た効きやすさ</h3>
-      <p>先に注意点として、下の◎○×は「冒頭アプローチごとの評価」ではなく、読者が商品・欲求・問題をどこまで認識しているかを表す共通表。6種類ごとに変わるのは、その下の「効きやすい認識レベル」の範囲。</p>
-      <div class="table-wrap" aria-label="商品認知度ごとの共通認識表">
-        <div class="shared-matrix">
-          <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div>
-          <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div>
-          <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div>
-          <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div>
-          <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div>
-          <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div>
-        </div>
-      </div>
-      <p class="matrix-note">◎: 認知しているし、欲しいと思っている / ○: 認知している、気づいている / ×: 認知していない、気づいていない</p>
-
-      <h3>6種類ごとの効きやすい認識レベル</h3>
-      <p>ここからが冒頭アプローチごとの差分。資料の表に合わせて、「特に効く層」と「使える層」を分けて見る。</p>
-      <div class="fit-map" aria-label="6種類の冒頭アプローチごとの効きやすい認識レベル">
-        <div class="fit-card">
+      <p>◎は特に効きやすい層、○は使える層、×はそのままだと伝わりにくい層。迷った時は、まずこの図で読者との距離を確認する。</p>
+      <div class="awareness-matrices" aria-label="認識レベル別の効きやすさ">
+        <div class="matrix-card">
           <h4><span class="badge b-green">オファー型</span></h4>
-          <p class="matrix-note">すでに商品を欲しい人に、価格・期限・特典・保証などの条件を見せて動かす。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">商品認識</div><div class="maybe">使える</div>
-            <div class="matrix-row">解決認識</div><div class="maybe">使えるが補足が必要</div>
-            <div class="matrix-row">問題認識</div><div class="weak">急ぎすぎ</div>
-            <div class="matrix-row">認識なし</div><div class="weak">向きにくい</div>
+          <p class="matrix-note">すでに商品を欲しい人に、条件を見せて動かす。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">補足が必要</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="weak">急ぎすぎ</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">向きにくい</div>
           </div>
         </div>
-        <div class="fit-card">
+        <div class="matrix-card">
           <h4><span class="badge b-green">プロミス型</span></h4>
-          <p class="matrix-note">商品候補を知っている人に、欲しい結果や変化を見せる。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="maybe">使える</div>
-            <div class="matrix-row">商品認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">解決認識</div><div class="maybe">使える</div>
-            <div class="matrix-row">問題認識</div><div class="maybe">問題からなら可</div>
-            <div class="matrix-row">認識なし</div><div class="weak">向きにくい</div>
+          <p class="matrix-note">商品候補を知っている人に、欲しい結果と理由を見せる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">問題からなら可</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">向きにくい</div>
           </div>
         </div>
-        <div class="fit-card">
+        <div class="matrix-card">
           <h4><span class="badge b-blue">問題解決型</span></h4>
           <p class="matrix-note">問題や悩みを入口にして、解決できる希望を出す。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="weak">遠回り</div>
-            <div class="matrix-row">商品認識</div><div class="maybe">使える</div>
-            <div class="matrix-row">解決認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">問題認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">認識なし</div><div class="weak">問題に気づかせる必要あり</div>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="weak">遠回り</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">問題に気づかせる必要あり</div>
           </div>
         </div>
-        <div class="fit-card">
+        <div class="matrix-card">
           <h4><span class="badge b-violet">秘密型</span></h4>
-          <p class="matrix-note">知らない原因・仕組み・見落としで、続きを見たくさせる。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="maybe">新情報なら可</div>
-            <div class="matrix-row">商品認識</div><div class="maybe">使える</div>
-            <div class="matrix-row">解決認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">問題認識</div><div class="hit">特に効く</div>
-            <div class="matrix-row">認識なし</div><div class="weak">話題次第</div>
+          <p class="matrix-note">知らない原因や仕組みで、続きを見たくさせる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">新情報なら可</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">使える</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">特に効く</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="weak">話題次第</div>
           </div>
         </div>
-        <div class="fit-card">
+        <div class="matrix-card">
           <h4><span class="badge b-amber">予言・宣言型</span></h4>
-          <p class="matrix-note">意外な事実や強い主張で、注意を止める。宣言の内容が合えば、どの認識レベルにも使える。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">商品認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">解決認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">問題認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">認識なし</div><div class="maybe">内容次第で有効</div>
+          <p class="matrix-note">意外な事実や強い主張で、注意を止める。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="hit">効きやすい</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="hit">効きやすい</div>
           </div>
         </div>
-        <div class="fit-card">
+        <div class="matrix-card">
           <h4><span class="badge b-red">ストーリー型</span></h4>
-          <p class="matrix-note">人の体験で警戒心を下げ、自分ごと化させる。ストーリーの内容が合えば、どの認識レベルにも使える。</p>
-          <div class="fit-levels">
-            <div class="matrix-row">購買認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">商品認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">解決認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">問題認識</div><div class="maybe">内容次第で有効</div>
-            <div class="matrix-row">認識なし</div><div class="maybe">内容次第で有効</div>
+          <p class="matrix-note">人の体験で警戒心を下げ、自分ごと化させる。</p>
+          <div class="mini-matrix">
+            <div class="matrix-head">段階</div><div class="matrix-head">商品</div><div class="matrix-head">欲求</div><div class="matrix-head">問題</div><div class="matrix-head">効きやすさ</div>
+            <div class="matrix-row">購買認識</div><div class="hit">◎</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">商品認識</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">解決認識</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">問題認識</div><div class="weak">×</div><div class="weak">×</div><div class="maybe">○</div><div class="maybe">内容次第</div>
+            <div class="matrix-row">認識なし</div><div class="weak">×</div><div class="weak">×</div><div class="weak">×</div><div class="hit">効きやすい</div>
           </div>
         </div>
       </div>
