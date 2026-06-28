@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品認知度と市場成熟度 部内共有メモ</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #64748b;
+      --bg: #f5f5f5;
+      --paper: #ffffff;
+      --line: #e2e8f0;
+      --soft: #f8fafc;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --green: #16a34a;
+      --red: #dc2626;
+      --amber: #d97706;
+      --slate: #1e293b;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .doc-header {
+      background: var(--slate);
+      color: #fff;
+      padding: 32px;
+      border-radius: var(--radius);
+      margin-bottom: 18px;
+    }
+
+    .doc-header h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .doc-header p {
+      margin: 14px 0 0;
+      color: #dbeafe;
+      max-width: 780px;
+      font-size: 15px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      white-space: normal;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1d4ed8; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+    .badge-red { background: #fee2e2; color: #b91c1c; }
+
+    .nav {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .nav h2 {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .nav-grid a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--blue-dark);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--blue);
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .card h3 {
+      margin: 22px 0 10px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    .card h4 {
+      margin: 16px 0 8px;
+      font-size: 15px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul, ol {
+      margin: 8px 0 14px;
+      padding-left: 1.2em;
+    }
+
+    li { margin: 5px 0; }
+
+    strong { font-weight: 800; }
+
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .box h3,
+    .box h4 {
+      margin-top: 0;
+    }
+
+    .box p:last-child,
+    .box ul:last-child,
+    .box ol:last-child {
+      margin-bottom: 0;
+    }
+
+    .definition {
+      background: #eff6ff;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 4px solid var(--amber);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .ok {
+      background: #f0fdf4;
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      margin: 14px 0;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+
+    th {
+      background: #f1f5f9;
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .two-axis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .axis-card {
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .axis-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .axis-card .big {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .axis-blue {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .axis-green {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .flow-step {
+      position: relative;
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      border-radius: var(--radius);
+      padding: 12px 10px;
+      min-height: 128px;
+    }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -9px;
+      width: 10px;
+      height: 2px;
+      background: #94a3b8;
+    }
+
+    .flow-step:last-child::after { display: none; }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+    }
+
+    .flow-step p {
+      margin: 0;
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 130px 1fr 1fr;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 16px 0;
+    }
+
+    .matrix > div {
+      padding: 12px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      min-height: 92px;
+      font-size: 13px;
+    }
+
+    .matrix > div:nth-child(3n) { border-right: none; }
+    .matrix > div:nth-last-child(-n+3) { border-bottom: none; }
+    .matrix .head {
+      background: #f1f5f9;
+      font-weight: 800;
+      min-height: auto;
+    }
+    .matrix .label {
+      background: #f8fafc;
+      font-weight: 800;
+    }
+
+    .example-line {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .example-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .example-card h4 {
+      margin-top: 0;
+      color: #111827;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 9px;
+      border-bottom: 1px solid #eef2f7;
+      padding: 8px 0;
+      margin: 0;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .check {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid var(--blue);
+      margin-top: 4px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .quote {
+      background: #111827;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 16px;
+      font-weight: 800;
+      line-height: 1.65;
+      margin: 14px 0;
+    }
+
+    @media (max-width: 700px) {
+      .page { padding: 16px 12px 42px; }
+      .doc-header { padding: 24px 20px; }
+      .doc-header h1 { font-size: 25px; }
+      .nav-grid,
+      .lead-grid,
+      .two-axis,
+      .example-line {
+        grid-template-columns: 1fr;
+      }
+      .flow {
+        grid-template-columns: 1fr;
+      }
+      .flow-step::after { display: none; }
+      .card { padding: 18px; }
+      .matrix {
+        grid-template-columns: 1fr;
+      }
+      .matrix > div,
+      .matrix > div:nth-child(3n),
+      .matrix > div:nth-last-child(-n+3) {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        min-height: auto;
+      }
+      .matrix > div:last-child { border-bottom: none; }
+      .matrix .head.empty { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>商品認知度と市場成熟度<br>部内共有メモ</h1>
+      <p>記事LPの冒頭やヘッドラインを考える時に、「読者が何を知っているか」と「何に擦れているか」を分けて見るための整理です。</p>
+      <div class="meta">
+        <span class="badge badge-blue">部内共有用</span>
+        <span class="badge badge-green">講義内容ベース</span>
+        <span class="badge badge-amber">具体案件への適用前</span>
+        <span class="badge badge-gray">既存HTMLとは別ファイル</span>
+      </div>
+    </header>
+
+    <section class="nav">
+      <h2>目次</h2>
+      <div class="nav-grid">
+        <a href="#overview">概要</a>
+        <a href="#awareness">商品認知度</a>
+        <a href="#sophistication">市場成熟度</a>
+        <a href="#difference">違い</a>
+        <a href="#use">使い方</a>
+        <a href="#case">講義事例</a>
+        <a href="#lead">リード</a>
+        <a href="#check">確認リスト</a>
+      </div>
+    </section>
+
+    <section id="overview" class="card">
+      <h2>1. この資料で共有したいこと</h2>
+      <p>記事LPを作る時、いきなり「どんな見出しにするか」「どんなFVにするか」から考えると、読者との距離を外しやすくなります。</p>
+      <p>先に見たいのは、次の2つです。</p>
+
+      <div class="two-axis">
+        <div class="axis-card axis-blue">
+          <h3>商品認知度</h3>
+          <div class="big">読者は何を知っているか</div>
+          <p>商品、解決策、自分の問題をどこまで認識しているかを見る軸。</p>
+        </div>
+        <div class="axis-card axis-green">
+          <h3>市場成熟度</h3>
+          <div class="big">読者は何に擦れているか</div>
+          <p>同じ市場の広告約束をどれだけ見て、疑い、飽きているかを見る軸。</p>
+        </div>
+      </div>
+
+      <div class="definition">
+        <p><strong>商品認知度だけを見ると、「知っているけど見飽きている」を見落とします。</strong></p>
+        <p><strong>市場成熟度だけを見ると、「そもそも問題や商品を知らない」を見落とします。</strong></p>
+        <p>なので、記事LPの入口はこの2軸を分けて見たうえで決めると、外しにくくなります。</p>
+      </div>
+
+      <div class="note">
+        <p><strong>大前提</strong></p>
+        <p>すべての読者がきれいに分類できるわけではありません。あくまで「制作前に仮説を立てるための見方」です。実際には流入面、広告文、競合状況、過去実績を見ながら調整します。</p>
+      </div>
+    </section>
+
+    <section id="awareness" class="card">
+      <h2>2. 商品認知度: 読者が何を知っているか</h2>
+      <p>商品認知度は、読者が「商品・解決策・自分の問題」をどこまで認識しているかを見る考え方です。</p>
+      <p>ポイントは、売り手が言いたいことから始めるのではなく、読者がすでに認識していることから始めることです。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>段階</th>
+              <th>読者の状態</th>
+              <th>冒頭の入口</th>
+              <th>急がないこと</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>購買認識<br><span class="small">商品認知度5</span></td>
+              <td>商品を知っていて、欲しい。あとは買う手段だけ知りたい。</td>
+              <td>オファー、価格、申込方法、限定性。</td>
+              <td>長い共感や教育。すでに欲しい人には遠回り。</td>
+            </tr>
+            <tr>
+              <td>商品認識<br><span class="small">商品認知度4</span></td>
+              <td>商品は知っているが、自分に必要か、信じてよいか迷っている。</td>
+              <td>選ぶ理由、証拠、比較、不安払拭。</td>
+              <td>商品名だけで売れる前提にすること。</td>
+            </tr>
+            <tr>
+              <td>解決認識<br><span class="small">商品認知度3</span></td>
+              <td>欲しい結果はあるが、どの商品・手段で叶うかは知らない。</td>
+              <td>欲しい未来、解決策の提示。</td>
+              <td>いきなり商品名や料金だけを出すこと。</td>
+            </tr>
+            <tr>
+              <td>問題認識<br><span class="small">商品認知度2</span></td>
+              <td>問題には気づいているが、解決策があるとはまだ思えていない。</td>
+              <td>悩みの具体化、感情の代弁。</td>
+              <td>すぐに商品紹介へ飛ぶこと。</td>
+            </tr>
+            <tr>
+              <td>認識なし<br><span class="small">商品認知度1</span></td>
+              <td>商品も問題も認識していない。価値観、日常の違和感、漠然とした感情だけがある。</td>
+              <td>違和感、物語、価値観への問い、意外な事実。</td>
+              <td>冒頭で予約、料金、商品名を押すこと。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>同じゴールでも、入口は変わる</h3>
+      <p>講義整理では、足の痺れの例で説明していました。同じ「整体院へ来てほしい」という最終ゴールでも、相手の認知度によって冒頭で言うことは変わります。</p>
+
+      <div class="example-line">
+        <div class="example-card">
+          <h4>認識なし</h4>
+          <p>足の痺れに気づいていない。健康でいたい気持ちはあるが、具体的な悩みではない。</p>
+        </div>
+        <div class="example-card">
+          <h4>問題認識</h4>
+          <p>最近足が痺れると気づく。不安はあるが、どう解決できるかは分からない。</p>
+        </div>
+        <div class="example-card">
+          <h4>購買認識</h4>
+          <p>すでにA整体院で改善経験があり、必要なのは予約枠や申込方法だけ。</p>
+        </div>
+      </div>
+
+      <div class="ok">
+        <p><strong>判断ルール</strong></p>
+        <p>認知度が高いほど直接的に書く。認知度が低いほど、商品説明の前に「聞く理由」を作る。</p>
+      </div>
+    </section>
+
+    <section id="sophistication" class="card">
+      <h2>3. 市場成熟度: 読者が何に擦れているか</h2>
+      <p>市場成熟度は、見込み客がその市場の広告メッセージや約束をどれだけ素直に信じるか、また同じような訴求にどれだけ慣れてしまっているかを見る考え方です。</p>
+      <p>講義では、予言の例で説明されていました。子どもの頃は根拠が薄くても信じやすい。一方で、似た予言や外れた予言を何度も見た大人は「またか」と流す。この「信じやすさの摩耗」が、市場成熟度のイメージです。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>段階</th>
+              <th>市場の状況</th>
+              <th>有効なアプローチ</th>
+              <th>例</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>成熟度1</td>
+              <td>市場で初めて、その欲求を満たす商品が出る。</td>
+              <td>シンプル・ストレート。</td>
+              <td>「痩せる方法」だけで反応しやすい。</td>
+            </tr>
+            <tr>
+              <td>成熟度2</td>
+              <td>2番手、3番手の商品が出てくる。</td>
+              <td>うまくいっている主張を大きく膨らませる。</td>
+              <td>「10日で10kg」のように約束を強くする。</td>
+            </tr>
+            <tr>
+              <td>成熟度3</td>
+              <td>大きな主張への反発が出る。</td>
+              <td>新しいメカニズムを前面に出す。</td>
+              <td>食事制限ではなく運動、整体、サプリ、別の原因論。</td>
+            </tr>
+            <tr>
+              <td>成熟度4</td>
+              <td>新しいメカニズムも増えてくる。</td>
+              <td>メカニズムをステップアップする。</td>
+              <td>より早い、楽、自分向け、確実、専門的。</td>
+            </tr>
+            <tr>
+              <td>成熟度5</td>
+              <td>広告全体への反発後。何を言っても信じにくい。</td>
+              <td>正面突破ではなく、別の入口や価値観から入る。</td>
+              <td>商品機能より、アイデンティティや象徴性から入る。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="definition">
+        <p><strong>市場成熟度を見る時の問い</strong></p>
+        <p>この読者は、同じ市場でどんな約束を何度も見ているか。どの言葉にはもう反応しにくいか。まだ新鮮に見えるメカニズムは何か。</p>
+      </div>
+    </section>
+
+    <section id="difference" class="card">
+      <h2>4. 2つの違い</h2>
+      <p>商品認知度と市場成熟度は、どちらも「読者との距離」を見るための考え方ですが、見ているものが違います。</p>
+
+      <div class="matrix">
+        <div class="head empty"></div>
+        <div class="head">商品認知度</div>
+        <div class="head">市場成熟度</div>
+
+        <div class="label">一言でいうと</div>
+        <div>読者が何を知っているか。</div>
+        <div>読者が何に擦れているか。</div>
+
+        <div class="label">見る対象</div>
+        <div>問題、欲求、解決策、商品、申込方法。</div>
+        <div>広告約束、競合訴求、同じ表現、誇大広告への反発。</div>
+
+        <div class="label">間違えると</div>
+        <div>まだ問題を知らない人に商品名や価格を出してしまう。</div>
+        <div>すでに見飽きた約束を、さらに強く言うだけになる。</div>
+
+        <div class="label">決めること</div>
+        <div>商品から入るか、悩みから入るか、ストーリーから入るか。</div>
+        <div>ストレートに言うか、メカニズムを変えるか、市場を切り直すか。</div>
+      </div>
+
+      <h3>なぜ両方見る必要があるのか</h3>
+      <div class="lead-grid">
+        <div class="box">
+          <h4>認知度だけを見ると</h4>
+          <p>「商品を知っているから、商品比較でいい」と考えがちです。ただし読者がその比較表現自体に飽きている場合、見出しで止まりません。</p>
+        </div>
+        <div class="box">
+          <h4>成熟度だけを見ると</h4>
+          <p>「新しいメカニズムを出そう」と考えがちです。ただし読者がそもそも問題や解決策を知らない場合、先に自分ごと化が必要です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="use" class="card">
+      <h2>5. 具体的な使い方</h2>
+      <p>制作前は、次の順番で見ると整理しやすいです。</p>
+
+      <div class="flow">
+        <div class="flow-step">
+          <span class="num">1</span>
+          <h3>大きな欲求</h3>
+          <p>読者は最終的に何を得たいのか。</p>
+        </div>
+        <div class="flow-step">
+          <span class="num">2</span>
+          <h3>セグメント</h3>
+          <p>その欲求の中で、どの人たちを見るのか。</p>
+        </div>
+        <div class="flow-step">
+          <span class="num">3</span>
+          <h3>商品認知度</h3>
+          <p>問題・解決策・商品をどこまで知っているか。</p>
+        </div>
+        <div class="flow-step">
+          <span class="num">4</span>
+          <h3>市場成熟度</h3>
+          <p>どの約束に擦れているか。</p>
+        </div>
+        <div class="flow-step">
+          <span class="num">5</span>
+          <h3>入口を決める</h3>
+          <p>リード、ヘッドライン、教育量、証拠を決める。</p>
+        </div>
+      </div>
+
+      <h3>使い方の例</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>状態</th>
+              <th>起きやすい失敗</th>
+              <th>入口の考え方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>認知度が低い</td>
+              <td>商品名や価格を早く出しすぎる。</td>
+              <td>日常の違和感、悩みの場面、感情の代弁から入る。</td>
+            </tr>
+            <tr>
+              <td>認知度が高い</td>
+              <td>長い共感や説明で遠回りする。</td>
+              <td>選ぶ理由、証拠、比較、オファーを早めに出す。</td>
+            </tr>
+            <tr>
+              <td>成熟度が低い</td>
+              <td>余計にひねって伝わりにくくする。</td>
+              <td>欲求と結果を素直につなぐ。</td>
+            </tr>
+            <tr>
+              <td>成熟度が高い</td>
+              <td>見飽きた約束を強く言うだけになる。</td>
+              <td>新しいメカニズム、切り口、セグメントを探す。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p><strong>実務上の注意</strong></p>
+        <p>分類は最初から正解を出すためではなく、仮説を立てるために使います。迷う場合は「認知度3寄りだが、競合訴求には成熟度4くらい擦れていそう」のように、2軸を分けたまま仮置きします。</p>
+      </div>
+    </section>
+
+    <section id="case" class="card">
+      <h2>6. 講義内の具体例</h2>
+      <h3>予言の例</h3>
+      <p>予言を初めて聞く子どもは、根拠が薄くても信じやすい。一方で、似た予言を何度も聞いた大人は「またか」と流す。この違いが、市場成熟度の感覚です。</p>
+
+      <h3>ダイエット市場の例</h3>
+      <p>最初は「痩せる方法」だけで反応する。似た商品が増えると「10日で10kg」のように主張が強くなる。さらに強い主張への反発が出ると、食事制限ではなく運動、整体、サプリ、別の原因論など、新しいメカニズムが求められる。</p>
+
+      <h3>動画編集講座の例</h3>
+      <p>講義では、動画編集講座を題材に、商品認知度と市場成熟度を組み合わせて判断していました。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>市場の切り方</th>
+              <th>商品認知度</th>
+              <th>市場成熟度</th>
+              <th>判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>広い独立市場</td>
+              <td>4程度</td>
+              <td>3〜4程度</td>
+              <td>独立する方法や稼げる系の広告を多く見ている。新しいメカニズムが必要。</td>
+            </tr>
+            <tr>
+              <td>動画編集での独立市場</td>
+              <td>4程度</td>
+              <td>2程度</td>
+              <td>動画編集講座は知っているが、「動画編集で独立」はまだ新鮮に見える余地があった。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>その結果、「動画編集で独立」という新しいメカニズムと、「短期間で技術を身につける」という強い約束を組み合わせる方向になっていました。</p>
+      <div class="quote">市場の切り方を変えると、同じ商品でも成熟度が変わる。</div>
+    </section>
+
+    <section id="lead" class="card">
+      <h2>7. リードや冒頭への落とし込み</h2>
+      <p>商品認知度は、どのリードで入るかにも関係します。認知度が高いほど直接リード、低いほど間接リードが必要になりやすいです。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>リード</th>
+              <th>向きやすい認知度</th>
+              <th>入口</th>
+              <th>注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>オファーリード</td>
+              <td>購買認識</td>
+              <td>価格、特典、保証、限定枠、申込条件。</td>
+              <td>低認知度には売り込みに見えやすい。</td>
+            </tr>
+            <tr>
+              <td>プロミスリード</td>
+              <td>商品認識</td>
+              <td>USP、選ぶ理由、約束、証拠。</td>
+              <td>約束だけでは弱い。証明が必要。</td>
+            </tr>
+            <tr>
+              <td>問題解決リード</td>
+              <td>問題認識〜解決認識</td>
+              <td>悩み、生活の支障、感情の代弁、解決可能性。</td>
+              <td>問題を煽るだけで終わらせない。</td>
+            </tr>
+            <tr>
+              <td>秘密リード</td>
+              <td>問題認識〜購買認識</td>
+              <td>まだ知られていない原因、仕組み、分類、独自メソッド。</td>
+              <td>読者にとって得になる秘密であること。</td>
+            </tr>
+            <tr>
+              <td>予言・宣言リード</td>
+              <td>認識なし寄り</td>
+              <td>大胆な宣言、未来予測、新常識。</td>
+              <td>宣言だけで終わらせず、根拠と行動につなげる。</td>
+            </tr>
+            <tr>
+              <td>ストーリーリード</td>
+              <td>認識なし〜全認知度</td>
+              <td>人物、出来事、変化、商品開発、利用者の変化。</td>
+              <td>面白いだけで終わらせず、商品価値へ戻す。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="definition">
+        <p><strong>まとめると</strong></p>
+        <p>商品認知度で「どこから話し始めるか」を決め、市場成熟度で「その話し方がまだ新鮮か」を確認します。</p>
+      </div>
+    </section>
+
+    <section id="check" class="card">
+      <h2>8. 部内で使う確認リスト</h2>
+      <ul class="checklist">
+        <li><span class="check"></span><span>この読者は、商品・解決策・自分の問題をどこまで知っているか。</span></li>
+        <li><span class="check"></span><span>認知度は、購買認識 / 商品認識 / 解決認識 / 問題認識 / 認識なし のどれに近いか。</span></li>
+        <li><span class="check"></span><span>この市場で、読者はどんな広告約束を何度も見ているか。</span></li>
+        <li><span class="check"></span><span>その読者がもう信じにくい言葉、見飽きている言葉は何か。</span></li>
+        <li><span class="check"></span><span>まだ新鮮に見えるメカニズム、切り口、セグメントは何か。</span></li>
+        <li><span class="check"></span><span>低認知度なのに商品名や価格を早く出しすぎていないか。</span></li>
+        <li><span class="check"></span><span>高成熟度なのに、見飽きた約束を強く言うだけになっていないか。</span></li>
+        <li><span class="check"></span><span>商品認知度と市場成熟度を、別々に仮置きできているか。</span></li>
+        <li><span class="check"></span><span>分類に迷う場合、複数パターンとトレードオフを出せているか。</span></li>
+      </ul>
+
+      <div class="ok">
+        <p><strong>明日からの使い方</strong></p>
+        <p>記事の冒頭やFVで迷ったら、まず「読者は何を知っているか」と「何に擦れているか」を分けて書き出す。そこから、直接入るか、問題から入るか、新しいメカニズムから入るかを決める。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>9. 補足</h2>
+      <p>この資料は、商品認知度と市場成熟度の講義・整理メモを、部内共有用に再構成したものです。講義や書籍の逐語再現ではなく、記事LP制作前の共通言語として使いやすいようにまとめています。</p>
+      <p class="small">既存資料 `market-sophistication-share.html` は変更していません。このHTMLは新規ファイルです。</p>
+    </section>
+  </main>
+</body>
+</html>
