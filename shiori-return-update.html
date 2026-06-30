@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>復帰者向け：5週間のAXIS記事部アップデート</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #64748b;
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --line: #dbe3ee;
+      --blue: #2563eb;
+      --blue-soft: #eaf2ff;
+      --green: #15803d;
+      --green-soft: #eaf8ef;
+      --amber: #b45309;
+      --amber-soft: #fff7e6;
+      --red: #b91c1c;
+      --red-soft: #fff0f0;
+      --slate: #334155;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+
+    a { color: #1d4ed8; text-decoration-thickness: 1px; word-break: break-all; }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .hero {
+      background: #172033;
+      color: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.35;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: #cbd5e1;
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .quick-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .quick-card .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .quick-card strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .overview {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .overview h2 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .overview-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .overview-list li {
+      margin: 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    .overview-list strong {
+      color: var(--blue);
+      margin-right: 4px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .toc h2 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 7px 0;
+      color: var(--slate);
+      font-size: 13px;
+      text-decoration: none;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    .toc a:last-child { border-bottom: 0; }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .section-head {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .section-code {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .section-lead {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    p { margin: 0 0 10px; }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    li { margin: 4px 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfcfe;
+    }
+
+    .mini h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .tag-blue { background: var(--blue-soft); color: #1d4ed8; }
+    .tag-green { background: var(--green-soft); color: var(--green); }
+    .tag-amber { background: var(--amber-soft); color: var(--amber); }
+    .tag-red { background: var(--red-soft); color: var(--red); }
+    .tag-gray { background: #eef2f7; color: var(--slate); }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+    }
+
+    .time-key {
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .metric {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .metric .value {
+      display: block;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .link-card {
+      display: block;
+      background: var(--blue-soft);
+      border: 1px solid #bfd5ff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-decoration: none;
+    }
+
+    .link-card span {
+      display: block;
+      color: #1e3a8a;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .link-card strong {
+      display: block;
+      color: #1d4ed8;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .ref-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f8fafc;
+      color: var(--slate);
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    .ref-link span {
+      display: inline-block;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: #1d4ed8;
+      padding: 1px 7px;
+    }
+
+    .ref-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 8px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .num {
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .article-title {
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    table a,
+    .mini > a {
+      display: inline-block;
+      margin-top: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--slate);
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+      text-decoration: none;
+    }
+
+    .note {
+      background: var(--amber-soft);
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .fact {
+      background: var(--green-soft);
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .arrow {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+      margin: 2px 0;
+    }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .quick,
+      .overview-list,
+      .grid-2,
+      .grid-3,
+      .metric-grid,
+      .link-grid,
+      .compare { grid-template-columns: 1fr; }
+      .time-row { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      th, td { white-space: normal; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <h1>復帰者向け：5週間のAXIS記事部アップデート</h1>
+      <p>栞さんが復帰後に、記事部の現在地・変わった運用・見るべき記事を最短でつかむための共有資料。</p>
+      <p>対象：主に2026年5月中旬〜6月末 / 数値：2026年4月1日〜6月30日</p>
+    </header>
+
+    <section class="quick" aria-label="最初に見る3点">
+      <div class="quick-card">
+        <div class="label">今の目的</div>
+        <strong>年度粗利18億に向けて、制作本数・AI効率化・デザイン強化を進める。</strong>
+      </div>
+      <div class="quick-card">
+        <div class="label">一番の変化</div>
+        <strong>5月中旬から、最重要テーマが「制作本数2倍」に切り替わった。</strong>
+      </div>
+      <div class="quick-card">
+        <div class="label">復帰後の見る順番</div>
+        <strong>この資料 → 週次レビュー会 → AI記事/横展開/漫画導入記事。</strong>
+      </div>
+    </section>
+
+    <section class="overview" aria-label="この資料で分かること">
+      <h2>この資料で分かること</h2>
+      <p class="ref-note">本文中の「資料1」「資料2」などは共通番号です。同じ番号なら同じリンク先で、リンク一覧は最後の「G. 補足リンク」にまとめています。</p>
+      <ul class="overview-list">
+        <li><strong>A. 現在地</strong> 今の記事部が追っている目標と、制作本数・AI・自社デザイナー強化の方向性。</li>
+        <li><strong>B. 変わったこと</strong> 5月中旬以降に優先順位・朝会・レビュー会・AI制作がどう変わったか。</li>
+        <li><strong>C. 判断基準</strong> 横展開、商品認識度、媒体別分析、7月以降の制作判断で見るべき観点。</li>
+        <li><strong>D. 数値</strong> 全体/記事部の実績、成果上位記事、今後学びを回収したい記事。</li>
+        <li><strong>E. 復帰後</strong> 最初に確認してほしいAI記事・漫画導入・男性向け横展開の見る理由。</li>
+        <li><strong>F/G. 相談・リンク</strong> 2Qで未決の論点と、関連資料・会議まとめへの導線。</li>
+      </ul>
+    </section>
+
+    <div class="layout">
+      <nav class="toc" aria-label="目次">
+        <h2>目次</h2>
+        <a href="#a">A. 現在地</a>
+        <a href="#b">B. 変わったこと</a>
+        <a href="#c">C. 判断基準</a>
+        <a href="#d">D. 数値で見た現状</a>
+        <a href="#e">E. 復帰後に見るもの</a>
+        <a href="#f">F. 未決定・相談</a>
+        <a href="#g">G. 補足リンク</a>
+      </nav>
+
+      <div>
+        <section class="section" id="a">
+          <div class="section-head">
+            <div class="section-code">A</div>
+            <div>
+              <h2>現在地：今の記事部が目指していること</h2>
+              <p class="section-lead">制作本数・AI効率化・デザイナー強化を、年度粗利18億に接続する。</p>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="mini">
+              <h3><span class="tag tag-blue">主軸</span> 制作本数</h3>
+              <ul>
+                <li>7〜8月でリリース60本を目指す。</li>
+                <li>週15本リリースが目安。</li>
+                <li>5月中旬以降、最重要テーマに切り替わった。</li>
+                <li>6月は当初40本リリースを目指していたが、最終的には27本で着地。</li>
+                <li>背景は、完全AI記事が想定より時間を要したため。6月中旬時点では1営業日で完成できそうだったが、6月30日時点では2〜3営業日かかっている。</li>
+                <li>それでも制作速度は大きく進んでいるため、今後は質とスピードの両方をさらに改善していく。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-green">強化</span> デザイナー</h3>
+              <ul>
+                <li>自社デザイナーで、7月末までにTier1/Tier2デザイナー2名を目指す。</li>
+                <li>基点との勉強会を実施。</li>
+                <li>業務委託からアルバイトへ変わり、コミット環境も整備。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-amber">効率化</span> AI</h3>
+              <ul>
+                <li>完全AI記事は作れる段階に入った。</li>
+                <li>6月30日時点では、完成まで2〜3営業日かかる。</li>
+                <li>CV・利益につながる記事にする方法を検討中。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric"><span class="label">年度KGI</span><span class="value">粗利18億</span></div>
+            <div class="metric"><span class="label">1Q目標</span><span class="value">粗利1.5億</span></div>
+            <div class="metric"><span class="label">6月当初目標</span><span class="value">40本</span></div>
+            <div class="metric"><span class="label">6月着地</span><span class="value">27本</span></div>
+            <div class="metric"><span class="label">7〜8月</span><span class="value">60本</span></div>
+            <div class="metric"><span class="label">週次目安</span><span class="value">15本</span></div>
+          </div>
+
+          <div class="fact">
+            <strong>現在のAI記事の見方</strong><br>
+            AI記事は「もう完成」ではなく、「作れるようになったので、質と量をどう担保するかを詰めている段階」。秀介さん・にっしーさんの協力で、AI記事経由のCVやROAS130%超えも出始めている。
+          </div>
+
+          <div class="ref-list" aria-label="関連リンク">
+            <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1U57hpVxbQ56fi87IxUM9BbCYrPh_89kS8umbbiMwhl0/edit?gid=1507705247#gid=1507705247"><span>資料1</span> 現在地・目標</a>
+          </div>
+        </section>
+
+        <section class="section" id="b">
+          <div class="section-head">
+            <div class="section-code">B</div>
+            <div>
+              <h2>5週間で決まったこと・変わったこと</h2>
+              <p class="section-lead">デザイン強化中心から、制作本数2倍とAI記事実用化へ。</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="time-row">
+              <div class="time-key">5月中旬まで</div>
+              <div>
+                <strong>デザイン強化が最重要。</strong>
+                <ul>
+                  <li>自社デザイナー教育。</li>
+                  <li>外部パートナー確保。</li>
+                  <li>デザイナーの判断・育成体制づくり。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="time-row">
+              <div class="time-key">5月中旬以降</div>
+              <div>
+                <strong>制作本数を増やす方向へ大きく変更。</strong>
+                <ul>
+                  <li>休職メンバーが出て、3人で5人分の記事数を担保する必要が出た。</li>
+                  <li>制作本数2倍がミッションに。</li>
+                  <li>青木が船長。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="time-row">
+              <div class="time-key">6月以降</div>
+              <div>
+                <strong>完全AI記事と週次レビュー会が本格化。</strong>
+                <ul>
+                  <li>AIが出力し、人間はフィードバックする流れを強める。</li>
+                  <li>レビュー会は月1から週1へ。</li>
+                  <li>秀介さん・にっしーさんがAI記事/AI教育面で深く協力。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3><span class="tag tag-red">停止</span> やめたこと</h3>
+              <ul>
+                <li>外部パートナーの新規確保。</li>
+                <li>クラウドワークス/ランサーズの使用。</li>
+                <li>理由：既に4〜5名ほど依頼できる状態にあるため。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-blue">変更</span> 朝会</h3>
+              <ul>
+                <li>毎朝30分〜1時間の朝会を廃止。</li>
+                <li>月曜：進捗・バームクーヘン確認。</li>
+                <li>水曜：タスク遅延確認と制作部共有。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3><span class="tag tag-green">変更</span> レビュー会</h3>
+              <ul>
+                <li>月1回から週1回へ。</li>
+                <li>丸・バツ・三角評価ではなく、1記事を深掘り。</li>
+                <li>件数は取れているが利益化できていない記事を見て、次週改修へつなげる。</li>
+                <li>具体事例から抽象の学びへ昇華し、次の制作で再度具体へ落とすことで、ライターの制作観点も補強する。</li>
+              </ul>
+              <div class="ref-list" aria-label="関連リンク">
+                <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=11:11"><span>資料6</span> 週次レビュー会</a>
+              </div>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-amber">追加</span> 完全AI記事</h3>
+              <ul>
+                <li>通常制作に加えて、完全AI記事も同時に進める。</li>
+                <li>月曜あたりに着手し、水木リリースが理想。</li>
+                <li>木金の忙しいタイミングに重ねないことが大事。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="fact">
+            <strong>Codexでできることが一気に増えた</strong><br>
+            5月から6月にかけて記事部が大きく飛躍した背景には、Codex活用の影響が大きい。完全AI記事、会議やレビュー会の資料まとめ、このHTMLのような共有資料作成、ChatWork連絡の自動化など、新しく任せられる範囲がかなり増えた。
+            <div class="ref-list" aria-label="関連リンク">
+              <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=262171179#gid=262171179&range=7:7"><span>資料2</span> Codexでできること</a>
+            </div>
+          </div>
+
+          <h3>制作まわりで増えたもの</h3>
+          <div class="grid-2">
+            <div class="mini">
+              <h3>デザイナー発注フォーマット</h3>
+              <ul>
+                <li>全部を守るルールではない。</li>
+                <li>丸投げでも細かすぎでもない発注の指標。</li>
+                <li>デザイナーが判断しやすく、実力も見えやすくする目的。</li>
+              </ul>
+              <div class="ref-list" aria-label="関連リンク">
+                <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=7:7"><span>資料4</span> 発注フォーマット</a>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>記事の言語化をAIへ読み込み</h3>
+              <ul>
+                <li>青木・臼倉・寒竹の売れた記事を言語化。</li>
+                <li>AIに記事部と同じ脳みそを作る目的。</li>
+                <li>量が多いので、栞さんは「みんながどう考えて書いているか」を参考程度に見る。</li>
+              </ul>
+              <div class="ref-list" aria-label="関連リンク">
+                <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=12:12"><span>資料5</span> 記事の言語化</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3>制作参考資料の増加</h3>
+              <ul>
+                <li>施策判断ロードマップ。</li>
+                <li>記事制作のマイクロなディテール設計。</li>
+                <li>横展開の考え方。</li>
+                <li>商品認識度と6つの冒頭アプローチ。</li>
+              </ul>
+              <div class="ref-list" aria-label="関連リンク">
+                <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=262171179#gid=262171179"><span>資料2</span> 制作参考</a>
+              </div>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-blue">重要</span> AI横展開の方向性/構成シート作成用テキスト</h3>
+              <ul>
+                <li>部内資料に、記事制作に役立つプロンプトまとめページを追加。</li>
+                <li>AI関係でよく使うプロンプトを今後まとめていく場所。</li>
+                <li>特に、AI横展開で方向性＋構成シート（スクリプト作成）を進めるためのテキストとして重要。</li>
+                <li>これまで1〜2営業日かかっていた方向性出しと構成シート作成を、AIで素早く進める狙い。</li>
+              </ul>
+              <div class="ref-list" aria-label="関連リンク">
+                <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?pli=1&gid=1947732611#gid=1947732611"><span>資料7</span> プロンプトまとめ</a>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>AIデザイン活用・共有自動化</h3>
+              <ul>
+                <li>FVやオファー画像をAIで複数枚生成。</li>
+                <li>比較してブラッシュアップし、市場にないデザインを狙う。</li>
+                <li>制作部へ、伸びている記事・先週リリース記事を月曜午前に自動共有。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="c">
+          <div class="section-head">
+            <div class="section-code">C</div>
+            <div>
+              <h2>現在の記事制作の判断基準</h2>
+              <p class="section-lead">見た目の横展開ではなく、読者心理とネック仮説を見る。</p>
+            </div>
+          </div>
+
+          <div class="compare">
+            <div class="mini">
+              <h3><span class="tag tag-gray">これまで</span></h3>
+              <ul>
+                <li>横展開がややざっくり扱われることもあった。</li>
+                <li>方向性やリリース直前に確認を挟める場面が多かった。</li>
+                <li>記事分析で細かい数字を先に見がち。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-blue">これから</span></h3>
+              <ul>
+                <li>横展開元がどの心理を動かしたかを見る。</li>
+                <li>自分たちで判断して回す範囲を増やす。</li>
+                <li>細かい数字の前に、利益化できないネック仮説を立てる。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3>制作前に見ること</h3>
+              <ul>
+                <li>マクロ/ミクロ観点で方向性を考える。</li>
+                <li>商品認識度を見る。</li>
+                <li>6つの冒頭アプローチを材料にする。</li>
+                <li>駿太さんの方向性＋ざっくり構成シート自動化ロードマップも今後活用。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3>横展開で見ること</h3>
+              <ul>
+                <li>元記事はどの読者心理を動かしたか。</li>
+                <li>どんな感情を動かしたか。</li>
+                <li>見た目・表現のどこに意味があったか。</li>
+                <li>今回の商材/ターゲットで何を応用するか。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3>分析で見ること</h3>
+              <ul>
+                <li>MetaとTikTokは分けて分析する。</li>
+                <li>利益が出ていない記事は、どこがネックかを先に考える。</li>
+                <li>細かい数字は、ネック仮説を立ててから見る。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3>7月以降の制作体制</h3>
+              <ul>
+                <li>駿太さんはCPF制作に注力する。</li>
+                <li>そのため、一般的な記事制作は記事部メンバーで回す必要がある。</li>
+                <li>利益や本数を担保する判断も、記事部側で持てるようにしていく。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="note">
+            <strong>商品認識度とは</strong><br>
+            ユーザーが商材や自分の悩みをどれくらい知っているかを見るフレーム。商材理解度と問題理解度に合わせて、冒頭の入り方を変える。
+          </div>
+
+          <div class="ref-list" aria-label="関連リンク">
+            <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=262171179#gid=262171179"><span>資料2</span> 制作参考</a>
+            <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=11:11"><span>資料6</span> 週次レビュー会</a>
+          </div>
+        </section>
+
+        <section class="section" id="d">
+          <div class="section-head">
+            <div class="section-code">D</div>
+            <div>
+              <h2>数値で見た現状</h2>
+              <p class="section-lead">AXAD実績＋記事管理シートで確認。数字は事実、理由は別途仮説として扱う。</p>
+            </div>
+          </div>
+
+          <p class="small">集計期間：2026年4月1日〜6月30日。記事部対象は、4月1日以降リリースで記事名に「臼倉・青木・寒竹・中川・高木・AI」を含む記事として集計。</p>
+
+          <h3>全体実績</h3>
+          <div class="metric-grid">
+            <div class="metric"><span class="label">粗利</span><span class="value">358,325,969円</span></div>
+            <div class="metric"><span class="label">売上</span><span class="value">1,477,768,864円</span></div>
+            <div class="metric"><span class="label">CV</span><span class="value">83,872件</span></div>
+            <div class="metric"><span class="label">ROAS</span><span class="value">132.0%</span></div>
+          </div>
+
+          <h3>記事部対象実績</h3>
+          <div class="metric-grid">
+            <div class="metric"><span class="label">粗利</span><span class="value">153,804,304円</span></div>
+            <div class="metric"><span class="label">売上</span><span class="value">614,493,625円</span></div>
+            <div class="metric"><span class="label">CV</span><span class="value">32,058件</span></div>
+            <div class="metric"><span class="label">ROAS</span><span class="value">133.4%</span></div>
+          </div>
+
+          <div class="note">
+            6月30日時点で、記事部対象の粗利は153,804,304円。1Q目標の粗利1.5億円を達成済み。
+          </div>
+
+          <div class="fact">
+            <strong>数字から言えること</strong><br>
+            ここで言えるのは、どの記事が粗利・CV・ROASで成果を出したか、または現時点で利益化しきれていないかまで。なぜ伸びたか/なぜ利益化しなかったかは、記事内容・媒体別・CR別・レビュー会の議論を見て判断する。
+          </div>
+
+          <h3>成果が出た記事 上位10本</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>順位</th>
+                <th>記事</th>
+                <th class="num">粗利</th>
+                <th class="num">CV</th>
+                <th class="num">ROAS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">1</td><td><div class="article-title">★024_TCB-ニキビ女性_０円_寒竹_ステップアンケ_毛穴訴求_20260409</div><a href="https://beauty-recommend.org/ab/quVkkBDfiVzNwVcpTqIg">記事URL</a></td><td class="num">45,829,435円</td><td class="num">7,180</td><td class="num">143.3%</td></tr>
+              <tr><td class="num">2</td><td><div class="article-title">★026_TCB-ニキビ女性_0円_臼倉_毛穴_綺麗めフリップアンケ_20260515</div><a href="https://beauty-recommend.org/ab/rmraAHjXCLuUKRuLCAOw">記事URL</a></td><td class="num">26,255,907円</td><td class="num">3,879</td><td class="num">146.9%</td></tr>
+              <tr><td class="num">3</td><td><div class="article-title">★013_TCB-脂肪溶解からだ女性_0円_青木_ステップアンケ_通常オファー_20260423</div><a href="https://great-chance.org/ab/nzhXc-DzstEVanPIhw">記事URL</a></td><td class="num">23,322,944円</td><td class="num">6,467</td><td class="num">133.9%</td></tr>
+              <tr><td class="num">4</td><td><div class="article-title">★012_TCB-脂肪溶解からだ男性_0円_臼倉_魂ステップアンケ_20260528</div><a href="https://great-chance.org/ab/VUXpzItONkwFMUjKgw">記事URL</a></td><td class="num">9,920,108円</td><td class="num">2,783</td><td class="num">133.4%</td></tr>
+              <tr><td class="num">5</td><td><div class="article-title">★030_TCB-クマ再生注射女性_0円_臼倉_綺麗めフリップアンケ_20260519</div><a href="https://beautiful-best.org/ab/VKQbUquhiMsEH_LPQ">記事URL</a></td><td class="num">9,798,688円</td><td class="num">1,414</td><td class="num">136.1%</td></tr>
+              <tr><td class="num">6</td><td><div class="article-title">★033_TCB-二重女性_4800円_臼倉_綺麗めステップアンケ_20260430</div><a href="https://beauty-recommend.org/ab/YGEhKFhtOLQIfYkDWg">記事URL</a></td><td class="num">9,183,883円</td><td class="num">1,290</td><td class="num">139.4%</td></tr>
+              <tr><td class="num">7</td><td><div class="article-title">★041_TCB-ピコレーザー女性_0円_青木_サリチル＋シミ肝斑フリップアンケ_20260515</div><a href="https://beauty-recommend.org/ab/AtQGCCzObOyHesAWzWQ">記事URL</a></td><td class="num">7,788,840円</td><td class="num">2,358</td><td class="num">126.7%</td></tr>
+              <tr><td class="num">8</td><td><div class="article-title">★034_TCB-二重女性_4800円_臼倉_綺麗めフリップアンケ_20260430</div><a href="https://beauty-recommend.org/ab/zInYXpd-bRSwBafIg">記事URL</a></td><td class="num">6,016,836円</td><td class="num">1,085</td><td class="num">128.3%</td></tr>
+              <tr><td class="num">9</td><td><div class="article-title">★037_TCB-二重女性_0円_臼倉_綺麗めフリップアンケ_20260525</div><a href="https://beauty-recommend.org/ab/iVDzv-ifvl_uxOi-OHtvZg">記事URL</a></td><td class="num">2,372,793円</td><td class="num">341</td><td class="num">138.2%</td></tr>
+              <tr><td class="num">10</td><td><div class="article-title">★010_TCB-糸リフト女性_0円_臼倉_恐怖払拭FV_20260417</div><span class="small">記事URL未確認</span></td><td class="num">2,066,905円</td><td class="num">292</td><td class="num">139.1%</td></tr>
+            </tbody>
+          </table>
+
+          <h3>学び・回収余地がある記事</h3>
+          <p>ここでの課題は「悪かった記事」ではない。今後の主要戦力候補として、レビュー会や3人での議論から学びを回収したい記事。</p>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3><span class="tag tag-amber">横展開</span> クマ再生注射男性</h3>
+              <p class="article-title">★035_TCB-クマ再生注射男性_0円_青木_高齢向けフリップアンケ_20260529</p>
+              <ul>
+                <li>粗利：-155,768円 / CV：57 / ROAS：88.9%</li>
+                <li>横展開の難しさを学べる例。</li>
+                <li>なぜうまく横展開できなかったかは、共有シートの言語化と合わせて確認。</li>
+              </ul>
+              <a href="https://beautiful-best.org/ab/CQWeVddtcbiryrPFPg">記事URL</a>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-amber">チャット型</span> ニキビ女性</h3>
+              <p class="article-title">★028_TCB-ニキビ女性_０円_寒竹_チャット型_全悩み_20260522</p>
+              <ul>
+                <li>粗利：-147,701円 / CV：30 / ROAS：80.9%</li>
+                <li>改修後：★030_TCB-ニキビ女性_0円_寒竹_チャット型BU_全悩み_20260612（粗利：-39,177円 / CV：3 / ROAS：62.1%）</li>
+                <li>レビュー会で話した内容がブラッシュアップされている。まだ数値は薄く、回収余地あり。</li>
+              </ul>
+              <a href="https://beauty-recommend.org/ab/ZGSHyyNyeuUHdmiBMFA">元記事URL</a>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-amber">漫画導入</span> ニキビ女性</h3>
+              <p class="article-title">★029_TCB-ニキビ女性_0円_第2_漫画導入ステップアンケ_20260611</p>
+              <ul>
+                <li>粗利：-77,110円 / CV：22 / ROAS：85.9%</li>
+                <li>改修後：★032_TCB-ニキビ女性_0円_寒竹_漫画導入ステップアンケBU_20260626（粗利：-71,164円 / CV：0 / ROAS：0.0%）</li>
+                <li>制作部発の提案。漫画クリエイティブの途中からFVへ入る流れに可能性がある。</li>
+              </ul>
+              <a href="https://beauty-recommend.org/ab/RTTDEnVorhYgBtpdmfbw">元記事URL</a>
+            </div>
+            <div class="mini">
+              <h3><span class="tag tag-amber">男性心理</span> ピコレーザー男性</h3>
+              <p class="article-title">★024_TCB-ピコレーザー男性_0円_臼倉_綺麗めフリップアンケート_20260522</p>
+              <ul>
+                <li>粗利：215,833円 / CV：346 / ROAS：104.1%</li>
+                <li>改修後：★025_TCB-ピコレーザー男性_0円_臼倉_フリップアンケ_ペルソナ見直し_20260626（6月30日時点では数値未反映）</li>
+                <li>どういう状態の男性にアピールするかを見直した例。</li>
+              </ul>
+              <a href="https://beauty-recommend.org/ab/fxsONiyaeMfuVfRCPrcw">元記事URL</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="e">
+          <div class="section-head">
+            <div class="section-code">E</div>
+            <div>
+              <h2>復帰後に確認してほしいこと</h2>
+              <p class="section-lead">最初はこの資料で全体像。その後、AI記事・漫画導入・横展開を重点確認。</p>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="mini">
+              <h3>完全AI記事</h3>
+              <ul>
+                <li>「AIでここまで作れる」という完成形を把握。</li>
+                <li>まだ改善中だが、実務上どの段階まで来たかを見る。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3>漫画導入ステップアンケ</h3>
+              <ul>
+                <li>制作部発の新しい試み。</li>
+                <li>静止画漫画の途中から記事FVへ入る。</li>
+                <li>FV離脱を下げる狙い。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3>男性向け横展開</h3>
+              <ul>
+                <li>TCB脂肪溶解からだ男性の魂ステップアンケート。</li>
+                <li>男性心理・状態訴求をどう見るか。</li>
+                <li>横展開資料と合わせて見ると理解しやすい。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ref-list" aria-label="関連リンク">
+            <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=262171179#gid=262171179"><span>資料2</span> 制作参考</a>
+            <a class="ref-link" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=11:11"><span>資料6</span> 週次レビュー会</a>
+          </div>
+        </section>
+
+        <section class="section" id="f">
+          <div class="section-head">
+            <div class="section-code">F</div>
+            <div>
+              <h2>未決定・相談したいこと</h2>
+              <p class="section-lead">2Qの目標と、記事部が追うべき優先順位はこれから詰める。</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="mini">
+              <h3>まだ決まっていないこと</h3>
+              <ul>
+                <li>2Qの目標。</li>
+                <li>バームクーヘン/記事部が目指すべき目標。</li>
+                <li>制作本数を追い続けるか、質を高める方向へ寄せるか。</li>
+                <li>デザイナー強化を引き続き追うか。追う場合、どう追うのが効果的か。</li>
+                <li>Tier表の定義を見直す必要があるか。</li>
+              </ul>
+            </div>
+            <div class="mini">
+              <h3>相談したい前提</h3>
+              <ul>
+                <li>駿太さんは2QからCPFに注力。</li>
+                <li>駿太さん以外で、記事の利益と本数を担保する必要がある。</li>
+                <li>最終目標に向けて、今の記事部が何を追うべきか一緒に詰めたい。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="g">
+          <div class="section-head">
+            <div class="section-code">G</div>
+            <div>
+              <h2>補足リンク</h2>
+              <p class="section-lead">関連リンクをテーマ別に配置。必要な時に該当セクションから飛べる。</p>
+            </div>
+          </div>
+
+          <h3>進捗会議まとめ</h3>
+          <p class="ref-note">同じ資料は、本文中でも同じ番号で表記しています。迷ったらここだけ見ればリンクの全体像が分かります。</p>
+          <div class="link-grid">
+            <a class="link-card" href="https://www.chatwork.com/#!rid371618889-2115661242608914432"><span>CW1</span><strong>6月8日 進捗会議</strong></a>
+            <a class="link-card" href="https://www.chatwork.com/#!rid371618889-2118263728217788416"><span>CW2</span><strong>6月15日 進捗会議</strong></a>
+            <a class="link-card" href="https://www.chatwork.com/#!rid371618889-2120782169306832896"><span>CW3</span><strong>6月22日 進捗会議</strong></a>
+            <a class="link-card" href="https://www.chatwork.com/#!rid371618889-2121550567921942528"><span>CW4</span><strong>6月22日 進捗会議の内容変更</strong></a>
+          </div>
+
+          <h3>関連資料</h3>
+          <div class="link-grid">
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1U57hpVxbQ56fi87IxUM9BbCYrPh_89kS8umbbiMwhl0/edit?gid=1507705247#gid=1507705247"><span>資料1</span><strong>記事部の現在地と目標</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=262171179#gid=262171179"><span>資料2</span><strong>制作を行う上で大切な概念や思考法</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1106657842#gid=1106657842&range=9:9"><span>資料3</span><strong>契約中のパートナー一覧</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=7:7"><span>資料4</span><strong>デザイナー発注フォーマット</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=12:12"><span>資料5</span><strong>制作本数2倍のための記事の言語化</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?gid=1419615509#gid=1419615509&range=11:11"><span>資料6</span><strong>週次レビュー会まとめ</strong></a>
+            <a class="link-card" href="https://docs.google.com/spreadsheets/d/1LAfIPsH3t51sAr7pkqxHPxkw2BXrjDYLAmpSv8fETtE/edit?pli=1&gid=1947732611#gid=1947732611"><span>資料7</span><strong>記事制作に役立つプロンプトまとめ</strong></a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script>
+    document.querySelectorAll('a[href^="http"]').forEach((link) => {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    });
+  </script>
+</body>
+</html>
