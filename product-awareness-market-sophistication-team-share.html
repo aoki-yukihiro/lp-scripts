@@ -215,6 +215,29 @@
       background: #fff;
     }
 
+    .figure {
+      margin: 18px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figure figcaption {
+      margin: 0;
+      padding: 10px 14px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
     table {
       width: 100%;
       min-width: 720px;
@@ -456,7 +479,7 @@
         <span class="badge badge-blue">部内共有用</span>
         <span class="badge badge-green">書籍内容を追記</span>
         <span class="badge badge-amber">市場成熟度が主題</span>
-        <span class="badge badge-gray">商品認識度は補助軸</span>
+        <span class="badge badge-gray">商品認知度は補助軸</span>
       </div>
     </header>
 
@@ -469,14 +492,14 @@
         <a href="#shift">強調点の移動</a>
         <a href="#judge">見立て方</a>
         <a href="#case">事例</a>
-        <a href="#awareness">補助: 商品認識度</a>
+        <a href="#awareness">補助: 商品認知度</a>
         <a href="#check">確認リスト</a>
       </div>
     </section>
 
     <section id="overview" class="card">
       <h2>1. この資料で共有したいこと</h2>
-      <p>今回の主題は、商品認識度ではなく<strong>市場成熟度</strong>です。商品認識度は「読者がどこまで知っているか」を見る補助軸として軽く扱います。</p>
+      <p>今回の主題は、商品認知度ではなく<strong>市場成熟度</strong>です。商品認知度は「読者がどこまで知っているか」を見る補助軸として軽く扱います。</p>
       <p>市場成熟度で見たいのは、読者がその市場で似たような広告・見出し・約束をどれだけ見てきたかです。言い換えると、<strong>読者がもう素直に信じなくなっている言葉を先に見つけるための考え方</strong>です。</p>
 
       <div class="two-axis">
@@ -487,7 +510,7 @@
         </div>
         <div class="axis-card axis-blue">
           <h3>補助</h3>
-          <div class="big">商品認識度</div>
+          <div class="big">商品認知度</div>
           <p>読者が商品、解決策、自分の問題をどこまで認識しているか。入口を調整するために軽く見る。</p>
         </div>
       </div>
@@ -531,6 +554,11 @@
     <section id="stages" class="card">
       <h2>3. 市場成熟度の5段階</h2>
       <p>市場成熟度は、「商品が増えたか」だけでなく、「読者が広告の約束をどう受け取るようになったか」で見ます。段階が進むほど、ヘッドラインで強調するものが変わります。</p>
+
+      <figure class="figure">
+        <img src="assets/market-sophistication-stage-table.png" alt="講義スライドで示された市場成熟度1〜5段階の状況とアプローチ法の表">
+        <figcaption>講義スライドの整理。成熟度が進むほど、ストレートな約束から、主張の拡張、新しいメカニズム、メカニズムの進化、商品以外の入口へとアプローチが変わります。</figcaption>
+      </figure>
 
       <div class="table-wrap">
         <table>
@@ -770,8 +798,8 @@
     </section>
 
     <section id="awareness" class="card">
-      <h2>7. 補助軸としての商品認識度</h2>
-      <p>商品認識度は、この資料ではサブ扱いです。市場成熟度を見たあと、冒頭の入口を外さないために軽く確認します。</p>
+      <h2>7. 補助軸としての商品認知度</h2>
+      <p>商品認知度は、この資料ではサブ扱いです。市場成熟度を見たあと、冒頭の入口を外さないために軽く確認します。</p>
 
       <div class="table-wrap">
         <table>
@@ -789,7 +817,7 @@
               <td>オファー、価格、申込方法。</td>
             </tr>
             <tr>
-              <td>商品認識</td>
+              <td>商品認知</td>
               <td>商品は知っているが、必要性や信頼で迷っている。</td>
               <td>選ぶ理由、証拠、比較。</td>
             </tr>
@@ -814,7 +842,7 @@
 
       <div class="definition">
         <p><strong>ここでの位置づけ</strong></p>
-        <p>商品認識度は「読者がどこからなら話を聞けるか」を見る補助軸。今回の主題である市場成熟度は「その話し方がまだ新鮮か」を見る主軸です。</p>
+        <p>商品認知度は「読者がどこからなら話を聞けるか」を見る補助軸。今回の主題である市場成熟度は「その話し方がまだ新鮮か」を見る主軸です。</p>
       </div>
     </section>
 
@@ -830,7 +858,7 @@
         <li><span class="check"></span><span>市場を広く見すぎていないか。狭く切ると成熟度の見立ては変わらないか。</span></li>
         <li><span class="check"></span><span>成熟度が低い市場を、無理にひねりすぎていないか。</span></li>
         <li><span class="check"></span><span>成熟度が高い市場で、見飽きた訴求をさらに強く言うだけになっていないか。</span></li>
-        <li><span class="check"></span><span>補助的に、読者の商品認識度も確認できているか。</span></li>
+        <li><span class="check"></span><span>補助的に、読者の商品認知度も確認できているか。</span></li>
       </ul>
 
       <div class="ok">
@@ -841,7 +869,7 @@
 
     <section id="note" class="card">
       <h2>9. 補足</h2>
-      <p>この資料は、市場成熟度の講義・書籍ページを部内共有用に再構成したものです。著作物の逐語再現ではなく、記事LP制作前に使える判断軸としてまとめています。商品認識度は関連する補助軸として触れていますが、主題は市場成熟度です。</p>
+      <p>この資料は、市場成熟度の講義・書籍ページを部内共有用に再構成したものです。著作物の逐語再現ではなく、記事LP制作前に使える判断軸としてまとめています。商品認知度は関連する補助軸として触れていますが、主題は市場成熟度です。</p>
       <p class="small">既存資料 `market-sophistication-share.html` は変更していません。このHTMLは新規ファイルです。</p>
     </section>
   </main>
