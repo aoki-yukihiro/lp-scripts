@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AXIS記事部向け、4Uをファーストビュー制作の公式として使うための実務ガイド">
+  <title>FVを作る公式・4Uガイド v3｜AXIS記事部</title>
+  <style>
+    :root {
+      --ink: #18202b;
+      --muted: #5d6673;
+      --line: #dfe4ea;
+      --paper: #ffffff;
+      --bg: #f4f6f8;
+      --navy: #17243a;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --green: #15803d;
+      --green-soft: #eaf7ef;
+      --amber: #946200;
+      --amber-soft: #fff7dd;
+      --red: #b42318;
+      --red-soft: #fff0ee;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .page {
+      width: min(800px, calc(100% - 28px));
+      margin: 24px auto 56px;
+    }
+
+    .hero {
+      padding: 34px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: var(--radius);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #a9c3f8;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 3.3rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-lead {
+      max-width: 690px;
+      margin: 18px 0 0;
+      color: #e4eaf4;
+      font-size: 1.03rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      color: #d9e6ff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      font-size: 0.77rem;
+      font-weight: 700;
+    }
+
+    .first-action {
+      margin-top: 22px;
+      padding: 16px 18px;
+      color: #17243a;
+      background: #fff;
+      border-radius: 9px;
+    }
+
+    .first-action strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--blue);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    nav,
+    section {
+      margin-top: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    nav {
+      padding: 17px 20px;
+    }
+
+    nav p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    nav ol {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px 22px;
+      margin: 0;
+      padding-left: 1.4rem;
+    }
+
+    nav a {
+      color: #25456e;
+      text-decoration: none;
+    }
+
+    nav a:hover { text-decoration: underline; }
+
+    section {
+      padding: 28px;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 15px;
+      font-size: 1.42rem;
+      line-height: 1.4;
+    }
+
+    h3 {
+      margin: 25px 0 10px;
+      font-size: 1.04rem;
+      line-height: 1.5;
+    }
+
+    p { margin: 8px 0; }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      min-width: 30px;
+      height: 30px;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .lead-rule {
+      margin: -3px 0 19px;
+      color: #253b59;
+      font-weight: 750;
+    }
+
+    .definition {
+      padding: 22px;
+      color: #17315a;
+      background: var(--blue-soft);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .definition strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .flow div {
+      position: relative;
+      padding: 14px 12px;
+      color: #2e3e52;
+      background: #f7f9fb;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 0.87rem;
+    }
+
+    .flow b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--blue);
+      font-size: 0.74rem;
+      letter-spacing: 0.05em;
+    }
+
+    .u-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .u-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--blue);
+      border-radius: 10px;
+    }
+
+    .u-card h3 {
+      margin: 0 0 2px;
+      font-size: 1.12rem;
+    }
+
+    .u-card .jp {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .u-card dl {
+      margin: 12px 0 0;
+    }
+
+    .u-card dt {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .u-card dd {
+      margin: 1px 0 0;
+      font-size: 0.91rem;
+    }
+
+    .priority {
+      margin-top: 14px;
+      padding: 16px 18px;
+      color: #1b5732;
+      background: var(--green-soft);
+      border-left: 5px solid var(--green);
+      border-radius: 0 9px 9px 0;
+    }
+
+    .warning {
+      margin-top: 14px;
+      padding: 16px 18px;
+      color: #694700;
+      background: var(--amber-soft);
+      border-left: 5px solid #d69a0b;
+      border-radius: 0 9px 9px 0;
+    }
+
+    .danger {
+      margin-top: 14px;
+      padding: 16px 18px;
+      color: #7a211a;
+      background: var(--red-soft);
+      border-left: 5px solid var(--red);
+      border-radius: 0 9px 9px 0;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 12px;
+      border-collapse: collapse;
+      font-size: 0.91rem;
+    }
+
+    th,
+    td {
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+      border: 1px solid var(--line);
+    }
+
+    th {
+      color: #30415a;
+      background: #f3f6f9;
+      font-size: 0.8rem;
+    }
+
+    .steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      margin: 0 0 10px;
+      padding: 14px 15px 14px 52px;
+      background: #f7f9fb;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      top: 13px;
+      left: 14px;
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .steps b {
+      display: block;
+      color: #233b5d;
+    }
+
+    .checklist {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding: 9px 8px 9px 31px;
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .checklist li::before {
+      content: "□";
+      position: absolute;
+      left: 5px;
+      color: var(--blue);
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+
+    .checklist li:last-child { border-bottom: 0; }
+
+    .judge {
+      display: inline-block;
+      min-width: 45px;
+      padding: 2px 7px;
+      margin-right: 4px;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 0.73rem;
+      font-weight: 800;
+    }
+
+    .judge.good { color: #166534; background: #dcfce7; }
+    .judge.weak { color: #92400e; background: #fef3c7; }
+    .judge.unknown { color: #475569; background: #e2e8f0; }
+
+    .worksheet td:first-child {
+      width: 25%;
+      color: #2d4567;
+      font-weight: 800;
+    }
+
+    .blank {
+      min-height: 44px;
+      color: #87909c;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 31px,
+        #e8ebef 32px
+      );
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    footer {
+      padding: 23px 6px 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    footer p { margin: 5px 0; }
+
+    @media (max-width: 600px) {
+      .page {
+        width: min(100% - 18px, 800px);
+        margin-top: 9px;
+      }
+
+      .hero,
+      section {
+        padding: 21px 17px;
+      }
+
+      nav ol,
+      .u-grid,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow div {
+        padding: 12px;
+      }
+
+      h2 {
+        align-items: flex-start;
+        font-size: 1.23rem;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: normal;
+      }
+
+      th,
+      td {
+        min-width: 130px;
+        padding: 9px;
+      }
+    }
+
+    @media print {
+      html,
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      nav { display: none; }
+      .hero,
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">AXIS Article Team / First View Guide</p>
+      <h1>FVを作る公式<br>4U</h1>
+      <p class="hero-lead">
+        すでに共通認識だと思いますが、読者はFVを見て、その先の本文を読むかどうかを決めます。
+        FVで興味を持たれなければ、その後の文章は読まれません。
+        読まれなければ、どれだけ本文が良くてもそこで終了です。
+        では、強いFVかどうかを何で判断するのか。その基準として使えるのが「4U」です。
+      </p>
+      <div class="meta">
+        <span class="tag">対象：4Uを初めて知る記事部メンバー</span>
+        <span class="tag">用途：FV制作・レビュー</span>
+        <span class="tag">v3：2026-07-26</span>
+      </div>
+      <div class="first-action">
+        <strong>FVを作る時の公式</strong>
+        有益性（Useful）＋ 緊急性（Urgent）＋ 独自性（Unique）＋ 超具体性（Ultra-specific）
+      </div>
+    </header>
+
+    <nav aria-label="目次">
+      <p>この順番で読む</p>
+      <ol>
+        <li><a href="#what">4Uとは何か</a></li>
+        <li><a href="#four-u">4つの本質的な要素</a></li>
+        <li><a href="#emphasis">ユーザーの状態に合わせた使い分け</a></li>
+        <li><a href="#use">パターン制作での使い方</a></li>
+        <li><a href="#sheet">4Uの制作シート</a></li>
+      </ol>
+    </nav>
+
+    <section id="what">
+      <h2><span class="num">1</span>4Uとは何か</h2>
+      <div class="definition">
+        <strong>強いFVを作り、良し悪しを判断するための4つの基準</strong>
+        Useful、Urgent、Unique、Ultra-specificの頭文字を取ったものです。
+      </div>
+
+      <h3>4Uが整理された背景</h3>
+      <p>
+        4Uは、セールスライティングの本場アメリカにある、
+        大手セールスライター養成機関で教えられている考え方です。
+      </p>
+
+      <h3>4Uがあると、何が変わるのか</h3>
+      <ol class="steps">
+        <li>
+          <b>感覚で判断していたFVの良し悪しを言語化できる</b>
+          「なんとなく良さそう」「何か弱そう」を、4つの基準に分けて説明できます。
+        </li>
+        <li>
+          <b>どこを直せばよいか分かる</b>
+          弱い要素が分かるため、有益性・緊急性・独自性・超具体性のどこを改善するべきか判断できます。
+        </li>
+        <li>
+          <b>複数のFV候補を比較できる</b>
+          いくつか作った候補の中から、どのFVがより強いかを選ぶ判断軸になります。
+        </li>
+      </ol>
+      <div class="priority">
+        <strong>4Uの価値</strong><br>
+        感覚で判断していたFVの良し悪しを4つの基準で言語化し、弱い部分を特定して改善できるようになります。
+      </div>
+
+      <h3>FV制作では、どの段階で使うのか</h3>
+      <p>
+        誰に、どんな価値を伝えるかというFVの方向性を決めた後、
+        その内容を実際の言葉や画像へ落とし込む段階で使います。
+      </p>
+    </section>
+
+    <section id="four-u">
+      <h2><span class="num">2</span>FVに必要な4つの本質的な要素</h2>
+      <p class="lead-rule">英語は名称として使い、FVを作るときは日本語の意味で考えます。</p>
+
+      <div class="u-grid">
+        <article class="u-card">
+          <h3>1. Useful｜有益性</h3>
+          <p class="jp">「この先を見たら、自分に良いことがありそう」という期待</p>
+          <p>有益性は、ユーザーが得られるベネフィットを伝える要素です。</p>
+          <dl>
+            <dt>この要素が作るもの</dt>
+            <dd>「自分の悩みが解決しそう」「今より良い状態になれそう」「欲しかった変化に近づけそう」という期待。</dd>
+            <dt>FVを作るときに考えること</dt>
+            <dd>ユーザーはこの先から何を得られるのか。どの悩みが軽くなり、どんな状態に近づけるのか。その変化を今回のユーザーが本当に欲しがっているか。</dd>
+            <dt>有益性が弱い状態</dt>
+            <dd>商品名、価格、機能だけが書かれ、ユーザーが得られる良い変化が伝わっていない。</dd>
+            <dt>なぜ最重要なのか</dt>
+            <dd>良い変化への期待がなければ、目立っていても「続きを読みたい」「欲しい」にはつながりません。</dd>
+          </dl>
+        </article>
+
+        <article class="u-card">
+          <h3>2. Urgent｜緊急性</h3>
+          <p class="jp">「後でいい」ではなく、今続きを見る理由</p>
+          <p>緊急性は、ユーザーがその場で続きを読む理由を作る要素です。</p>
+          <dl>
+            <dt>この要素が作るもの</dt>
+            <dd>「今知っておきたい」「今から動き始めたい」という、先延ばしを止める理由。</dd>
+            <dt>FVを作るときに考えること</dt>
+            <dd>なぜ後ではなく今なのか。今知ることで何を早く得られるのか。後回しにすると、どんな悩みや不便が続くのか。</dd>
+            <dt>「今見る意味」の考え方</dt>
+            <dd>近い予定までに悩みをどうにかしたい人なら、その予定に間に合わせるために今から情報を知り、動き始める理由があります。</dd>
+            <dt>もう一つの考え方</dt>
+            <dd>後回しにしている間も悩みが続くなら、早く知ることで悩みから早く抜け出せること自体が、今続きを読む理由になります。</dd>
+          </dl>
+        </article>
+
+        <article class="u-card">
+          <h3>3. Unique｜独自性</h3>
+          <p class="jp">同じ悩みを扱うFVの中で、このFVだけ続きを読みたくなる違い</p>
+          <p>独自性は、「ほかと同じ話ではなさそう」と感じてもらう要素です。</p>
+          <dl>
+            <dt>この要素が作るもの</dt>
+            <dd>似た商品や似た訴求が並ぶ中で、「また同じ話」と流されず、続きを読みたくなる理由。</dd>
+            <dt>FVを作るときに考えること</dt>
+            <dd>ほかのFVにはない事実・仕組み・条件・考え方は何か。これまでと違う切り口で悩みや解決策を伝えられるか。その違いがユーザーにどんな良い変化を生むか。</dd>
+            <dt>独自性が成立するつながり</dt>
+            <dd>ほかとの違いだけで終わらせず、その違いによって得られるベネフィットまで伝える。</dd>
+            <dt>独自性にならないもの</dt>
+            <dd>珍しい名称や新しい言い回しだけでは、ユーザーが続きを読みたくなる独自性にはなりません。</dd>
+          </dl>
+        </article>
+
+        <article class="u-card">
+          <h3>4. Ultra-specific｜超具体性</h3>
+          <p class="jp">ユーザーが一瞬で「自分の悩みについて書かれている」と分かる情報</p>
+          <p>超具体性は、FVの内容をユーザーが具体的に理解できる状態にする要素です。</p>
+          <dl>
+            <dt>この要素が作るもの</dt>
+            <dd>「誰に向けた話なのか」「自分にどう関係するのか」を、一瞬で理解できる状態。</dd>
+            <dt>FVを作るときに考えること</dt>
+            <dd>どんな人に向けたFVなのか。どんな悩みや状況を扱っているのか。何がどのような状態へ変わるのか。対象や条件が具体的に伝わっているか。</dd>
+            <dt>具体性を作る情報</dt>
+            <dd>数字だけではなく、ユーザーが実際に感じている悩み、日常で困っている状況、対象や条件を具体的に言葉にする。</dd>
+            <dt>抽象的な状態</dt>
+            <dd>「理想」「話題」「人気」「すごい」など、人によって意味が変わる言葉だけでは、自分の悩みについてのFVだと伝わりません。</dd>
+          </dl>
+        </article>
+      </div>
+
+      <div class="priority">
+        <strong>4つの中で最も重要なのは有益性</strong><br>
+        良い変化への期待がなければ、緊急性・独自性・超具体性が強くても、「続きを読みたい」「欲しい」にはつながりません。
+      </div>
+    </section>
+
+    <section id="emphasis">
+      <h2><span class="num">3</span>ユーザーの状態に合わせて強める要素を決める</h2>
+      <h3>大前提：どの要素を強めるかは、ユーザーの状態で変わる</h3>
+      <p>
+        4つの要素を大きく欠かさないことと、4つを同じ強さで入れることは別です。
+        以前共有した「商品認識度」と「市場成熟度」を使うと、今回どの要素を強く伝えるべきか考えやすくなります。
+      </p>
+      <table>
+        <thead>
+          <tr><th>ユーザー・市場の状態</th><th>強くなりやすい要素</th><th>理由</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>商品認識度レベル5<br>商品や条件を理解し、購入に前向き</td>
+            <td>緊急性</td>
+            <td>商品や条件を理解し、かなり前向きなため、最後に行動を後押しする理由が重要になりやすい。</td>
+          </tr>
+          <tr>
+            <td>商品認識度レベル4<br>商品を知り、ほかの商品と比較中</td>
+            <td>独自性</td>
+            <td>商品は知っていても、ほかの商品と比較しているため、「なぜこれなのか」が重要になりやすい。</td>
+          </tr>
+          <tr>
+            <td>市場成熟度が高い<br>似た訴求を何度も見ている</td>
+            <td>独自性・超具体性</td>
+            <td>似た約束や表現を何度も見ているため、今までとの違いと、その違いが具体的に分かる情報が重要になりやすい。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4UをFVへ反映する順番</h3>
+      <div class="flow">
+        <div><b>STEP 1</b>誰に伝えるかを決める</div>
+        <div><b>STEP 2</b>どんな価値を伝えるかを決める</div>
+        <div><b>STEP 3</b>強める要素を決め、言葉と画像へ入れる</div>
+        <div><b>STEP 4</b>4つの要素が大きく欠けていない状態にする</div>
+      </div>
+    </section>
+
+    <section id="use">
+      <h2><span class="num">4</span>今後FVのパターン検証で意識したいこと</h2>
+      <div class="definition">
+        <strong>FVを作る公式</strong>
+        1. 有益性（Useful）＋ 2. 緊急性（Urgent）＋ 3. 独自性（Unique）＋ 4. 超具体性（Ultra-specific）
+      </div>
+
+      <h3>4つをメインの見出しだけに詰め込まない</h3>
+      <p>
+        メインの見出しの上に置く補足文、メインの見出し、その下の説明文、
+        画像や人物、構図など、FV全体で4つの要素を伝えます。
+      </p>
+      <div class="danger">
+        <strong>パターンを尖らせることだけを優先しない</strong><br>
+        訴求の角度、コピー、人物、色、構図などを大きく変えても、
+        4Uを外すと、目立っていても、そもそも売れないFVになる可能性があります。
+      </div>
+      <ul class="checklist">
+        <li>良い変化への期待がある</li>
+        <li>今続きを読む理由がある</li>
+        <li>ほかとの違いがある</li>
+        <li>自分の悩みだと具体的に分かる</li>
+      </ul>
+      <p>どのパターンでも、この4つが大きく欠けていない状態を目指します。</p>
+    </section>
+
+    <section id="sheet">
+      <h2><span class="num">5</span>4Uの制作シート</h2>
+      <p class="lead-rule">誰にどんな価値を伝えるかを決めた後、4つの欄を埋めてFVの言葉と画像を作ります。</p>
+
+      <table class="worksheet">
+        <tbody>
+          <tr><td>伝える相手</td><td class="blank">誰に向けたFVか</td></tr>
+          <tr><td>伝える価値</td><td class="blank">どんな良い変化を期待させるか</td></tr>
+          <tr><td>1. 有益性</td><td class="blank">この先から得られるベネフィット</td></tr>
+          <tr><td>2. 緊急性</td><td class="blank">今続きを読む理由</td></tr>
+          <tr><td>3. 独自性</td><td class="blank">ほかとの違いと、その違いが生むベネフィット</td></tr>
+          <tr><td>4. 超具体性</td><td class="blank">具体的な悩み・状況・対象・条件</td></tr>
+          <tr><td>言葉の役割</td><td class="blank">見出しの上・メインの見出し・下の説明文で何を伝えるか</td></tr>
+          <tr><td>画像の役割</td><td class="blank">人物・構図・状況によって何を伝えるか</td></tr>
+        </tbody>
+      </table>
+
+      <h3>FVが完成したときに読む4つの質問</h3>
+      <ul class="checklist">
+        <li>ユーザーが「自分に良いことがありそう」と期待できるか</li>
+        <li>ユーザーが今続きを読む理由があるか</li>
+        <li>ほかのFVと同じではない、意味のある違いがあるか</li>
+        <li>ユーザーが「自分の悩みについてのFVだ」と一瞬で分かるか</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><strong>使い方：</strong>FVの方向性を決めた後、言葉と画像へ落とし込む段階で4Uを使います。</p>
+    </footer>
+  </main>
+</body>
+</html>
