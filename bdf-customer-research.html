@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BDF顧客リサーチ</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #64748b;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --line: #cbd5e1;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --ink: #1e293b;
+      --green: #16a34a;
+      --teal: #0f766e;
+      --amber: #b45309;
+      --red: #dc2626;
+      --soft-blue: #eff6ff;
+      --soft-amber: #fffbeb;
+      --soft-green: #f0fdf4;
+      --soft-red: #fef2f2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      line-height: 1.75;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .doc-header {
+      background: var(--ink);
+      color: #ffffff;
+      padding: 28px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .doc-header p {
+      margin: 10px 0 0;
+      color: #dbeafe;
+      font-size: 15px;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.13);
+      color: #e0f2fe;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      font-size: 18px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    .card h3 {
+      margin: 14px 0 8px;
+      font-size: 15px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mini {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      background: #f8fafc;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .mini p {
+      margin: 0;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .bdf-belief {
+      border-left: 6px solid var(--accent);
+    }
+
+    .bdf-desire {
+      border-left: 6px solid var(--green);
+    }
+
+    .bdf-feeling {
+      border-left: 6px solid var(--amber);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .lecture-figure {
+      margin: 14px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    .lecture-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .lecture-figure figcaption {
+      padding: 9px 12px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .flow {
+      display: grid;
+      gap: 8px;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .flow-item strong {
+      display: block;
+      margin-bottom: 2px;
+      line-height: 1.45;
+    }
+
+    .flow-item p {
+      margin: 0;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .action-box {
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: var(--soft-blue);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .action-box h3 {
+      margin: 0 0 6px;
+      color: #1d4ed8;
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .checklist li {
+      margin: 0;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+      align-items: start;
+    }
+
+    .checkmark {
+      color: var(--green);
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .soft-red {
+      background: var(--soft-red);
+    }
+
+    .soft-green {
+      background: var(--soft-green);
+    }
+
+    .soft-amber {
+      background: var(--soft-amber);
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 16px 12px 36px;
+      }
+
+      .doc-header {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-item {
+        grid-template-columns: 36px 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="doc-header">
+      <h1>BDF顧客リサーチ</h1>
+      <p>記事制作・レビューで、ユーザーが何を信じ、何を望み、何が怖くて止まっているかを見るための共有資料。</p>
+      <div class="doc-meta">
+        <span class="badge">記事部向け</span>
+        <span class="badge">顧客リサーチ</span>
+        <span class="badge">制作・レビュー</span>
+        <span class="badge">ローカル確認版</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>この資料で見ること</h2>
+      <p class="lead">BDFは、顧客リサーチで集めた情報を「教育」「訴求」「懸念払拭」に変えるための物差しです。</p>
+      <p>商品認知度では、ユーザーが問題・解決策・商品をどこまで知っているかを見ます。BDFでは、その状態のユーザーが何を信じ、どんな未来を望み、何に不安を感じて行動を止めているかを見ます。</p>
+      <p>2つを合わせると、FVやアンケートで何から話し始めるか、記事内で何を教育するか、CTA前にどの不安を払拭するかを考えやすくなります。</p>
+      <div class="action-box">
+        <h3>記事を見るときの目的</h3>
+        <p>ユーザー理解を一般論で終わらせず、記事の入口・訴求・教育・FAQ・CTAのどこを変えるかまでつなげます。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>最重要の前提: 問題に気づいていないと商品は売れにくい</h2>
+      <p>ユーザーは、自分の問題を解決するために商品を買います。肌荒れ用のクリームを買うのは、肌が荒れているという問題を解決したいからです。</p>
+      <p>そのため、顧客リサーチでは「ユーザーが抱えている問題」だけではなく、「今回売る商材で解決できる問題」と「ユーザー本人がその問題を自覚しているか」を分けて確認します。</p>
+      <div class="action-box">
+        <h3>制作前の問い</h3>
+        <p>この商材が解決できる問題は何か。その問題をユーザーはすでに自覚しているか。自覚していないなら、記事のどこで「自分にも関係がある問題かもしれない」と気づいてもらうか。</p>
+      </div>
+      <div class="grid-2">
+        <div class="mini soft-green">
+          <strong>問題を自覚している場合</strong>
+          <p>解決策・証拠・比較・オファーを比較的まっすぐ見せやすい。</p>
+        </div>
+        <div class="mini soft-amber">
+          <strong>問題を自覚していない場合</strong>
+          <p>日常の違和感、診断、ストーリー、意外な事実などを使い、先に問題を自分ごと化してもらう必要がある。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>BDFの全体像</h2>
+      <div class="grid-3">
+        <div class="mini bdf-belief">
+          <strong>Belief</strong>
+          <p>思い込み・信念。ユーザーが問題、解決策、商品ジャンルについて「当たり前」だと思っていることを見る。</p>
+        </div>
+        <div class="mini bdf-desire">
+          <strong>Desire</strong>
+          <p>欲求・願望・悩み・問題。叶えたい未来と避けたい未来のどちらが強いかを見る。</p>
+        </div>
+        <div class="mini bdf-feeling">
+          <strong>Feeling</strong>
+          <p>商品や業界に対する気持ち・イメージ。興味があっても行動を止める感情的な懸念を見る。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>1. Belief: ユーザーの思い込みを見る</h2>
+      <p>Beliefは、商品ジャンル、問題、解決策、商品に対して、ユーザーが信じていることです。事実として正しいかどうかではなく、本人の中で常識になっているかを見ます。</p>
+      <p>記事制作では、Beliefを売る側から見て「不利」「有利」「どちらとも言えない」の3つに分けます。分類によって必要なアプローチが変わるためです。</p>
+      <p>例えば、具体例で見ると次のようになります。</p>
+      <h3>具体例：睡眠の質を上げるナイアシン系サプリを売る場合</h3>
+      <figure class="lecture-figure">
+        <img src="assets/bdf-customer-research/bdf-belief-niacin-lecture.png" alt="ナイアシンサプリのBeliefを不利・有利・不知に分類し、書き換え・強化・教育のアプローチを示した講義資料">
+        <figcaption>講義内の分類。ここでの「不知」は、商品に対して有利・不利のどちらとも言えない状態です。「書き換え」は、社内共通語の「新認知」にあたります。</figcaption>
+      </figure>
+      <div class="action-box">
+        <h3>Beliefを記事に使うとき</h3>
+        <p>まず、ユーザーが今どのBeliefを持っているかを仮置きします。そのうえで、CTAまでに「何を信じられる状態になってほしいか」を決め、書き換え（新認知）・強化・教育のどれが必要かを選びます。</p>
+        <p class="note">社内では、ユーザーがこれまで信じてきたことに対して、「実は別の見方・考え方・知識がある」と伝え、Beliefを書き換えることを「新認知」と呼びます。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Desire: 売れる訴求の方向を決める</h2>
+      <p>Desireには、欲求、願望、夢、悩み、問題、恐怖、不安、フラストレーションなどが含まれます。調べるときは項目を並べるだけではなく、大きく「叶えたい未来」と「避けたい未来」に分けます。</p>
+      <div class="grid-2">
+        <div class="mini soft-green">
+          <strong>叶えたい未来</strong>
+          <p>ゼロからプラスへ行きたい欲求。理想の姿、憧れ、褒められたい、恋愛や仕事で前向きになりたい、など。</p>
+        </div>
+        <div class="mini soft-red">
+          <strong>避けたい未来</strong>
+          <p>マイナスをゼロ、またはプラスへ戻したい欲求。不安、コンプレックス、恥ずかしさ、嫌われる恐怖、将来の後悔、など。</p>
+        </div>
+      </div>
+      <p>美容医療やコンプレックス商材では、すでにあるマイナス状態から考えると、ユーザーが自分ごと化しやすい場合があります。ただし、ネガティブ訴求だけで終わらせず、その問題が解決した先の生活や感情まで見ます。</p>
+      <div class="action-box">
+        <h3>例: ニキビ商材で見るDesire</h3>
+        <p>「ニキビを治したい」だけで終わらせず、清潔感がないと思われたくない、好きな人に近づく自信が持てない、肌を褒められて恋愛に前向きになりたい、といった生活・感情の変化まで見ます。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Feeling: CTA前の懸念を払拭する</h2>
+      <p>Feelingは、商品や業界に対する気持ちや、なんとなく持っているイメージです。ユーザーが商品に興味を持っていても、「怖い」「恥ずかしい」「信用できない」と感じていれば行動を止めます。</p>
+      <p>部内で使っている「情緒的価値」や「懸念払拭」と接続しやすい観点です。</p>
+      <div class="grid-2">
+        <div class="mini">
+          <strong>美容医療で出やすいFeeling</strong>
+          <ul>
+            <li>痛そう</li>
+            <li>高そう</li>
+            <li>売り込まれそう</li>
+            <li>自分の年齢で行くのは恥ずかしい</li>
+            <li>クリニックで浮きそう</li>
+            <li>不自然になりそう</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <strong>記事内での見せ方</strong>
+          <ul>
+            <li>料金の透明性を見せる</li>
+            <li>無料相談が何をする場なのかを伝える</li>
+            <li>同年代や同性の利用イメージを置く</li>
+            <li>相談や施術の流れを見せる</li>
+            <li>痛みやダウンタイムを説明する</li>
+            <li>FAQ、症例、医師説明で懸念に答える</li>
+          </ul>
+        </div>
+      </div>
+      <div class="action-box">
+        <h3>CTA前の役割</h3>
+        <p>論理的に説明するだけではなく、文章、画像、相談風景、同年代の利用イメージ、FAQなどを使い、「自分でも相談できそう」「思っていたほど怖くなさそう」と感じてもらうところまで設計します。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>記事制作での使い方</h2>
+      <div class="flow">
+        <div class="flow-item">
+          <div class="num">1</div>
+          <div><strong>商材が解決できる問題を決める</strong><p>ユーザーの悩みを広く集めたうえで、今回売る商材が実際に解決できる問題へ絞る。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">2</div>
+          <div><strong>問題を自覚しているかを見る</strong><p>自覚しているなら解決策へ進みやすい。自覚していないなら、記事の入口で問題教育が必要になる。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">3</div>
+          <div><strong>どこで問題を自覚してもらうか決める</strong><p>FV、アンケート、診断、共感、ストーリー、意外な事実などから、適した入口を選ぶ。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">4</div>
+          <div><strong>Beliefを分類する</strong><p>不利・有利・どちらとも言えないに分け、書き換え（新認知）・強化・教育のどれが必要か決める。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">5</div>
+          <div><strong>Desireの方向を決める</strong><p>叶えたい未来と避けたい未来のどちらを前に出すと、今回のユーザーが自分ごと化しやすいか考える。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">6</div>
+          <div><strong>Feelingを洗い出す</strong><p>痛み、金額、売り込み、年齢不安、場違い感、不自然さなど、CTA前に残る感情的なブレーキを確認する。</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="num">7</div>
+          <div><strong>記事内の変更へ落とし込む</strong><p>FV、アンケート、教育、証拠、画像、FAQ、CTAのどこで何を伝えるかを決める。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>明日から記事を見る観点</h2>
+      <ul class="checklist">
+        <li><span class="checkmark">B</span><span><strong>Belief:</strong> ユーザーが信じていることは、販売に不利・有利・どちらとも言えないのどれか。書き換え（新認知）・強化・教育のどれが必要か。</span></li>
+        <li><span class="checkmark">D</span><span><strong>Desire:</strong> 前に出している訴求は、叶えたい未来と避けたい未来のどちらか。今回のユーザーが動きやすい方向になっているか。</span></li>
+        <li><span class="checkmark">F</span><span><strong>Feeling:</strong> CTA前に、痛み・金額・売り込み・年齢不安・場違い感などの懸念が残っていないか。</span></li>
+      </ul>
+      <div class="action-box">
+        <h3>商品認知度と合わせて確認する</h3>
+        <p>このユーザーには何から話し始めるべきか。CTA前に何を理解・納得している必要があるか。最後にどんな不安が残るか。この3点まで記事の具体的な変更へつなげます。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
