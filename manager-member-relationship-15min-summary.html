@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>『脳科学と現代経営』15分要約｜上司は部下にどう関わるか</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #5f6b7a;
+      --bg: #f5f5f5;
+      --paper: #ffffff;
+      --navy: #1e293b;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --blue-border: #bfdbfe;
+      --green: #15803d;
+      --green-soft: #f0fdf4;
+      --amber: #a16207;
+      --amber-soft: #fffbeb;
+      --red: #b91c1c;
+      --red-soft: #fef2f2;
+      --line: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p:last-child,
+    ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .doc-header {
+      padding: 34px 32px;
+      margin-bottom: 20px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 10px;
+    }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .doc-header h1 {
+      margin-bottom: 14px;
+      font-size: 31px;
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+    }
+
+    .doc-header h1 span {
+      display: block;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .lead {
+      max-width: 670px;
+      margin-bottom: 14px;
+      color: #e2e8f0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .doc-meta {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .core-message {
+      padding: 22px 22px 22px 25px;
+      margin-bottom: 20px;
+      background: var(--blue-soft);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .core-message .label {
+      display: block;
+      margin-bottom: 7px;
+      color: #1d4ed8;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .core-message p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.75;
+    }
+
+    .card {
+      padding: 22px;
+      margin-bottom: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+    }
+
+    .card > h2 {
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--blue);
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin-right: 8px;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 7px;
+      font-size: 14px;
+      vertical-align: 2px;
+    }
+
+    .summary-line {
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      color: #1e3a8a;
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-border);
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .subhead {
+      margin: 22px 0 8px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .example {
+      padding: 16px;
+      margin: 16px 0;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .example h3 {
+      margin-bottom: 8px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .example-bad,
+    .example-good {
+      padding: 11px 13px;
+      margin-top: 9px;
+      border-radius: 7px;
+    }
+
+    .example-bad {
+      background: var(--red-soft);
+      border-left: 4px solid #dc2626;
+    }
+
+    .example-good {
+      background: var(--green-soft);
+      border-left: 4px solid #16a34a;
+    }
+
+    .example-bad strong {
+      color: var(--red);
+    }
+
+    .example-good strong {
+      color: var(--green);
+    }
+
+    .angle-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .angle {
+      padding: 15px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .angle strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .misunderstanding {
+      padding: 15px 16px;
+      margin: 16px 0;
+      background: var(--amber-soft);
+      border-left: 4px solid #d97706;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .misunderstanding strong {
+      color: var(--amber);
+    }
+
+    .spaces {
+      display: grid;
+      gap: 11px;
+      margin: 16px 0;
+    }
+
+    .space-item {
+      display: grid;
+      grid-template-columns: 126px 1fr;
+      gap: 14px;
+      padding: 15px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .space-name {
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+
+    .space-name small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .space-desc p {
+      margin-bottom: 5px;
+    }
+
+    .space-desc .mini-example {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .comparison {
+      width: 100%;
+      margin: 15px 0;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison th {
+      background: #f1f5f9;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: stretch;
+      gap: 8px;
+      margin: 17px 0;
+    }
+
+    .flow-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 82px;
+      padding: 11px;
+      text-align: center;
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .flow-arrow {
+      align-self: center;
+      color: #64748b;
+      font-weight: 800;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .book-ref {
+      margin-top: 18px;
+      color: #64748b;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .conclusion {
+      padding: 24px;
+      margin-bottom: 18px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 9px;
+    }
+
+    .conclusion h2 {
+      margin-bottom: 12px;
+      color: #bfdbfe;
+      font-size: 21px;
+    }
+
+    .conclusion p {
+      color: #e2e8f0;
+    }
+
+    .conclusion .final-line {
+      padding-top: 14px;
+      margin-top: 16px;
+      border-top: 1px solid #475569;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .caution {
+      padding: 18px 20px;
+      color: #475569;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 12px 10px 36px;
+      }
+
+      .doc-header {
+        padding: 28px 20px;
+      }
+
+      .doc-header h1 {
+        font-size: 25px;
+      }
+
+      .doc-header h1 span {
+        font-size: 18px;
+      }
+
+      .lead {
+        font-size: 15px;
+      }
+
+      .core-message {
+        padding: 18px;
+      }
+
+      .core-message p {
+        font-size: 17px;
+      }
+
+      .card {
+        padding: 18px 16px;
+      }
+
+      .card > h2 {
+        font-size: 19px;
+      }
+
+      .angle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .space-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .space-name small {
+        display: inline;
+        margin-left: 6px;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="doc-header">
+      <p class="eyebrow">15-MINUTE BOOK SUMMARY</p>
+      <h1>
+        『脳科学と現代経営』
+        <span>上司は、部下にどう関わればよいのか</span>
+      </h1>
+      <p class="lead">部下を「動かす技術」ではなく、部下が考えて動ける状態をつくるという視点から、本書の重要部分をやさしくまとめます。</p>
+      <p class="doc-meta">読了目安：約15分｜ヒラリー・スカーレット著／宮澤春子訳・第3版をもとに再構成</p>
+    </header>
+
+    <section class="core-message" aria-label="この要約で一番大事なこと">
+      <span class="label">この要約で一番大事なこと</span>
+      <p>良い上司とは、部下を思いどおりに操作できる人ではありません。部下の脳が「身を守らなければ」と構えすぎず、仕事を考えるために力を使える状態をつくる人です。</p>
+    </section>
+
+    <article class="card">
+      <h2><span class="section-number">1</span>部下を追い込むと、能力まで下がることがある</h2>
+      <p class="summary-line">人は強い不安や恐れを感じると、仕事をうまく進めることより、自分を守ることを優先します。</p>
+
+      <p>上司から強く責められたり、急な変更を理由もなく命じられたりすると、部下は「失敗したらどうなる」「評価を下げられるかもしれない」と考えます。本書では、このように脳が危険を感じている状態を<strong>「脅威状態」</strong>として説明しています。</p>
+      <p>脅威状態になると、視野が狭くなり、悪い可能性に注意が向きやすくなります。複雑なことを考える力、感情を抑える力、新しいアイデアを出す力も使いにくくなります。</p>
+
+      <div class="angle-grid">
+        <div class="angle">
+          <strong>上司から見える姿</strong>
+          返事が遅い。言い訳が多い。自分で考えない。同じミスをする。
+        </div>
+        <div class="angle">
+          <strong>部下の中で起きている可能性</strong>
+          間違えないことに意識を使いすぎている。質問したら怒られると思っている。何が正解かわからない。
+        </div>
+      </div>
+
+      <p>たとえるなら、脳が「通常運転」から「非常事態モード」に切り替わった状態です。パソコンの性能がなくなったのではなく、別の処理に多くの力を使っているため、仕事に回せる余裕が減っています。</p>
+
+      <div class="misunderstanding">
+        <strong>誤解しやすい点：</strong>プレッシャーをすべてなくせ、という意味ではありません。簡単すぎる仕事は退屈を生みます。大切なのは、「難しいけれど対処できそう」という挑戦の状態と、「何をしても無理だ」という脅威の状態を分けることです。
+      </div>
+
+      <div class="example">
+        <h3>同じ厳しい目標でも、受け取られ方が変わる例</h3>
+        <div class="example-bad"><strong>脅威になりやすい：</strong>「今月絶対に達成しろ。未達だったら分かっているよな」</div>
+        <div class="example-good"><strong>挑戦になりやすい：</strong>「高い目標なのは分かっている。どこが一番の障害になりそうか、一緒に整理したい」</div>
+      </div>
+
+      <p class="book-ref">主な該当箇所：第3章・第4章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">2</span>部下は、上司の言葉以上に「自分は仲間か」を見ている</h2>
+      <p class="summary-line">職場の人間関係は、仕事とは別の問題ではありません。考える力や協力する力に影響する、仕事そのものの一部です。</p>
+
+      <p>人は、自分が集団の一員であることを強く求めます。本書では、人間の脳を<strong>「社会脳」</strong>として捉えています。仲間外れ、無視、不公平な扱いなどの社会的な痛みは、身体的な痛みと一部共通する仕組みで処理されると説明されています。</p>
+      <p>そのため、部下は上司との会話から、仕事の内容だけでなく、「自分はこのチームに必要とされているか」「上司は自分を気にかけているか」を読み取ります。</p>
+
+      <div class="example">
+        <h3>上司が無意識につくる「内側の人」と「外側の人」</h3>
+        <p>気が合う部下にだけ相談する。よく話す人だけに情報を先に伝える。一部の人だけを会話に入れる。上司には悪意がなくても、外された側は「自分は仲間ではない」と感じる可能性があります。</p>
+      </div>
+
+      <p>本書が特に重視しているのは、<strong>話を聞いてもらえている感覚</strong>です。上司がすぐに解決策を出さなくても、「自分の話に関心を持ってもらえた」と感じること自体が、部下の状態を前向きにすることがあります。</p>
+
+      <div class="misunderstanding">
+        <strong>「優しいだけ」とは違います：</strong>良い関係をつくる目的は、部下の機嫌を取り続けることではありません。信頼があるからこそ、難しい指摘や厳しい話にも耳を傾けやすくなります。本書では、リーダーは「強さ」を示す前に「温かみ」を示すことが重要だと説明しています。
+      </div>
+
+      <p class="book-ref">主な該当箇所：第5章・第8章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">3</span>部下が力を発揮しやすくなる6つの条件</h2>
+      <p class="summary-line">部下が何に不安を感じ、何があると前向きになれるかを考える物差しが「SPACES」です。</p>
+
+      <p>SPACESは、脳が「危険」と「良いこと」のどちらを感じるかを考える6つの観点です。難しい理論というより、部下の様子が急に変わったときに、原因を考えるための地図だと捉えると分かりやすくなります。</p>
+
+      <div class="spaces">
+        <div class="space-item">
+          <div class="space-name">尊重される<small>Self-esteem</small></div>
+          <div class="space-desc">
+            <p>自分の能力や貢献を認められ、信頼されていると感じることです。</p>
+            <p class="mini-example">人前で能力まで否定されると脅威になりやすい。一方、成長や進歩を認められると自信につながります。</p>
+          </div>
+        </div>
+
+        <div class="space-item">
+          <div class="space-name">意味がある<small>Purpose</small></div>
+          <div class="space-desc">
+            <p>自分の仕事が何につながり、誰の役に立つのかが分かることです。</p>
+            <p class="mini-example">「これを今日中に」だけでなく、「この作業が次の判断に必要」と分かると、単純作業にも意味を見いだしやすくなります。</p>
+          </div>
+        </div>
+
+        <div class="space-item">
+          <div class="space-name">選べる<small>Autonomy</small></div>
+          <div class="space-desc">
+            <p>全部を自由にできなくても、進め方などに自分で選べる部分があることです。</p>
+            <p class="mini-example">期限と完成条件は決まっていても、作業の順番や方法は本人が選べる、という形があります。</p>
+          </div>
+        </div>
+
+        <div class="space-item">
+          <div class="space-name">先が見える<small>Certainty</small></div>
+          <div class="space-desc">
+            <p>何が起きるか、自分に何が期待されているか、次の情報がいつ来るかが分かることです。</p>
+            <p class="mini-example">結論が未定でも、「何が未定か」「いつ次に伝えるか」は共有できます。</p>
+          </div>
+        </div>
+
+        <div class="space-item">
+          <div class="space-name">納得できる<small>Equity</small></div>
+          <div class="space-desc">
+            <p>結果だけでなく、決め方や説明が公平で、礼儀をもって扱われていると感じることです。</p>
+            <p class="mini-example">担当を決める基準が見えないと、「上司の好みで決めた」と受け取られやすくなります。</p>
+          </div>
+        </div>
+
+        <div class="space-item">
+          <div class="space-name">仲間である<small>Social connection</small></div>
+          <div class="space-desc">
+            <p>チームの一員であり、誰かが自分のことを気にかけていると感じることです。</p>
+            <p class="mini-example">意見を聞かれる、情報の輪に入っている、困ったときに相談できる、といった感覚です。</p>
+          </div>
+        </div>
+      </div>
+
+      <p>重要なのは、6つのうち<strong>何を強く求めるかは人によって違う</strong>ことです。上司が「目的を説明すれば誰でも動ける」と思っていても、ある部下は「選べること」を、別の部下は「先が見えること」を強く求めているかもしれません。</p>
+
+      <div class="misunderstanding">
+        <strong>自分の感覚を相手に当てはめない：</strong>人は「自分が大事にするものは、相手も大事にする」と思い込みやすいものです。本書ではこれを投影バイアスとして注意しています。
+      </div>
+
+      <p class="book-ref">主な該当箇所：第9章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">4</span>「抵抗する部下＝やる気がない」とは限らない</h2>
+      <p class="summary-line">表面に見える態度だけで人を評価すると、本当の障害を見誤ります。</p>
+
+      <p>新しい仕事の進め方に反対する部下を見て、上司は「変化を嫌う人」「成長する気がない人」と考えがちです。しかし本書では、行動が変わらない理由を、本人の性格だけで説明しません。</p>
+
+      <div class="table-wrap">
+        <table class="comparison">
+          <thead>
+            <tr>
+              <th>上司から見える行動</th>
+              <th>部下の中で起きているかもしれないこと</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>新しいツールを使わない</td>
+              <td>操作する能力がまだない。練習する時間や環境がない。導入する意味を理解していない。</td>
+            </tr>
+            <tr>
+              <td>質問をしない</td>
+              <td>理解しているのではなく、「こんなことも分からないのか」と思われるのが怖い。</td>
+            </tr>
+            <tr>
+              <td>以前の方法に戻る</td>
+              <td>古い方法が習慣になっている。忙しくなると、脳が慣れた楽な道を選んでいる。</td>
+            </tr>
+            <tr>
+              <td>変更に強く反発する</td>
+              <td>能力、立場、仲間、慣れたやり方など、何かを失う恐れを感じている。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>本書で紹介されるCOM-Bという考え方では、行動には<strong>「できる力」「できる環境」「やろうと思う理由」</strong>が必要だと捉えます。どれかが欠けているのに、意志や根性だけを求めても、行動は続きにくくなります。</p>
+
+      <div class="flow" aria-label="行動が変わるための三条件">
+        <div class="flow-box">できる力<br>知識・技能・心身の余裕</div>
+        <div class="flow-arrow">＋</div>
+        <div class="flow-box">できる環境<br>時間・道具・周囲の支援</div>
+        <div class="flow-arrow">＋</div>
+        <div class="flow-box">やる理由<br>納得・価値・習慣・報酬</div>
+      </div>
+
+      <p>つまり、上司が見るべきなのは「なぜ言うことを聞かないのか」だけではなく、<strong>「何がこの行動を難しくしているのか」</strong>です。</p>
+
+      <p class="book-ref">主な該当箇所：第3章・第11章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">5</span>部下の感情を消そうとせず、まず正体を確かめる</h2>
+      <p class="summary-line">感情は仕事の邪魔ものではありません。判断や行動に影響している情報です。</p>
+
+      <p>部下が不安や怒りを口にしたとき、上司は「前向きに考えよう」「決まったことだから」と早く切り替えさせたくなります。しかし、感情を無理に押さえ込むだけでは、その感情が消えたとは限りません。</p>
+      <p>本書では、感情に名前をつけると、強さが和らぐことがあると説明しています。「嫌だ」だけで終わらせず、「役割がなくなるのが不安」「評価基準が見えなくて怖い」と言葉にすると、対処する対象が見えやすくなります。</p>
+
+      <div class="example">
+        <h3>方針変更に部下が不安を示した場合</h3>
+        <div class="example-bad"><strong>感情を閉じやすい反応：</strong>「まだ何も起きていない。考えすぎだよ」</div>
+        <div class="example-good"><strong>感情の正体が見えやすい反応：</strong>「どの部分が一番不安？　役割、評価、仕事量のどれに近い？」</div>
+      </div>
+
+      <p>ただし、感情を何度も繰り返して増幅させることが目的ではありません。まず理解し、そのあとで別の見方や、本人がコントロールできる部分へ視点を移す。本書が描くのは、<strong>共感と前進の両方</strong>です。</p>
+
+      <h3 class="subhead">上司自身の感情も、部下へ伝わる</h3>
+      <p>感情は人から人へ伝わり、特にリーダーの感情は伝染しやすいとされています。上司が焦って早口になり、険しい表情で「大丈夫」と言っても、部下は言葉より様子を受け取ります。</p>
+      <p>したがって、上司が自分の感情に気づき、反射的に怒鳴ったり結論を急いだりしないことは、個人の気分管理ではなく、チームの判断力を守ることにつながります。</p>
+
+      <p class="book-ref">主な該当箇所：第6章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">6</span>説明したことと、部下が理解・納得したことは別</h2>
+      <p class="summary-line">上司のコミュニケーションは「何を話したか」ではなく、「相手の頭に何が残ったか」で考えます。</p>
+
+      <p>人は同じ説明を聞いても、同じようには受け取りません。過去の経験、今の不安、期待、思い込みによって、注意を向ける部分が変わるからです。特に脅威状態の人は、多くの情報を取り込みにくく、否定的な内容へ敏感になります。</p>
+
+      <h3 class="subhead">情報が固まるまで黙ることにも、問題がある</h3>
+      <p>上司は、間違った情報を伝えないために、すべて決まるまで待とうとします。しかし情報の空白が続くと、部下の脳は空白を予想で埋めます。悪い情報であっても、何も分からない状態より、計画を立てやすくなる場合があります。</p>
+
+      <div class="example">
+        <h3>組織変更がまだ検討中の場合</h3>
+        <div class="example-bad"><strong>空白が大きい説明：</strong>「決まったら伝えます」</div>
+        <div class="example-good"><strong>先を少し見せる説明：</strong>「配置は未定です。決まっているのは目的と検討メンバーです。次の共有は金曜日です」</div>
+      </div>
+
+      <p>本書の考え方では、まだ答えがなくても、<strong>決まっていること、決まっていないこと、変わらないこと、次に伝える時期</strong>は分けて話せます。これは、すべてを約束することではなく、部下の脳が先を予測できる材料を渡すことです。</p>
+
+      <h3 class="subhead">対話が必要なのは、部下自身の「意味づけ」があるから</h3>
+      <p>上から正しい理由を説明するだけでは、部下の中で話がつながらないことがあります。質問し、自分の仕事との関係を考え、自分の言葉で理解したときに、納得感や当事者意識が生まれやすくなります。</p>
+
+      <div class="misunderstanding">
+        <strong>意見を聞くふりは逆効果：</strong>すでに結論を変えるつもりがないのに「皆さんの意見で決めます」と伝えると、公平性と信頼を損ないます。何を相談でき、何は決定済みなのかを正直に分ける必要があります。
+      </div>
+
+      <p class="book-ref">主な該当箇所：第8章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">7</span>心理的安全性は「何を言っても許される」ことではない</h2>
+      <p class="summary-line">心理的安全性とは、仕事を良くするための質問・反対意見・失敗の報告を、恥や罰を恐れずに出せる状態です。</p>
+
+      <p>上司が「何でも言って」と伝えても、部下は上司の実際の反応を見ています。ミスを報告した人を強く責める、反対意見を出した人を面倒な人として扱う、質問した人を能力不足と見る。このような反応が続けば、部下は情報を隠すようになります。</p>
+
+      <div class="angle-grid">
+        <div class="angle">
+          <strong>心理的安全性がない状態</strong>
+          ミスを隠す。分からなくても分かったふりをする。上司の案に問題があっても黙る。
+        </div>
+        <div class="angle">
+          <strong>心理的安全性がある状態</strong>
+          早い段階で問題を出す。確認の質問をする。関係を壊さず、考えの違いを話せる。
+        </div>
+      </div>
+
+      <p>心理的安全性があることと、成果基準が低いことは別です。むしろ、問題を早く表に出し、仕事の質を高めるために必要な土台です。優しく同意し合う職場ではなく、<strong>厳しい内容も安心して話せる職場</strong>を意味します。</p>
+
+      <h3 class="subhead">全員を同じように扱うことが、公平とは限らない</h3>
+      <p>人によって、集中しやすい環境、情報の受け取り方、得意・不得意の差は異なります。本書は神経多様性を取り上げ、「平均的な人」を前提にした一つの方法では、強みを活かせない人が出ると説明しています。</p>
+      <p>公平とは、全員に同じ方法を押しつけることではなく、力を発揮するための機会と、決め方の納得感を整えることです。本人が診断名を公表しているかどうかにかかわらず、働き方や伝え方の好みを確認できる関係が重要になります。</p>
+
+      <p class="book-ref">主な該当箇所：第10章</p>
+    </article>
+
+    <article class="card">
+      <h2><span class="section-number">8</span>評価やフィードバックには、上司の思い込みが入り込む</h2>
+      <p class="summary-line">「自分は公平に見ている」と思うことだけでは、偏りを防げません。</p>
+
+      <p>人の脳は、限られた情報を素早く処理するため、過去の経験や印象を使って判断します。この近道は必要ですが、部下の評価では思い込みにつながります。</p>
+      <p>例えば、上司と話す回数が多い人を「意欲が高い」と見たり、自分と考え方が似ている人を「理解が早い」と見たり、静かに働く人の成果を見落としたりする可能性があります。本書では、権力を持つ人ほどバイアスにとらわれやすくなる可能性にも触れています。</p>
+
+      <div class="misunderstanding">
+        <strong>知識だけでは直りにくい：</strong>「自分にも思い込みがある」と学ぶ研修だけで、無意識の判断が消えるわけではありません。本書は、判断基準、証拠、異なる意見、複数の視点など、判断の仕組みそのものが必要だとしています。
+      </div>
+
+      <h3 class="subhead">フィードバックが難しい理由</h3>
+      <p>指摘は、部下にとって「能力や立場を否定された」という脅威になりやすいものです。だからといって、指摘を避ければよいわけではありません。本書が重視するのは、過去の人格を裁く形ではなく、未来の行動へ目を向けることです。</p>
+
+      <div class="example">
+        <h3>同じ問題を扱う2つの伝わり方</h3>
+        <div class="example-bad"><strong>人を固定する言い方：</strong>「君はいつも詰めが甘い」</div>
+        <div class="example-good"><strong>行動を扱う言い方：</strong>「今回は提出前の数値確認が抜けていた。次回、確認を入れやすくするには何が必要だろう」</div>
+      </div>
+
+      <p>後者は、問題を小さく見せているのではありません。「あなたは駄目な人だ」ではなく、「この行動は変えられる」と伝えています。これは、本書で紹介される<strong>人は成長できるという見方</strong>ともつながります。</p>
+
+      <p class="book-ref">主な該当箇所：第7章・第11章</p>
+    </article>
+
+    <section class="conclusion">
+      <h2>本書が考える、上司と部下の関係の結論</h2>
+      <p>部下の力が出ないとき、能力や性格だけが原因とは限りません。上司の言葉、表情、情報の出し方、決め方、普段の関係によって、部下が「考えてよい状態」にいるか、「身を守る状態」にいるかが変わります。</p>
+      <p>良い上司は、部下を常に快適にする人でも、何でも自由にさせる人でもありません。高い期待や厳しい事実を扱いながらも、部下が尊重され、目的を理解し、ある程度選べ、先を見通し、決め方に納得し、仲間だと感じられる状態をつくります。</p>
+      <p class="final-line">上司の役割は、人を直接コントロールすることではなく、人が自分の頭で考えて動ける条件を整えることです。</p>
+    </section>
+
+    <aside class="caution">
+      <strong>この要約の読み方：</strong>
+      本書の脳科学は、人の反応を決めつける読心術ではありません。同じ出来事でも、過去の経験、体調、性格、文化によって反応は変わります。また、研究室で得られた結果が、そのまますべての職場に当てはまるとは限りません。本書自身も、科学的な説明を単純化しすぎず、職場で確かめながら使うことを重視しています。このHTMLは全文の代わりとなる転載ではなく、上司と部下の関係に関する重要な考え方を理解するための再構成です。
+    </aside>
+  </main>
+</body>
+</html>

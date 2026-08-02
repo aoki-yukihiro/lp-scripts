@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>『脳科学と現代経営』やさしい理解・読書ガイド</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --paper: #ffffff;
+      --background: #f5f5f5;
+      --navy: #1e293b;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #15803d;
+      --green-soft: #f0fdf4;
+      --amber: #a16207;
+      --amber-soft: #fffbeb;
+      --red: #b91c1c;
+      --red-soft: #fef2f2;
+      --violet: #6d28d9;
+      --violet-soft: #f5f3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--background);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      line-height: 1.8;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .doc-header {
+      background: var(--navy);
+      color: #fff;
+      padding: 36px 32px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #93c5fd;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 16px 0 0;
+      color: #e2e8f0;
+      font-size: 16px;
+    }
+
+    .doc-meta {
+      margin-top: 18px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .hero-message {
+      margin: 0 0 20px;
+      padding: 22px 24px;
+      background: var(--blue-soft);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .card {
+      margin-bottom: 16px;
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid var(--blue);
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    .card h3 {
+      margin: 22px 0 8px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .card p:first-child,
+    .card h3:first-child {
+      margin-top: 0;
+    }
+
+    .card p:last-child,
+    .card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      margin: 42px 0 16px;
+      font-size: 25px;
+      line-height: 1.4;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: block;
+      height: 100%;
+      padding: 11px 13px;
+      color: #1d4ed8;
+      background: #fff;
+      border: 1px solid #dbeafe;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .toc a:hover {
+      background: var(--blue-soft);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .mini-card {
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 7px;
+      font-size: 15px;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge-blue {
+      color: #1d4ed8;
+      background: #dbeafe;
+    }
+
+    .badge-green {
+      color: var(--green);
+      background: #dcfce7;
+    }
+
+    .badge-amber {
+      color: var(--amber);
+      background: #fef3c7;
+    }
+
+    .badge-violet {
+      color: var(--violet);
+      background: #ede9fe;
+    }
+
+    .plain-list {
+      margin: 10px 0;
+      padding-left: 1.3em;
+    }
+
+    .plain-list li {
+      margin: 7px 0;
+    }
+
+    .key-line {
+      margin: 12px 0 16px;
+      padding: 13px 15px;
+      color: #1e3a8a;
+      background: var(--blue-soft);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .example {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: var(--green-soft);
+      border-left: 4px solid #16a34a;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .example strong {
+      color: var(--green);
+    }
+
+    .watch {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: var(--amber-soft);
+      border-left: 4px solid #eab308;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .watch strong {
+      color: var(--amber);
+    }
+
+    .caution {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: var(--red-soft);
+      border-left: 4px solid #dc2626;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .caution strong {
+      color: var(--red);
+    }
+
+    .quote-like {
+      margin: 18px 0;
+      padding: 18px;
+      color: #312e81;
+      background: var(--violet-soft);
+      border: 1px solid #ddd6fe;
+      border-radius: 9px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .chapter {
+      scroll-margin-top: 16px;
+    }
+
+    .chapter-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    .chapter-number {
+      display: grid;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      color: #fff;
+      background: var(--blue);
+      border-radius: 10px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .chapter-title {
+      margin: 0;
+      padding: 0;
+      border-bottom: 0;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .card .chapter-title {
+      margin: 0;
+      padding: 0;
+      border-bottom: 0;
+    }
+
+    .page-ref {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .model-table {
+      width: 100%;
+      margin: 14px 0;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .model-table th,
+    .model-table td {
+      padding: 10px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .model-table th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .reading-map {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .reading-map dt,
+    .reading-map dd {
+      margin: 0;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .reading-map dt {
+      background: #f8fafc;
+      font-weight: 800;
+    }
+
+    .reading-map dd {
+      background: #fff;
+    }
+
+    .reading-map dt:last-of-type,
+    .reading-map dd:last-of-type {
+      border-bottom: 0;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      padding: 18px;
+      color: #475569;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 12px 10px 40px;
+      }
+
+      .doc-header {
+        padding: 26px 20px;
+        border-radius: 9px;
+      }
+
+      .hero-message,
+      .card {
+        padding: 17px;
+      }
+
+      .toc,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .reading-map {
+        grid-template-columns: 1fr;
+      }
+
+      .reading-map dt {
+        padding-bottom: 5px;
+        border-bottom: 0;
+      }
+
+      .reading-map dd {
+        padding-top: 5px;
+      }
+
+      .model-table {
+        display: block;
+        overflow-x: auto;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="doc-header">
+      <p class="eyebrow">MANAGEMENT READING GUIDE</p>
+      <h1>『脳科学と現代経営』<br>やさしい理解・読書ガイド</h1>
+      <p class="subtitle">管理職になる前に、「人が力を発揮しやすい状態」を理解するための入門資料</p>
+      <p class="doc-meta">ヒラリー・スカーレット著／宮澤春子訳｜第3版の内容をもとに再構成</p>
+    </header>
+
+    <p class="hero-message">
+      この本の中心メッセージは、「人は正しい説明をすれば動く」のではなく、脳が安全・予測可能・公平だと感じ、自分にも選択肢があり、仲間とのつながりを感じられるときに力を発揮しやすい、ということです。
+    </p>
+
+    <section class="card">
+      <h2>このHTMLの使い方</h2>
+      <p>
+        最初の「10分でわかる全体像」で、本全体に流れている考え方をつかんでください。その後、13章の解説を先に読んでから本を読むと、専門用語や研究事例の位置づけがわかりやすくなります。
+      </p>
+      <div class="caution">
+        <strong>この資料の位置づけ</strong><br>
+        本の代わりになる詳細な転載ではなく、何を重視して読めばよいかを理解するための要約です。研究結果は「すべての人に必ず当てはまる法則」ではなく、判断材料として扱います。
+      </div>
+    </section>
+
+    <nav class="card" aria-label="目次">
+      <h2>目次</h2>
+      <ul class="toc">
+        <li><a href="#overview">第1層｜10分でわかる全体像</a></li>
+        <li><a href="#reading-guide">効率よく読むための地図</a></li>
+        <li><a href="#chapter-1">第1章｜脳神経科学とは何か</a></li>
+        <li><a href="#chapter-2">第2章｜脳について</a></li>
+        <li><a href="#chapter-3">第3章｜脳が変革を嫌う理由</a></li>
+        <li><a href="#chapter-4">第4章｜最高の状態をつくる</a></li>
+        <li><a href="#chapter-5">第5章｜社会脳と管理職</a></li>
+        <li><a href="#chapter-6">第6章｜感情を制御する</a></li>
+        <li><a href="#chapter-7">第7章｜意思決定とバイアス</a></li>
+        <li><a href="#chapter-8">第8章｜伝え方と巻き込み</a></li>
+        <li><a href="#chapter-9">第9章｜変革を計画する</a></li>
+        <li><a href="#chapter-10">第10章｜神経多様性と心理的安全性</a></li>
+        <li><a href="#chapter-11">第11章｜行動を変える</a></li>
+        <li><a href="#chapter-12">第12章｜1日の働き方</a></li>
+        <li><a href="#chapter-13">第13章｜組織で応用する</a></li>
+      </ul>
+    </nav>
+
+    <section id="overview">
+      <h2 class="section-title">
+        <span class="section-kicker">LAYER 1</span>
+        10分でわかる全体像
+      </h2>
+
+      <div class="card">
+        <h2>まず、脳を3つの特徴で捉える</h2>
+        <div class="grid-3">
+          <article class="mini-card">
+            <h3>1．危険を避けたい</h3>
+            <p>脳の第一目的は生存です。不確実さ、仲間外れ、不公平、自由を奪われることを「危険かもしれない」と判断します。</p>
+          </article>
+          <article class="mini-card">
+            <h3>2．エネルギーを節約したい</h3>
+            <p>深く考えるのは高コストです。脳は習慣、思い込み、過去の経験といった「近道」を使います。</p>
+          </article>
+          <article class="mini-card">
+            <h3>3．人とつながりたい</h3>
+            <p>所属感や信頼は気分の問題だけではありません。考える力、学ぶ力、協力する力に関わります。</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>本書を理解する中心軸：「脅威状態」と「報酬状態」</h2>
+        <div class="grid-2">
+          <article class="mini-card">
+            <span class="badge badge-amber">脅威状態</span>
+            <h3>守ることが優先になる状態</h3>
+            <p>
+              視野が狭くなり、悪い可能性を考えやすくなります。集中、創造、感情の制御、複雑な意思決定が難しくなります。
+            </p>
+          </article>
+          <article class="mini-card">
+            <span class="badge badge-green">報酬・挑戦状態</span>
+            <h3>考える余裕がある状態</h3>
+            <p>
+              難しさはあっても「何とかできそう」と感じています。学習、協力、工夫、問題解決に力を使いやすくなります。
+            </p>
+          </article>
+        </div>
+        <p class="quote-like">
+          マネジメントとは、人を直接コントロールすることではなく、<br>人が考えて動ける状態をつくること。
+        </p>
+        <p>
+          大切なのは、いつも機嫌よくさせることではありません。適度な緊張は必要です。ただし、要求が高すぎて「失敗したら終わり」「自分にはどうにもできない」と感じると、挑戦ではなく脅威になります。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>脳が働きやすい6条件「SPACES」</h2>
+        <p>
+          本書では、脅威と報酬を考える物差しとして、次の6項目が紹介されています。
+        </p>
+        <div>
+          <span class="badge badge-blue">Self-esteem｜自尊心</span>
+          <span class="badge badge-blue">Purpose｜目的</span>
+          <span class="badge badge-blue">Autonomy｜自律性</span>
+          <span class="badge badge-blue">Certainty｜確実性</span>
+          <span class="badge badge-blue">Equity｜公平性</span>
+          <span class="badge badge-blue">Social connection｜社会的つながり</span>
+        </div>
+        <p>
+          例えば組織変更を伝えるとき、「詳細は未定です」だけでは脳は不安な空白を憶測で埋めます。「決まっていること」「まだ決まっていないこと」「次に情報を出す日」「本人が選べる範囲」「判断基準」を分けて示すと、確実性・自律性・公平性を補いやすくなります。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>よくあるマネジメントの間違い</h2>
+        <div class="grid-2">
+          <article class="mini-card">
+            <h3>情報が固まるまで黙る</h3>
+            <p>正確さを優先したつもりでも、情報の空白が憶測を生みます。内容が未定でも、決定の手順や次の共有時期は伝えられます。</p>
+          </article>
+          <article class="mini-card">
+            <h3>危機感を強めれば動くと考える</h3>
+            <p>短期的には注目を集めますが、強すぎる恐怖は学習・創造・協力を弱めます。「重要だが対処可能」と感じられる設計が必要です。</p>
+          </article>
+          <article class="mini-card">
+            <h3>説明したから納得したと考える</h3>
+            <p>聞いたことと、自分の中で筋が通ったことは別です。人は自分で考え、質問し、意味づけしたときに当事者意識を持ちやすくなります。</p>
+          </article>
+          <article class="mini-card">
+            <h3>抵抗する人を「やる気がない」と見る</h3>
+            <p>抵抗の裏に、不確実さ、過去の失敗体験、仲間を失う不安、能力不足への恐れがあるかもしれません。</p>
+          </article>
+          <article class="mini-card">
+            <h3>平等とは全員を同じに扱うことだと思う</h3>
+            <p>公平とは、同じ方法を押しつけることではありません。力を発揮するために必要な環境や伝え方は、人によって異なります。</p>
+          </article>
+          <article class="mini-card">
+            <h3>研修でバイアスは消せると思う</h3>
+            <p>知識だけでは自動的な思い込みは止まりません。判断基準、複数人での確認、反対意見を入れる仕組みが必要です。</p>
+          </article>
+          <article class="mini-card">
+            <h3>忙しい人ほど成果を出していると見る</h3>
+            <p>会議、通知、判断、切り替えが増えるほど、脳の処理能力は削られます。多忙さと生産性は同じではありません。</p>
+          </article>
+          <article class="mini-card">
+            <h3>心理的安全性を「優しい職場」と捉える</h3>
+            <p>本来は、失敗・疑問・反対意見を出し、仕事の質を高められる状態です。基準を下げたり、厳しい議論を避けたりすることではありません。</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>この本を読むうえでの注意</h2>
+        <ul class="plain-list">
+          <li><strong>脳科学は読心術ではありません。</strong>「この行動は脳のこの部分が原因」と単純に決めつけないことが大切です。</li>
+          <li><strong>研究結果は傾向です。</strong>同じ出来事でも、過去の経験、性格、体調、文化によって反応は変わります。</li>
+          <li><strong>「脅威＝悪」ではありません。</strong>危険への反応は必要ですが、長く強く続くと仕事の質を落とします。</li>
+          <li><strong>科学っぽい説明を過信しない。</strong>本書自身も、研究室と職場の違い、再現性、誇張された脳科学への注意を促しています。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="reading-guide">
+      <h2 class="section-title">
+        <span class="section-kicker">READING MAP</span>
+        効率よく読むための地図
+      </h2>
+      <div class="card">
+        <h2>管理職候補としての優先度</h2>
+        <dl class="reading-map">
+          <dt>土台</dt>
+          <dd><strong>第1〜3章</strong>。脳科学を過信しない前提と、なぜ変化が脅威になるのかを理解する。</dd>
+          <dt>最優先</dt>
+          <dd><strong>第4〜6章・第8章</strong>。メンバーの状態、関係性、感情、コミュニケーションに直結する。</dd>
+          <dt>判断の質</dt>
+          <dd><strong>第7章・第10〜12章</strong>。バイアス、多様性、行動変容、働き方を理解する。</dd>
+          <dt>組織への応用</dt>
+          <dd><strong>第9章・第13章</strong>。変革の計画や、組織全体で導入する立場になったときに効く。</dd>
+        </dl>
+        <div class="watch">
+          <strong>読み飛ばさない方がよい箇所</strong><br>
+          各章末の「ポイントのまとめ」と「省察と今後の計画のための問い」です。研究名をすべて覚えるより、章末で「この章は何を変えようとしているのか」を確認する方が吸収しやすくなります。
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">
+        <span class="section-kicker">LAYER 2</span>
+        全13章のやさしい解説
+      </h2>
+
+      <article id="chapter-1" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">1</div>
+          <div>
+            <h2 class="chapter-title">脳神経科学とは何か</h2>
+            <p class="page-ref">該当ページ：21〜35</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：職場は大きく変わったのに、人の脳の基本設計は昔のままです。</p>
+        <p>
+          現代の仕事では、絶え間ない変化、通知、複数の仕事、複雑な人間関係への対応が求められます。しかし脳は、危険を避け、エネルギーを節約する方向に働きます。組織がこの特徴を無視すると、「もっと頑張れ」と言っているのに、考える力を奪う環境をつくってしまいます。
+        </p>
+        <p>
+          一方で本章は、脳科学の説明を何でも信じないよう注意しています。研究室で得られた結果が、そのまま実際の職場で再現されるとは限りません。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          「脳科学的に正しいからこの制度にする」と断定するのではなく、「この研究からはこういう傾向が考えられる。自分たちの職場でも確かめよう」と使うのが適切です。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          脳の部位を暗記する章ではありません。「科学的な根拠を使いながらも、単純化しすぎない」という本全体の前提をつかんでください。
+        </div>
+      </article>
+
+      <article id="chapter-2" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">2</div>
+          <div>
+            <h2 class="chapter-title">脳についてわかっていること</h2>
+            <p class="page-ref">該当ページ：37〜50</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：脳は予測し、近道を使い、使った回路を強くしていきます。</p>
+        <p>
+          脳は体重の約2％ですが、全身のエネルギーの約20％を使います。そのため、毎回ゼロから深く考えるのではなく、習慣や経験を使って処理を省略します。この省略は便利ですが、思い込みやバイアスの原因にもなります。
+        </p>
+        <p>
+          同時に、脳には経験によって回路を変える「神経可塑性」があります。能力は完全に固定されているわけではなく、繰り返し使う考え方や行動は、少しずつ行いやすくなります。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          新しい業務ツールが最初は疲れるのは、能力がないからとは限りません。まだ脳内に「いつもの道」ができていないため、毎回意識して操作している状態です。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          以降の章に出てくる「予測」「脅威と報酬」「近道」「神経可塑性」の4語を押さえれば十分です。
+        </div>
+      </article>
+
+      <article id="chapter-3" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">3</div>
+          <div>
+            <h2 class="chapter-title">脳が組織変革を嫌う理由</h2>
+            <p class="page-ref">該当ページ：51〜58</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：悪い結果そのものより、「どうなるかわからない状態」が強いストレスになることがあります。</p>
+        <p>
+          脳は常に次に何が起こるかを予測しています。組織変更や担当変更で予測ができなくなると、空白を悪い想像で埋めやすくなります。脅威状態になると、考える力、意思決定、感情の制御が弱まり、同僚まで競争相手のように見えることがあります。
+        </p>
+        <p>
+          同じ変更でも反応に個人差があるのは、過去の経験が違うからです。以前の異動で成長できた人と、居場所を失った人では、同じ説明を聞いても受け止め方が変わります。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          上司が突然よそよそしくなり、他のメンバーだけ会議に呼ばれていたら、事実がわからなくても「自分は外されるのでは」と考えて仕事に集中しにくくなります。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          変化への抵抗を「性格」だけで説明せず、本人には何が不確実で、どんな過去経験が呼び起こされているかを見る章です。
+        </div>
+      </article>
+
+      <article id="chapter-4" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">4</div>
+          <div>
+            <h2 class="chapter-title">組織変革の最中でも最高のパフォーマンスを発揮するには</h2>
+            <p class="page-ref">該当ページ：62〜89</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：「プレッシャーをなくす」のではなく、「難しいけれど自分なら対処できそう」に変えることが重要です。</p>
+        <p>
+          逆U字仮説では、刺激が少なすぎると退屈し、多すぎると圧倒され、その中間で力を出しやすいと考えます。高い要求だけでなく、使える能力・経験・支援があると感じられると、脅威ではなく挑戦として捉えやすくなります。
+        </p>
+        <p>
+          達成可能な短期目標、過去の成功の想起、承認、学習、適度な目新しさは、前向きな状態を助けます。また、「能力は伸ばせる」と考えるしなやかマインドセットは、本人だけでなく、部下を育てようとする管理職の姿勢にも影響します。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          初めて大きな発表を任せるとき、「失敗できない重要案件だ」と圧力だけを伝えると脅威になります。「過去の説明力は活かせる。構成は一緒に確認する」と、要求と使える資源の両方を示すと挑戦に変わりやすくなります。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          ドーパミンを「やる気物質」とだけ覚えず、予測・学習・達成との関係を見ること。創造性には、机に縛りつけるより、休憩や散歩、睡眠が役立つという話も重要です。
+        </div>
+      </article>
+
+      <article id="chapter-5" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">5</div>
+          <div>
+            <h2 class="chapter-title">社会脳：リーダーや管理職の役割</h2>
+            <p class="page-ref">該当ページ：93〜125</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：所属感や人間関係は、仕事とは別の話ではなく、仕事の質そのものに関わります。</p>
+        <p>
+          人は集団に所属し、誰かに気にかけてもらうことで生き延びてきました。脳は社会的な拒絶を、身体的な痛みと重なる仕組みで処理します。仲間外れの感覚が強いと、考える力や協力する力まで落ちる可能性があります。
+        </p>
+        <p>
+          リーダーは無意識に「よく話す人」「考え方が近い人」を内集団に入れ、それ以外を外集団にしてしまいます。本人に悪意がなくても、情報量、相談回数、機会の差となって表れます。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          いつも同じ3人だけが雑談の中で先に情報を知り、重要案件を任されると、他のメンバーは「自分は中心メンバーではない」と感じます。これは気分だけでなく、発言量や挑戦意欲にも影響します。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          「社会脳」を仲良しづくりの話に縮めないこと。温かみ、共感、帰属意識、共通目標が、業務の遂行とどうつながるかを見てください。
+        </div>
+      </article>
+
+      <article id="chapter-6" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">6</div>
+          <div>
+            <h2 class="chapter-title">組織変革の最中でも感情を制御するには</h2>
+            <p class="page-ref">該当ページ：129〜165</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：感情を消すのではなく、気づいて、反応を選べるようにします。</p>
+        <p>
+          感情は合理的な判断の邪魔になるだけのものではありません。何を大事だと感じるか、どちらを選ぶかという意思決定にも必要です。問題は、怒りや不安に気づかないまま、その勢いで反応してしまうことです。
+        </p>
+        <p>
+          本章では、状況を避ける、状況を変える、注意を別の場所に向ける、捉え直す、反応を調整するという選択肢を示しています。特に、感情に名前をつけること、別の視点で捉えること、マインドフルネスなどが紹介されます。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          納期遅延を聞いた瞬間に「責任感がない」と決めつける前に、「今、自分は焦っていて、責任を一人で背負わされる不安がある」と言語化します。感情を認めることで、事実確認と対処へ移りやすくなります。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          リーダーの感情は伝染しやすいという点が重要です。感情を隠し切ることではなく、周囲に与える影響を自覚し、扱える状態になることがテーマです。
+        </div>
+      </article>
+
+      <article id="chapter-7" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">7</div>
+          <div>
+            <h2 class="chapter-title">意思決定、バイアス、内受容感覚</h2>
+            <p class="page-ref">該当ページ：170〜212</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：人は思っているほど客観的ではなく、状態が悪いほど「近道」の判断に頼ります。</p>
+        <p>
+          システム1は速く自動的、システム2は遅く努力が必要な思考です。日常の多くはシステム1で処理されます。便利ですが、疲労、時間圧力、空腹、ストレスが重なると、バイアスに気づきにくくなります。
+        </p>
+        <p>
+          バイアスは知識があれば消えるものではありません。権力や高い知性も免疫にはなりません。本書は、判断基準を明確にする、反対役を置く、多様な視点を入れるなど、個人の注意力だけに頼らない仕組みを重視します。
+        </p>
+        <p>
+          内受容感覚とは、心拍や緊張、空腹など、身体内部の信号に気づく力です。身体の状態は、感情や判断の質を見直す手がかりになります。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          採用面接で「自分と話が合う」を能力の高さと混同することがあります。評価項目を先に決め、複数人が独立して採点すると、好みだけで決める危険を減らせます。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          バイアスの種類を暗記するより、「どの状態・仕組みなら間違いが起きにくいか」を読む章です。性別差の研究は集団の傾向であり、個人への決めつけには使えません。
+        </div>
+      </article>
+
+      <article id="chapter-8" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">8</div>
+          <div>
+            <h2 class="chapter-title">コミュニケーション、従業員の関与、ストーリーテリング</h2>
+            <p class="page-ref">該当ページ：217〜249</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：伝えることより、「相手の脳にどう受け取られるか」を設計します。</p>
+        <p>
+          情報がないと、人は空白を憶測で埋めます。しかし、早く伝えすぎれば後で訂正が必要になります。そこで、結論が未定でも「何が未定か」「いつ決まるか」「質問できる場所」を伝え、プロセスの確実性をつくります。
+        </p>
+        <p>
+          リーダーには温かみと強さの両方が必要ですが、本書はまず温かみを示して信頼をつくることを重視します。話を聞いてもらえること、自分で考える時間、少しの選択権は、相手の報酬状態と当事者意識を助けます。
+        </p>
+        <p>
+          また、図や物語は、情報の羅列よりも理解・記憶・感情との接続を助けます。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          組織変更をスライド1枚で通達するだけでなく、「なぜ今なのか」「誰のどんな困りごとを解決したいか」「変更後の一日がどうなるか」を物語と図で示し、質問する時間を設けます。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          「良い話し方」の章ではなく、確実性、自律性、認知的不協和、主観的な認識を扱う章です。伝達と理解を同じものだと思わないことが核心です。
+        </div>
+      </article>
+
+      <article id="chapter-9" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">9</div>
+          <div>
+            <h2 class="chapter-title">脳を考慮して組織変革の計画を立てるには</h2>
+            <p class="page-ref">該当ページ：253〜271</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：完璧な計画をつくるより、変化に応じて見直せる計画の作り方が重要です。</p>
+        <p>
+          変革は、いつもの仕事より多くの精神的エネルギーを使います。しかも途中で状況が変わります。そのため、計画を固定するより、進捗を確認し、脅威が強くなっている場所を見つけ、調整するプロセスが重要です。
+        </p>
+        <p>本章では、目的の違う5つのモデルを比較しています。</p>
+        <table class="model-table">
+          <thead>
+            <tr>
+              <th>モデル</th>
+              <th>何を見るためのものか</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>従業員エンゲージメントの4つの促進要因</td>
+              <td>物語のある方向性、管理職、従業員の声、言行一致がそろっているか。</td>
+            </tr>
+            <tr>
+              <td>ピンクの「自律性・熟達・目的」</td>
+              <td>アメとムチではなく、本人の内側から生まれる意欲があるか。</td>
+            </tr>
+            <tr>
+              <td>コッターの8段階</td>
+              <td>大きな変革をどの順番で進め、短期成果を定着につなげるか。</td>
+            </tr>
+            <tr>
+              <td>ブリッジズのトランジション</td>
+              <td>「終わり→中間の混乱→新しい始まり」という心理的な移行を見る。</td>
+            </tr>
+            <tr>
+              <td>SPACES</td>
+              <td>自尊心、目的、自律性、確実性、公平性、つながりが脅かされていないか。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          新システム導入では、コッターで全体の進行を整理し、ブリッジズで古いやり方を失う気持ちを捉え、SPACESで現場の不安を確認する、と使い分けられます。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          5モデルから正解を1つ選ぶ章ではありません。工程、意欲、感情、脅威という別々の角度を組み合わせる章です。
+        </div>
+      </article>
+
+      <article id="chapter-10" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">10</div>
+          <div>
+            <h2 class="chapter-title">神経多様性と心理的安全性を考慮して計画する</h2>
+            <p class="page-ref">該当ページ：275〜321</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：「平均的な人」に合わせた職場は、見えにくい強みと困りごとを取りこぼします。</p>
+        <p>
+          注意、感覚、読み書き、コミュニケーションなど、脳の特性には大きな幅があります。診断を受けていない人や、公表したくない人もいるため、特定の人だけに例外対応するより、誰もが働き方の好みを伝えやすい設計にする方が有効です。
+        </p>
+        <p>
+          調整は高額とは限りません。静かな場所、予定の事前共有、口頭だけでなく文字でも伝えること、柔軟な勤務時間など、小さな変更で力を発揮しやすくなる場合があります。
+        </p>
+        <p>
+          心理的安全性は、質問、失敗、反対意見を出しても人間関係や立場を失わないと感じられることです。ただし、成果基準をなくすことではありません。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          会議中の即答が苦手でも、文章なら深く考えられる人がいます。「会議で発言できない＝意見がない」と見なさず、事前資料と会議後コメントの両方を用意します。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          苦手さの補助だけでなく、強みを変革計画に入れる視点を見てください。また、リーダー自身が失敗や不明点を認められるかが、心理的安全性の出発点です。
+        </div>
+      </article>
+
+      <article id="chapter-11" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">11</div>
+          <div>
+            <h2 class="chapter-title">行動を変えるには</h2>
+            <p class="page-ref">該当ページ：323〜359</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：人が変わらないのは、意志が弱いからではなく、古い習慣と環境が新しい行動を邪魔していることがあります。</p>
+        <p>
+          習慣は「きっかけ→いつもの行動→報酬」で回ります。一度できた回路を消すのは難しいため、古い習慣を禁止するだけでなく、既存のきっかけに新しい行動を結びつける方が現実的です。
+        </p>
+        <p>
+          COM-Bでは、行動に必要なのは、能力（できる）、機会（できる環境がある）、動機（やりたい・意味がある）の3つだと考えます。研修で能力だけを教えても、時間や権限がなければ行動は変わりません。
+        </p>
+        <p>
+          本章ではMINDSPACEやEASTなど、選びやすさ・初期設定・周囲の行動・感情といった環境設計も紹介しています。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          新しい顧客管理システムを研修しても、上司が古い表計算を使い、入力時間もなく、評価にも反映されなければ定着しません。能力だけでなく、機会と動機が欠けています。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          「本人の意識を変える」より、「望ましい行動が自然に起きる条件」を見る章です。目標は与えられるより、自分で選んだ方が責任感を持ちやすいという点も重要です。
+        </div>
+      </article>
+
+      <article id="chapter-12" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">12</div>
+          <div>
+            <h2 class="chapter-title">最高の生産性と心身の健康を実現する1日の働き方</h2>
+            <p class="page-ref">該当ページ：362〜397</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：脳は1日中、同じ質で働けません。時間ではなく、限られた注意と判断力を配分します。</p>
+        <p>
+          意思決定、認知疲労、不安、ストレス、感情の抑圧、騒音、スマートフォン、睡眠不足、血糖値、退屈などが、精神的エネルギーに影響します。スマートフォンは、見える場所にあるだけでも注意を奪う可能性があります。
+        </p>
+        <p>
+          マルチタスクは、同時処理というより高速な切り替えです。切り替えるたびに集中を戻すコストがかかります。メールを先に開くと、他人の優先順位で一日を始めることにもなります。
+        </p>
+        <p>
+          本章のACCESSは、脳の健康に必要な6要素を、気づき・落ち着き・挑戦・運動・社会的つながり・睡眠として整理しています。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          重要な企画をする朝一番にメール、チャット、会議を詰めると、企画に使う前に判断力を消費します。頭を使う仕事を先に置き、連絡確認をまとめる方が合理的です。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          「自己管理ができる人になろう」という精神論ではありません。仕事量、通知、会議、空間、休憩を含めた環境の問題として読んでください。
+        </div>
+      </article>
+
+      <article id="chapter-13" class="card chapter">
+        <div class="chapter-head">
+          <div class="chapter-number">13</div>
+          <div>
+            <h2 class="chapter-title">脳神経科学を組織で応用するには</h2>
+            <p class="page-ref">該当ページ：399〜421</p>
+          </div>
+        </div>
+        <p class="key-line">一言でいうと：脳科学は知識として配るだけでなく、学び方そのものに反映すると定着しやすくなります。</p>
+        <p>
+          英国国家統計局、キュー王立植物園、アステラス製薬、カノニカル、トワイニング、ペプシコの6事例を通して、リーダー育成、変革、レジリエンス、リモートワーク、生産性への応用を紹介しています。
+        </p>
+        <p>
+          共通しているのは、一方的に長く説明しないことです。好奇心をつくる、端末を片づける、少人数で話す、本人に選択肢を与える、間隔を空けて思い出す、楽しさや感情を入れる、すぐ試す、後から確認する、といった学習設計が使われています。
+        </p>
+        <div class="example">
+          <strong>職場の例</strong><br>
+          2時間の研修を一度だけ行うより、短い学習を複数回に分け、前回の内容を思い出し、少人数で自分の仕事への意味を話し、次回までに試したことを確認する方が定着しやすくなります。
+        </div>
+        <div class="watch">
+          <strong>本を読むときの注目点</strong><br>
+          有名企業の施策をそのまま真似るのではなく、6事例に共通する「好奇心・選択・対話・反復・実験・フォロー」を抽出して読んでください。
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer-note">
+      <strong>出典と精度について</strong><br>
+      本資料は、ユーザー提供動画から読み取った『脳科学と現代経営』第3版の本文・目次・章末要約をもとに、理解補助を目的として再構成したものです。専門用語は平易さを優先して言い換えています。研究の細かな条件や出典は書籍本文で確認してください。
+    </footer>
+  </main>
+</body>
+</html>
