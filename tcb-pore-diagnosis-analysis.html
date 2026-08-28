@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCB毛穴診断記事｜勝ち理由と言語化・分岐構造</title>
+  <style>
+    :root {
+      --ink:#17242b; --muted:#5d6f78; --line:#d7e5e8; --paper:#ffffff;
+      --bg:#f2f8f8; --teal:#159da5; --teal-soft:#e4f6f6; --pink:#ec6680;
+      --pink-soft:#fff0f3; --gold:#b58a2a; --navy:#19384f; --warn:#9a5b12;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif; line-height:1.8; }
+    a { color:#087c85; overflow-wrap:anywhere; }
+    .wrap { max-width:1120px; margin:0 auto; padding:28px 18px 80px; }
+    .hero { padding:42px; border-radius:24px; color:#fff; background:linear-gradient(135deg,#17384f,#117f87); box-shadow:0 18px 45px rgba(23,56,79,.18); }
+    .hero .eyebrow { margin:0 0 10px; color:#bdeff1; font-size:13px; font-weight:800; letter-spacing:.12em; }
+    .hero h1 { margin:0; font-size:clamp(28px,5vw,48px); line-height:1.25; }
+    .hero p { max-width:820px; margin:18px 0 0; color:#e7f7f8; }
+    .hero-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:28px; }
+    .metric { padding:15px; border:1px solid rgba(255,255,255,.22); border-radius:14px; background:rgba(255,255,255,.09); }
+    .metric b { display:block; font-size:20px; }
+    .metric span { color:#d5eff0; font-size:12px; }
+    nav { position:sticky; top:0; z-index:5; margin:18px 0 32px; padding:10px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.95); box-shadow:0 8px 25px rgba(21,55,65,.08); }
+    nav a { display:inline-block; padding:8px 11px; color:#31515a; font-size:13px; font-weight:700; text-decoration:none; }
+    section { margin-top:54px; }
+    .section-head { margin-bottom:22px; }
+    .kicker { color:var(--teal); font-size:12px; font-weight:900; letter-spacing:.12em; }
+    h2 { margin:4px 0 8px; font-size:clamp(24px,4vw,36px); line-height:1.35; }
+    h3 { margin:0 0 10px; font-size:19px; line-height:1.45; }
+    h4 { margin:20px 0 6px; font-size:15px; color:var(--navy); }
+    .lead { color:var(--muted); max-width:880px; }
+    .card { padding:24px; border:1px solid var(--line); border-radius:18px; background:var(--paper); box-shadow:0 8px 28px rgba(29,63,73,.06); }
+    .source { display:grid; grid-template-columns:minmax(280px,44%) 1fr; gap:28px; align-items:start; margin-bottom:30px; }
+    .shot { margin:0; overflow:hidden; border:1px solid var(--line); border-radius:18px; background:#fff; }
+    .shot img { display:block; width:100%; height:auto; }
+    .shot figcaption { padding:10px 14px; color:var(--muted); font-size:12px; background:#f8fbfb; }
+    .summary { padding:18px; border-left:5px solid var(--teal); border-radius:0 14px 14px 0; background:var(--teal-soft); }
+    .summary ul, .detail ul { margin:8px 0 0; padding-left:1.25em; }
+    .detail { margin-top:18px; padding:22px; border:1px solid #efd9df; border-radius:16px; background:#fffafb; }
+    .detail h3 { color:#a63c53; }
+    .label { display:inline-block; margin:0 6px 7px 0; padding:3px 9px; border-radius:999px; font-size:11px; font-weight:800; }
+    .fact { color:#0e6670; background:#ddf3f4; }
+    .hyp { color:#8a4d0b; background:#fff0d7; }
+    .rule { color:#7a3042; background:#ffe3e9; }
+    .result { color:#225b2d; background:#e5f5e8; }
+    .notice { padding:16px 18px; border-left:5px solid var(--gold); border-radius:0 12px 12px 0; background:#fff8e8; color:#684b14; }
+    .gallery { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .gallery .shot img { aspect-ratio:4/3; object-fit:cover; object-position:top center; }
+    .flow { display:grid; grid-template-columns:1fr 52px 1fr 52px 1fr 52px 1fr; gap:8px; align-items:center; }
+    .flow-node { min-height:150px; padding:17px; border:2px solid var(--line); border-radius:18px; background:#fff; }
+    .flow-node strong { display:block; margin-bottom:8px; color:var(--navy); }
+    .flow-node small { color:var(--muted); }
+    .arrow { color:var(--teal); font-size:34px; font-weight:900; text-align:center; }
+    .branch-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:18px; }
+    .branch { position:relative; padding:21px; border:2px solid var(--line); border-radius:18px; background:#fff; }
+    .branch:before { content:""; position:absolute; inset:0 auto 0 0; width:7px; border-radius:16px 0 0 16px; background:var(--branch); }
+    .branch h3 { padding-left:7px; }
+    .branch ol { margin:8px 0 0; padding-left:1.5em; }
+    .branch .to { margin-top:14px; padding:10px; border-radius:10px; background:var(--teal-soft); font-weight:800; text-align:center; }
+    .logic { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+    .logic .card { padding:18px; }
+    .logic .n { display:grid; width:34px; height:34px; margin-bottom:10px; place-items:center; border-radius:50%; color:#fff; background:var(--teal); font-weight:900; }
+    table { width:100%; border-collapse:collapse; background:#fff; font-size:13px; }
+    th,td { padding:12px 10px; border:1px solid var(--line); vertical-align:top; text-align:left; }
+    th { color:#fff; background:var(--navy); }
+    tbody tr:nth-child(even) { background:#f7fbfb; }
+    .table-wrap { overflow-x:auto; border-radius:14px; box-shadow:0 8px 24px rgba(29,63,73,.05); }
+    .checklist { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; list-style:none; padding:0; }
+    .checklist li { position:relative; padding:13px 14px 13px 42px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+    .checklist li:before { content:"✓"; position:absolute; left:14px; top:12px; color:var(--teal); font-weight:900; }
+    footer { margin-top:60px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+    @media (max-width:800px) {
+      .hero { padding:28px 22px; }
+      .hero-grid,.logic { grid-template-columns:repeat(2,1fr); }
+      .source { grid-template-columns:1fr; }
+      .flow { grid-template-columns:1fr; }
+      .arrow { transform:rotate(90deg); }
+      .branch-grid,.gallery,.checklist { grid-template-columns:1fr; }
+    }
+    @media (max-width:480px) {
+      .wrap { padding:14px 10px 52px; }
+      .hero-grid,.logic { grid-template-columns:1fr; }
+      .card,.detail { padding:17px; }
+      nav { white-space:nowrap; overflow-x:auto; }
+      th,td { min-width:170px; }
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">COMPETITOR ARTICLE LP ANALYSIS</p>
+    <h1>TCB毛穴診断記事<br>勝ち理由と言語化・分岐構造</h1>
+    <p>売れている他社の診断記事を、表面的なコピーではなく「読者心理」「質問分岐」「診断結果」「横展開時の制作判断」まで分解した資料。青木さんの詳細言語化を削らず、対応する画面と一緒に残す。</p>
+    <div class="hero-grid">
+      <div class="metric"><b>約200件</b><span>配信約2週間の獲得</span></div>
+      <div class="metric"><b>約22%</b><span>MCVR</span></div>
+      <div class="metric"><b>約20%</b><span>CVR</span></div>
+      <div class="metric"><b>1万〜1.2万円</b><span>獲得CPA</span></div>
+    </div>
+  </header>
+
+  <nav aria-label="ページ内ナビゲーション">
+    <a href="#premise">前提</a><a href="#verbalization">詳細言語化</a><a href="#structure">全体構造</a><a href="#branches">分岐図</a><a href="#results">16結果</a><a href="#rules">AI制作ルール</a>
+  </nav>
+
+  <section id="premise">
+    <div class="section-head"><span class="kicker">01 / PREMISE</span><h2>分析対象と実績</h2></div>
+    <div class="card">
+      <p><span class="label fact">確認済み</span>他社・エンターキーが制作したTCB毛穴治療の記事。動画分析プロの上位に表示され、ヒアリングでも実際に獲得できている記事と確認された。</p>
+      <p><strong>記事URL：</strong><a href="https://sb-tcbtcb.discover-news.tokyo/ab/ad_tcb_44a_facebook">https://sb-tcbtcb.discover-news.tokyo/ab/ad_tcb_44a_facebook</a></p>
+      <ul>
+        <li>媒体：Meta</li><li>配信期間：約2週間</li><li>獲得件数：約200件</li><li>デイリー獲得：約10件</li>
+        <li>MCVR：約22％</li><li>CVR：約20％</li><li>獲得CPA：約10,000〜12,000円</li>
+      </ul>
+      <p class="notice">実績は他社へのヒアリング内容。記事単体の各パーツが成果へ与えた寄与率は未確認のため、「記事全体として売れている事実」と「各パーツが効いた理由の仮説」を分ける。</p>
+    </div>
+  </section>
+
+  <section id="verbalization">
+    <div class="section-head"><span class="kicker">02 / CREATOR VERBALIZATION</span><h2>スクリーンショットと青木さんの詳細言語化</h2><p class="lead">各パートを「短い要点」と「詳細言語化」の二層で掲載。詳細側は、発話に含まれた制作判断・心理・横展開・改善案を削らず、言い直しと音声認識ミスだけ整えている。</p></div>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/01-fv.png" alt="TCB毛穴治療記事のファーストビュー"><figcaption>FV：中心訴求、モデル、症例、0円オファー、不安払拭を一画面に集約</figcaption></figure>
+      <div>
+        <div class="summary"><h3>FV｜一瞬で「つるん肌」を理解させる</h3><ul><li>最重要ベネフィットを画面中央で最大強調</li><li>明るさ・光・桜・笑顔で期待感を作る</li><li>想定ペルソナは20〜40代女性</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>ページを開いた瞬間、真ん中に「つるん肌」が出てくる。「キュッと締まった、本来のつるん肌」という見せたい内容がすぐ入るため、ユーザーにとって分かりやすい。</p>
+          <p>ペルソナは20〜40代女性。理想像やBefore／Afterの人物は30代前後、FVのモデルは20代前後に見える。モデルが自分より若くても、若い理想像に憧れる女性には刺さる可能性がある。4問目の「素肌で出かけたい」「メイクをもっと楽しみたい」「写真・近距離に自信を持ちたい」「肌を褒められたい」という欲求も、高年齢層より20〜40代との整合が高い。</p>
+          <p>心理動線では、広告クリエイティブから流入した直後に「キュッとつるん肌」が入り、光が広がる爽やかな画面、笑顔の女性、明るい肌によってテンションを上げる。</p>
+          <p><span class="label rule">横展開</span>目立たせたい言葉を最も強くし、スマホ画面の正面上部から中央へ置く。全体を明るくし、桜や光の演出、笑顔の女性、明るい肌で理想状態を伝える。</p>
+          <p><span class="label hyp">改善仮説</span>Before／Afterは同じ大きさにした方が変化を比較しやすい。現状はAfterを大きくして理想状態を強調しているが、同寸の方がBeforeからAfterへの変化を認識しやすい。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/02-intro-age.png" alt="診断案内と年代質問"><figcaption>診断案内＋年代確認：FVから質問へ入るワンクッション</figcaption></figure>
+      <div>
+        <div class="summary"><h3>診断案内・年代｜何が始まるかを先に伝える</h3><ul><li>「無料・4問・すぐ結果」で負担を下げる</li><li>診断前のワンクッションとして機能</li><li>年代質問は文字より大きなイラストが先に入る</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>FVの直下に「わたしの毛穴タイプは？」があり、これから診断することの説明書きになっている。FVから続いてタイプ診断の存在が伝わり、「自分も何か診断を受けるのか」「自分のタイプが分かるのか」と期待できる。「無料」「4問だけ」「すぐ結果」と、その直下に選択肢があることで、すぐ回答できると認識する。</p>
+          <p><span class="label rule">横展開</span>質問の前にワンクッションを入れ、これから何が始まるか、何問か、どの程度で結果が分かるかを伝える。</p>
+          <p><span class="label hyp">改善仮説</span>案内部分だけコード主体のデザインに見え、FVと比べてチープに感じる。「わたしの毛穴タイプは？」「無料」「4問だけ」「すぐ結果」だけでは情報が断片的で、人間が一読して因果を理解しにくい。「4問のアンケートに答えると、あなたの毛穴タイプが分かる。無料で約30秒」のように、行動と得られる結果をつなげる。</p>
+          <p>「わたし」は誰を指すのか読み手が迷うため、「あなたの毛穴タイプは？」へ変えるか、主語を置かず「4問で毛穴タイプをチェック」とする。</p>
+          <p>年代質問はイラストへ先に視線が向かい、その後に回答を確認してから質問文へ戻る可能性がある。年代を聞くなら質問文を大きくし、最初に認識させる。イラストを使う場合は、毛穴を気にしている表情や行動を明確にする。ただし売れている記事なので、横展開の初回は明るい女性イラストを踏襲し、変更は別検証にする。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/03-problem.png" alt="4種類の毛穴悩みを選ぶ質問"><figcaption>QUESTION 1：ユーザーが悩みを言語化・可視化する</figcaption></figure>
+      <div>
+        <div class="summary"><h3>悩み選択｜PASONAのProblem</h3><ul><li>主要な毛穴悩みを4種類で網羅</li><li>擬態語と画像を対応させて選択しやすくする</li><li>曖昧な違和感を「自分の悩み」に変える</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>年代確認の後、診断本編の最初に「鏡で見て、いちばん気になるのは？」と症状を聞く。PASONAでいえばProblemから入り、ユーザーが現在気にしている部分を言語化・可視化させる定番の流れ。</p>
+          <p>黒いポツポツ、白いプツプツ・ざらつき、丸く開いた毛穴、縦長の頬毛穴は、ユーザーが悩みやすい症状を網羅している。文言だけでは判別しにくいため、人物の周囲に4種類の拡大イラストを置く。年代に答えた読者が「あ、自分が気になっているのはこれかも」と選びたくなる。</p>
+          <p><span class="label rule">横展開</span>読者が何となく感じている悩みを、「ポツポツ」「プツプツ」「ざらつき」のように日常語で代弁する。言葉だけで分かりにくければ、選択肢と症状画像を対応させる。黒いポツポツなら、鼻の黒い点を一目で確認できる状態にする。</p>
+          <p><span class="label hyp">改善仮説</span>4つの症状イラストは白い枠が背景と重なる。枠色やコントラストを強め、人物より先に症状の違いを認識できる状態にする。</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="gallery" aria-label="症状別の深掘り質問">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/04-black.png" alt="黒いポツポツの深掘り質問"><figcaption>黒いポツポツを選択した場合</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/05-clog.png" alt="白いプツプツざらつきの深掘り質問"><figcaption>白いプツプツ・ざらつきを選択した場合</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/06-open.png" alt="丸く開いた毛穴の深掘り質問"><figcaption>丸く開いた毛穴を選択した場合</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/07-drop.png" alt="縦長の頬毛穴の深掘り質問"><figcaption>縦長の頬毛穴を選択した場合</figcaption></figure>
+    </div>
+    <div class="detail"><h3>症状別分岐｜選んだ悩みをさらに深掘る</h3>
+      <p>直前の4択によって、次の質問・画像・選択肢が完全に変わる。黒いポツポツなら「洗顔しても残る」「ケアしても戻る」「黒ずみとざらつき」「汚れか影か分からない」。白いプツプツなら触感・角栓・ニキビ・再発。開き毛穴なら、夕方のテカリ・ファンデの毛穴落ち・近距離・乾燥時。縦長の頬毛穴なら形状・頬を持ち上げた変化・乾燥とハリ不足・以前との差を聞く。</p>
+      <p>同じ質問を繰り返さず、「さっき選んだ回答に合わせて本当に変わった」と感じさせるため、診断への没入が深まる。読者は「開き毛穴はいつ目立つのか」など、自分の状態をさらに確認したくなり、回答を続ける。</p>
+      <p><span class="label rule">横展開</span>最初の症状別に質問を分岐させ、その症状がどの場面で困るか、どう見えるか、何をしても戻るかまで深掘る。女性向け商材なら「いつ、どの距離で、どう目立つか」を言語化する。</p>
+      <p><span class="label hyp">改善仮説</span>症状の拡大画像は一部が粗く、開き毛穴と縦長毛穴の違いを判別しにくい。形状・解像度・コントラストを詰め、画像だけでも症状が伝わる状態にする。</p>
+    </div>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/08-care.png" alt="これまで試したケアを聞く質問"><figcaption>QUESTION 3：これまでの対策を想起させる</figcaption></figure>
+      <div>
+        <div class="summary"><h3>既存対策｜悩みと過去の行動を接続する</h3><ul><li>代表的なセルフケアと医療を選択肢にする</li><li>「特にしていない」で未対策者も離脱させない</li><li>既存対策でも悩みが残る現状を自覚させる</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>症状を深掘った後に「いちばん試したケアは？」と聞き、どう解決しようとしてきたかを言語化する。毛穴パック・スクラブ、洗顔・クレンジング、市販の美容液、皮膚科・美容医療という代表的な対策を並べる。何もしていない人も進めるよう「特にしていない」を用意する。</p>
+          <p>読者は症状を深掘る中で「これが悩み」「目立つのが嫌」と感じ、その後に「でも私はこれをやっている」「正直まだ何もできていない」と自分の行動を確認する。</p>
+          <p><span class="label rule">横展開</span>対策グッズは、クリーム・チューブ・美容液容器など、一般的な商品形状だけで意味が伝わるイラストにする。「特にしていない」も必ず置く。</p>
+          <p><span class="label hyp">改善仮説</span>「いちばん試したケア」は複数経験がある人が迷う。「今しているケアは？」なら即答しやすい。ただし現在形に変えると、過去に試して諦めた対策を拾えない。回答速度を優先するか、失敗経験の想起を優先するかで使い分ける。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/09-desire.png" alt="毛穴が気にならなくなった後の理想像を聞く質問"><figcaption>QUESTION 4：悩みから希望へ感情を上げる</figcaption></figure>
+      <div>
+        <div class="summary"><h3>理想像｜解決後の生活を選ばせる</h3><ul><li>素肌・メイク・写真・他者評価へ欲求を展開</li><li>問題中心の感情を希望へ反転</li><li>前向きな状態で診断結果とCTAへ送る</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>最後の質問は「毛穴が気にならなくなったら？」。素肌で出かけたい、メイクをもっと楽しみたい、写真・近距離に自信を持ちたい、肌を褒められたいという、ターゲットの欲求を選ばせる。</p>
+          <p>対策してきたのに駄目だったと感じている人も、「もし悩みがなくなったら、これができると嬉しい」と前向きな気持ちで進める。絶望だけでは読み続けにくいが、希望へ変わると続きを確認したくなる。商材説明へ入る前に感情を上げる設計。</p>
+          <p><span class="label rule">横展開</span>最後は機能的な改善ではなく、悩みが消えた後にできる行動、得られる感情、周囲からの反応を選択肢にする。</p>
+          <p><span class="label hyp">改善仮説</span>現在はメイク中の一枚絵なので、4分割し、左上に素肌で外出、右上にメイク、左下に写真、右下に褒められている場面を対応させる。ただしスマホで小さくなりすぎない構図にする。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="source">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/10-result-open.png" alt="ぱっくり開き毛穴の診断結果とCTA"><figcaption>診断結果：タイプ名、回答別説明、Webチェックの限界、CTAを連結</figcaption></figure>
+      <div>
+        <div class="summary"><h3>結果・CTA｜自分の状態から専門相談へ接続する</h3><ul><li>ローディング後にタイプ名と個別説明を返す</li><li>Webチェックの限界を伝える</li><li>診察・肌分析で続きが分かる理由を作る</li></ul></div>
+        <div class="detail"><h3>青木さんの詳細言語化</h3>
+          <p>最後の回答後にローディングを挟み、「あなたは『ぱっくり開き毛穴』傾向かも」「メイクをしたときに毛穴が目立ちやすい傾向がありそうです」と結果を返す。読者は「自分はこの症状に当てはまるかも」と認識し、直すにはどうすればよいかが気になる。</p>
+          <p>最後に「Webチェックで分かるのはここまで。同じように見える毛穴でも原因は一つとは限らない。実際の肌状態は肌分析や医師の診察で確認できる」と示し、カウンセリングへつなげる。ここまで回答してきた行動との一貫性と、診断結果を受け取った直後の関心によって、「本当か」「解決できるか」を続けて確認したくなる。</p>
+          <p><span class="label rule">横展開</span>「あなたはこの傾向」と明確に返し、悩みが分かる画像を置く。その後に「Web上で分かる範囲」と「専門家に相談すれば分かる範囲」を分け、CTAへ接続する。</p>
+          <p><span class="label hyp">改善仮説</span>「医師のカウンセリングを受けると、より詳しい肌状態と適した対策を確認できる」と、来院後に得られるものまで書く。CTAは「クーポンGET」だけでなく、「無料カウンセリングで肌状態を確認する」「自分に合う対策を確認する」のように目的と行動を結ぶ。CTA自体もさらに目立たせる。</p>
+          <p class="notice">「ここでしか解決できない」とは断定しない。Webセルフチェックだけでは原因を特定できず、診察や肌分析で状態を確認できるという事実で接続する。</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="structure">
+    <div class="section-head"><span class="kicker">03 / ARTICLE STRUCTURE</span><h2>記事全体の心理動線</h2><p class="lead">この診断記事は、4問で医学的診断をする仕組みではない。読者が悩みを具体化し、理想を想像し、専門相談の必要性を理解するまでの心理設計である。</p></div>
+    <div class="flow">
+      <div class="flow-node"><strong>FV｜理想とオファー</strong>つるん肌、笑顔、症例、0円、不安払拭で期待を作る。</div><div class="arrow">→</div>
+      <div class="flow-node"><strong>診断｜自分ごと化</strong>年代 → 悩み → 症状深掘り → 過去対策 → 理想像。</div><div class="arrow">→</div>
+      <div class="flow-node"><strong>結果｜個別化</strong>4種類の診断名と16種類の説明文を返す。</div><div class="arrow">→</div>
+      <div class="flow-node"><strong>CTA｜専門相談</strong>Webの限界を示し、肌分析・医師の診察・無料相談へつなぐ。</div>
+    </div>
+    <div class="logic">
+      <div class="card"><span class="n">1</span><h3>自分ごと化</h3><p>症状を日常語と画像で選ばせる。</p></div>
+      <div class="card"><span class="n">2</span><h3>問題の具体化</h3><p>場面・見え方・再発・触感まで深掘る。</p></div>
+      <div class="card"><span class="n">3</span><h3>既存対策の想起</h3><p>すでに試したこと、未対策を確認する。</p></div>
+      <div class="card"><span class="n">4</span><h3>欲求喚起</h3><p>改善後にしたい行動を選ばせる。</p></div>
+      <div class="card"><span class="n">5</span><h3>個別結果</h3><p>回答を反映した診断名と説明を返す。</p></div>
+      <div class="card"><span class="n">6</span><h3>行動理由</h3><p>専門家なら続きが分かると伝える。</p></div>
+    </div>
+  </section>
+
+  <section id="branches">
+    <div class="section-head"><span class="kicker">04 / BRANCH MAP</span><h2>質問分岐と診断結果</h2><p class="lead">実際に16経路を操作した結果、QUESTION 1が診断名、QUESTION 2が説明文を決める。年代・ケア・理想像は結果へ影響しない。</p></div>
+    <div class="flow">
+      <div class="flow-node"><strong>START｜年代</strong>10代 / 20代 / 30代 / 40代 / 50代以上<br><small>結果には影響しない</small></div><div class="arrow">→</div>
+      <div class="flow-node"><strong>Q1｜毛穴タイプ</strong>4択<br><small>診断名を決める</small></div><div class="arrow">→</div>
+      <div class="flow-node"><strong>Q2｜症状深掘り</strong>選択タイプ専用の4択<br><small>結果説明文を決める</small></div><div class="arrow">→</div>
+      <div class="flow-node"><strong>Q3・Q4</strong>ケア5択 / 理想像4択<br><small>結果には影響しない</small></div>
+    </div>
+    <div class="branch-grid">
+      <div class="branch" style="--branch:#333"><h3>黒いポツポツ</h3><ol><li>洗顔後も残る</li><li>ケアしても戻る</li><li>黒ずみ＋ざらつき</li><li>汚れか影か不明</li></ol><div class="to">→ ポツポツ黒ずみ毛穴</div></div>
+      <div class="branch" style="--branch:#d5ad6d"><h3>白いプツプツ・ざらつき</h3><ol><li>触るとざらざら</li><li>白・透明の角栓</li><li>小さなニキビ</li><li>ケアしても戻る</li></ol><div class="to">→ ザラザラ詰まり毛穴</div></div>
+      <div class="branch" style="--branch:#e56b85"><h3>丸く開いた毛穴</h3><ol><li>夕方のテカリ</li><li>ファンデの毛穴落ち</li><li>近距離で目立つ</li><li>乾燥時も目立つ</li></ol><div class="to">→ ぱっくり開き毛穴</div></div>
+      <div class="branch" style="--branch:#7d9f9f"><h3>縦長の頬毛穴</h3><ol><li>丸ではなく縦長</li><li>頬を上げると目立ちにくい</li><li>乾燥・ハリ不足</li><li>以前より目立つ</li></ol><div class="to">→ しずく型毛穴</div></div>
+    </div>
+    <div class="gallery" style="margin-top:18px">
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/11-result-black.png" alt="ポツポツ黒ずみ毛穴の診断結果"><figcaption>診断結果1：ポツポツ黒ずみ毛穴</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/12-result-clog.png" alt="ザラザラ詰まり毛穴の診断結果"><figcaption>診断結果2：ザラザラ詰まり毛穴</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/13-result-open.png" alt="ぱっくり開き毛穴の診断結果"><figcaption>診断結果3：ぱっくり開き毛穴</figcaption></figure>
+      <figure class="shot"><img src="assets/tcb-pore-diagnosis-analysis/14-result-drop.png" alt="しずく型毛穴の診断結果"><figcaption>診断結果4：しずく型毛穴</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="section-head"><span class="kicker">05 / 16 OUTCOMES</span><h2>16経路の結果説明文</h2></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Q1</th><th>Q2</th><th>診断名</th><th>結果説明文</th></tr></thead>
+      <tbody>
+        <tr><td>黒いポツポツ</td><td>洗顔しても黒い点が残る</td><td>ポツポツ黒ずみ毛穴</td><td>洗顔後も黒ずみが残りやすい傾向がありそうです。</td></tr>
+        <tr><td>黒いポツポツ</td><td>ケアしてもすぐに戻る</td><td>ポツポツ黒ずみ毛穴</td><td>ケアしても黒ずみを繰り返しやすい傾向がありそうです。</td></tr>
+        <tr><td>黒いポツポツ</td><td>黒ずみ＋ざらつき</td><td>ポツポツ黒ずみ毛穴</td><td>黒ずみとざらつきが重なっている傾向がありそうです。</td></tr>
+        <tr><td>黒いポツポツ</td><td>汚れか影か分からない</td><td>ポツポツ黒ずみ毛穴</td><td>見た目だけでは状態を判断しにくいタイプかもしれません。</td></tr>
+        <tr><td>白いプツプツ・ざらつき</td><td>触るとざらざら</td><td>ザラザラ詰まり毛穴</td><td>肌表面のざらつきが出やすい傾向がありそうです。</td></tr>
+        <tr><td>白いプツプツ・ざらつき</td><td>白・透明の角栓が見える</td><td>ザラザラ詰まり毛穴</td><td>白い毛穴詰まりが目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>白いプツプツ・ざらつき</td><td>小さなニキビもできる</td><td>ザラザラ詰まり毛穴</td><td>毛穴詰まりとニキビ悩みが重なる傾向がありそうです。</td></tr>
+        <tr><td>白いプツプツ・ざらつき</td><td>ケアしてもすぐ戻る</td><td>ザラザラ詰まり毛穴</td><td>ケアしても毛穴詰まりを繰り返しやすい傾向がありそうです。</td></tr>
+        <tr><td>丸く開いた毛穴</td><td>夕方のテカリで目立つ</td><td>ぱっくり開き毛穴</td><td>皮脂やテカリによって毛穴が目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>丸く開いた毛穴</td><td>ファンデが毛穴落ちする</td><td>ぱっくり開き毛穴</td><td>メイクをしたときに毛穴が目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>丸く開いた毛穴</td><td>頬を近くで見ると目立つ</td><td>ぱっくり開き毛穴</td><td>頬を中心に開き毛穴が目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>丸く開いた毛穴</td><td>乾燥しているときも目立つ</td><td>ぱっくり開き毛穴</td><td>乾燥したときにも毛穴が目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>縦長の頬毛穴</td><td>毛穴が丸ではなく縦長に見える</td><td>しずく型毛穴</td><td>毛穴が縦長に目立ちやすい傾向がありそうです。</td></tr>
+        <tr><td>縦長の頬毛穴</td><td>頬を持ち上げると目立ちにくい</td><td>しずく型毛穴</td><td>頬のハリによって、毛穴の見え方が変わる傾向がありそうです。</td></tr>
+        <tr><td>縦長の頬毛穴</td><td>乾燥やハリ不足も気になる</td><td>しずく型毛穴</td><td>毛穴だけでなく、乾燥やハリ不足も重なっている傾向がありそうです。</td></tr>
+        <tr><td>縦長の頬毛穴</td><td>最近、以前より目立ってきた</td><td>しずく型毛穴</td><td>肌状態の変化とともに、毛穴が目立ってきた可能性があります。</td></tr>
+      </tbody>
+    </table></div>
+    <div class="notice" style="margin-top:16px"><strong>ローディングは全経路で共通：</strong>「CHECKING YOUR ANSWERS」「回答から近い毛穴傾向を整理しています……」「これは医学的な診断ではなく、一般的な傾向のチェックです」「黒ずみ／詰まり／開き／しずく型」。回答別の文言変化はない。</div>
+  </section>
+
+  <section id="rules">
+    <div class="section-head"><span class="kicker">06 / RULES FOR AI PRODUCTION</span><h2>ブラッシュアップ記事をAIで作るための命令形ルール</h2></div>
+    <ul class="checklist">
+      <li>FVでは最重要ベネフィットをスマホ画面中央上部で最大強調する。</li>
+      <li>悩みの言葉は、読者が普段使う擬態語と生活場面へ翻訳する。</li>
+      <li>質問前に、質問数・所要時間・無料・得られる結果を因果で説明する。</li>
+      <li>最初の症状選択で診断カテゴリを決め、次の質問を専用4択へ分岐させる。</li>
+      <li>深掘り質問では、場面・距離・見え方・触感・再発のいずれかを聞く。</li>
+      <li>症状画像は、文章を読まなくても選択肢と対応できる解像度にする。</li>
+      <li>既存対策を聞く場合は、現在の行動か失敗経験か、質問目的を先に決める。</li>
+      <li>未対策者が進める「特にしていない」を必ず用意する。</li>
+      <li>最後の質問では、改善後の行動・感情・他者反応を選ばせる。</li>
+      <li>診断結果は「あなたは＋診断名＋傾向かも＋回答別説明」の順で返す。</li>
+      <li>診断名はQ1、説明文はQ2で決め、結果へ影響しない質問を増やしすぎない。</li>
+      <li>Web診断の限界と、専門相談で確認できる内容を具体的に分ける。</li>
+      <li>CTAは特典名だけでなく、押すと何が分かるかまで書く。</li>
+      <li>医学的診断と誤認させず、断定の強さを確認できた根拠に合わせる。</li>
+    </ul>
+    <div class="card" style="margin-top:18px"><h3>残す核 / 変える表層</h3>
+      <p><strong>絶対に残す核：</strong>理想提示 → 悩み選択 → 回答連動の深掘り → 既存対策 → 理想像 → 個別結果 → Webの限界 → 専門相談、という心理順序。</p>
+      <p><strong>商材ごとに変える：</strong>症状カテゴリ、深掘りの観点、結果名、専門家へ相談する理由、来院後に確認できる内容。</p>
+      <p><strong>ターゲットごとに変える：</strong>人物年齢、服装、色、生活場面、理想像、悩みを表す擬態語。</p>
+      <p><strong>検証してよい表層：</strong>Before／Afterの比率、症状画像の枠、診断案内のコピー、理想像の一枚絵／4分割、CTAの文言と強調。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>作成日：2026-08-28｜用途：AXIS記事LP制作・診断記事の横展開・AI制作判断の教師データ</p>
+    <p>注意：実績は他社ヒアリング情報。各パーツ単体の効果はABテストで分離されていない。</p>
+  </footer>
+</main>
+</body>
+</html>
