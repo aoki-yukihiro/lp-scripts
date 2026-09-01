@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TCBクマ女性 診断記事｜元記事比較・16分岐検証・改修仕様書</title>
+  <style>
+    :root{--ink:#202434;--muted:#6c6a72;--paper:#fffdf9;--cream:#f6f0e8;--navy:#162749;--rose:#a85c66;--rose2:#f6e7e8;--gold:#c49b55;--line:#dfd5c8;--green:#317866;--blue:#276f91;--orange:#a45f22;--shadow:0 14px 42px rgba(33,30,28,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;background:linear-gradient(180deg,#f8f3ed 0,#fff 520px);line-height:1.85}
+    a{color:#174f82;word-break:break-all}img{max-width:100%;display:block}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.hero{padding:72px 0 56px;background:radial-gradient(circle at 80% 10%,#f3dfe1 0,transparent 34%),linear-gradient(135deg,#17284a,#263b61);color:#fff}.eyebrow{font-size:12px;letter-spacing:.18em;font-weight:800;color:#dcc28d}.hero h1{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(30px,5vw,58px);line-height:1.22;margin:.3em 0}.hero p{max-width:870px;font-size:17px}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.chip{border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:7px 13px;font-size:13px;background:rgba(255,255,255,.08)}
+    nav{position:sticky;top:0;z-index:10;background:rgba(255,253,249,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}nav .wrap{display:flex;gap:18px;overflow:auto;padding:11px 0;white-space:nowrap;font-size:13px;font-weight:700}nav a{text-decoration:none;color:var(--ink)}
+    main{padding:44px 0 90px}section{margin:0 0 58px}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,38px);box-shadow:var(--shadow)}h2{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(26px,4vw,40px);line-height:1.35;margin:0 0 22px;border-left:6px solid var(--rose);padding-left:16px}h3{font-size:21px;margin:34px 0 12px;color:var(--navy)}h4{font-size:17px;margin:24px 0 8px}p{margin:0 0 15px}ul,ol{padding-left:1.4em;margin:10px 0 20px}li{margin:.35em 0}.lead{font-size:19px;font-weight:700}.small{font-size:13px;color:var(--muted)}
+    .label{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.06em;border-radius:5px;padding:3px 8px;margin-right:6px}.fact{background:#e5f2ef;color:#1b6253}.hyp{background:#fff0db;color:#92541d}.proposal{background:#e7edf9;color:#294e83}.unchecked{background:#f6e4e6;color:#883c47}.must{background:var(--navy);color:#fff}
+    .notice{border-left:5px solid var(--gold);background:#fbf5e8;padding:18px 20px;border-radius:8px;margin:18px 0}.danger{border-left-color:#b64f5d;background:#fff0f1}.success{border-left-color:var(--green);background:#eef8f5}.grid2,.grid3,.grid4{display:grid;gap:22px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    figure{margin:0;background:#f3eee8;border:1px solid var(--line);border-radius:16px;overflow:hidden}figure img{width:100%;height:auto}figure.current img{height:560px;object-fit:cover;object-position:top center}figcaption{padding:12px 14px;font-size:12px;color:#58555b;background:#fff}.compare{display:grid;grid-template-columns:1fr 72px 1fr;gap:18px;align-items:start}.arrow{display:grid;place-items:center;height:100%;font-size:36px;color:var(--rose);font-weight:900}
+    .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0}.node{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 13px;font-size:13px;font-weight:700}.node.key{background:var(--navy);color:#fff;border-color:var(--navy)}.node.change{background:var(--rose2);border-color:#d9a8ad}.flow .to{color:var(--rose);font-weight:900}.metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.metric>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}.metric strong{font-family:Georgia,serif;font-size:28px;display:block;color:var(--navy)}
+    table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}th,td{border:1px solid var(--line);padding:10px;vertical-align:top;text-align:left}th{background:#ede7df;color:var(--navy)}.scroll{overflow:auto;border-radius:12px;border:1px solid var(--line)}.scroll table{min-width:920px}.scroll th,.scroll td{border-top:0;border-left:0}.scroll tr:last-child td{border-bottom:0}
+    .quote{background:#f7f2ec;border:1px solid var(--line);border-radius:14px;padding:20px;white-space:pre-wrap;font-size:14px}.spec{counter-reset:spec}.spec>article{counter-increment:spec;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0}.spec>article h3:before{content:counter(spec,"0") "/ ";color:var(--rose)}.command{background:#17284a;color:#fff;border-radius:16px;padding:24px}.command h3{color:#f0d7a3;margin-top:0}.command code{white-space:pre-wrap;font-family:inherit}.checklist{list-style:none;padding:0}.checklist li{position:relative;padding-left:32px;margin:9px 0}.checklist li:before{content:"□";position:absolute;left:0;font-size:21px;color:var(--rose)}.footer{background:#17284a;color:#fff;padding:36px 0}.footer a{color:#d7e7ff}
+    @media(max-width:820px){.grid2,.grid3,.grid4,.metric{grid-template-columns:1fr}.compare{grid-template-columns:1fr}.arrow{height:auto;transform:rotate(90deg)}figure.current img{height:auto}.hero{padding-top:48px}.card{border-radius:14px}}
+    @media print{nav{display:none}.hero{background:#17284a!important}.card{box-shadow:none;break-inside:avoid}.wrap{width:94%}a{color:inherit;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">ARTICLE LP / DIAGNOSIS FLOW / IMPLEMENTATION BRIEF</div>
+      <h1>TCBクマ女性 診断記事<br>元記事比較・16分岐検証・改修仕様書</h1>
+      <p>この資料は、現行のクマ女性向け診断記事を、売れているTCB毛穴診断記事の心理動線へ戻しながら、クマ商材用にブラッシュアップするための制作指示書である。他の人のCodexへこのURLを渡した時点で、何を変えるかだけでなく、なぜ変えるのか、元記事のどの機能を残すのか、何を事実として確認済みかまで把握できる状態を目的とする。</p>
+      <div class="chips"><span class="chip">16/16経路を実操作</span><span class="chip">元記事との画面比較</span><span class="chip">Q1〜Q5の完成仕様</span><span class="chip">画像生成指示</span><span class="chip">制作AI向け命令</span></div>
+    </div>
+  </header>
+  <nav><div class="wrap"><a href="#summary">結論</a><a href="#evidence">根拠</a><a href="#flow">全体導線</a><a href="#parts">パート別改修</a><a href="#branches">16分岐</a><a href="#results">診断結果</a><a href="#rules">制作ルール</a><a href="#log">詳細言語化</a></div></nav>
+  <main class="wrap">
+
+    <section id="summary" class="card">
+      <h2>結論：今回の改修で戻すべき勝ち筋</h2>
+      <p class="lead">売れている元記事の核は、読者をいきなり予約へ押すことではない。「すぐ答えられる質問 → 自分の悩みの可視化 → 症状別の深掘り → 過去の対策 → 解決後の理想像 → 自分専用に見える結果 → Web診断の限界 → 医師への相談」という順番で、相談する理由を読者自身に作らせる設計である。</p>
+      <div class="notice success"><span class="label fact">実績で支持</span>元記事はユーザー提供の代理店ヒアリング情報で、Meta配信・2週間約200件・MCVR約22%・CVR約20%・獲得CPA10,000〜12,000円・デイリー約10件と共有されている。媒体管理画面や第三者監査による再確認はしていないため、数値は「提供情報」として扱う。</div>
+      <div class="grid2">
+        <div>
+          <h3>絶対に残す核</h3>
+          <ul><li>FV直下で「診断が始まる」と理解させる。</li><li>最初からQ1と選択肢を表示し、開始ボタンを挟まない。</li><li>低負荷な年代回答から始める。</li><li>クマ種類ごとに次の質問を分岐させる。</li><li>症状を文字だけでなく、同条件の目元イラストで識別させる。</li><li>最後に生活ベネフィットを選ばせ、感情を上げた状態で結果へ進ませる。</li><li>結果はタイプ名だけで終えず、Webで分かる範囲と医師へ相談する理由を接続する。</li></ul>
+        </div>
+        <div>
+          <h3>今回変える表層</h3>
+          <ul><li>毛穴の症状・肌イラストを、茶クマ・青クマ・黒クマ・複合クマの目元表現へ翻訳する。</li><li>現行の実写写真を、症状差が視認できる統一イラストへ変更する。</li><li>現行Q4の「知りたい情報」を、改修後Q5の「クマが気にならなくなったら？」へ変更する。</li><li>弱い結果名を、原因示唆と固有タイプ名が一体になった見出しへ変更する。</li><li>「選択 → 次へ」の二段操作を廃止し、選択後に自動遷移する。</li><li>戻る導線は主ボタンと競合させず、小さな補助リンクにする。</li></ul>
+        </div>
+      </div>
+      <div class="notice danger"><span class="label unchecked">未確認</span>現行クマ記事の配信実績、質問別離脱率、開始ボタンCTR、戻る操作率は取得していない。「現行記事の離脱率が元記事より高い」は確定事実ではなく、操作数と導線設計から立てた検証仮説である。</div>
+    </section>
+
+    <section id="evidence" class="card">
+      <h2>対象URL・確認範囲・根拠ラベル</h2>
+      <ul>
+        <li><strong>改修対象：</strong><a href="https://axis-ad.github.io/diagnosis-article-workflow/preview/">https://axis-ad.github.io/diagnosis-article-workflow/preview/</a></li>
+        <li><strong>元記事：</strong><a href="https://sb-tcbtcb.discover-news.tokyo/ab/ad_tcb_44a_facebook">https://sb-tcbtcb.discover-news.tokyo/ab/ad_tcb_44a_facebook</a></li>
+        <li><strong>元記事の既存分析：</strong><a href="https://aoki-yukihiro.github.io/lp-scripts/tcb-pore-diagnosis-analysis.html">https://aoki-yukihiro.github.io/lp-scripts/tcb-pore-diagnosis-analysis.html</a></li>
+        <li><strong>公式LP：</strong><a href="https://t-c-b-biyougeka.com/kumatori_injection_02_c/">https://t-c-b-biyougeka.com/kumatori_injection_02_c/</a></li>
+        <li><strong>参考記事名：</strong>★030_TCB-クマ再生注射女性_0円_臼倉_綺麗めフリップアンケ_20260519</li>
+        <li><strong>操作確認日：</strong>2026年9月1日。現行記事のQ1×Q2＝16経路をすべてタップし、Q3、Q4、ローディング、結果、CTAまで確認した。</li>
+      </ul>
+      <div class="metric"><div><strong>4</strong>現行Q1の大分類</div><div><strong>4×4</strong>Q1別Q2分岐</div><div><strong>16</strong>実操作した経路</div><div><strong>4</strong>結果の大カテゴリ</div></div>
+      <h3>この資料で使うラベル</h3>
+      <p><span class="label fact">LP上の事実</span>画面操作、表示文言、画像、分岐によって確認した内容。</p>
+      <p><span class="label hyp">制作者の仮説</span>ユーザー心理や離脱要因を構造から推定した内容。実績データで未検証。</p>
+      <p><span class="label proposal">改修指示</span>今回の制作で採用する変更。実装担当は原則として反映する。</p>
+      <p><span class="label unchecked">未確認</span>公式根拠、医療監修、数値、分岐ロジックなど、実装前に確認が必要な内容。</p>
+    </section>
+
+    <section id="flow" class="card">
+      <h2>全体導線：現行4問から、年代を含む5問へ再設計する</h2>
+      <h3>現行記事</h3>
+      <div class="flow"><span class="node">FV</span><span class="to">→</span><span class="node">開始ボタン</span><span class="to">→</span><span class="node">Q1 印象4択</span><span class="to">→</span><span class="node">Q2 症状別分岐</span><span class="to">→</span><span class="node">Q3 過去ケア</span><span class="to">→</span><span class="node">Q4 知りたいこと</span><span class="to">→</span><span class="node">ローディング</span><span class="to">→</span><span class="node key">結果・CTA</span></div>
+      <h3>改修後の確定構造</h3>
+      <div class="flow"><span class="node">FV</span><span class="to">→</span><span class="node change">診断導入イメージ</span><span class="to">→</span><span class="node change">Q1 年代</span><span class="to">→</span><span class="node change">Q2 クマ種類</span><span class="to">→</span><span class="node change">Q3 種類別深掘り</span><span class="to">→</span><span class="node">Q4 過去ケア</span><span class="to">→</span><span class="node change">Q5 理想像</span><span class="to">→</span><span class="node">ローディング</span><span class="to">→</span><span class="node key">個別結果・Web限界・CTA</span></div>
+      <div class="notice"><span class="label proposal">番号の定義</span>年代を追加するため、現行Q1は改修後Q2、現行Q2は改修後Q3、現行Q3は改修後Q4、現行Q4は改修後Q5になる。元記事では年代が「START」と表記されているが、実装データ上はQ1として扱う。画面表記は「START｜年代」でもよいが、進捗は5問として矛盾なく表示する。</div>
+      <h3>心理遷移</h3>
+      <table><thead><tr><th>順番</th><th>読者に起こす心理</th><th>設計の役割</th></tr></thead><tbody>
+        <tr><td>FV</td><td>自分のクマも対象かもしれない</td><td>悩みと理想像、オファーを一画面で理解させる。</td></tr>
+        <tr><td>診断導入</td><td>短時間で、無料で、自分に近い傾向が分かる</td><td>これから行う操作と得られる結果を先に約束する。</td></tr>
+        <tr><td>Q1 年代</td><td>これなら迷わず答えられる</td><td>最初の小さな行動を起こし、回答の勢いを作る。</td></tr>
+        <tr><td>Q2 種類</td><td>自分の見え方はこれに近い</td><td>悩みを視覚と言葉で自分ごと化する。</td></tr>
+        <tr><td>Q3 深掘り</td><td>選んだ悩みに沿って質問が変わった</td><td>個別化の実感と診断への期待を強める。</td></tr>
+        <tr><td>Q4 ケア</td><td>対策してきたが解決していない／何もできていない</td><td>自己流ケアの限界と相談の必要性を自覚させる。</td></tr>
+        <tr><td>Q5 理想</td><td>解決したらこの生活を手に入れたい</td><td>悩み中心の感情を希望へ上げて結果へ渡す。</td></tr>
+        <tr><td>結果</td><td>自分はこの傾向かもしれない。原因と解決策を知りたい</td><td>個別結果、Webの限界、相談で分かることを一続きにする。</td></tr>
+      </tbody></table>
+    </section>
+
+    <section id="parts">
+      <h2>パート別の改修仕様</h2>
+      <div class="spec">
+        <article>
+          <h3>FV直下：開始ボタンを外し、診断導入とQ1を見せる</h3>
+          <div class="compare">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/01-current-start.jpg" alt="現行クマ記事のFVと開始ボタン"><figcaption>現行：FVの下に「セルフチェックを始める」ボタンがあり、押すまで質問内容と回答選択肢が見えない。</figcaption></figure>
+            <div class="arrow">→</div>
+            <figure><img src="assets/tcb-kuma-women-diagnosis-analysis/source-02-intro-age.png" alt="元記事の診断導入と年代質問"><figcaption>元記事：診断の説明、その直下に年代質問と選択肢が見える。押した後に何が始まるかを推測させない。</figcaption></figure>
+          </div>
+          <h4>変更内容</h4>
+          <ul><li>「セルフチェックを始める」ボタンを削除する。</li><li>FV直下に、診断開始を伝える完成画像を置く。</li><li>その画像の直下にQ1「あなたの年代は？」と、10代・20代・30代・40代・50代以上を最初から表示する。</li><li>年代をタップしたら選択状態を200〜400ms示し、自動でQ2へ進める。</li></ul>
+          <h4>理由と背景</h4>
+          <p><span class="label hyp">制作者の仮説</span>現行は、読者が内容の見えない開始ボタンを押した後、さらに回答を選ぶ必要がある。元記事は画像・質問・選択肢が最初から見えるため、読者は次の操作を予測できる。「見えない診断を始める」より、「自分の年代を押す」ほうが判断負荷は小さい。</p>
+          <p><span class="label proposal">改修指示</span>年代は結果を決めるためだけの設問ではない。最初の低負荷な回答で前進を始めさせる役割を持つ。ただし、年齢を結果ロジックに使わない場合は、結果本文で年齢を根拠にした断定をしない。</p>
+          <h4>診断導入イメージの制作指示</h4>
+          <div class="notice"><strong>画像内の情報案：</strong>「5問をタップするだけ」「あなたに近いクマ傾向をセルフチェック」「無料」「約30秒」「登録不要」「すぐ結果」。コードで組んだ説明枠ではなく、記事全体の高級感に合う一枚のイメージとして生成する。</div>
+          <p>現行の導入を単なるテキストボックスで足すと、FVの実写・金・紺の完成度に対して急に安く見える。背景、装飾、見出し、3つの短いメリットを一枚のビジュアル内で統合し、「これから何をするか」「何問か」「何が分かるか」を視線移動の少ない順番で読ませる。</p>
+        </article>
+
+        <article>
+          <h3>全設問共通：実写の装飾写真から、回答判断を助けるイラストへ変える</h3>
+          <div class="grid2">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/02-current-q1.jpg" alt="現行Q1の実写写真"><figcaption>現行：女性が鏡を見る実写は悩み場面を示すが、茶・青・影・赤の差を画像から判断できない。</figcaption></figure>
+            <figure><img src="assets/tcb-kuma-women-diagnosis-analysis/source-03-problem.png" alt="元記事の症状別イラスト"><figcaption>元記事：大きな人物イラストの周囲に症状の拡大図を置き、選択肢の意味を画像で補完する。</figcaption></figure>
+          </div>
+          <h4>変更内容</h4>
+          <p>Q1〜Q5の人物画像は、同一人物・同一テイストの女性イラストへ統一する。画像は雰囲気づくりだけに使わず、設問で何を比較し、どれを選ぶかを助ける情報として設計する。</p>
+          <h4>画像生成の共通条件</h4>
+          <ul><li>女性は20〜40代が自己投影しやすい、若すぎず老けすぎない印象にする。</li><li>肌色、光源、顔の角度、目元の倍率を揃え、クマ以外の差を減らす。</li><li>症状の拡大円は背景と同化させず、細い色枠または影で境界を明示する。</li><li>症状は誇張しすぎず、スマートフォン幅でも識別できる強さにする。</li><li>「画像はイメージです」を残す。医療診断に見える断定表現は避ける。</li><li>全設問で髪型、服、線画、色温度を統一し、途中で別記事へ移った印象を与えない。</li></ul>
+        </article>
+
+        <article>
+          <h3>改修後Q2：茶クマ・青クマ・黒クマ・複合クマを画像で選ばせる</h3>
+          <div class="grid2">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/02-current-q1.jpg" alt="現行Q1"><figcaption>現行Q1：「茶色っぽい印象」「青みがかった印象」「影・くぼみの印象」「赤みの印象」を文字で選ぶ。</figcaption></figure>
+            <figure><img src="assets/tcb-kuma-women-diagnosis-analysis/official-kuma-identity.webp" alt="公式LPのクマタイプ説明"><figcaption>公式LPで確認できた表現：蓄積されたくすみ→茶クマ、めぐりの悪化→青クマ、コラーゲン不足→黒クマ。複合クマはこの画像では確認できない。</figcaption></figure>
+          </div>
+          <h4>確定する質問と回答</h4>
+          <p><span class="label proposal">改修指示</span><strong>質問：</strong>「鏡で見て、いちばん近いクマは？」</p>
+          <ol><li>茶クマ：茶色っぽいくすみが気になる</li><li>青クマ：青み・紫っぽい色味が気になる</li><li>黒クマ：影・くぼみ・ふくらみが気になる</li><li>複合クマ：色味と影が重なって見える</li></ol>
+          <h4>イラスト構図</h4>
+          <p>大きな女性の顔を中央に置き、その周囲に4つの目元拡大図を配置する。各拡大図は「茶クマ」「青クマ」「黒クマ」「複合クマ」のラベルと線で目元へ接続する。文字を読まなくても違いが分かり、文字を読めば判断を確定できる二重構造にする。</p>
+          <div class="notice danger"><span class="label unchecked">医療監修が必要</span>「茶クマ・青クマ・黒クマ」の名称と3つの原因表現は公式LPで確認した。「複合クマ」「たるみが気になる複合クマ」は青木さんの制作指示であり、今回確認した公式画像の掲載表現ではない。公開前に公式表現または医療監修へ照合する。</div>
+        </article>
+
+        <article>
+          <h3>改修後Q3：Q2で選んだクマ種類を、専用質問で深掘りする</h3>
+          <div class="grid4">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/03-current-q2-brown.jpg" alt="茶色分岐"><figcaption>現行：茶色っぽい印象を選択した後のQ2。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/04-current-q2-blue.jpg" alt="青み分岐"><figcaption>現行：青みがかった印象を選択した後のQ2。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/05-current-q2-shadow.jpg" alt="影くぼみ分岐"><figcaption>現行：影・くぼみの印象を選択した後のQ2。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/06-current-q2-red.jpg" alt="赤み分岐"><figcaption>現行：赤みの印象を選択した後のQ2。</figcaption></figure>
+          </div>
+          <h4>横展開できている点</h4>
+          <p><span class="label fact">LP上の事実</span>現行記事はQ1の回答ごとにQ2の質問と4択を切り替えている。16経路を実際に操作した結果、Q1は結果カテゴリ、Q2は結果本文を変えた。元記事の「症状を選ぶ→その症状だけを深掘る」という個別化の核は維持されている。</p>
+          <h4>変更する点</h4>
+          <ul><li>Q2「茶クマ」を選んだ人には、色味・メイク後・下まぶたを軽く引いた時など、茶クマの見え方を深掘りする。</li><li>Q2「青クマ」を選んだ人には、疲れて見える場面・下まぶたを軽く引いた時・顔全体との色差などを深掘りする。</li><li>Q2「黒クマ」を選んだ人には、上を向いた時・角度や明るさ・ふくらみやくぼみなどを深掘りする。</li><li>Q2「複合クマ」を選んだ人には、色味と影の両方、角度で変わる見え方、複数の症状が重なる場面を深掘りする。現行「赤み」の4択をそのまま流用しない。</li></ul>
+          <h4>複合クマ用4択の制作案</h4>
+          <ol><li>色味と影の両方が気になる</li><li>角度や明るさで色と影の見え方が変わる</li><li>目の下のふくらみと、くすみが重なって見える</li><li>日によって複数の見え方が重なる</li></ol>
+          <p class="small">上記4択は改修案であり、医療分類の確定文言ではない。公式LPと医療監修に合わせて最終調整する。</p>
+          <h4>回答UX</h4>
+          <p><span class="label proposal">改修指示</span>選択肢を押した後に「次へ」を押させない。選択状態を色・枠・チェックで200〜400ms表示し、その後自動進行する。「戻る」はQ2以降の画面下に小さなテキストリンクとして置き、次へと同じ面積のボタンにしない。</p>
+        </article>
+
+        <article>
+          <h3>改修後Q4：これまで試したケアを聞き、自己流対策の現在地を整理する</h3>
+          <div class="compare">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/07-current-q3.jpg" alt="現行の過去ケア質問"><figcaption>現行Q3：特にしていない／化粧品・メイク／生活習慣／相談経験を聞く。</figcaption></figure>
+            <div class="arrow">→</div>
+            <figure><img src="assets/tcb-kuma-women-diagnosis-analysis/source-08-care.png" alt="元記事のケア質問"><figcaption>元記事：対策用品をイラストで見せ、「特にしていない」も含めて全員を先へ進める。</figcaption></figure>
+          </div>
+          <h4>残す内容</h4>
+          <p>現行Q3の質問意図と4択はクマ商材へ翻訳できているため、改修後Q4として残す。回答は「特にしていない」「化粧品・メイクで工夫している」「生活習慣を見直している」「相談したことがある」を基本にする。</p>
+          <h4>変える内容</h4>
+          <p>実写女性を、化粧品、コンシーラー、睡眠・生活習慣、クリニック相談を一画面で識別できるイラストへ変更する。回答対象を一目で理解させるため、イラスト内に4つの対策を小物または小さな場面で配置する。</p>
+          <h4>心理上の役割</h4>
+          <p><span class="label hyp">制作者の仮説</span>症状を深掘りした直後に過去ケアを聞くことで、「すでに工夫しているのに気になる」「何をすればよいか分からず何もしていない」という現在地を本人に選ばせる。どちらの読者も回答不能にしないため、「特にしていない」を必ず残す。</p>
+        </article>
+
+        <article>
+          <h3>改修後Q5：「知りたいこと」から「クマが消えた後の生活」へ変える</h3>
+          <div class="compare">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/08-current-q4.jpg" alt="現行Q4"><figcaption>現行Q4：自分の見え方、日常で気になる瞬間、写真や近距離、相談で確認できることから「最も知りたいこと」を選ばせる。</figcaption></figure>
+            <div class="arrow">→</div>
+            <figure><img src="assets/tcb-kuma-women-diagnosis-analysis/source-09-desire.png" alt="元記事の理想像質問"><figcaption>元記事：毛穴が気にならなくなった後の生活を選ばせ、悩み中心の感情を希望へ切り替える。</figcaption></figure>
+          </div>
+          <h4>確定する質問と4択</h4>
+          <p><span class="label must">必須変更</span><strong>質問：</strong>「クマが気にならなくなったら？」</p>
+          <ol><li>朝のメイクを楽にしたい</li><li>若々しい印象を取り戻したい</li><li>自分の顔に自信を持ちたい</li><li>お出かけを楽しみたい</li></ol>
+          <h4>変更理由</h4>
+          <p>現行Q4は「何を知りたいか」を聞くため、相談CTAとの論理接続は作れる。しかし、回答内容が情報整理に留まり、クマが解決した後に何を得たいかを想像させない。元記事は最後の問いで、素肌、メイク、写真、自信、他者評価という生活ベネフィットを選ばせ、読者の感情を悩みから希望へ上げてから結果画面へ送っている。</p>
+          <p>今回の4択は、参考記事「★030_TCB-クマ再生注射女性_0円_臼倉_綺麗めフリップアンケ_20260519」で使われたベネフィットを軸にする。診断の最後は商品知識を聞く場所ではなく、「解決したら何が変わるか」を本人に選ばせる場所として設計する。</p>
+          <h4>イラスト制作指示</h4>
+          <p>一人の女性がメイクしているだけの画像にしない。4分割または中央人物＋4つの小場面で、朝の時短メイク、若々しい表情、鏡や写真に自信を持つ姿、外出を楽しむ姿を対応づける。各場面と選択肢の意味が一致し、画像だけでも理想像の違いを理解できる状態にする。</p>
+        </article>
+
+        <article>
+          <h3>ローディング：待ち時間を「個別結果を作っている時間」に変える</h3>
+          <figure class="current" style="max-width:430px;margin:auto"><img src="assets/tcb-kuma-women-diagnosis-analysis/09-current-loading.jpg" alt="現行ローディング"><figcaption>現行：「回答内容を整理しています」「まもなく結果を表示します」。全経路で共通表示。</figcaption></figure>
+          <h4>残す理由</h4>
+          <p><span class="label fact">LP上の事実</span>現行記事は回答後にローディングを挟む。即時に固定結果を出すより、入力内容を処理している印象を作り、「自分の回答に基づく結果」への期待を高める機能を持つ。</p>
+          <h4>改修内容</h4>
+          <p>「回答内容を整理しています」に加え、「5つの回答から、あなたに近いクマ傾向を整理しています」と表示する。1〜2秒程度で結果へ進め、待たせすぎない。医学的診断をしていると誤認させる「診断中」「原因を特定中」は使わない。</p>
+        </article>
+
+        <article id="results">
+          <h3>結果：4つの固有タイプ名へ変え、Q3回答と相談理由をつなぐ</h3>
+          <div class="grid4">
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/10-current-result-brown.jpg" alt="現行茶色結果"><figcaption>現行：茶色っぽい印象が気になる傾向。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/11-current-result-blue.jpg" alt="現行青み結果"><figcaption>現行：青みがかった印象が気になる傾向。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/12-current-result-shadow.jpg" alt="現行影くぼみ結果"><figcaption>現行：影・くぼみの印象が気になる傾向。</figcaption></figure>
+            <figure class="current"><img src="assets/tcb-kuma-women-diagnosis-analysis/13-current-result-red.jpg" alt="現行赤み結果"><figcaption>現行：赤みの印象が気になる傾向。</figcaption></figure>
+          </div>
+          <h4>確定する結果名</h4>
+          <table><thead><tr><th>Q2で選んだタイプ</th><th>改修後の結果見出し</th><th>根拠の扱い</th></tr></thead><tbody>
+            <tr><td>茶クマ</td><td><strong>くすみがたまった茶クマ傾向かも</strong></td><td>公式LPに「蓄積されたくすみ→茶クマ」の掲載を確認。</td></tr>
+            <tr><td>青クマ</td><td><strong>めぐりが悪化した青クマ傾向かも</strong></td><td>公式LPに「めぐりの悪化→青クマ」の掲載を確認。</td></tr>
+            <tr><td>黒クマ</td><td><strong>コラーゲン不足の黒クマ傾向かも</strong></td><td>公式LPに「コラーゲン不足→黒クマ」の掲載を確認。</td></tr>
+            <tr><td>複合クマ</td><td><strong>たるみが気になる複合クマ傾向かも</strong></td><td>青木さんの制作指示。今回確認した公式画像では未確認。監修対象。</td></tr>
+          </tbody></table>
+          <h4>結果画面の順序</h4>
+          <ol><li>「あなたは」＋固有タイプ名</li><li>タイプに対応した目元拡大イラスト</li><li>Q3で選んだ見え方を反映した1〜2文</li><li>「Webセルフチェックで分かるのはここまで」</li><li>同じように見えるクマでも原因は一つではなく、肌・脂肪・骨格など実際の状態確認が必要であること</li><li>相談では目元の状態と選択肢を確認できること</li><li>オファー条件</li><li>CTA「無料カウンセリングで目元の状態を確認する」</li></ol>
+          <div class="notice danger"><span class="label unchecked">表現上の注意</span>見出しは「傾向かも」で止め、原因を確定診断しない。特に年代を回答ロジックへ入れても、年齢だけを理由にクマ原因を断定しない。結果本文はQ3回答を反映するが、「回答したから治療適応がある」と読める文章にしない。</div>
+          <h4>オファーの整合</h4>
+          <p><span class="label fact">LP上の事実</span>現行FVは「0円〜」、結果画面は「25,000円OFF」を提示する。両者の適用関係は結果画面内で説明されていない。</p>
+          <p><span class="label proposal">改修指示</span>0円が何を指すか、25,000円OFFと併用・適用される条件は何かを、FVまたは結果CTA直前で一文にまとめる。条件を確認できない段階では、制作AIが独自に条件を補完しない。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="branches" class="card">
+      <h2>現行記事の全16分岐：実操作した結果</h2>
+      <p><span class="label fact">LP上の事実</span>下表は現行記事でQ1×Q2をすべてタップし、最後まで進めて確認した内容である。16経路すべてが到達し、Q2ごとに結果本文が変わった。Q3とQ4は結果の大分類・本文を変えず、現行実装では主に回答収集と心理導線の役割を持つ。</p>
+      <div class="scroll"><table><thead><tr><th>現行Q1</th><th>現行Q2</th><th>結果カテゴリ</th><th>結果本文の要点</th></tr></thead><tbody>
+        <tr><td rowspan="4">茶色っぽい印象</td><td>近くで見たときの色味</td><td rowspan="4">茶色っぽい印象が気になる傾向</td><td>色味の感じ方を整理する入口。原因や対策は回答だけでは判断できない。</td></tr>
+        <tr><td>メイク後にも残る色味</td><td>メイク時に気になる見え方を整理する入口。原因や対策は回答だけでは判断できない。</td></tr>
+        <tr><td>下まぶたを軽く下に引いても、上を向いても色味が薄くなりにくい</td><td>公式の見え方の傾向に沿った確認の入口。下まぶたを強く引っ張らず、原因や対策は回答だけで判断しない。</td></tr>
+        <tr><td>ほかの見え方も重なっている</td><td>複数の見え方が重なる場合の整理の入口。どの傾向が主かは回答だけで確定しない。</td></tr>
+        <tr><td rowspan="4">青みがかった印象</td><td>疲れて見えると感じる場面</td><td rowspan="4">青みがかった印象が気になる傾向</td><td>疲れて見えると感じる場面を整理する入口。回答から原因は判断しない。</td></tr>
+        <tr><td>下まぶたを軽く下に引くと色味が薄く見える</td><td>公式の見え方の傾向に沿った確認の入口。医学的な判断には使わない。</td></tr>
+        <tr><td>顔全体との色味の差</td><td>顔全体との印象差を整理する入口。原因や適した対応は相談で確認する。</td></tr>
+        <tr><td>ほかの見え方も重なっている</td><td>複数の見え方が重なる場合の整理の入口。回答だけで種類を断定しない。</td></tr>
+        <tr><td rowspan="4">影・くぼみの印象</td><td>上を向くと影が薄く見える</td><td rowspan="4">影・くぼみの印象が気になる傾向</td><td>公式の見え方の傾向に沿った確認の入口。医学的な原因や治療選択は回答から判断できない。</td></tr>
+        <tr><td>角度や明るさで変わる印象</td><td>角度や明るさによる印象差を整理する入口。診断や対策は相談で確認する。</td></tr>
+        <tr><td>ふくらみまたはくぼみのように感じる印象</td><td>ふくらみやくぼみのように見える印象を整理する入口。回答だけで原因を確定しない。</td></tr>
+        <tr><td>ほかの見え方も重なっている</td><td>複数の見え方を整理し、相談で確認する対象を決める補助に留める。</td></tr>
+        <tr><td rowspan="4">赤みの印象</td><td>近くで気になる赤み</td><td rowspan="4">赤みの印象が気になる傾向</td><td>近くで気になる見え方を整理する入口。医学的な状態を示すものではない。</td></tr>
+        <tr><td>目線だけ上げると目の下のふくらみが目立つ</td><td>公式の見え方の傾向に沿った確認の入口。医学的な状態や治療適応を示すものではない。</td></tr>
+        <tr><td>目の下のふくらみが気になる印象</td><td>ふくらみが気になる見え方を整理する入口。診断や治療選択は相談で確認する。</td></tr>
+        <tr><td>ほかの見え方も重なっている</td><td>複数の見え方が重なる場合の整理の入口。主な傾向の確定は相談で確認する。</td></tr>
+      </tbody></table></div>
+      <h3>分岐ロジックを改修後へ移す時の規則</h3>
+      <ul><li>Q1年代は、次の質問を変えない。最初のコミットメントとセグメント取得の役割に限定する。</li><li>Q2クマ種類が、結果の4大カテゴリとQ3の質問セットを決める。</li><li>Q3種類別深掘りが、結果画面の個別本文を決める。</li><li>Q4過去ケアとQ5理想像は、結果名を変えない。結果本文やCTA直前の補助文へ反映する場合は、全組み合わせで不自然な文章が出ないことを確認する。</li><li>赤み系統を複合クマへ置き換えるため、現行16本文を機械的にコピーしない。複合クマのQ3と結果本文を新規に設計する。</li></ul>
+    </section>
+
+    <section class="card">
+      <h2>現行記事と改修後の差分一覧</h2>
+      <div class="scroll"><table><thead><tr><th>論点</th><th>現行</th><th>改修後</th><th>理由</th><th>根拠</th></tr></thead><tbody>
+        <tr><td>FV直下</td><td>開始ボタンのみ</td><td>診断導入イメージ＋Q1年代を常時表示</td><td>次に何を押すかを最初から理解させ、開始時の摩擦を減らす。</td><td>改修指示／離脱は仮説</td></tr>
+        <tr><td>設問数</td><td>4問</td><td>5問</td><td>元記事の低負荷な年代回答を戻し、質問の勢いを作る。</td><td>元記事の構造＋改修指示</td></tr>
+        <tr><td>進行操作</td><td>選択後に毎回「次へ」</td><td>選択後に自動進行</td><td>現行は開始1回＋4回の選択＋4回の次へ＝計9操作。改修後は5回の選択で進める。</td><td>操作確認／離脱影響は仮説</td></tr>
+        <tr><td>戻る</td><td>次へと近い面積のボタン</td><td>小さなテキストリンク</td><td>回答修正は可能にしつつ、前進操作と視覚競合させない。</td><td>改修指示／効果は要AB</td></tr>
+        <tr><td>Q2画像</td><td>一般的な女性実写</td><td>4タイプの目元拡大イラスト</td><td>文字だけでは判断しにくい症状差を視覚化する。</td><td>元記事構造＋改修指示</td></tr>
+        <tr><td>大分類</td><td>茶色・青み・影/くぼみ・赤み</td><td>茶クマ・青クマ・黒クマ・複合クマ</td><td>公式LPと制作方針に合わせ、結果名と入口を一貫させる。</td><td>3種は公式確認／複合は監修対象</td></tr>
+        <tr><td>最後の質問</td><td>最初に知りたいこと</td><td>クマが気にならなくなった後の理想像</td><td>結果前に希望と生活ベネフィットを想起させる。</td><td>元記事構造＋★030参考＋改修指示</td></tr>
+        <tr><td>結果名</td><td>Q1文言の反復に近い</td><td>原因示唆＋固有タイプ名</td><td>「結果を受け取った感」と次の疑問を作る。</td><td>公式LP3種＋改修指示</td></tr>
+        <tr><td>CTA</td><td>無料カウンセリングで確認する</td><td>無料カウンセリングで目元の状態を確認する</td><td>クリック後に何を確認するかを具体化する。</td><td>改修案</td></tr>
+        <tr><td>オファー</td><td>FV 0円〜／結果25,000円OFF</td><td>適用関係を一文で説明</td><td>読者に条件推測をさせず、不信を防ぐ。</td><td>現行画面で差異を確認</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="rules" class="card">
+      <h2>制作AIが守る10個の判断ルール</h2>
+      <ol>
+        <li><strong>開始ボタンを置く前に、質問と選択肢を直接見せられないか確認する。</strong>見えない次画面へ進ませるクリックを増やさない。</li>
+        <li><strong>最初の質問は、迷わず答えられる事実質問にする。</strong>今回は年代を使い、最初の回答行動を起こす。</li>
+        <li><strong>画像は装飾ではなく回答補助として作る。</strong>選択肢の違いを画像から判別できない場合、その画像は設問機能を果たしていない。</li>
+        <li><strong>大分類を選んだ直後は、その分類専用の深掘り質問を出す。</strong>全員へ同じ質問を出して個別感を失わせない。</li>
+        <li><strong>選択肢は読者が普段使う見え方・場面・感覚の言葉にする。</strong>専門用語だけで答えさせない。</li>
+        <li><strong>過去対策の質問には「特にしていない」を入れる。</strong>未対策の読者を回答不能にしない。</li>
+        <li><strong>最後の質問は、解決後の生活ベネフィットを選ばせる。</strong>悩みの深掘りだけで終えず、希望を作って結果へ渡す。</li>
+        <li><strong>結果は「タイプ名→回答の解釈→Webの限界→相談で分かること→CTA」の順にする。</strong>診断結果と予約導線を分断しない。</li>
+        <li><strong>医学的原因を回答だけで確定しない。</strong>公式LPの原因表現を使う場合も、「傾向かも」とWebセルフチェックの限界を明記する。</li>
+        <li><strong>表面を横展開せず、心理効果を再翻訳する。</strong>毛穴記事のピンクイラストをコピーするのではなく、「症状を視覚で識別させる」という機能をクマ用イラストへ変える。</li>
+      </ol>
+      <h3>実装前チェックリスト</h3>
+      <ul class="checklist">
+        <li>FV直下に診断の内容・所要時間・結果が分かる完成イメージがある。</li>
+        <li>開始ボタンなしでQ1年代と5択が見える。</li>
+        <li>進捗表示が5問構成と一致している。</li>
+        <li>Q2の4タイプを同じ光・角度・倍率の目元イラストで比較できる。</li>
+        <li>Q2の回答ごとにQ3の質問と4択が切り替わる。</li>
+        <li>Q3の回答ごとに結果本文が切り替わる。</li>
+        <li>全選択肢が1タップで自動進行する。</li>
+        <li>戻る導線が主ボタンより弱く表示される。</li>
+        <li>Q4に「特にしていない」がある。</li>
+        <li>Q5の質問と4択が指定文言どおりになっている。</li>
+        <li>Q5画像に4つの生活ベネフィットが対応づけられている。</li>
+        <li>4結果名が指定文言どおりになっている。</li>
+        <li>結果本文にQ3回答が反映される。</li>
+        <li>Webで分かる範囲と、相談で確認できる範囲を分けている。</li>
+        <li>複合クマの分類・表現を公式または医療監修へ確認した。</li>
+        <li>0円〜と25,000円OFFの適用関係を確認し、同じ画面で説明した。</li>
+        <li>茶・青・黒・複合の全4系統×Q3全選択肢を通し、結果の矛盾がない。</li>
+        <li>スマートフォン実機幅で症状の拡大図と選択肢を読める。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>他の人のCodexへ渡す実装命令</h2>
+      <div class="command"><h3>この内容を前提に実装すること</h3><code>この資料は「参考意見」ではなく、現行TCBクマ女性診断記事を改修するための仕様書です。
+
+1. 現行コードと全分岐を先に確認し、既存のQ1→Q2分岐ロジックを壊さないでください。
+2. FV直下の開始ボタンを削除し、診断導入イメージとQ1年代を最初から表示してください。
+3. 年代追加後は、現行Q1〜Q4をQ2〜Q5へ再採番してください。
+4. Q2は茶クマ・青クマ・黒クマ・複合クマの4択に変更し、同一人物・同一条件の目元イラストで違いを示してください。
+5. Q2の各回答に専用Q3を分岐させてください。現行の赤み分岐は複合クマ用へ作り直し、文言を流用しないでください。
+6. Q4は過去ケア質問として残し、画像を回答内容が分かるイラストへ変更してください。
+7. Q5は「クマが気にならなくなったら？」とし、指定された4つの生活ベネフィットへ変更してください。
+8. すべての設問は選択後に短い選択フィードバックを出して自動進行させてください。「次へ」ボタンは削除してください。
+9. 戻る機能が必要な場合は、小さなテキストリンクとしてQ2以降に置いてください。
+10. 結果は指定された4つの固有タイプ名へ変更し、Q3回答に対応した説明、Webセルフチェックの限界、相談で分かること、CTAをこの順に表示してください。
+11. 医療表現を確定診断にしないでください。複合クマ表現とオファー条件は、確認できない情報を推測で補完せず、要確認として止めてください。
+12. 実装後は4タイプ×各Q3の全分岐を通し、質問・結果見出し・本文・画像・戻る・自動進行を検証してください。
+
+資料内では「LP上の事実」「制作者の仮説」「改修指示」「未確認」を分けています。未確認を確定事実へ書き換えないでください。</code></div>
+    </section>
+
+    <section id="log" class="card">
+      <h2>青木さんの詳細言語化：制作背景を削らず残す</h2>
+      <p class="small">以下は制作AIが「変更指示だけ」を読んで表面修正しないための詳細ログである。重複する理由も、判断の背景として残している。</p>
+      <h3>年代質問と最初から見える導線</h3>
+      <div class="quote">1問目では年代を聞くようにしたい。既存の参考元の記事では、ファーストビューのすぐ下に1問目が見えている。現在の新しい記事は「セルフチェックを始める」を押して、いきなり印象の質問へ進む。この動線を元記事へ戻し、まず年代を聞く。
+
+ファーストビューの下には、診断が始まると分かるイメージ図を生成する。元記事の導入はコードで作られており、ほかの画像と比べて安っぽく見える。ここは内容を捨てるのではなく、何をするかが分かる機能を残したまま、完成画像としてブラッシュアップする。
+
+1問目の質問と選択肢は最初から見える状態にする。現在の記事は「セルフチェックを始める」を一度押す必要がある。質問、イラスト、選択肢が見えていれば、ユーザーは何を押すかを理解できる。見えない先へ進むボタンより、すでに見えている年代の選択肢のほうが押しやすく、開始時の摩擦を減らせる。</div>
+      <h3>写真からイラストへ変える理由</h3>
+      <div class="quote">現在の新しい記事では、各質問に女性の写真が使われている。これをイラストへ変更したい。元記事のHTMLに、イラストをどのように見せるかを言語化しているため、その考え方を反映する。
+
+クマの記事では、単に女性の顔を置くのではなく、クマの症状が分かるようにする。公式LPにもある茶クマ、青クマ、黒クマと、今回入れる複合クマを、大きな女性イラストと目元の拡大図で示す。文字だけでは違いを判断しにくいため、質問の選択肢とイラストを対応させる。</div>
+      <h3>最後の質問を理想像へ変える理由</h3>
+      <div class="quote">年代を足すため、現在のQ4は改修後Q5になる。現在は「整理したい」「知りたい」という回答が中心で、ベネフィットが弱い。質問を「クマが気にならなくなったら？」へ変え、朝のメイクを楽にしたい、若々しい印象を取り戻したい、自分の顔に自信を持ちたい、お出かけが楽しくなる、という4択にする。
+
+参考にするのは、★030のフリップアンケートにある「クマが綺麗になったらどうなりたいですか」という理想像の質問である。最後の設問では知識を整理させるのではなく、クマが気にならなくなった後の生活を想像させ、ベネフィットを強く見せる。</div>
+      <h3>結果名を強くする理由</h3>
+      <div class="quote">現在の「青みがかった印象が気になる傾向」のような結果は弱い。Q1で選んだ文言を長く言い直しているだけで、診断結果を受け取った感覚が薄い。
+
+茶クマは「くすみがたまった茶クマ傾向かも」、青クマは「めぐりが悪化した青クマ傾向かも」、黒クマは「コラーゲン不足の黒クマ傾向かも」、複合クマは「たるみが気になる複合クマ傾向かも」とまとめる。結果を短く固有名で示し、自分の症状と解決策が気になる状態を作る。</div>
+      <h3>次へ・戻るによる離脱仮説</h3>
+      <div class="quote">現在の記事は、選択肢を押した後に「次へ」を押す必要があり、「戻る」も置かれている。元記事より離脱率が高くなる可能性がある。戻ることで選択肢を変えて遊ぶ動きが生まれ、最終的に「もういい」と離脱へつながる。こちらは先に進んでほしいため、前進を阻害する動きを減らす。
+
+ただし、戻る機能だけが離脱の原因と確定したわけではない。現行は開始ボタンに加えて、各問で選択と次への2操作が必要である。元記事は選択肢を押すと進むため、総操作数の差も含めて考える。改修では選択後に自動進行し、戻るを残す場合も主ボタンより弱くする。</div>
+    </section>
+
+    <section class="card">
+      <h2>残る未確認事項と検証順</h2>
+      <ol>
+        <li><strong>複合クマの公式定義：</strong>今回確認した公式画像には茶・青・黒の3分類が掲載されている。複合クマの名称、画像表現、結果文言は公式資料または医療監修へ確認する。</li>
+        <li><strong>原因示唆の広告表現：</strong>公式LPに掲載されている表現でも、セルフチェック結果として出す場合の適法性・審査可否を確認する。</li>
+        <li><strong>オファー条件：</strong>FVの0円〜と結果の25,000円OFFの関係、対象条件、併用可否を確認する。</li>
+        <li><strong>年代の利用範囲：</strong>年代を分析データとして保存するか、結果本文へ反映するかを決める。反映しない場合も設問自体は開始摩擦を下げる目的で残す。</li>
+        <li><strong>離脱仮説：</strong>改修前後で、診断開始率、Q1回答率、各質問到達率、結果到達率、CTA率を比較する。戻るの有無だけでなく、自動進行と開始ボタン削除を分けて検証する。</li>
+      </ol>
+      <div class="notice"><strong>検証優先順位：</strong>①全分岐の論理矛盾と医療表現 → ②スマホでの画像識別性 → ③自動進行・戻る・回答保持 → ④オファー整合 → ⑤公開後の開始率・結果到達率・CTA率。</div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><strong>TCBクマ女性 診断記事｜改修仕様書</strong><p class="small" style="color:#d4d8e2">作成日：2026年9月1日。現行記事の操作確認、元記事分析、公式LP掲載画像、青木さんの制作指示を統合。数値・医療表現・複合クマ定義は本文の根拠ラベルに従って扱う。</p></div></footer>
+</body>
+</html>
