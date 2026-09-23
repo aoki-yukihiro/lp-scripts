@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ベネフィットとは「欲求」 - セールスライティング共有資料</title>
+  <style>
+    :root {
+      --ink: #18202b;
+      --muted: #647184;
+      --line: #dfe7ef;
+      --soft: #f6f8fb;
+      --blue: #2563eb;
+      --green: #138a57;
+      --red: #c2410c;
+      --yellow: #a16207;
+      --purple: #6d28d9;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f6f9;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      line-height: 1.85;
+      letter-spacing: 0;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+    header {
+      background: #172033;
+      color: var(--white);
+      padding: 30px 28px;
+      border-radius: 8px;
+      margin-bottom: 22px;
+    }
+    .kicker {
+      margin: 0 0 8px;
+      color: #b7c7df;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.35;
+    }
+    .lead {
+      margin: 14px 0 0;
+      color: #e2e8f0;
+      font-size: 16px;
+      max-width: 780px;
+    }
+    nav {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+    nav a {
+      color: var(--blue);
+      text-decoration: none;
+      margin-right: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    section {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-size: 22px;
+      line-height: 1.45;
+      margin: 0 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--blue);
+    }
+    h3 {
+      font-size: 17px;
+      line-height: 1.5;
+      margin: 18px 0 8px;
+    }
+    p { margin: 0 0 12px; }
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .summary {
+      background: #eff6ff;
+      border-left: 5px solid var(--blue);
+      padding: 16px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+    }
+    .summary strong {
+      color: #1d4ed8;
+      font-size: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfdff;
+    }
+    .card h3 {
+      margin-top: 6px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+    }
+    .tag.blue { background: #dbeafe; color: #1d4ed8; }
+    .tag.green { background: #dcfce7; color: #15803d; }
+    .tag.yellow { background: #fef3c7; color: #a16207; }
+    .tag.red { background: #ffedd5; color: #c2410c; }
+    .tag.purple { background: #ede9fe; color: #6d28d9; }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .flow div {
+      position: relative;
+      min-height: 112px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+    }
+    .flow div::after {
+      content: ">";
+      position: absolute;
+      right: -10px;
+      top: 42%;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .flow div:last-child::after { content: ""; }
+    .flow strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+    .flow small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eef4ff;
+      color: #1e3a8a;
+      font-weight: 800;
+    }
+    .example {
+      background: #fffaf0;
+      border: 1px solid #f3d18f;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .lecture-figure {
+      margin: 16px 0 18px;
+      background: #0b0b0b;
+      border: 1px solid #273142;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .lecture-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .lecture-figure figcaption {
+      margin: 9px 2px 0;
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 5px solid var(--red);
+      padding: 15px 17px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+    }
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+    .checklist li {
+      border-bottom: 1px solid #edf2f7;
+      padding: 9px 0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: "□";
+      color: var(--blue);
+      font-weight: 800;
+      margin-right: 8px;
+    }
+    .quoteish {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #334155;
+    }
+    .mini {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-scroll table {
+      min-width: 720px;
+    }
+    @media (max-width: 760px) {
+      h1 { font-size: 24px; }
+      section { padding: 18px; }
+      .grid, .grid.three, .flow { grid-template-columns: 1fr; }
+      .flow div { min-height: auto; }
+      .flow div::after {
+        content: "v";
+        right: 50%;
+        top: auto;
+        bottom: -18px;
+      }
+      .flow div:last-child::after { content: ""; }
+      table { font-size: 13px; }
+      th, td { padding: 8px; }
+      nav a { display: inline-block; margin-bottom: 7px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="kicker">Sales Writing / Benefit Writing</p>
+      <h1>ベネフィットとは「欲求」</h1>
+      <p class="lead">商品の特徴を、ユーザーが望んでいる結果・変化・感情へつなげるための、FABとFDEの実践整理。</p>
+    </header>
+
+    <nav>
+      <a href="#definition">定義</a>
+      <a href="#why">なぜ重要か</a>
+      <a href="#fab">作り方</a>
+      <a href="#questions">4つの問い</a>
+      <a href="#examples">具体例</a>
+      <a href="#deep">具体化</a>
+      <a href="#fde">3つの種類</a>
+      <a href="#process">制作手順</a>
+    </nav>
+
+    <section id="definition">
+      <h2>1. ベネフィットとは「欲求」</h2>
+      <p>ベネフィットとは、商品によってユーザーの欲求が満たされること。抱えている問題が解決され、望む未来へ近づけること。</p>
+      <div class="summary">
+        <p><strong>商品は手段。ベネフィットは、その商品によって得られる結果・変化。</strong></p>
+        <p>人は商品や機能そのものではなく、その商品によって自分に何が起きるのかを求めている。</p>
+      </div>
+      <p>有名な「ドリルと穴」の話も同じ。ユーザーが欲しいのはドリルそのものではなく、ドリルによって開けられる穴。さらに、その穴によって棚を取り付け、部屋を使いやすくできることまで求めている場合もある。</p>
+      <div class="grid three">
+        <div class="card">
+          <span class="tag red">現在</span>
+          <h3>問題や欲求がある</h3>
+          <p>暑い、時間がない、不安、面倒、うまくできない、理想へ近づきたい。</p>
+        </div>
+        <div class="card">
+          <span class="tag blue">手段</span>
+          <h3>商品を使う</h3>
+          <p>商品、サービス、機能、仕組みは、現状から望む未来へ移るための手段。</p>
+        </div>
+        <div class="card">
+          <span class="tag green">ゴール</span>
+          <h3>結果・変化を得る</h3>
+          <p>問題が解決され、生活や感情が変わり、望む状態へ近づく。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <h2>2. なぜ商品特徴だけでは売れないのか</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="tag red">特徴で止まる</span>
+          <h3>商品側の説明</h3>
+          <p>スペック、機能、制度、サービス内容、素材、手順、メソッド。</p>
+          <p>これは「何があるか」の説明。読者がその価値をすでに理解していなければ、欲しい理由にはならない。</p>
+        </div>
+        <div class="card">
+          <span class="tag green">ベネフィットまで進む</span>
+          <h3>ユーザー側の意味</h3>
+          <p>何が楽になるか、何を避けられるか、どんな判断ができるか、生活や感情がどう変わるか。</p>
+          <p>ここまで言語化されると、読者は「自分に関係ある」と受け取りやすい。</p>
+        </div>
+      </div>
+      <div class="example">
+        <h3>特徴だけで価値が伝わるとは限らない</h3>
+        <p>専門家には、特徴だけで価値が伝わることがある。たとえばマイクの専門的な性能を見れば、音楽関係者はそれが何を意味するか分かる場合がある。</p>
+        <p>しかし、多くの読者は特徴から自分の変化までを自動で変換しない。だからコピー側で、特徴からベネフィットまでの橋をかける必要がある。</p>
+      </div>
+    </section>
+
+    <section id="fab">
+      <h2>3. ベネフィットの作り方</h2>
+      <p>ベネフィットを作るためのフレームワークが「FAB」。Feature、Advantage、Benefitの順に、商品側の事実からユーザー側の価値へ発想を広げる。</p>
+      <figure class="lecture-figure">
+        <img src="assets/benefit-fab-fde/fab-car-aircon-final-rendered.png" alt="車のエアコンを使ったFABの図">
+        <figcaption>車のエアコンを使ったFABの例。特徴から利点、価値へ進む流れを一枚で整理。</figcaption>
+      </figure>
+      <div class="grid three">
+        <div class="card">
+          <span class="tag blue">Feature / 特徴</span>
+          <h3>商品側の事実</h3>
+          <p>商品やサービスが持つ機能、仕様、仕組み、素材、制度など。</p>
+          <p class="mini">車のエアコン：17度まで温度を下げられる。</p>
+        </div>
+        <div class="card">
+          <span class="tag yellow">Advantage / 強み・利点</span>
+          <h3>特徴がしてくれること</h3>
+          <p>その特徴によって、何が可能になるか。どのような点で優れているか。</p>
+          <p class="mini">車のエアコン：車内を冷たく冷やしてくれる。</p>
+        </div>
+        <div class="card">
+          <span class="tag green">Benefit / 価値</span>
+          <h3>ユーザーが得る結果</h3>
+          <p>ユーザーの生活、感情、判断、行動、未来に起きる結果や変化。</p>
+          <p class="mini">車のエアコン：真夏でも快適にドライブできる。</p>
+        </div>
+      </div>
+      <div class="warn">
+        <h3>境界を厳密に分けることが目的ではない</h3>
+        <p>Feature・Advantage・Benefitの境界には、文脈によって重なる部分もある。FABは正解を分類するためではなく、特徴から発想を広げ、ユーザーにとっての価値を増やすためのフレームワーク。</p>
+      </div>
+    </section>
+
+    <section id="questions">
+      <h2>4. 特徴からベネフィットを考える4つの問い</h2>
+      <p>特徴とベネフィットには、基本的に原因と結果の関係がある。特徴が原因となり、その結果としてユーザー側の変化が生まれる。次の4つの問いは、その因果関係をたどるために使う。</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>問い</th>
+              <th>発想できること</th>
+              <th>車のエアコンで考える</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>これをやったら（これを知ったら）、どうなる（どう結果が変化する）？</td>
+              <td>特徴によって起きる結果や、使用前後の変化。</td>
+              <td>設定温度を下げると、暑かった車内の温度が下がる。</td>
+            </tr>
+            <tr>
+              <td>これは、何をしてくれる？</td>
+              <td>特徴の直接的な作用、利点、可能になること。</td>
+              <td>車内を冷たく冷やし、暑さを和らげてくれる。</td>
+            </tr>
+            <tr>
+              <td>これは、ユーザーにとって何を意味する？</td>
+              <td>生活、行動、感情、未来における価値。</td>
+              <td>真夏の移動でも、暑さに消耗せず快適にドライブできる。</td>
+            </tr>
+            <tr>
+              <td>なぜ、この特徴があるのか？</td>
+              <td>特徴が解決する問題と、満たそうとしている欲求。</td>
+              <td>車内の暑さや不快感を減らし、移動時間を過ごしやすくするため。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="example">
+        <h3>「ユーザーにとって何を意味する？」をフェラーリで考える</h3>
+        <p>フェラーリには、高い走行性能、象徴的なデザイン、希少性などの特徴がある。その価値は「速く走れる」「運転を楽しめる」だけではない。</p>
+        <p>あるユーザーにとっては、成功した証を持てる、周囲から成功者として見られる、憧れられる存在になれる、自分に自信を持てることを意味する。</p>
+        <p><strong>同じ特徴でも、ユーザーの欲求が違えば、意味するベネフィットも変わる。</strong></p>
+      </div>
+    </section>
+
+    <section id="examples">
+      <h2>5. 具体例でつかむ</h2>
+      <p>特徴・利点・価値を複数の商品で比べると、ベネフィットへの変換がイメージしやすくなる。</p>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>題材</th>
+            <th>Feature / 特徴</th>
+            <th>Advantage / 何をしてくれるか</th>
+            <th>Benefit / ユーザーにとっての価値</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uber Eats</td>
+            <td>スマホで食事を注文できる。</td>
+            <td>外出せずに、自宅や職場へ食事を届けてもらえる。</td>
+            <td>料理する気力や時間がない時でも、空腹や移動の負担を減らして食事を済ませられる。</td>
+          </tr>
+          <tr>
+            <td>シャワーヘッド</td>
+            <td>水流や機能に特徴がある。</td>
+            <td>毎日のシャワー体験が変わる。洗いやすさ、肌あたり、節水などの利点が出る。</td>
+            <td>毎日使う時間が、ただ洗う時間ではなく、快適さや満足を感じる時間になりやすい。</td>
+          </tr>
+          <tr>
+            <td>ルンバ</td>
+            <td>自動で掃除する。</td>
+            <td>自分が掃除機をかけなくても床掃除が進む。</td>
+            <td>掃除に使っていた時間と気力を減らし、帰宅時に部屋が整っている安心を得やすい。</td>
+          </tr>
+          <tr>
+            <td>256GB iPhone</td>
+            <td>保存容量が大きい。</td>
+            <td>写真、動画、アプリを多く保存できる。</td>
+            <td>容量不足で思い出を消す迷いや、撮りたい瞬間に保存できないストレスを減らせる。</td>
+          </tr>
+          <tr>
+            <td>車内エアコン</td>
+            <td>17度まで温度を下げられる。</td>
+            <td>車内を冷たく冷やしてくれる。</td>
+            <td>真夏の暑い日でも、快適にドライブできる。</td>
+          </tr>
+          <tr>
+            <td>速読</td>
+            <td>読む速度を上げる技術を学ぶ。</td>
+            <td>同じ時間で読める量が増える。</td>
+            <td>限られた時間でも知識を取り入れやすくなり、学習や仕事の遅れへの焦りを減らせる。</td>
+          </tr>
+          <tr>
+            <td>投資アラート</td>
+            <td>推奨情報やアラートが届く。</td>
+            <td>自分で常に市場を見続けなくても、判断材料を受け取れる。</td>
+            <td>情報を見逃す不安や、調べ続ける負担を減らして、次の判断へ進みやすくなる。</td>
+          </tr>
+          <tr>
+            <td>Smart EX</td>
+            <td>スマホなどで新幹線予約を扱える。</td>
+            <td>窓口に並ばず、予約や変更をしやすい。</td>
+            <td>移動前の手間や焦りを減らし、予定変更にも対応しやすくなる。</td>
+          </tr>
+          <tr>
+            <td>AirPods</td>
+            <td>ワイヤレスで耳に装着できる。</td>
+            <td>コードに邪魔されず音声を聞ける。</td>
+            <td>移動中、作業中、運動中でも身軽に音楽や通話を使いやすくなる。</td>
+          </tr>
+          <tr>
+            <td>GoProの防水機能</td>
+            <td>防水機能がある。</td>
+            <td>水辺や水中でも撮影できる。</td>
+            <td>海、川、雨、アクティビティ中の瞬間まで残しやすく、思い出の範囲が広がる。</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note">題材は講座・参考動画で扱われた例を中心に、特徴から価値への因果が分かる形へ整理している。</p>
+    </section>
+
+    <section id="deep">
+      <h2>6. 抽象的なベネフィットで止めない</h2>
+      <p>「便利」「快適」「安心」「効率的」もベネフィットだが、言葉が抽象的なままだと、ユーザーは自分の生活に置き換えにくい。いつ、どこで、何が変わり、どう感じるかまで具体化すると、結果をイメージしやすくなる。</p>
+      <div class="grid">
+        <div class="card">
+          <span class="tag yellow">浅い</span>
+          <h3>変化の中身が見えない</h3>
+          <p>便利、快適、安心、効率的、スムーズ、経済的など。</p>
+          <p>間違いではないが、具体的に何が変わるかが見えないと弱い。</p>
+        </div>
+        <div class="card">
+          <span class="tag green">具体的</span>
+          <h3>生活場面まで思い浮かぶ</h3>
+          <p>何時に、どこで、誰が、何に困らず、どんな気持ちになれるかまで見える。</p>
+          <p>ユーザーが「それが欲しかった」と受け取りやすい。</p>
+        </div>
+      </div>
+      <div class="example">
+        <h3>GoPro防水機能の掘り下げ</h3>
+        <div class="flow">
+          <div>
+            <strong>特徴</strong>
+            <small>防水機能がある。</small>
+          </div>
+          <div>
+            <strong>直接の良さ</strong>
+            <small>水辺でも撮影できる。</small>
+          </div>
+          <div>
+            <strong>生活場面</strong>
+            <small>海、川、雨、旅行、アクティビティ中の映像を残せる。</small>
+          </div>
+          <div>
+            <strong>感情</strong>
+            <small>壊れる心配を減らし、撮影を楽しみやすい。</small>
+          </div>
+          <div>
+            <strong>欲求</strong>
+            <small>大事な瞬間を逃さず残したい。</small>
+          </div>
+        </div>
+      </div>
+      <p>「防水です」だけだと特徴。「水辺でも撮れます」だと利点。「濡れることを気にせず、旅行やアクティビティの一番残したい瞬間を撮れる」まで行くと、欲求に近づく。</p>
+      <div class="summary">
+        <p><strong>具体化する時の5項目</strong></p>
+        <p>いつ起きるか。どこで起きるか。誰に関係するか。使用前後で何が変わるか。その結果どんな感情になるか。</p>
+      </div>
+    </section>
+
+    <section id="fde">
+      <h2>7. ベネフィットの種類は3つ</h2>
+      <p>ベネフィットは、機能的ベネフィット、3Dベネフィット、感情的ベネフィットの3種類に分けて考えられる。英語表記の頭文字を取ったものが「FDE」。</p>
+      <figure class="lecture-figure">
+        <img src="assets/benefit-fab-fde/fde-life-insurance-regenerated-full.png" alt="生命保険を使ったFDEの図">
+        <figcaption>生命保険を使ったFDEの例。機能、具体的な未来、感情へベネフィットを広げている。</figcaption>
+      </figure>
+      <div class="grid three">
+        <div class="card">
+          <span class="tag blue">Functional Benefit</span>
+          <h3>機能的ベネフィット</h3>
+          <p>商品によって直接できるようになること。機能がもたらす直接的な結果。</p>
+        </div>
+        <div class="card">
+          <span class="tag purple">Dimensionalized Benefit</span>
+          <h3>3Dベネフィット</h3>
+          <p>その結果が起きる未来を、具体的な場面として立体的に描いたもの。</p>
+        </div>
+        <div class="card">
+          <span class="tag green">Emotional Benefit</span>
+          <h3>感情的ベネフィット</h3>
+          <p>その結果によって得られる感情、避けられる感情、実感できる自分の姿。</p>
+        </div>
+      </div>
+      <div class="example">
+        <h3>生命保険をFDEで広げる</h3>
+        <p><strong>機能的ベネフィット：</strong>自分が亡くなっても、家族に給料分に相当するお金を渡せる。</p>
+        <p><strong>3Dベネフィット：</strong>保険がなければ、自分が倒れた後、妻が寝る間も惜しんで働いているにもかかわらず、家族は貧しい生活を送り、子どもは大学を諦めるかもしれない。生命保険があれば、家族が安心して生活を続けられる。</p>
+        <p><strong>感情的ベネフィット：</strong>家族の生活が崩れる恐怖を避けられる。安心できる。家族を大切にする父親であることを実感できる。</p>
+      </div>
+      <div class="example">
+        <h3>同じ車のエアコンをFDEで広げる</h3>
+        <p><strong>機能的ベネフィット：</strong>暑い車内を冷やせる。</p>
+        <p><strong>3Dベネフィット：</strong>真夏の渋滞や長距離移動でも、汗だくにならず、同乗する家族と落ち着いて過ごせる。</p>
+        <p><strong>感情的ベネフィット：</strong>暑さによる不快感やいら立ちを減らし、安心して移動を楽しめる。</p>
+      </div>
+      <p>機能だけで終わらず、その機能が生活をどう変えるのか、本人にどんな感情や自己認識をもたらすのかまで広げることがFDEの役割。</p>
+    </section>
+
+    <section id="process">
+      <h2>8. 制作で使う流れ</h2>
+      <div class="flow">
+        <div>
+          <strong>1. 欲求を把握</strong>
+          <small>相手の欲求、問題、痛みを言語化する。</small>
+        </div>
+        <div>
+          <strong>2. 特徴を列挙</strong>
+          <small>機能、仕様、仕組みなどの商品事実を出す。</small>
+        </div>
+        <div>
+          <strong>3. FABで展開</strong>
+          <small>特徴から強み、価値へ発想を広げる。</small>
+        </div>
+        <div>
+          <strong>4. 4つの問い</strong>
+          <small>ユーザーにとっての意味まで考える。</small>
+        </div>
+        <div>
+          <strong>5. FDEで具体化</strong>
+          <small>機能、具体的な場面、感情へ広げる。</small>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>商品特徴だけで止まっていないか。</li>
+        <li>Feature、Advantage、Benefitの3方向から発想できているか。</li>
+        <li>「何をしてくれる？」「ユーザーにとって何を意味する？」へ進めているか。</li>
+        <li>同じ特徴でも、ターゲットによって価値が変わることを考慮しているか。</li>
+        <li>便利、安心、快適などの抽象語を、生活場面まで具体化できているか。</li>
+        <li>Functional、Dimensionalized、Emotionalの3種類へ広げているか。</li>
+        <li>特徴から欲求までの因果を、ユーザー任せにせず言葉でつないでいるか。</li>
+      </ul>
+      <div class="summary">
+        <p><strong>最終ルール</strong></p>
+        <p>ベネフィットは、商品の特徴をそれらしい言葉へ言い換えることではない。特徴と結果の因果関係をたどり、相手が本当に望んでいる変化までつなげること。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>参考</h2>
+      <p>この資料は、ダイレクト出版セールスライティングスクールの認定講座1日目、ベネフィットライティング参考動画、追加のベネフィットライティング講義をもとに、部内共有用へ再構成したもの。</p>
+      <p class="note">逐語録ではなく、ベネフィットの意味・作り方・種類を理解しやすい順番へ整理している。</p>
+    </section>
+  </div>
+</body>
+</html>
